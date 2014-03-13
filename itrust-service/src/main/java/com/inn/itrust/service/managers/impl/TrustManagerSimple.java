@@ -1,0 +1,345 @@
+package com.inn.itrust.service.managers.impl;
+
+/*
+ * #%L
+ * itrust-service
+ * %%
+ * Copyright (C) 2014 INNOVA S.p.A
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Set;
+
+import javax.inject.Named;
+
+import org.apache.jena.riot.RDFDataMgr;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
+import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.inn.common.ListTuple;
+import com.inn.common.OrderType;
+import com.inn.common.TFunctor;
+import com.inn.common.Tuple2;
+import com.inn.common.structure.tree.Node;
+import com.inn.common.structure.tree.Tree;
+import com.inn.common.util.TupleUtil;
+import com.inn.itrust.model.model.TrustRequest;
+import com.inn.itrust.service.cfg.Configuration;
+import com.inn.itrust.service.cfg.IgnoredModels;
+import com.inn.itrust.service.cfg.LocationMapping;
+import com.inn.itrust.service.collectors.ActivityCollector;
+import com.inn.itrust.service.collectors.Collector;
+import com.inn.itrust.service.collectors.FeedbackCollector;
+import com.inn.itrust.service.collectors.QoSCollector;
+import com.inn.itrust.service.collectors.ReputationCollector;
+import com.inn.itrust.service.command.CreateUpdateTrustProfile;
+import com.inn.itrust.service.command.FetchResourceMetadaFromRegistries;
+import com.inn.itrust.service.component.ComponentIntegrated;
+import com.inn.itrust.service.enums.EnumScoreStrategy;
+import com.inn.itrust.service.managers.KnowledgeBaseManager;
+import com.inn.itrust.service.managers.RankingManager;
+import com.inn.itrust.service.managers.SparqlGraphStoreFactory;
+import com.inn.itrust.service.managers.SparqlGraphStoreManager;
+import com.inn.itrust.service.managers.TrustManager;
+import com.inn.itrust.service.utils.FillTaxonomy;
+
+
+/**
+ * TODO describe me
+ * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ *
+ */
+public class TrustManagerSimple extends ComponentIntegrated implements TrustManager {
+
+	private final List<Collector> collectors = Lists.newArrayList();
+	private boolean doSaveIntoStore = false;
+	private final List<SparqlGraphStoreManager> externalGraphStoreMgrs = Lists.newArrayList();
+	private final SparqlGraphStoreManager graphStoreManager;
+	private final KnowledgeBaseManager kbManager;
+	private final RankingManager rankingManager;
+
+	/**
+	 * a default strategy for calculating trust index
+	 */
+	private EnumScoreStrategy globalStrategy = EnumScoreStrategy.Weighted_sum_model;
+
+	@Inject
+	public TrustManagerSimple(EventBus eventBus, SparqlGraphStoreFactory graphStoreFactory, RankingManager rankingManager,
+			KnowledgeBaseManager kbManager, @Named(Configuration.SPARQL_ENDPOINT_QUERY_PROP) String queryEndpoint,
+			@Named(Configuration.SPARQL_ENDPOINT_UPDATE_PROP) String updateEndpoint,
+			@Named(Configuration.SPARQL_ENDPOINT_SERVICE_PROP) String serviceEndpoint) throws Exception {
+
+		super(eventBus);
+		Set<String> ignoredImports = IgnoredModels.getModels();
+		Set<URI> baseModels = ImmutableSet.of();
+		ImmutableMap.Builder<String, String> locationMappings = LocationMapping.getMapping();
+		this.graphStoreManager = graphStoreFactory.create(queryEndpoint, updateEndpoint, serviceEndpoint, baseModels, locationMappings.build(),
+				ignoredImports);
+		this.rankingManager = rankingManager;
+		this.kbManager = kbManager;
+		registerExternalGraphStoreManagers(externalGraphStoreMgrs, graphStoreFactory);
+		registerCollectors();
+	}
+
+	@Override
+	public Tree computeTaxonomy(String graphName, String rootConcept) {
+		Tree tree = new Tree();
+		OntModel model = graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
+		OntClass ontClass = model.getOntClass(rootConcept);
+		Node root = new Node(ontClass.getLocalName());
+		tree.setRoot(root);
+		FillTaxonomy.execute(ontClass, root);
+		return tree;
+	}
+
+	/**
+	 * For a given resource (identified by uri), retrieves and updates a trust profile. If the trust profile was not existing for the given
+	 * resource, this method will create the profile and will collect all profile data (i.e. trust parameters).
+	 * 
+	 * @param model
+	 * @param uri
+	 */
+	private void createOrUpdateTrustProfile(OntModel model, URI uri) {
+		new CreateUpdateTrustProfile().apply(model, uri, collectors);
+	}
+
+	/**
+	 * 
+	 * Fetches a resource metadata as RDF graph (i.e. Jena model) from the registers
+	 * 
+	 * @param uri TResource URI
+	 * @param fetchFromExternalRegistries true if data has to be retrieved from externally registers; otherwise false
+	 * @param useMappedLocations true if mapped location (e.g. local cache) should be used to retrieve data; otherwise false
+	 * @param fetchFromInternalRegirsty true if data has to be retrieved from internal registry; otherwise false
+	 * @return ontModel as a Jena model that contains statements about the resource
+	 */
+	private OntModel fetchResourceMetadataFromRegistries(URI uri, boolean fetchFromExternalRegistries, boolean useMappedLocations,
+			boolean fetchFromInternalRegirsty) {
+		return new FetchResourceMetadaFromRegistries(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries,
+				useMappedLocations, fetchFromInternalRegirsty);
+	}
+
+	@Override
+	public KnowledgeBaseManager getKnowledgeBaseManager() {
+		return kbManager;
+	}
+
+	// @Override
+	// public Set<URI> getLoadedModels() {
+	// return kbManager.getLoadedModels();
+	// }
+
+	@Override
+	public void initialise() {
+		this.graphStoreManager.initialise();
+	}
+
+	@Override
+	public String listTrustParameters() {
+		try {
+			graphStoreManager.fetchAndStore(new URI(""));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public List<URI> rankResources(List<URI> resources, TrustRequest trustRequest, OrderType order) throws Exception {
+		return rankResources(resources, trustRequest, globalStrategy, true, order);
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public List<URI> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing,
+			OrderType order) throws Exception {
+		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
+		final List<URI> rankedList = TupleUtil.toListOfTupleElement(scores, 1);
+		return rankedList;
+	}
+
+	@Override
+	public Double obtainTrustIndex(URI resourceURI) throws Exception {
+		final TrustRequest request = obtainAbsoluteTrustRequest();
+		return obtainTrustIndex(resourceURI, request);
+	}
+
+	@Override
+	public Double obtainTrustIndex(URI resourceURI, TrustRequest request) throws Exception {
+		List<URI> list = Lists.newArrayList();
+		list.add(resourceURI);
+		final List<Tuple2<URI, Double>> scores = processCall(list, request, globalStrategy, false, OrderType.DESC, false);
+		return scores.get(0).getT2();
+	}
+
+	@Override
+	public List<URI> filterResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing,
+			OrderType order, final Double thresholdValue) throws Exception {
+		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
+		Iterable<Tuple2<URI, Double>> filtered = Iterables.filter(scores, new Predicate<Tuple2<URI, Double>>() {
+			@Override
+			public boolean apply(Tuple2<URI, Double> t) {
+				return (Double.valueOf(t.getT2()).compareTo(thresholdValue) >= 0);
+			}
+		});
+		printList(Lists.newArrayList(filtered), " filtered with thresholdValue value of "+thresholdValue);
+		final List<URI> filteredList = TupleUtil.toListOfTupleElement(Lists.newArrayList(filtered), 1);
+		return filteredList;
+	}
+	
+	private void printList(List<Tuple2<URI, Double>> set, String note) {
+		System.out.println("******** <"+note+"> ************");
+		for (Tuple2<URI, Double> t : set) {
+			System.out.println(t.getT1() + " score " + t.getT2());
+		}
+		System.out.println("******** </"+note+"> ************");
+	}
+	
+
+	@Override
+	public List<URI> filterResources(List<URI> resources, TrustRequest request, OrderType order, Double thresholdValue) throws Exception {
+		return filterResources(resources, request, globalStrategy, true, order, thresholdValue);
+	}
+
+	/**
+	 * Registration of trust information collectors. Typically, the collector grabs data from some source and transforms data into rdf
+	 * model.
+	 */
+	private void registerCollectors() {
+		collectors.add(new ReputationCollector());
+		collectors.add(new FeedbackCollector());
+		collectors.add(new ActivityCollector());
+		collectors.add(new QoSCollector());
+	}
+
+	/**
+	 * Registration of external repositories where resource descriptions might be found
+	 */
+	private void registerExternalGraphStoreManagers(List<SparqlGraphStoreManager> list, SparqlGraphStoreFactory factory) {
+		Set<String> ignoredImports = IgnoredModels.getModels();
+		Set<URI> baseModels = ImmutableSet.of();
+		ImmutableMap.Builder<String, String> locationMappings = LocationMapping.getMapping();
+		SparqlGraphStoreManager manager = factory.create(Configuration.EXT_SPARQL_ENDPOINT_QUERY, Configuration.EXT_SPARQL_ENDPOINT_UPDATE,
+				Configuration.EXT_SPARQL_ENDPOINT_SERVICE, baseModels, locationMappings.build(), ignoredImports);
+		list.add(manager);
+	}
+
+	@Override
+	public void removeOntology(String graphName) {
+		kbManager.deleteModel(URI.create(graphName));
+	}
+
+	protected void saveIntoTripleStore(URI uri, Model model) {
+		if (doSaveIntoStore)
+			graphStoreManager.putGraph(uri, model);
+	}
+
+	/**
+	 * This method will be called when the server is being shutdown. Ensure a clean shutdown.
+	 */
+	@Override
+	public void shutdown() {
+		this.graphStoreManager.shutdown();
+	}
+
+	/**
+	 * 
+	 * @param tupleModels
+	 */
+	private void storeModelsIntoStore(List<Tuple2<URI, Model>> tupleModels) {
+		for (Tuple2<URI, Model> t : tupleModels) {
+			saveIntoTripleStore(t.getT1(), t.getT2());
+		}
+	}
+
+	@Override
+	public void uploadOntology(URI ontologyUri, String graphName) {
+		Model model = RDFDataMgr.loadModel(ontologyUri.toASCIIString());
+		if (graphName == null)
+			graphName = ontologyUri.toASCIIString();
+		kbManager.uploadOntology(graphName.toLowerCase(), model, true);
+	}
+
+	/**
+	 * 
+	 * @param resources
+	 * @return
+	 */
+	private List<Tuple2<URI, Model>> obtainModels(List<URI> resources) {
+		List<Tuple2<URI, Model>> listModels = Lists.newArrayList();
+		for (URI uri : resources) {
+			OntModel model = fetchResourceMetadataFromRegistries(uri, false, true, false);
+			createOrUpdateTrustProfile(model, uri);
+			listModels.add(new Tuple2<URI, Model>(uri, model));
+		}
+		return listModels;
+	}
+
+	/**
+	 * 
+	 * @param resources
+	 * @param request
+	 * @param scoreStrategy
+	 * @param excludeIfAttributeMissing
+	 * @param order
+	 * @param logRequest
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy,
+			boolean excludeIfAttributeMissing, OrderType order, boolean logRequest) throws Exception {
+		final List<Tuple2<URI, Model>> tupleModels = obtainModels(resources);
+		if (logRequest) {
+			storeModelsIntoStore(tupleModels);
+		}
+		List<Model> models = ListTuple.toList(tupleModels, new TFunctor<Model>() {
+			@Override
+			public Model apply(Tuple2<?, ?> t) {
+				return (Model) t.getT2();
+			}
+		});
+		return rankingManager.rankServiceModels(models, request, scoreStrategy, excludeIfAttributeMissing, order);
+	}
+
+	// FIXME
+	/**
+	 * Obtains absolute trust request (users' perception of trust is not taken into account)
+	 * 
+	 * @return
+	 */
+	private TrustRequest obtainAbsoluteTrustRequest() {
+		// TODO Auto-generated method stub Well, this should be identified somehow, perhaps thru some survay.
+		return null;
+	}
+
+}

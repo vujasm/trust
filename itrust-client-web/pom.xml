@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  	<parent>
+        <artifactId>itrust-parent</artifactId>
+        <groupId>com.innova.compose</groupId>
+        <version>0.0.1</version>
+        <relativePath>../itrust-parent/pom.xml</relativePath>
+    </parent>
+    
+            <properties>
+   	 	<license.licenseResolver>${project.baseUri}../itrust-parent/license</license.licenseResolver>
+	</properties>
+    
+  <artifactId>itrust-ui</artifactId>
+     	<version>${project.parent.version}</version>	
+  <name>itrust-ui</name>
+  <description>This is descr</description>
+      <developers>
+        <developer>
+            <id>marko</id>
+            <name>Marko Vujasinovic</name>
+            <email>m.vujasinovic-{AT}-innova-eu.net</email>
+            <organization>INNOVA S.p.A</organization>
+            <organizationUrl>www.innova-eu.net</organizationUrl>
+        </developer>
+    </developers>
+    <organization>
+        <name>INNOVA S.p.A</name>
+        <url>www.innova-eu.net</url>
+    </organization>
+  
+</project>

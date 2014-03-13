@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+        <artifactId>itrust-parent</artifactId>
+        <groupId>com.innova.compose</groupId>
+        <version>0.0.1</version>
+        <relativePath>../itrust-parent/pom.xml</relativePath>
+    </parent>
+
+  
+        <properties>
+   	 	<license.licenseResolver>${project.baseUri}../itrust-parent/license</license.licenseResolver>
+	</properties>
+	
+  <artifactId>itrust-service-methods</artifactId>
+   	<version>${project.parent.version}</version>	
+  <name>itrust-service-methods</name>
+  <description>This is descr</description>
+      <developers>
+        <developer>
+            <id>marko</id>
+            <name>Marko Vujasinovic</name>
+            <email>m.vujasinovic-{AT}-innova-eu.net</email>
+            <organization>INNOVA S.p.A</organization>
+            <organizationUrl>www.innova-eu.net</organizationUrl>
+        </developer>
+    </developers>
+    <organization>
+        <name>INNOVA S.p.A</name>
+        <url>www.innova-eu.net</url>
+    </organization>
+     <dependencies>
+		<dependency>
+			<groupId>com.innova.compose</groupId>
+			<artifactId>itrust-common-service</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.innova.compose</groupId>
+			<artifactId>itrust-model</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+		<groupId>org.slib.sglib</groupId>
+		<artifactId>slib-dist</artifactId>
+		<version>0.6-all-jar</version>
+<!-- 		<scope>system</scope> -->
+<!-- 		<systemPath>${basedir}/lib/slib-dist-0.6-all-jar.jar</systemPath> -->
+</dependency>
+  </dependencies>
+</project>

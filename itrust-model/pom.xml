@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+        <artifactId>itrust-parent</artifactId>
+        <groupId>com.innova.compose</groupId>
+        <version>0.0.1</version>
+        <relativePath>../itrust-parent/pom.xml</relativePath>
+    </parent>
+    
+   	<version>${project.parent.version}</version>
+	<artifactId>itrust-model</artifactId>
+	<name>itrust-model</name>
+	<properties>
+		<jena.version>2.11.0</jena.version>
+   	 	<license.licenseResolver>${project.baseUri}../itrust-parent/license</license.licenseResolver>
+	</properties>
+	<description>This is descr</description>
+	<developers>
+		<developer>
+			<id>marko</id>
+			<name>Marko Vujasinovic</name>
+			<email>m.vujasinovic-{AT}-innova-eu.net</email>
+			<organization>INNOVA S.p.A</organization>
+			<organizationUrl>www.innova-eu.net</organizationUrl>
+		</developer>
+	</developers>
+	<organization>
+		<name>INNOVA S.p.A</name>
+		<url>www.innova-eu.net</url>
+	</organization>
+	<dependencies>
+		<dependency>
+			<groupId>com.innova.compose</groupId>
+			<artifactId>itrust-common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>apache-jena-libs</artifactId>
+            <version>2.11.0</version>
+            <type>pom</type>
+        </dependency>
+		<!-- <dependency> <groupId>com.innova.compose</groupId> <artifactId>itrust-vocabulary</artifactId> 
+			<version>0.0.1</version> </dependency> <dependency> <groupId>uk.ac.open.kmi.iserve.commons</groupId> 
+			<artifactId>iserve-commons-vocabulary</artifactId> <version>2.0.0-SNAPSHOT</version> 
+			</dependency> -->
+	</dependencies>
+	<build>
+		 <plugins>
+		  <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <!-- Automated File Generation with Schemagen: TRUST -->
+                    <execution>
+                        <id>TrustVocab</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>jena.schemagen</mainClass>
+                            <commandlineArgs>
+                                -a http://www.compose-project.eu/ns/web-of-things/trust# \
+                                -i ${basedir}/src/main/resources/trustontology.ttl \
+                                -e TTL \
+                                --package com.inn.itrust.model.vocabulary \
+                                -o ${project.basedir}/src/main/java \
+                                -n Trust \
+                                --owl
+                            </commandlineArgs>
+                        </configuration>
+                    </execution>
+                     <!-- Automated File Generation with Schemagen: USDL-Sec -->
+                    <execution>
+                        <id>USDLSecVocab</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>jena.schemagen</mainClass>
+                            <commandlineArgs>
+                                -a http://www.linked-usdl.org/ns/usdl-sec# \
+                                -i ${basedir}/src/main/resources/usdl-sec.ttl \
+                                -e TTL \
+                                --package com.inn.itrust.model.vocabulary \
+                                -o ${project.basedir}/src/main/java \
+                                -n UsdlSec \
+                                --owl
+                            </commandlineArgs>
+                        </configuration>
+                    </execution>
+                 </executions>
+                   </plugin>
+        </plugins>
+	</build>
+
+</project>

@@ -1,0 +1,1107 @@
+@prefix : <http://www.linked-usdl.org/ns/usdl-sec#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix msm: <http://cms-wg.sti2.org/ns/minimal-service-model#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ctag: <http://commontag.org/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix secont: <http://www.ida.liu.se/~almhe/Security.owl#> .
+@prefix dcterms: <http://dublincore.org/2010/10/11/dcterms.rdf#> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix usdl-core: <http://www.linked-usdl.org/ns/usdl-core#> .
+@base <http://www.linked-usdl.org/ns/usdl-sec#> .
+
+<http://www.linked-usdl.org/ns/usdl-sec#> rdf:type owl:Ontology ;
+                                          
+                                          rdfs:label "Linked Open Data Vocabulary for Security Features" ;
+                                          
+                                          dcterms:title "USDL Security" ;
+                                          
+                                          dcterms:created "2012-03-27" ;
+                                          
+                                          dcterms:modified "2012-10-03" ;
+                                          
+                                          owl:versionInfo "0.9.5" ;
+                                          
+                                          dcterms:description """USDL Linked Data Vocabulary for Security (USDL-SEC). USDL-SEC aims at describing the main security properties and feaures of a service, described with USDL. 
+Service providers can use this speciﬁcation to describe the security features of their services, and thus to support users in ﬁnding adequate alternatives to fulﬁl their needs.
+The USDL-SEC description can be expressed using a top-down approach: from high-level properties (the Security Goals), to different solutions (Security Mechanism) and the corrisponding implementations (Security Technologies).
+USDL-SEC reuses some information defined in the Security Ontology (referred as secont, available at http://www.ida.liu.se/~almhe/Security.owl).
+USDL-SEC is globally organised in three main layers:
+–  Security topic: This is a high level representation of the security feature of a service.
+–  Security solution: This is a security mechanism that contributes towards satisfying a particular security topic.
+–  Security  technology:  It  refers  to  the  technical  implementations  of  the security solutions.
+This three-layered model is materialized into a concrete description
+model, composed by the following elements:
+–  Security  Proﬁle: the root node of the model and the entry point from USDL to USDL-SEC. This node should appear as a pointer element of Usdl to the security properties of the service. 
+–  Security  Goal: the security goal refers to the highest abstraction layer referring to a security topic. It can take the values of the most well known security concepts like Anonymity, Conﬁdentiality, Privacy, Authentication etc. This list is deﬁned using another vocabulary (referred as sec-goal).
+–  Security Mechanism: is a set of security solutions that can contribute to achieve a security goal. These mechanisms are theoretical solutions that answer to speciﬁc security requirements like Access control, Cryptography, Obligations, etc.  This list is deﬁned using another vocabulary (referred as sec-mea).
+These solutions can be applied under three realization levels: The network level, the application level, and the service level.
+–  Security Technology: is a set of concrete implementations and tools that realizes the security mechanisms. Like for example the encryption on the network level is implemented by IPSec. """@en ;
+                                          
+                                          dcterms:contributor :Francesco_Di_Cerbo ,
+                                                              :Slim_Trabelsi ,
+                                                              :Torsten_Leidig ;
+                                          
+                                          dcterms:creator :Torsten_Leidig .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://dublincore.org/2010/10/11/dcterms.rdf#description
+
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+
+###  http://dublincore.org/2010/10/11/dcterms.rdf#title
+
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#broader
+
+skos:broader rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+
+skos:exactMatch rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#hasTopConcept
+
+skos:hasTopConcept rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+
+skos:inScheme rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+
+skos:prefLabel rdf:type owl:AnnotationProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/firstName
+
+foaf:firstName rdf:type owl:AnnotationProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/lastName
+
+foaf:lastName rdf:type owl:AnnotationProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/name
+
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/phone
+
+foaf:phone rdf:type owl:AnnotationProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/title
+
+foaf:title rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityGoal
+
+:hasSecurityGoal rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "has security goal"@en ;
+                 
+                 rdfs:comment "This relation connects a Security Profile with an high-level Security Goal; a vocabulary for Security Goals can be found using the sec-goal taxonomy."@en ;
+                 
+                 rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> ;
+                 
+                 rdfs:range :SecurityGoal ;
+                 
+                 rdfs:domain :SecurityProfile .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityMeasure
+
+:hasSecurityMeasure rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityProfile
+
+:hasSecurityProfile rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "has security profile" ;
+                    
+                    rdfs:comment "this relation binds a USDL service description with its USDL-SEC security profile."@en ;
+                    
+                    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> ;
+                    
+                    rdfs:range :SecurityProfile .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityRealizationType
+
+:hasSecurityRealizationType rdf:type owl:ObjectProperty ;
+                            
+                            rdfs:label "has securty realization type" ;
+                            
+                            rdfs:comment "This relation describes at which level a Security Mechanism operates. It ideally refers to an ISO/OSI protocol stack, in order to understand in which layer a certain mechanism is active."@en ;
+                            
+                            rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> ;
+                            
+                            rdfs:domain :SecurityMechanism ;
+                            
+                            rdfs:range :SecurityRealizationType .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#isImplementedBy
+
+:isImplementedBy rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "is implemented by"@en ;
+                 
+                 rdfs:comment "This relation associates to a Security Goal, a Security Mechanism that is used to implement the former or, alternatively, a USDL description of another service, that is used to implement the Security Goal."@en ;
+                 
+                 rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> ;
+                 
+                 rdfs:domain :SecurityGoal ;
+                 
+                 rdfs:range [ rdf:type owl:Class ;
+                              owl:unionOf ( usdl-core:Service
+                                            :SecurityMechanism
+                                          )
+                            ] .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#isRealizedByTechnology
+
+:isRealizedByTechnology rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "is realized by technology" ;
+                        
+                        rdfs:comment "This relation expresses how a certain Security Mechanism is implemented, by means of a Security Technology."@en ;
+                        
+                        rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> ;
+                        
+                        rdfs:domain :SecurityMechanism ;
+                        
+                        rdfs:range :SecurityTechnology .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#usesMechanism
+
+:usesMechanism rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.linked-usdl.org/ns/usdl-core#Service
+
+usdl-core:Service rdf:type owl:Class .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityGoal
+
+:SecurityGoal rdfs:label "security goal" ;
+              
+              skos:definition "A Security Goal refers to the highest abstraction layer referring to a security topic. It can take the values of the most well known security concepts like Anonymity,  Confidentiality,  Privacy,  Authentication etc. This list is defined using another vocabulary, sec-goal."@en ;
+              
+              rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityMeasure
+
+:SecurityMeasure rdf:type owl:Class .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityMechanism
+
+:SecurityMechanism rdfs:label "Security Mechanism" ;
+                   
+                   rdfs:comment "A Security Mechanism  is  a  set  of  security  solutions that  can  achieve  a  security  goal.  These  mechanisms are theoretical solutions that answer to specific security requirements like Access control, Cryptography, Obligations, etc. These solutions can be applied under three realization  levels:  The network  level,  the  application level, and the service level (expressed with the relation hasSecurityRealizationType). "@en ;
+                   
+                   rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityProfile
+
+:SecurityProfile rdf:type owl:Class ;
+                 
+                 rdfs:label "security profile" ;
+                 
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :usesMechanism ;
+                                   owl:someValuesFrom :SecurityMechanism
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasSecurityGoal ;
+                                   owl:someValuesFrom :SecurityGoal
+                                 ] ;
+                 
+                 rdfs:comment "A Security Profile is the  root  node  of  the  model  and the  entry  point  from  a  service  description  language to USDL-SEC. This node can conceptually be similar to a pointer element from  the  general  service  description,  to  the security properties of the service. "@en ;
+                 
+                 rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityRealizationType
+
+:SecurityRealizationType rdf:type owl:Class ;
+                         
+                         rdfs:label "security realization type" ;
+                         
+                         rdfs:subClassOf skos:Concept ;
+                         
+                         rdfs:comment "This field explains where the Security Mechanism operates, referring to an ISO/OSI-like stack model. Network, Application and Service are valid values."@en ;
+                         
+                         rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityTechnology
+
+:SecurityTechnology rdfs:label "security technology" ;
+                    
+                    rdfs:comment """The Security Tecnology  is a set of concrete implementations and tools that realizes the Security Mechanisms. Like for example the encryption on the network level is implemented by IPSec .
+Security Technology elements can be defined by each vocabulary user."""@en ;
+                    
+                    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+
+skos:Concept rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+
+skos:ConceptScheme rdf:type owl:Class .
+
+
+
+###  http://xmlns.com/foaf/0.1/Person
+
+foaf:Person rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Access_Control
+
+:Access_Control rdf:type owl:NamedIndividual ,
+                         skos:Concept ;
+                
+                dcterms:description "The prevention of unauthorized use of a resource, including the prevention of use of a resource in an unauthorised manner. (CCITT)"^^xsd:string ,
+                                    "The process of ensuring that only authorized subjects are allowed access to a resource. (sec-ont)"^^xsd:string ;
+                
+                skos:broader :SecurityMechanism ;
+                
+                skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Accountability
+
+:Accountability rdf:type owl:NamedIndividual ,
+                         skos:Concept ;
+                
+                rdfs:label "Accountability"@en ;
+                
+                rdfs:comment "The property that ensures that the actions of an entity may be traced uniquely to the entity. (CCITT) The process allowing for the auditing of IS activities to be traced to a source that may then be held responsible. (Phoha)"@en ;
+                
+                skos:exactMatch secont:Accountability ;
+                
+                skos:broader :SecurityGoal ;
+                
+                skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Anonymity
+
+:Anonymity rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           
+           rdfs:label "Anonymity"@en ;
+           
+           rdfs:comment "A condition in which an individual's true identity is unknown. (www.microsoft.com/security/glossary.mspx)"@en ;
+           
+           skos:broader :SecurityGoal ;
+           
+           skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Auditing
+
+:Auditing rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          dcterms:description "Collection of data about events which have occurred in a system. (sec-ont)"^^xsd:string ;
+          
+          skos:broader :SecurityMechanism ;
+          
+          skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Authentication
+
+:Authentication rdf:type owl:NamedIndividual ,
+                         skos:Concept ;
+                
+                rdfs:comment "The process of reliably determining the identify of a communicating party or source of a message. (Phoha)"@en ;
+                
+                skos:broader :SecurityGoal ;
+                
+                skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Authenticity
+
+:Authenticity rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              
+              rdfs:comment "A security principle that ensures that a message is received in exactly the form in which it was sent. (Phoha)"@en ;
+              
+              skos:broader :SecurityGoal ;
+              
+              skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Authorization
+
+:Authorization rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               
+               rdfs:comment "Permission to access a resource. (Phoha)"@en ;
+               
+               skos:broader :SecurityGoal ;
+               
+               skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Availability
+
+:Availability rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              
+              rdfs:comment "The property of being accessible and useable upon demand by an authorised entity. (CCITT)  Timely, reliable access to data and information services for authorised users. (Phoha) The ability of a product to be in a state to perform a required function under given conditions at a given instant of time or over a given time interval assuming that the required external resources are provide. (Meul) The prevention of the unauthorised withholding of information or resources (ITSEC)"@en ;
+              
+              skos:broader :SecurityGoal ;
+              
+              skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#BiometricData
+
+:BiometricData rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               
+               dcterms:description "Data originated from \"the measurement of an anatomical, physiological or behavioural characteristic of the user, rather than knowledge or possession of information or a key.\" (secont:Literature#Phoha)"^^xsd:string ;
+               
+               skos:broader :SecurityMechanism ;
+               
+               skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Certificate
+
+:Certificate rdf:type owl:NamedIndividual ,
+                      skos:Concept ;
+             
+             dcterms:description "A certificate authority (CA) issues an encrypted digital certificate containing the applicant's public key and a variety of other identification information. The CA makes its own public key readily available through print publicity or perhaps on the Internet. The recipient of an encrypted message uses the CA's public key to decode the digital certificate attached to the message, verifies it as issued by the CA and then obtains the sender's public key and identification information held within the certificate. With this information, the recipient can send an encrypted reply. (Webopedia)"^^xsd:string ,
+                                 "A data structure signed with a public key digital signature stating that a specified public key belongs to someone or something with a specified identification. (ISD)"^^xsd:string ,
+                                 "A document with a digital signature. Such a certificate is used to authenticate identity. Digital certificates are often signed by a trusted third party known as a certificate authority.  (secont:Literature#ODotI)"^^xsd:string ;
+             
+             skos:broader :SecurityMechanism ;
+             
+             skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#CertificateExchange
+
+:CertificateExchange rdf:type owl:NamedIndividual ,
+                              skos:Concept ;
+                     
+                     dcterms:description "A certificate exchange is a method with which digital certificates from two different communication endpoints are transmitted to the other endpoint. The aim of the exchange is, in general terms, to assure the identities of the two communication peers, especially when using Public Key Infrastructure (PKI) certificates, that are endorsed by a Certification Authority."^^xsd:string ;
+                     
+                     skos:broader :SecurityMechanism ;
+                     
+                     skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Certification
+
+:Certification rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               
+               dcterms:description "Comprehensive evaluation of the technical and non-technical security safeguards of an information system to support the accreditation process that establishes the extent to which a particular design and implementation meets a set of specified security requirements (CNSS Instruction  4009)"^^xsd:string ;
+               
+               skos:broader :SecurityMechanism ;
+               
+               skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Challenge-Response
+
+:Challenge-Response rdf:type owl:NamedIndividual ,
+                             skos:Concept ;
+                    
+                    dcterms:description "In computer security, challenge-response is a family of protocols in which one party presents a question, the \"challenge\", and another party must provide a valid answer, the \"response\". (adapted from Wikipedia)"^^xsd:string ;
+                    
+                    skos:broader :SecurityMechanism ;
+                    
+                    skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Checksum
+
+:Checksum rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          dcterms:description "A checksum or hash sum is a fixed-size datum computed from an arbitrary block of digital data for the purpose of detecting accidental errors or deliberate modifications that may have been introduced during its transmission or storage. The integrity of the data can be checked at any later time by recomputing the checksum and comparing it with the stored one. If the checksums match, the data were almost certainly not altered (either intentionally or unintentionally). (adapted from Wikipedia)"^^xsd:string ;
+          
+          skos:broader :SecurityMechanism ;
+          
+          skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Confidentiality
+
+:Confidentiality rdf:type owl:NamedIndividual ,
+                          skos:Concept ;
+                 
+                 rdfs:comment "The property that information is not made available or disclosed to unauthorised individuals, entities or processes. (CCITT) The property of not being divulged to unauthorised parties. (Phoha) The prevention of the unauthorised disclosure of information (ITSEC)"@en ;
+                 
+                 skos:broader :SecurityGoal ;
+                 
+                 skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Control_Code
+
+:Control_Code rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              
+              dcterms:description "In information theory and coding theory with applications in computer science and telecommunication, error detection and correction or error control or control codes are techniques that enable reliable delivery of digital data over unreliable communication channels. Many communication channels are subject to channel noise, and thus errors may be introduced during transmission from the source to a receiver. Other channels might not be fully trusted, due to the possible presence of communication tampering entities. Error detection techniques allow detecting such errors or abuses . (adapted from Wikipedia)"^^xsd:string ;
+              
+              skos:broader :SecurityMechanism ;
+              
+              skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Correctness
+
+:Correctness rdf:type owl:NamedIndividual ,
+                      skos:Concept ;
+             
+             rdfs:comment "A property of a representation of a Target of Evaluation such thtat it accurately reflects the stated security target for that system or product (ITSEC)"@en ;
+             
+             skos:broader :SecurityGoal ;
+             
+             skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Cryptography
+
+:Cryptography rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              
+              dcterms:description "Discipline which embodies principles, means, and methods for the transformation of data in order to hide its information content, prevent its undetected modification and/or prevent its unauthorised use. (secont:Literature#CCITT)"^^xsd:string ;
+              
+              skos:broader :SecurityMechanism ;
+              
+              skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Delegation
+
+:Delegation rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            
+            dcterms:description "Delegation represents a process with which the owner of an identity (or a user with an associated role) authorizes the owner of another (validated) identity to use his identity, or to act as herself. (Wikipedia)"^^xsd:string ;
+            
+            skos:broader :SecurityMechanism ;
+            
+            skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Digest
+
+:Digest rdf:type owl:NamedIndividual ,
+                 skos:Concept ;
+        
+        dcterms:description "A cryptographic hash function is a hash function that can be defined as a deterministic procedure that takes an arbitrary block of data and returns a fixed-size bit string, the (cryptographic) hash value, such that an accidental or intentional change to the data will change the hash value. The data to be encoded is often called the \"message\", and the hash value is sometimes called the message digest or simply digest. (adapted from Wikipedia) "^^xsd:string ;
+        
+        skos:broader :SecurityMechanism ;
+        
+        skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#DigitalSignature
+
+:DigitalSignature rdf:type owl:NamedIndividual ,
+                           skos:Concept ;
+                  
+                  dcterms:description "A digital signature or digital signature scheme is a mathematical scheme for demonstrating the authenticity of a digital message or document. A valid digital signature gives a recipient reason to believe that the message was created by a known sender, and that it was not altered in transit. Digital signatures are commonly used for software distribution, financial transactions, and in other cases where it is important to detect forgery or tampering.(Wikipedia)"^^xsd:string ;
+                  
+                  skos:broader :SecurityMechanism ;
+                  
+                  skos:inScheme :securityMechanismsTaxonomy ;
+                  
+                  rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-sec-mea#> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Filtering
+
+:Filtering rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           
+           dcterms:description "Filtering is a mechanism that prevents certain entities to access to a resource, an application or a service. An example can be represented by web site blacklists. "^^xsd:string ;
+           
+           skos:broader :SecurityMechanism ;
+           
+           skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Francesco_Di_Cerbo
+
+:Francesco_Di_Cerbo rdf:type owl:NamedIndividual ,
+                             foaf:Person ;
+                    
+                    foaf:name "Francesco Di Cerbo" ;
+                    
+                    foaf:lastName "Di Cerbo" ;
+                    
+                    foaf:title "Dr" ;
+                    
+                    foaf:firstName "Francesco" ;
+                    
+                    foaf:phone "+33 49228-6445" .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Identification
+
+:Identification rdf:type owl:NamedIndividual ,
+                         skos:Concept ;
+                
+                rdfs:comment "Possibility to include a certain identifier in a request, but without starting an authentication process involving credentials transmission."@en ;
+                
+                skos:broader :SecurityGoal ;
+                
+                skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#InStorageType
+
+:InStorageType rdf:type :SecurityRealizationType ,
+                        owl:NamedIndividual ;
+               
+               rdfs:comment "The Service realization type explains that a certain Security Technology operates at service level, if considering an ideal ISO/OSI stack protocol model."@en ;
+               
+               skos:prefLabel "service realization type"@en ;
+               
+               rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#InTransitType
+
+:InTransitType rdf:type :SecurityRealizationType ,
+                        owl:NamedIndividual ;
+               
+               skos:prefLabel "InTransit (network) realization type"@en ;
+               
+               rdfs:comment "The Network realization type explains that a certain Security Technology operates at network level, if considering an ideal ISO/OSI stack protocol model."@en ;
+               
+               rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#InUsage
+
+:InUsage rdf:type :SecurityRealizationType ,
+                  owl:NamedIndividual ;
+         
+         rdfs:comment "The Application realization type explains that a certain Security Technology operates at application level, if considering an ideal ISO/OSI stack protocol model. "@en ;
+         
+         skos:prefLabel "application realization type"@en ;
+         
+         rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Integrity
+
+:Integrity rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           
+           rdfs:comment "A condition in which data (or a system itself) has not been modified or corrupted without authorisation. A system protects the integrity of data if it prevents unauthorised modification, as opposed to protecting the confidentiality of data, which prevents unauthorised disclosure. (Phoha) The degree to which a system or component prevents unauthorised access to, or modification of, computer programs or data (IEEE Std 610.12)"@en ;
+           
+           skos:broader :SecurityGoal ;
+           
+           skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#KeyManagement
+
+:KeyManagement rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               
+               dcterms:description "Key management is the set of techniques and procedures supporting the establishment and maintenance of keying relationships between authorised parties. (secont:Literature#MOV97)"^^xsd:string ;
+               
+               rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-sec> ;
+               
+               skos:broader :SecurityMechanism ;
+               
+               skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Load_Balancing
+
+:Load_Balancing rdf:type owl:NamedIndividual ,
+                         skos:Concept ;
+                
+                dcterms:description "Load balancing is a computer networking methodology to distribute workload across multiple computers or a computer cluster, network links, central processing units, disk drives, or other resources, to achieve optimal resource utilization, maximize throughput, minimize response time, and avoid overload. It can also be seen as a security defense, for instance to contrast Denial of Service (DoS) attacks. Using multiple components with load balancing, instead of a single component, may increase reliability through redundancy. The load balancing service is usually provided by dedicated software or hardware, such as a multilayer switch or a Domain Name System server. (adapted from Wikipedia)"^^xsd:string ;
+                
+                skos:broader :SecurityMechanism ;
+                
+                skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Logging
+
+:Logging rdf:type owl:NamedIndividual ,
+                  skos:Concept ;
+         
+         dcterms:description "Computer data logging is the process of recording events, with an automated computer program, in a certain scope in order to provide an audit trail that can be used to understand the activity of the system and to diagnose problems or to detect abuses, attacks and so on. (adapted from Wikipedia)"^^xsd:string ;
+         
+         skos:broader :SecurityMechanism ;
+         
+         skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Monitoring
+
+:Monitoring rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            
+            dcterms:description "Used for checking the status, progress and operation of a system (sec-ont)"^^xsd:string ;
+            
+            skos:broader :SecurityMechanism ;
+            
+            skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Non-Repudiation
+
+:Non-Repudiation rdf:type owl:NamedIndividual ,
+                          skos:Concept ;
+                 
+                 rdfs:comment "The property of a scheme ... in which the recipient is able to prove to a third party that data has been sent by the sender or received by the receiver. This property protects against the sender denying having sent the message and the receiver denying having received the message. The sender is provided with a proof of delivery and receiver is assured of sender's identity. (Phoha) Repudiation: Denial by one of the entities involved in a communication of having participated in all or part of the communication. (CCITT)"@en ;
+                 
+                 skos:broader :SecurityGoal ;
+                 
+                 skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#OAuth2
+
+:OAuth2 rdf:type :SecurityTechnology ,
+                 owl:NamedIndividual .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Obfuscation
+
+:Obfuscation rdf:type owl:NamedIndividual ,
+                      skos:Concept ;
+             
+             dcterms:description "In cryptography, obfuscation refers to encoding the input data before it is sent to a hash function or other encryption scheme. This technique helps to make brute force attacks unfeasible, as it is difficult to determine the correct cleartext. (Wikipedia)"^^xsd:string ,
+                                 "In network security, obfuscation refers to methods used to obscure an attack payload from inspection by network protection systems. (Wikipedia)"^^xsd:string ;
+             
+             skos:broader :SecurityMechanism ;
+             
+             skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Obligation
+
+:Obligation rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            
+            dcterms:description "An obligation is a requirement to take some course of action. (Wikipedia)"^^xsd:string ;
+            
+            skos:broader :SecurityMechanism ;
+            
+            skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#PasswordExchange
+
+:PasswordExchange rdf:type owl:NamedIndividual ,
+                           skos:Concept ;
+                  
+                  dcterms:description "A process that enables the transmission of a unique character string held by an user, a copy of which is stored within the system. The password entered by the intending user must correspond with the stored value before the user is accepted by the system. (secont:Literature#ODoC)"^^xsd:string ;
+                  
+                  skos:broader :SecurityMechanism ;
+                  
+                  skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#PolicyCompliance
+
+:PolicyCompliance rdf:type owl:NamedIndividual ,
+                           skos:Concept ;
+                  
+                  rdfs:comment "also: compliance with laws, regulations"@en ;
+                  
+                  skos:broader :SecurityGoal ;
+                  
+                  skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Privacy
+
+:Privacy rdf:type owl:NamedIndividual ,
+                  skos:Concept ;
+         
+         rdfs:comment "Protection from the unauthorised disclosure of data. Security purists use confidentiality for this and use privacy to refer to the protection of personal information; privacy legislation consists of laws requiring government and business to justify which data they keep about people, and to tell people what information those organisations are storing about them. (Phoha) The right of individuals to control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed. Note: Because this term relates to the right of individuals, it cannot be very precise and its use should be avoided except as a motivation for requiring security. (CCITT)"@en ;
+         
+         skos:broader :SecurityGoal ;
+         
+         skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Pseudonym
+
+:Pseudonym rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           
+           dcterms:description """On the Internet, pseudonymous remailers utilise cryptography that achieves persistent pseudonymity, so that two-way communication can be achieved, and reputations can be established, without linking physical identities to their respective pseudonyms. Aliasing is the use of multiple names for the same data location. 
+					 More sophisticated cryptographic systems, such as Anonymous Digital credentials, enable users to communicate pseudonymously (i.e., by identifying themselves by means of pseudonyms). In well-defined abuse cases, a designated authority may be able to revoke the pseudonyms and reveal the individuals' real identity. (Wikipedia) """^^xsd:string ;
+           
+           skos:broader :SecurityMechanism ;
+           
+           skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Recommendation
+
+:Recommendation rdf:type owl:NamedIndividual ,
+                         skos:Concept ;
+                
+                dcterms:description "a Recommendation assesses the qualities, or characteristics, or capabilities of an application or service being recommended, in terms of that subject’s ability to perform a particular task or function. User recommendation expressed on social media, or as comments or reviews in software marketplace, contribute in different means to decision making processes. When a recommendation comes from a trusted person, the recommended resource can more easily be trusted by other persons."^^xsd:string ;
+                
+                skos:broader :SecurityMechanism ;
+                
+                skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Replication
+
+:Replication rdf:type owl:NamedIndividual ,
+                      skos:Concept ;
+             
+             dcterms:description "Replication is the process of sharing information so as to ensure consistency between redundant resources, such as software or hardware components, to improve reliability, fault-tolerance, or accessibility. It could be data replication if the same data is stored on multiple storage devices, or computation replication if the same computing task is executed many times. A computational task is typically replicated in space, i.e. executed on separate devices, or it could be replicated in time, if it is executed repeatedly on a single device. (Wikipedia)"^^xsd:string ;
+             
+             skos:broader :SecurityMechanism ;
+             
+             skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Reputation
+
+:Reputation rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            
+            dcterms:description "Reputation of a social entity (a person, a group of people, an organization) is an opinion about that entity, typically a result of social evaluation on a set of criteria. Reputation may be considered as a component of the identity as defined by others. (Wikipedia) "^^xsd:string ;
+            
+            skos:broader :SecurityMechanism ;
+            
+            skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityGoal
+
+:SecurityGoal rdf:type owl:NamedIndividual ,
+                       skos:Concept .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityMechanism
+
+:SecurityMechanism rdf:type owl:NamedIndividual ,
+                            skos:Concept .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityProfile
+
+:SecurityProfile rdf:type owl:NamedIndividual ,
+                          skos:Concept .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityTechnology
+
+:SecurityTechnology rdf:type owl:NamedIndividual ,
+                             skos:Concept .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#SharedSecret
+
+:SharedSecret rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              
+              dcterms:description "In cryptography, a shared secret is a piece of data, known only to the parties involved, in a secure communication. The shared secret can be a password, a passphrase, a big number or an array of randomly chosen bytes. (Wikipedia)"^^xsd:string ;
+              
+              skos:broader :SecurityMechanism ;
+              
+              skos:inScheme :securityMechanismsTaxonomy ;
+              
+              rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-sec-mea#> .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Slim_Trabelsi
+
+:Slim_Trabelsi rdf:type owl:NamedIndividual ,
+                        foaf:Person ;
+               
+               foaf:name "Slim Trabelsi" ;
+               
+               foaf:phone "+33 49228-6345" ;
+               
+               foaf:firstName "Slim" ;
+               
+               foaf:title "Dr" ;
+               
+               foaf:lastName "Trabelsi" .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Steganography
+
+:Steganography rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               
+               dcterms:description "Means by which two or more parties may employ subliminal or invisible communication. (secont:Literature#ISD)"^^xsd:string ;
+               
+               skos:broader :SecurityMechanism ;
+               
+               skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Token
+
+:Token rdf:type owl:NamedIndividual ,
+                skos:Concept ;
+       
+       dcterms:description """A security token (or sometimes a hardware token, hardbad token, authentication token, USB token, cryptographic token, or key fob) may be a physical device that an authorized user of computer services is given to ease authentication. The term may also refer to software tokens.
+
+Security tokens are used to prove one's identity electronically (as in the case of a customer trying to access their bank account). The token is used in addition to or in place of a password to prove that the customer is who they claim to be. The token acts like an electronic key to access something. (Wikipedia)"""^^xsd:string ;
+       
+       skos:broader :SecurityMechanism ;
+       
+       skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Torsten_Leidig
+
+:Torsten_Leidig rdf:type owl:NamedIndividual ,
+                         foaf:Person ;
+                
+                foaf:phone "+49 6227 7 52535" ;
+                
+                foaf:name "Torsten Leidig" ;
+                
+                foaf:title "Dr" ;
+                
+                foaf:lastName "Leidig" ;
+                
+                foaf:firstName "Torsten" .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Trust
+
+:Trust rdf:type owl:NamedIndividual ,
+                skos:Concept ;
+       
+       rdfs:comment "The firm belief in the competence of an entity to act dependably, securely, and reliably within a specified context. (Grandison, 2000) Trust is a particular level of the subjective probability with which an agent will perform a particular action, both before we can monitor such action (or independently of his capacity of ever to be able to monitor it) and in a context in which it affects our  action. (Gambetta, 1990) Trust is a subjective expectation an agent has about another agent’s future behavior. (L. Mui, 2003)"@en ;
+       
+       skos:broader :SecurityGoal ;
+       
+       skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#Usage_Control
+
+:Usage_Control rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               
+               dcterms:description "Usage control refers to ability for a resource owner to enforce the use of that resource only in the allowed contexts."^^xsd:string ;
+               
+               skos:broader :SecurityMechanism ;
+               
+               skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#composeSecProfile1
+
+:composeSecProfile1 rdf:type :SecurityProfile ,
+                             owl:NamedIndividual ;
+                    
+                    :hasSecurityMeasure :secmeasure1 .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#secmeasure1
+
+:secmeasure1 rdf:type :SecurityMeasure ,
+                      owl:NamedIndividual ;
+             
+             :isImplementedBy :Access_Control ;
+             
+             :hasSecurityGoal :Authorization ;
+             
+             :isRealizedByTechnology :OAuth2 .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#securityGoalsTaxonomy
+
+:securityGoalsTaxonomy rdf:type owl:NamedIndividual ,
+                                skos:ConceptScheme ;
+                       
+                       dcterms:title "A simple taxonomy for security goals"@en ;
+                       
+                       skos:hasTopConcept :SecurityGoal .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#securityMechanismsTaxonomy
+
+:securityMechanismsTaxonomy rdf:type owl:NamedIndividual ,
+                                     skos:ConceptScheme ;
+                            
+                            dcterms:title "A simple taxonomy for security mechanisms"@en ;
+                            
+                            skos:hasTopConcept :SecurityMechanism .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

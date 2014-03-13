@@ -1,0 +1,649 @@
+@prefix : <http://www.compose-project.eu/ns/web-of-things/security#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab> .
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliedFor
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliedFor> rdf:type owl:ObjectProperty ;
+                                                                                
+                                                                                rdfs:range <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo> rdf:type owl:ObjectProperty ;
+                                                                               
+                                                                               rdfs:range <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#developedBy
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#developedBy> rdf:type owl:ObjectProperty ;
+                                                                                 
+                                                                                 rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#flowsTo
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#flowsTo> rdf:type owl:ObjectProperty ;
+                                                                             
+                                                                             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasAttribute
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasAttribute> rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasEffect
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasEffect> rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasFlowDescription
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasFlowDescription> rdf:type owl:ObjectProperty ;
+                                                                                        
+                                                                                        rdfs:domain <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityContact> ;
+                                                                                        
+                                                                                        rdfs:subPropertyOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasRule> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasPolicy
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasPolicy> rdf:type owl:ObjectProperty ;
+                                                                               
+                                                                               rdfs:range <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicy> ;
+                                                                               
+                                                                               rdfs:domain <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicySet> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasRule
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasRule> rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasSecurityEffect
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasSecurityEffect> rdf:type owl:ObjectProperty ;
+                                                                                       
+                                                                                       rdfs:domain <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityContact> ;
+                                                                                       
+                                                                                       rdfs:subPropertyOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasRule> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasSecurityPrecondition
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasSecurityPrecondition> rdf:type owl:ObjectProperty ;
+                                                                                             
+                                                                                             rdfs:range <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityContact> ;
+                                                                                             
+                                                                                             rdfs:subPropertyOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasRule> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#inState
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#inState> rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#memberOf
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#memberOf> rdf:type owl:ObjectProperty ;
+                                                                              
+                                                                              rdfs:domain <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#User> ;
+                                                                              
+                                                                              rdfs:range <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#UserGroup> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ownedBy
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ownedBy> rdf:type owl:ObjectProperty ;
+                                                                             
+                                                                             rdfs:comment "A property to establish ownership between a resource and its owner." .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasName
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasName> rdf:type owl:DatatypeProperty ;
+                                                                             
+                                                                             rdfs:comment "anything can have a name. e.g file has a name 'XYZ'" .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasValue
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasValue> rdf:type owl:DatatypeProperty ;
+                                                                              
+                                                                              rdfs:domain <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> rdf:type owl:Class ;
+                                                                           
+                                                                           rdfs:label "Actor" ;
+                                                                           
+                                                                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasAttribute> ;
+                                                                                             owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Attribute>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasName> ;
+                                                                                             owl:someValuesFrom xsd:string
+                                                                                           ] ;
+                                                                           
+                                                                           rdfs:seeAlso "" ;
+                                                                           
+                                                                           rdfs:comment "An actor (or an agent) is a entity that is accessing to resources (i.e. assets) or wants to communicate with the resources." .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Aplication
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Aplication> rdf:type owl:Class ;
+                                                                                
+                                                                                rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> ,
+                                                                                                <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> rdf:type owl:Class ;
+                                                                           
+                                                                           rdfs:label "Asset" ;
+                                                                           
+                                                                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#developedBy> ;
+                                                                                             owl:someValuesFrom owl:Thing
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasAttribute> ;
+                                                                                             owl:allValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Attribute>
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasName> ;
+                                                                                             owl:someValuesFrom xsd:string
+                                                                                           ] ,
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ownedBy> ;
+                                                                                             owl:someValuesFrom owl:Thing
+                                                                                           ] ;
+                                                                           
+                                                                           rdfs:comment "An asset that is beign protected in terms of access control or controled in other relevant terms (e.g. security flows)." .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Attribute
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Attribute> rdf:type owl:Class ;
+                                                                               
+                                                                               rdfs:label "Attribute" ;
+                                                                               
+                                                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasValue> ;
+                                                                                                 owl:someValuesFrom rdf:PlainLiteral
+                                                                                               ] ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasName> ;
+                                                                                                 owl:someValuesFrom xsd:string
+                                                                                               ] ;
+                                                                               
+                                                                               rdfs:comment "Any attribute that belongs to either actor or asset (e.g. location, reputation, trust). An attribute hasName and hasValue" .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Authenticated
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Authenticated> rdf:type owl:Class ;
+                                                                                   
+                                                                                   rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Authorized
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Authorized> rdf:type owl:Class ;
+                                                                                
+                                                                                rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Data
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Data> rdf:type owl:Class ;
+                                                                          
+                                                                          rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Database
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Database> rdf:type owl:Class ;
+                                                                              
+                                                                              rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#StorageSystem> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#DeniedAccess
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#DeniedAccess> rdf:type owl:Class ;
+                                                                                  
+                                                                                  rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Device
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Device> rdf:type owl:Class ;
+                                                                            
+                                                                            rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> ,
+                                                                                            <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Effect
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Effect> rdf:type owl:Class ;
+                                                                            
+                                                                            owl:equivalentClass <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Encrypted
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Encrypted> rdf:type owl:Class ;
+                                                                               
+                                                                               rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#EndUser
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#EndUser> rdf:type owl:Class ;
+                                                                             
+                                                                             rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#User> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression> rdf:type owl:Class ;
+                                                                                
+                                                                                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasValue> ;
+                                                                                                  owl:someValuesFrom rdf:PlainLiteral
+                                                                                                ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#File
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#File> rdf:type owl:Class ;
+                                                                          
+                                                                          rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#StorageSystem> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Flow
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Flow> rdf:type owl:Class ;
+                                                                          
+                                                                          rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo> ;
+                                                                                            owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Data>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#flowsTo> ;
+                                                                                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                                 owl:unionOf ( <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor>
+                                                                                                                               <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset>
+                                                                                                                             )
+                                                                                                               ]
+                                                                                          ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#InvocationSecure
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#InvocationSecure> rdf:type owl:Class ;
+                                                                                      
+                                                                                      rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#InvocationUnsecure
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#InvocationUnsecure> rdf:type owl:Class ;
+                                                                                        
+                                                                                        rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Message
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Message> rdf:type owl:Class ;
+                                                                             
+                                                                             rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Data> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#MessageContent
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#MessageContent> rdf:type owl:Class ;
+                                                                                    
+                                                                                    rdfs:label "MessageContent" ;
+                                                                                    
+                                                                                    rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Data> ;
+                                                                                    
+                                                                                    rdfs:comment "MessageContent can be Input or Ouput parameter of some operation of a service" .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ModifyAccessControl
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ModifyAccessControl> rdf:type owl:Class ;
+                                                                                         
+                                                                                         rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicy> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#NonValidated
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#NonValidated> rdf:type owl:Class ;
+                                                                                  
+                                                                                  rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Nonworking
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Nonworking> rdf:type owl:Class ;
+                                                                                
+                                                                                rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#PermitedAccess
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#PermitedAccess> rdf:type owl:Class ;
+                                                                                    
+                                                                                    rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Secured
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Secured> rdf:type owl:Class ;
+                                                                             
+                                                                             rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> ;
+                                                                             
+                                                                             rdfs:comment "To specify that some requerment or effect has be established i.e. a security channel is established." .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityContact
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityContact> rdf:type owl:Class ;
+                                                                                     
+                                                                                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasSecurityPrecondition> ;
+                                                                                                       owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPrecondition>
+                                                                                                     ] ,
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasFlowDescription> ;
+                                                                                                       owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Flow>
+                                                                                                     ] ,
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasSecurityEffect> ;
+                                                                                                       owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityEffect>
+                                                                                                     ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityEffect
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityEffect> rdf:type owl:Class ;
+                                                                                    
+                                                                                    rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression> ,
+                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo> ;
+                                                                                                      owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset>
+                                                                                                    ] ,
+                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasEffect> ;
+                                                                                                      owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Effect>
+                                                                                                    ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicy
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicy> rdf:type owl:Class ;
+                                                                                    
+                                                                                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasPolicy> ;
+                                                                                                      owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityRule>
+                                                                                                    ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicySet
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicySet> rdf:type owl:Class ;
+                                                                                       
+                                                                                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo> ;
+                                                                                                         owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset>
+                                                                                                       ] ,
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasPolicy> ;
+                                                                                                         owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicy>
+                                                                                                       ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPrecondition
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPrecondition> rdf:type owl:Class ;
+                                                                                          
+                                                                                          rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression> ,
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasEffect> ;
+                                                                                                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                                                 owl:unionOf ( <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#InvocationSecure>
+                                                                                                                                               <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#InvocationUnsecure>
+                                                                                                                                             )
+                                                                                                                               ]
+                                                                                                          ] ,
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo> ;
+                                                                                                            owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#MessageContent>
+                                                                                                          ] .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityRule
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityRule> rdf:type owl:Class ;
+                                                                                  
+                                                                                  rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Expression> ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliedFor> ;
+                                                                                                    owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor>
+                                                                                                  ] ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#appliesTo> ;
+                                                                                                    owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset>
+                                                                                                  ] ,
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#hasEffect> ;
+                                                                                                    owl:someValuesFrom <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Effect>
+                                                                                                  ] ;
+                                                                                  
+                                                                                  rdfs:comment "An security rule. It is typically an expression captured in hasValue" .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Service
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Service> rdf:type owl:Class ;
+                                                                             
+                                                                             rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> ,
+                                                                                             <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ServiceObject
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#ServiceObject> rdf:type owl:Class ;
+                                                                                   
+                                                                                   rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Service> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> rdf:type owl:Class .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#StorageSystem
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#StorageSystem> rdf:type owl:Class ;
+                                                                                   
+                                                                                   rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Asset> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Threat
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Threat> rdf:type owl:Class ;
+                                                                            
+                                                                            rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unauthenticated
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unauthenticated> rdf:type owl:Class ;
+                                                                                     
+                                                                                     rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unauthorized
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unauthorized> rdf:type owl:Class ;
+                                                                                  
+                                                                                  rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unencrypted
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unencrypted> rdf:type owl:Class ;
+                                                                                 
+                                                                                 rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unsecured
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Unsecured> rdf:type owl:Class ;
+                                                                               
+                                                                               rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#UsageAccessControl
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#UsageAccessControl> rdf:type owl:Class ;
+                                                                                        
+                                                                                        rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#SecurityPolicy> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#User
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#User> rdf:type owl:Class ;
+                                                                          
+                                                                          rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#UserGroup
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#UserGroup> rdf:type owl:Class ;
+                                                                               
+                                                                               rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Actor> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Validated
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Validated> rdf:type owl:Class ;
+                                                                               
+                                                                               rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Working
+
+<http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#Working> rdf:type owl:Class ;
+                                                                             
+                                                                             rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/securitypolicyvocab#State> .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

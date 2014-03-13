@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	
+	<parent>
+        <artifactId>itrust-parent</artifactId>
+        <groupId>com.innova.compose</groupId>
+        <version>0.0.1</version>
+        <relativePath>../itrust-parent/pom.xml</relativePath>
+    </parent>
+    
+        <properties>
+   	 	<license.licenseResolver>${project.baseUri}../itrust-parent/license</license.licenseResolver>
+	</properties>
+    
+    
+    <artifactId>itrust-service</artifactId>
+   	<version>${project.parent.version}</version>	
+	<name>itrust-service</name>
+	<description>This is descr</description>
+	<developers>
+		<developer>
+			<id>marko</id>
+			<name>Marko Vujasinovic</name>
+			<email>m.vujasinovic-{AT}-innova-eu.net</email>
+			<organization>INNOVA S.p.A</organization>
+			<organizationUrl>www.innova-eu.net</organizationUrl>
+		</developer>
+	</developers>
+	<organization>
+		<name>INNOVA S.p.A</name>
+		<url>www.innova-eu.net</url>
+	</organization>
+	<dependencies>
+		<dependency>
+			<groupId>com.innova.compose</groupId>
+			<artifactId>itrust-service-methods</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.innova.compose</groupId>
+			<artifactId>itrust-model</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		 <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        
+         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency>
+     
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+<!-- 
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-databinding-aegis</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>2.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		 -->
+	</dependencies>
+</project>
