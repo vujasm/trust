@@ -49,16 +49,16 @@ import com.inn.common.structure.tree.Node;
 import com.inn.common.structure.tree.Tree;
 import com.inn.common.util.TupleUtil;
 import com.inn.itrust.model.model.TrustRequest;
+import com.inn.itrust.service.IgnoredModels;
+import com.inn.itrust.service.LocationMapping;
 import com.inn.itrust.service.cfg.Configuration;
-import com.inn.itrust.service.cfg.IgnoredModels;
-import com.inn.itrust.service.cfg.LocationMapping;
 import com.inn.itrust.service.collectors.ActivityCollector;
 import com.inn.itrust.service.collectors.Collector;
 import com.inn.itrust.service.collectors.FeedbackCollector;
 import com.inn.itrust.service.collectors.QoSCollector;
 import com.inn.itrust.service.collectors.ReputationCollector;
 import com.inn.itrust.service.command.CreateUpdateTrustProfile;
-import com.inn.itrust.service.command.FetchResourceMetadaFromRegistries;
+import com.inn.itrust.service.command.ResourceMetadataFetcher;
 import com.inn.itrust.service.component.ComponentIntegrated;
 import com.inn.itrust.service.enums.EnumScoreStrategy;
 import com.inn.itrust.service.managers.KnowledgeBaseManager;
@@ -140,7 +140,7 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 	 */
 	private OntModel fetchResourceMetadataFromRegistries(URI uri, boolean fetchFromExternalRegistries, boolean useMappedLocations,
 			boolean fetchFromInternalRegirsty) {
-		return new FetchResourceMetadaFromRegistries(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries,
+		return new ResourceMetadataFetcher(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries,
 				useMappedLocations, fetchFromInternalRegirsty);
 	}
 

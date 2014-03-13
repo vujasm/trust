@@ -61,7 +61,6 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.DatasetAccessor;
@@ -90,6 +89,7 @@ import com.inn.common.Syntax;
 import com.inn.itrust.model.vocabulary.NSPrefixes;
 import com.inn.itrust.service.cfg.Configuration;
 import com.inn.itrust.service.managers.SparqlGraphStoreManager;
+import com.inn.itrust.service.utils.MyOntModelSpecFactory;
 
 public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManager {
 
@@ -122,11 +122,11 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
     // To use SPARQL HTTP protocol for graph modification
     private URI sparqlServiceEndpoint;
 
-    // Ontology Model Specification to use with Jena
-    private OntModelSpec defaultOntoModelSpec;
-
     // Keeps track of currently ongoing fetching tasks
     private Map<URI, Future<Boolean>> fetchingMap;
+
+	private OntModelSpec modelSpec;
+	
 
 
     static class ProxyConfiguration {
@@ -158,7 +158,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
         // Configure proxy if necessary
         configureProxy(proxyCfg);
 
-        setupModelSpecification(locationMappings, ignoredImports);
+        modelSpec =  MyOntModelSpecFactory.createModelSpecification(locationMappings, ignoredImports);
 
         // set the executor
 //        executor = Executors.newFixedThreadPool(NUM_THREADS);
@@ -198,37 +198,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
         }
     }
 
-    /**
-     * Setup a the OntModelSpec to be used when parsing services.
-     * In particular, setup import redirections, etc.
-     *
-     * @param locationMappings
-     * @param ignoredImports
-     * @return
-     */
-    private void setupModelSpecification(Map<String, String> locationMappings, Set<String> ignoredImports) {
-
-        OntDocumentManager documentManager = new OntDocumentManager();
-
-        // Add mapping specific to OWLS TC 4 tests.
-        // Add mappings to local files to save time and avoid connection issues
-        for (Map.Entry<String, String> mapping : locationMappings.entrySet()) {
-            documentManager.addAltEntry(mapping.getKey(), mapping.getValue());
-        }
-
-        // Ignore the imports indicated
-        for (String ignoreUri : ignoredImports) {
-            documentManager.addIgnoreImport(ignoreUri);
-        }
-
-        // follow imports for now..
-        documentManager.setProcessImports(true);
-
-        // No inferencing here. Leaving this for the backend
-        this.defaultOntoModelSpec = new OntModelSpec(OntModelSpec.OWL_MEM);
-        this.defaultOntoModelSpec.setDocumentManager(documentManager);
-    }
-
+  
     /**
      * This method will be called when the server is initialised.
      * If necessary it should take care of updating any indexes on boot time.
@@ -421,7 +391,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
 
         // Use HTTP protocol if possible
         if (this.sparqlServiceEndpoint != null) {
-            return ModelFactory.createOntologyModel(this.defaultOntoModelSpec, datasetAccessor.getModel());
+            return ModelFactory.createOntologyModel(this.modelSpec, datasetAccessor.getModel());
         } else {
             return this.getGraphSparqlQuery();
         }
@@ -444,7 +414,6 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
             return null;
         if (this.sparqlServiceEndpoint != null) {
             Model model = datasetAccessor.getModel(graphUri.toASCIIString());
-            OntModelSpec modelSpec = this.defaultOntoModelSpec;
             OntModel ontModel =  ModelFactory.createOntologyModel(modelSpec, model);
             return ontModel;
         } else {
@@ -460,12 +429,12 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
      * @return the Ontology Model
      */
     @Override
-    public OntModel getGraph(URI graphUri, OntModelSpec modelSpec) {
+    public OntModel getGraph(URI graphUri, OntModelSpec modelSpecification) {
         log.debug("Obtaining graph: {}", graphUri==null ?"graphUri is null":graphUri.toString());
         if (graphUri == null)
             return null;
         Model model = datasetAccessor.getModel(graphUri.toASCIIString());
-        modelSpec.setDocumentManager(defaultOntoModelSpec.getDocumentManager());
+        modelSpecification.setDocumentManager(this.modelSpec.getDocumentManager());
         OntModel ontModel =  ModelFactory.createOntologyModel(modelSpec, model);
         return ontModel;
     }
@@ -715,13 +684,9 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
             return this.fetchingMap.get(modelUri);
         }
 
-        Callable<Boolean> task = new CrawlCallable(this, defaultOntoModelSpec, modelUri, syntax);
+        Callable<Boolean> task = new CrawlCallable(this, modelSpec, modelUri, syntax);
         log.debug("Fetching model - {}", modelUri);
         return this.executor.submit(task);
     }
     
-    public OntModelSpec getOntModelSpec() {
-		return defaultOntoModelSpec;
-	}
-
 }

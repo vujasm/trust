@@ -36,8 +36,9 @@ public class Const {
 	public static final String Ts4 = "http://127.0.0.1/services/1.1/city_traffic_service_b.owls#CITY_TRAFFIC_SERVICE_B";
 	public static final String Ts5 = "http://127.0.0.1/services/1.1/city_traffic_service_c.owls#CITY_TRAFFIC_SERVICE_C";
 
-	public static String repositoryLocation = "file:///C:/D-Data/eclipseprojects/compose/workspace/itrust-service/src/main/resources";
-	public static String repoOntologies = repositoryLocation+"/ontologies/";
+//	private static String repositoryLocation = "file:///C:/D-Data/eclipseprojects/compose/workspace/itrust-service/src/main/resources";
+	public static String repoModels = "modelsrepo/";
+	public static String repoOntologies = "";//"ontologies/";
 	
 	
 	public static String ParserNameSecurityProfileAsUSDLSec = "usdlsec";

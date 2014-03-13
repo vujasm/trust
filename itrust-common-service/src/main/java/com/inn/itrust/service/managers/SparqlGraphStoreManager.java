@@ -87,5 +87,4 @@ public interface SparqlGraphStoreManager extends Component {
     
     OntModel getGraphSparqlQuery(URI graphUri);
     
-    OntModelSpec getOntModelSpec();
 }

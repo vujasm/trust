@@ -55,7 +55,7 @@ import com.inn.itrust.model.model.TResource;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.model.TrustProfile;
 import com.inn.itrust.model.types.USDLSecExpression;
-import com.inn.itrust.model.vocabulary.ModelsNSEnum;
+import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.model.vocabulary.Trust;
 
 public class ToModelParser {
@@ -164,7 +164,7 @@ public class ToModelParser {
 		final String lexicalForm = individualValue.asLiteral().getLexicalForm();
 		
 		//TODO uradi elegantnije - razlozi i implementiraj slucaj kad je opis ne iz predefinisanog securityprofila vec zapravo expression
-		if (datype.getURI().equals(USDLSecExpression.TYPE.getURI())  && lexicalForm.startsWith(ModelsNSEnum.SecurityProfiles.getNS())) {
+		if (datype.getURI().equals(USDLSecExpression.TYPE.getURI())  && lexicalForm.startsWith(ModelEnum.SecurityProfiles.getURI())) {
 			SecProfileExpressionToModel parser = (SecProfileExpressionToModel) specificParsers.get(Const.ParserNameSecurityProfileAsUSDLSec);
 			if (parser == null) {
 				log.error("A parser to parse " + individualValue + " into java objects is not registered. Use registerSpecificParser(Object parser, String name)");

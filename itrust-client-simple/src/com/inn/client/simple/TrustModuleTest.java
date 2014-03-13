@@ -46,7 +46,7 @@ public class TrustModuleTest {
 	protected static final Logger log = LoggerFactory.getLogger(TrustModuleTest.class);
 	Level level = Level.OFF;
 
-	String graphName = ModelsNSEnum.Trust.getNS();
+
 	private Injector injector;
 	private TrustManager trustManager;
 
@@ -63,7 +63,7 @@ public class TrustModuleTest {
 	}
 
 	public void computeTaxonomy() {
-		Tree t = trustManager.computeTaxonomy(graphName, Trust.TrustAttribute.getURI());
+		Tree t = trustManager.computeTaxonomy(ModelsNSEnum.Trust.getURI(), Trust.TrustAttribute.getURI());
 		System.out.println(t);
 	}
 
@@ -76,7 +76,7 @@ public class TrustModuleTest {
 
 	//testiranje kako jena radi inference taksonomije
 	public void testSubclass() {
-		OntModel base = trustManager.getKnowledgeBaseManager().getModel(ModelsNSEnum.Trust.getNS());
+		OntModel base = trustManager.getKnowledgeBaseManager().getModel(ModelsNSEnum.Trust.getURI());
 		OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
 		OntModel model = ModelFactory.createOntologyModel(spec, base);
 		final OntClass cls = model.getOntClass(Trust.SecurityAttribute.getURI().toString());

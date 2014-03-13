@@ -41,7 +41,7 @@ import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.model.TrustProfile;
 import com.inn.itrust.model.model.Value;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
-import com.inn.itrust.model.vocabulary.ModelsNSEnum;
+import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.scoreop.AbstractScoreStrategy;
 import com.inn.itrust.scoreop.ScoreStrategyFactory;
 import com.inn.itrust.service.enums.EnumScoreStrategy;
@@ -57,7 +57,7 @@ public class RankingManagerSimple implements RankingManager {
 	@Inject
 	protected RankingManagerSimple(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
 		this.knowledgeBaseManager = kbManager;
-		OntModel model = kbManager.getModel(ModelsNSEnum.Trust.getNS());
+		OntModel model = kbManager.getModel(ModelEnum.Trust.getURI());
 		//FIXME mozda reimenuj ovaj unit ili vidi sta jos treba mu prosljediti
 		TrustOntologyUtil.init(model);
 	}
@@ -200,7 +200,7 @@ public class RankingManagerSimple implements RankingManager {
 	private ToModelParser getOrCreateToModelParser() {
 		if (parser == null) {
 			parser = new ToModelParser();
-			String uri = ModelsNSEnum.SecurityProfiles.getNS();
+			String uri = ModelEnum.SecurityProfiles.getURI();
 			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri);
 			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
 			parser.registerSpecificParser(secProfileExpressionToModel, Const.ParserNameSecurityProfileAsUSDLSec);

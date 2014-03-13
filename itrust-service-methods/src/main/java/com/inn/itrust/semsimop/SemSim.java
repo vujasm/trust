@@ -23,7 +23,8 @@ package com.inn.itrust.semsimop;
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.ValueFactoryImpl;
 
-import com.inn.itrust.model.vocabulary.ModelsNSEnum;
+import com.inn.itrust.model.vocabulary.ModelEnum;
+import com.inn.itrust.service.LocationMappingResolver;
 
 import slib.sglib.algo.graph.utils.GAction;
 import slib.sglib.algo.graph.utils.GActionType;
@@ -61,7 +62,9 @@ public class SemSim {
 	 * a particular ontology, and then @see {@link SemSim#apply(URI, URI)} can be called
 	 * @param uriOntology Ontology URI
 	 */
-	public SemSim(final String uriOntology) {
+	public SemSim(String uriOntology) {
+		
+		uriOntology = format(uriOntology);
 		
 		URIFactory factory = URIFactoryMemory.getSingleton();
 		URI graphURI = factory.createURI("http://graph/");
@@ -69,6 +72,7 @@ public class SemSim {
 
 //		System.out.println(uriOntology);
 		
+		//FIXME pogledaj da li ucitavanje moze biti classload ili relativno
 		GDataConf dataConf = new GDataConf(GFormat.TURTLE, uriOntology);
 
 		// We specify an action to root the vertices, typed as class without outgoing rdfs:subclassOf relationship
@@ -84,6 +88,10 @@ public class SemSim {
 		} catch (SLIB_Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String format(String uriOntology) {
+		return uriOntology.replace("file:///", "").replace("file:/", "");
 	}
 
 	/**
@@ -123,9 +131,6 @@ public class SemSim {
 		
 		double sim = engine.computePairwiseSim(smConf, uri1 , uri2);
 		System.out.println("SemSim.java - > Similarity " + sim+" "+uri1+" -- "+uri2);
-
-//		List<URI> listVertices = new ArrayList<URI>(GraphAccessor.getClasses(g));
-
 		t.stop();
 		t.elapsedTime();
 		return sim;
@@ -133,8 +138,7 @@ public class SemSim {
 	}
 
 	public static void main(String[] args) throws SLIB_Exception {
-
-		String ontoFile = ModelsNSEnum.SecurityProfiles.getLocationNoProtocol();
+		String ontoFile = LocationMappingResolver.resolveLocation(ModelEnum.SecurityProfiles.getURI());
 		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
 		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#E";
 		try {

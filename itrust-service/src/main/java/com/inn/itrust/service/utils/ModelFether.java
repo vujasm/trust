@@ -23,33 +23,54 @@ package com.inn.itrust.service.utils;
 
 import java.net.URI;
 
+import org.apache.jena.atlas.web.TypedInputStream;
+import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.riot.adapters.AdapterFileManager;
+import org.apache.jena.riot.stream.LocationMapper;
+import org.apache.jena.riot.stream.StreamManager;
+
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileUtils;
 import com.inn.common.Syntax;
+import com.inn.itrust.model.vocabulary.ModelEnum;
+import com.inn.itrust.service.LocationMapping;
 
 public class ModelFether {
 
-	public OntModel fetch(URI modelUri, String syntax, OntModelSpec modelSpec) {
-	    OntModel model = ModelFactory.createOntologyModel(modelSpec);
-        // Fetch the model
-        if (syntax != null){
-        	model.read(modelUri.toASCIIString(), syntax);
-        }
-        else{
-        	String lang = FileUtils.guessLang(modelUri.toASCIIString());
-        	String altMapping = model.getDocumentManager().doAltURLMapping(modelUri.toASCIIString());
-        	if (altMapping !=null){
-        		
-        		lang = FileUtils.guessLang(altMapping);
-        	}
-        	if (lang == null){
-        		lang = Syntax.RDFXML.getName();
-        	}
-            model.read(modelUri.toASCIIString(), lang);
-        }
-        return model;
+	public OntModel fetch(String url, String syntax, OntModelSpec modelSpec) {
+		
+		StreamManager streamManager = new StreamManager();
+		streamManager.setLocationMapper(LocationMapping.obtainLocationMapper());
+		new AdapterFileManager(streamManager, LocationMapping.obtainLocationMapper()).
+	    OntModel model = ModelFactory.createOntologyModel(modelSpec, m);
+	    return model;
+
+//        // Fetch the model
+//        if (syntax != null){
+//        	model.read(url, syntax);
+//        }
+//        else{
+//        	String lang = FileUtils.guessLang(url);
+//        	String altMapping = model.getDocumentManager().doAltURLMapping(url);
+//        	if (altMapping !=null){
+//        		lang = FileUtils.guessLang(altMapping);
+//        	}
+//        	if (lang == null){
+//        		lang = Syntax.RDFXML.getName();
+//        	}
+//            model.read(url, lang);
+//        }
+//        return model;
+	}
+	
+	public static void main(String[] args) {
+//		 System.err.println(RDFDataMgr.loadModel("trustontology.ttl"));
+		 OntModel model = ModelFactory.createOntologyModel(MyOntModelSpecFactory.getModelSpecShared());
+//		 System.out.println(model.read("trustontology.ttl", "TURTLE"));
+	  new ModelFether().fetch(ModelEnum.Trust.getURI(), null, MyOntModelSpecFactory.getModelSpecShared());
 	}
 
 }

@@ -65,15 +65,16 @@ import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.inn.common.URIUtil;
+import com.inn.itrust.service.IgnoredModels;
+import com.inn.itrust.service.LocationMapping;
 import com.inn.itrust.service.cfg.Configuration;
-import com.inn.itrust.service.cfg.IgnoredModels;
-import com.inn.itrust.service.cfg.LocationMapping;
 import com.inn.itrust.service.component.ComponentIntegrated;
 import com.inn.itrust.service.event.OntologyCreatedEvent;
 import com.inn.itrust.service.managers.KnowledgeBaseManager;
 import com.inn.itrust.service.managers.SparqlGraphStoreFactory;
 import com.inn.itrust.service.managers.SparqlGraphStoreManager;
 import com.inn.itrust.service.utils.ModelFether;
+import com.inn.itrust.service.utils.MyOntModelSpecFactory;
 
 /**
  * This class is a parametric tool for crawling for RDF data.
@@ -192,7 +193,7 @@ public class KnowledgeBaseManagerSparql extends ComponentIntegrated implements K
     public boolean ontoFetchAndStoreImportedOntologies(Model model) {
     	
         boolean result = true;
-        OntModelSpec spec =this.graphStoreManager.getOntModelSpec();
+        OntModelSpec spec = MyOntModelSpecFactory.getModelSpecShared();
         OntModel om = ModelFactory.createOntologyModel(spec, model);
         Set<String> uriLiteral = om.listImportedOntologyURIs();
         log.info("Attemptint to load imported ontologies. URIs: "+uriLiteral);
@@ -455,7 +456,7 @@ public class KnowledgeBaseManagerSparql extends ComponentIntegrated implements K
     
     @Override
     public OntModel getModel(String modelUri, OntModelSpec spec) {
-    	spec.setDocumentManager(getGraphStoreManager().getOntModelSpec().getDocumentManager());
+    	spec.setDocumentManager(MyOntModelSpecFactory.getDocumentManagerShared());
     	Model model =  new ModelFether().fetch(URI.create(modelUri),"TURTLE", spec);
     	OntModel oModel = ModelFactory.createOntologyModel(spec, model);
     	return oModel;
