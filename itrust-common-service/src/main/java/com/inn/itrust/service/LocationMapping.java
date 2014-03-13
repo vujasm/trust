@@ -40,12 +40,12 @@ public class LocationMapping {
 		//FIXME - Remove this stuff out of here
 		//
 		
-		map.put(ModelEnum.Trust.getURI(),  Const.repoOntologies+"trustontology.ttl");
-		map.put(ModelEnum.SecuritypolicyVocab.getURI(), Const.repoOntologies+"securitypolicyvocab.ttl");
-		map.put(ModelEnum.UsdlSec.getURI(),Const.repoOntologies+"usdl-sec.ttl");
-		map.put(ModelEnum.Ssn.getURI(), Const.repoOntologies+"ssn.owl");
-		map.put(ModelEnum.SecurityProfiles.getURI(), Const.repoOntologies+"securityprofiles.ttl");
-		map.put(ModelEnum.Dul.getURI(), "http://www.loa-cnr.it/ontologies/DUL.owl");
+		map.put(ModelEnum.Trust.getURI(),  					Const.repoOntologies+"trustontology.ttl");
+		map.put(ModelEnum.SecuritypolicyVocab.getURI(),		Const.repoOntologies+"securitypolicyvocab.ttl");
+		map.put(ModelEnum.UsdlSec.getURI(),					Const.repoOntologies+"usdl-sec.ttl");
+		map.put(ModelEnum.Ssn.getURI(),						Const.repoOntologies+"ssn.owl");
+		map.put(ModelEnum.SecurityProfiles.getURI(), 		Const.repoOntologies+"securityprofiles.ttl");
+		map.put(ModelEnum.Dul.getURI(), 							"http://www.loa-cnr.it/ontologies/DUL.owl");
 
 		map.put(Const.Ts3, Const.repoModels+"city_traffic_service_A.ttl");
 		map.put(Const.Ts4, Const.repoModels+"city_traffic_service_B.ttl");
@@ -64,7 +64,6 @@ public class LocationMapping {
 		Map<String, String> locationMappings = LocationMapping.getMapping().build();
 		  for (Map.Entry<String, String> mapping : locationMappings.entrySet()) {
 	            lm.addAltEntry(mapping.getKey(), mapping.getValue());
-	            System.out.println("aaaaaaaa");
 	        }
 
 		return lm;
