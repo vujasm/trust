@@ -29,14 +29,10 @@ public class Const {
 	
 	public static final String underScore = "_";
 	
-	public static final String Ts1 = "http://127.0.0.1/services/1.1/city_weatherseason_service.owls#CITY_WEATHERSEASON_SERVICE";
-	public static final String Ts2 = "http://127.0.0.1/services/1.1/city_weathersystem_service.owls#CITY_WEATHERSYSTEM_SERVICE";
-	
 	public static final String Ts3 = "http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_A";
 	public static final String Ts4 = "http://127.0.0.1/services/1.1/city_traffic_service_b.owls#CITY_TRAFFIC_SERVICE_B";
 	public static final String Ts5 = "http://127.0.0.1/services/1.1/city_traffic_service_c.owls#CITY_TRAFFIC_SERVICE_C";
 
-//	private static String repositoryLocation = "file:///C:/D-Data/eclipseprojects/compose/workspace/itrust-service/src/main/resources";
 	public static String repoModels = "modelrepo/";
 	public static String repoOntologies = "ontologies/";
 	

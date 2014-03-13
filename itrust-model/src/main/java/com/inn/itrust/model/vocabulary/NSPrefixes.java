@@ -31,7 +31,6 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.XSD;
 
-//FIXME napravi ovo kao enum
 public class NSPrefixes {
 	
 	public static final Map<String, String> map;

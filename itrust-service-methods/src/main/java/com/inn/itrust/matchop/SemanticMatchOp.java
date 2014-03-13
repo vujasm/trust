@@ -40,7 +40,6 @@ public class SemanticMatchOp {
 
 	public SemanticMatchOp(KnowledgeBaseManager kbManager) {
 //		this.kbManager = kbManager;
-		// TODO Auto-generated constructor stub
 	}
 
 	// TODO consider to enhance result by implementing support for graph similarity matching

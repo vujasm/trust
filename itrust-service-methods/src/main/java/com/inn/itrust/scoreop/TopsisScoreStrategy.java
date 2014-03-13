@@ -111,7 +111,7 @@ public class TopsisScoreStrategy extends AbstractScoreStrategy {
 	@SuppressWarnings("unused")
 	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> linearNormalizationAndWeightening(
 			List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet, List<TrustAttribute> attributeList) {
-		// TODO - not implemented
+		// TODO - not implemented, and probably not will ever be
 		return null;
 	}
 

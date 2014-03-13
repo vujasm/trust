@@ -47,7 +47,7 @@ import com.inn.common.TFunctor;
 import com.inn.common.Tuple2;
 import com.inn.common.structure.tree.Node;
 import com.inn.common.structure.tree.Tree;
-import com.inn.common.util.TupleUtil;
+import com.inn.common.util.ListTupleConvert;
 import com.inn.itrust.model.model.TrustRequest;
 import com.inn.itrust.service.IgnoredModels;
 import com.inn.itrust.service.LocationMapping;
@@ -184,7 +184,7 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 	public List<URI> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing,
 			OrderType order) throws Exception {
 		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
-		final List<URI> rankedList = TupleUtil.toListOfTupleElement(scores, 1);
+		final List<URI> rankedList = ListTupleConvert.toListOfTupleElement(scores, 1);
 		return rankedList;
 	}
 
@@ -213,7 +213,7 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 			}
 		});
 		printList(Lists.newArrayList(filtered), " filtered with thresholdValue value of "+thresholdValue);
-		final List<URI> filteredList = TupleUtil.toListOfTupleElement(Lists.newArrayList(filtered), 1);
+		final List<URI> filteredList = ListTupleConvert.toListOfTupleElement(Lists.newArrayList(filtered), 1);
 		return filteredList;
 	}
 	

@@ -119,7 +119,6 @@ public class CreateVocabulary {
 			System.out.println(b);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

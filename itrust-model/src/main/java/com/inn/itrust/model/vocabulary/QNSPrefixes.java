@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-//FIXME napravi ovo kao enum
 public class QNSPrefixes {
 	
 	

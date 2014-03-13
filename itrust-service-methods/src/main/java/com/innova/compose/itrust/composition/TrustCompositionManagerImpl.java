@@ -25,48 +25,5 @@ package com.innova.compose.itrust.composition;
 
 public class TrustCompositionManagerImpl implements TrustCompositionManager{
 
-//	
-//	/**
-//	 * 
-//	 * @param serviceURI URI of a service that looks to be composed
-//	 * @param serviceCandidatesURIs A list of uris of service that matched functionally what serviceURI needs.
-//	 * @return
-//	 */
-//	public List<URI> filterBySecurityRequrment(URI serviceURI, List<URI> serviceCandidatesURIs){
-//		
-//		List<URI> filtered = new List();
-//		
-//		ServiceMetadata metaData = obtainServiceMetadata(serviceURI);
-//		SecurityPolicy policy = obtainSecurityPolicy(serviceURI);
-//		//for each candidate service
-//		for (URI serviceCandidateURI : serviceCandidatesURIs) {
-//			SecurityPolicy policyOfCandidateService = obtainSecurityPolicy(serviceCandidateURI);
-//			ServiceMetadata metaDataOfCandidateService = obtainServiceMetadata(serviceCandidateURI);
-//			boolean compliesAB = evaluate (policyOfCandidateService, metadata);
-//			boolean compliesBA = evaluate (policy, metaDataOfCandidateService);
-//			if (compliesAB && compliesBA){
-//				list.add serviceCandidateURI)
-//			}
-//		}
-//		
-//		return list;
-//		
-//	}
-//	
-//	
-//	private ServiceMetadata obtainServiceMetadata(URI serviceCandidateURI) {
-//		//TODO this method grabs (collects) metadata about the service
-//		//e.g. ownership, isProvenanaceEnabled, inputs / outputs annotations, etc
-//		return null;
-//	}
-//
-//
-//	private boolean evaluate(SecurityPolicy policy, ServiceMetadata data){
-//		List<Rule> rules = policy.getRules;
-//		// feed the data and policy rules into the rule engine and execute the rules
-//		//if paralocks are open return true, otherwise false
-//		return someRule.apply(data, rules)l
-//	}
-//	
 	
 }

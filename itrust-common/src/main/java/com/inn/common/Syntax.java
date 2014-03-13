@@ -36,8 +36,6 @@ package com.inn.common;
  * limitations under the License.
  */
 
-//package uk.ac.open.kmi.iserve.commons.io;
-
 /**
  * Enum Type with the Syntaxes Supported
  * <p/>

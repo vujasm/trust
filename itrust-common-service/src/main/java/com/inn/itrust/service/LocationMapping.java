@@ -38,8 +38,7 @@ public class LocationMapping {
 		
 		
 		//FIXME - Remove this stuff out of here
-		//
-		
+
 		map.put(ModelEnum.Trust.getURI(),  					Const.repoOntologies+"trustontology.ttl");
 		map.put(ModelEnum.SecuritypolicyVocab.getURI(),		Const.repoOntologies+"securitypolicyvocab.ttl");
 		map.put(ModelEnum.UsdlSec.getURI(),					Const.repoOntologies+"usdl-sec.ttl");
