@@ -32,7 +32,7 @@ import com.inn.itrust.model.model.SecurityTechnology;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.semsimop.SemSim;
-import com.inn.itrust.service.LocationMappingResolver;
+import com.inn.itrust.service.LocationMapping;
 import com.inn.itrust.service.managers.KnowledgeBaseManager;
 
 /**
@@ -45,7 +45,7 @@ public class SecSemanticMatchOp {
 
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(SecSemanticMatchOp.class);
 
-	private SemSim semSim = new SemSim(LocationMappingResolver.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
+	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
 	
 	@SuppressWarnings("unused")
 	private KnowledgeBaseManager kbManager;

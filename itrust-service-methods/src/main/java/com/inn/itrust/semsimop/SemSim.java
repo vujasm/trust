@@ -23,9 +23,6 @@ package com.inn.itrust.semsimop;
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.ValueFactoryImpl;
 
-import com.inn.itrust.model.vocabulary.ModelEnum;
-import com.inn.itrust.service.LocationMappingResolver;
-
 import slib.sglib.algo.graph.utils.GAction;
 import slib.sglib.algo.graph.utils.GActionType;
 import slib.sglib.io.conf.GDataConf;
@@ -43,6 +40,9 @@ import slib.sml.sm.core.utils.SMConstants;
 import slib.sml.sm.core.utils.SMconf;
 import slib.utils.ex.SLIB_Exception;
 import slib.utils.impl.Timer;
+
+import com.inn.itrust.model.vocabulary.ModelEnum;
+import com.inn.itrust.service.LocationMapping;
 
 /**
  * 
@@ -138,7 +138,7 @@ public class SemSim {
 	}
 
 	public static void main(String[] args) throws SLIB_Exception {
-		String ontoFile = LocationMappingResolver.resolveLocation(ModelEnum.SecurityProfiles.getURI());
+		String ontoFile = LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI());
 		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
 		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#E";
 		try {

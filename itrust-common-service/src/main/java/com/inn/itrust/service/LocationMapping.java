@@ -49,7 +49,7 @@ public class LocationMapping {
 
 		map.put(Const.Ts3, Const.repoModels+"city_traffic_service_A.ttl");
 		map.put(Const.Ts4, Const.repoModels+"city_traffic_service_B.ttl");
-		map.put(Const.Ts5, Const.repoModels+"modelrepo/city_traffic_service_C.ttl");
+		map.put(Const.Ts5, Const.repoModels+"city_traffic_service_C.ttl");
 		
         return map;
 	}

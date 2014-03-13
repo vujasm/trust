@@ -74,7 +74,7 @@ public class ResourceMetadataFetcher {
 		// try to find it on the web or via location mapping
 		if (externalModel == null && useMappedLocations) {
 			Log.info(this, "obtaining model from external source using Jena Jena's embedded support for retrieving models");
-			externalModel = new ModelFether().fetch(uri, "TURTLE", MyOntModelSpecFactory.getModelSpecShared());
+			externalModel = new ModelFether().fetch(uri.toASCIIString(), "TURTLE", MyOntModelSpecFactory.getModelSpecShared());
 		}
 		// try to find it in internal registry
 

@@ -23,28 +23,35 @@ package com.inn.itrust.service.utils;
 
 import java.net.URI;
 
-import org.apache.jena.atlas.web.TypedInputStream;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.adapters.AdapterFileManager;
-import org.apache.jena.riot.stream.LocationMapper;
 import org.apache.jena.riot.stream.StreamManager;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.util.FileUtils;
-import com.inn.common.Syntax;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.service.LocationMapping;
 
 public class ModelFether {
 
+	
+	public OntModel fetch(URI uri, String syntax, OntModelSpec modelSpec) {
+		return fetch(uri.toASCIIString(), syntax, modelSpec);
+	}
+	
+	/**
+	 * 
+	 * @param url
+	 * @param syntax
+	 * @param modelSpec
+	 * @return
+	 */
 	public OntModel fetch(String url, String syntax, OntModelSpec modelSpec) {
-		
-		StreamManager streamManager = new StreamManager();
+		StreamManager streamManager = StreamManager.makeDefaultStreamManager();
 		streamManager.setLocationMapper(LocationMapping.obtainLocationMapper());
-		new AdapterFileManager(streamManager, LocationMapping.obtainLocationMapper()).
+		Model m = new AdapterFileManager(streamManager, LocationMapping.obtainLocationMapper()).loadModel(url);
 	    OntModel model = ModelFactory.createOntologyModel(modelSpec, m);
 	    return model;
 
@@ -65,12 +72,13 @@ public class ModelFether {
 //        }
 //        return model;
 	}
-	
+	//FiXME remove this
 	public static void main(String[] args) {
-//		 System.err.println(RDFDataMgr.loadModel("trustontology.ttl"));
-		 OntModel model = ModelFactory.createOntologyModel(MyOntModelSpecFactory.getModelSpecShared());
+		 System.err.println(RDFDataMgr.loadModel("ontologies/securityprofiles.ttl"));
+//		 OntModel model = ModelFactory.createOntologyModel(MyOntModelSpecFactory.getModelSpecShared());
 //		 System.out.println(model.read("trustontology.ttl", "TURTLE"));
-	  new ModelFether().fetch(ModelEnum.Trust.getURI(), null, MyOntModelSpecFactory.getModelSpecShared());
+	  Model  m =new ModelFether().fetch("securityprofiles.ttl", null, MyOntModelSpecFactory.getModelSpecShared());
+	  System.out.println(m);
 	}
 
 }

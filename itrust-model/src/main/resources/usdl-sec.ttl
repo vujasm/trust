@@ -72,6 +72,12 @@ dcterms:title rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.w3.org/2004/02/skos/core#broader
+
+skos:broader rdf:type owl:AnnotationProperty .
+
+
+
 ###  http://www.w3.org/2004/02/skos/core#definition
 
 skos:definition rdf:type owl:AnnotationProperty .
@@ -157,6 +163,12 @@ foaf:title rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityMeasure
+
+:hasSecurityMeasure rdf:type owl:ObjectProperty .
+
+
+
 ###  http://www.linked-usdl.org/ns/usdl-sec#hasSecurityProfile
 
 :hasSecurityProfile rdf:type owl:ObjectProperty ;
@@ -229,12 +241,6 @@ foaf:title rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.w3.org/2004/02/skos/core#broader
-
-skos:broader rdf:type owl:ObjectProperty .
-
-
-
 
 
 #################################################################
@@ -260,6 +266,12 @@ usdl-core:Service rdf:type owl:Class .
 
 
 
+###  http://www.linked-usdl.org/ns/usdl-sec#SecurityMeasure
+
+:SecurityMeasure rdf:type owl:Class .
+
+
+
 ###  http://www.linked-usdl.org/ns/usdl-sec#SecurityMechanism
 
 :SecurityMechanism rdfs:label "Security Mechanism" ;
@@ -277,12 +289,12 @@ usdl-core:Service rdf:type owl:Class .
                  rdfs:label "security profile" ;
                  
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasSecurityGoal ;
-                                   owl:someValuesFrom :SecurityGoal
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty :usesMechanism ;
                                    owl:someValuesFrom :SecurityMechanism
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasSecurityGoal ;
+                                   owl:someValuesFrom :SecurityGoal
                                  ] ;
                  
                  rdfs:comment "A Security Profile is the  root  node  of  the  model  and the  entry  point  from  a  service  description  language to USDL-SEC. This node can conceptually be similar to a pointer element from  the  general  service  description,  to  the security properties of the service. "@en ;
@@ -627,15 +639,6 @@ foaf:Person rdf:type owl:Class .
 
 
 
-###  http://www.linked-usdl.org/ns/usdl-sec#Encryption
-
-:Encryption rdf:type owl:NamedIndividual ,
-                     skos:Concept ;
-            
-            skos:broader :SecurityMechanism .
-
-
-
 ###  http://www.linked-usdl.org/ns/usdl-sec#Filtering
 
 :Filtering rdf:type owl:NamedIndividual ,
@@ -795,6 +798,13 @@ foaf:Person rdf:type owl:Class .
                  skos:broader :SecurityGoal ;
                  
                  skos:inScheme :securityGoalsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#OAuth2
+
+:OAuth2 rdf:type :SecurityTechnology ,
+                 owl:NamedIndividual .
 
 
 
@@ -1045,6 +1055,28 @@ Security tokens are used to prove one's identity electronically (as in the case 
                skos:broader :SecurityMechanism ;
                
                skos:inScheme :securityMechanismsTaxonomy .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#composeSecProfile1
+
+:composeSecProfile1 rdf:type :SecurityProfile ,
+                             owl:NamedIndividual ;
+                    
+                    :hasSecurityMeasure :secmeasure1 .
+
+
+
+###  http://www.linked-usdl.org/ns/usdl-sec#secmeasure1
+
+:secmeasure1 rdf:type :SecurityMeasure ,
+                      owl:NamedIndividual ;
+             
+             :isImplementedBy :Access_Control ;
+             
+             :hasSecurityGoal :Authorization ;
+             
+             :isRealizedByTechnology :OAuth2 .
 
 
 
