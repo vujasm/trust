@@ -6,7 +6,7 @@
    	<version>${project.parent.version}</version>	
 	<name>itrust-service-rest</name>
 	<packaging>jar</packaging>
-	<description>This is a RESTFull Server</description>
+	<description>This is a Trust Server</description>
 	<developers>
 		<developer>
 			<id>marko</id>
