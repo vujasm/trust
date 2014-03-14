@@ -1,4 +1,4 @@
-package com.inn.itrust.service.managers.impl;
+package com.inn.itrust.service.mgrs.impl;
 
 /*
  * #%L
@@ -45,8 +45,8 @@ import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.scoreop.AbstractScoreStrategy;
 import com.inn.itrust.scoreop.ScoreStrategyFactory;
 import com.inn.itrust.service.enums.EnumScoreStrategy;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
-import com.inn.itrust.service.managers.RankingManager;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.RankingManager;
 import com.inn.itrust.service.utils.Sort;
 
 public class RankingManagerSimple implements RankingManager {

@@ -43,7 +43,7 @@ import com.inn.common.match.SemanticMatchOutput;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.itrust.model.vocabulary.Trust;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
 
 /**
  * TODO describe me

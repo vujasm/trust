@@ -1,4 +1,4 @@
-package com.inn.itrust.service.managers.impl;
+package com.inn.itrust.service.mgrs.impl;
 
 /*
  * #%L
@@ -52,6 +52,7 @@ import com.inn.itrust.model.model.TrustRequest;
 import com.inn.itrust.service.IgnoredModels;
 import com.inn.itrust.service.LocationMapping;
 import com.inn.itrust.service.cfg.Configuration;
+import com.inn.itrust.service.cfg.GlobalTrustRequest;
 import com.inn.itrust.service.collectors.ActivityCollector;
 import com.inn.itrust.service.collectors.Collector;
 import com.inn.itrust.service.collectors.FeedbackCollector;
@@ -61,11 +62,11 @@ import com.inn.itrust.service.command.CreateUpdateTrustProfile;
 import com.inn.itrust.service.command.ResourceMetadataFetcher;
 import com.inn.itrust.service.component.ComponentIntegrated;
 import com.inn.itrust.service.enums.EnumScoreStrategy;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
-import com.inn.itrust.service.managers.RankingManager;
-import com.inn.itrust.service.managers.SparqlGraphStoreFactory;
-import com.inn.itrust.service.managers.SparqlGraphStoreManager;
-import com.inn.itrust.service.managers.TrustManager;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.RankingManager;
+import com.inn.itrust.service.mgrs.SparqlGraphStoreFactory;
+import com.inn.itrust.service.mgrs.SparqlGraphStoreManager;
+import com.inn.itrust.service.mgrs.TrustManager;
 import com.inn.itrust.service.utils.FillTaxonomy;
 
 
@@ -331,15 +332,15 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 		return rankingManager.rankServiceModels(models, request, scoreStrategy, excludeIfAttributeMissing, order);
 	}
 
-	// FIXME
+	
 	/**
 	 * Obtains absolute trust request (users' perception of trust is not taken into account)
 	 * 
 	 * @return
 	 */
 	private TrustRequest obtainAbsoluteTrustRequest() {
-		// TODO Auto-generated method stub Well, this should be identified somehow, perhaps thru some survay.
-		return null;
+		// TODO Define AbsoluteTrustRequest. It should be identified somehow, perhaps thru some survey. For now, we use a test one.
+		return GlobalTrustRequest.request();
 	}
 
 }

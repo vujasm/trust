@@ -39,7 +39,7 @@ import com.inn.common.structure.tree.Tree;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.model.vocabulary.Trust;
 import com.inn.itrust.service.component.TrustComponent;
-import com.inn.itrust.service.managers.TrustManager;
+import com.inn.itrust.service.mgrs.TrustManager;
 
 public class TrustModuleTest {
 

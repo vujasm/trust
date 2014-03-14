@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.service.managers;
+package com.inn.itrust.service.mgrs;
 
 /*
  * #%L

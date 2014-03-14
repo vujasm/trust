@@ -21,12 +21,23 @@ package com.inn.client.simple;
  */
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import com.inn.common.Const;
 import com.inn.itrust.semsimop.SemSim;
 
 public class JustTest {
 	
 	public static void main(String[] args) {
-		System.out.println(SemSim.class.getClassLoader().getResource("ontologies/usdl-sec.ttl").toString());
+//		System.out.println(SemSim.class.getClassLoader().getResource("ontologies/usdl-sec.ttl").toString());
+		try {
+			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
+			System.out.println(encodedUrl);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

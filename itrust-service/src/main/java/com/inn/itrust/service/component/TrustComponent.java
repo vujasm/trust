@@ -30,15 +30,15 @@ import com.google.common.eventbus.EventBus;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
-import com.inn.itrust.service.managers.RankingManager;
-import com.inn.itrust.service.managers.SparqlGraphStoreFactory;
-import com.inn.itrust.service.managers.SparqlGraphStoreManager;
-import com.inn.itrust.service.managers.TrustManager;
-import com.inn.itrust.service.managers.impl.ConcurrentSparqlGraphStoreManager;
-import com.inn.itrust.service.managers.impl.KnowledgeBaseManagerSparql;
-import com.inn.itrust.service.managers.impl.RankingManagerSimple;
-import com.inn.itrust.service.managers.impl.TrustManagerSimple;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.RankingManager;
+import com.inn.itrust.service.mgrs.SparqlGraphStoreFactory;
+import com.inn.itrust.service.mgrs.SparqlGraphStoreManager;
+import com.inn.itrust.service.mgrs.TrustManager;
+import com.inn.itrust.service.mgrs.impl.ConcurrentSparqlGraphStoreManager;
+import com.inn.itrust.service.mgrs.impl.KnowledgeBaseManagerSparql;
+import com.inn.itrust.service.mgrs.impl.RankingManagerSimple;
+import com.inn.itrust.service.mgrs.impl.TrustManagerSimple;
 
 
 public class TrustComponent extends AbstractModule {

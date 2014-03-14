@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.inn.common.match.SemanticMatchOutput;
 import com.inn.itrust.model.model.TrustAttribute;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
 
 /**
  * A semantic match operator that semantically matches two given semantic descriptions.

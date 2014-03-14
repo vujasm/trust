@@ -33,7 +33,7 @@ import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.semsimop.SemSim;
 import com.inn.itrust.service.LocationMapping;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
 
 /**
  * A specialized semantic match operator that semantically matches two given security semantic descriptions.
@@ -45,7 +45,10 @@ public class SecSemanticMatchOp {
 
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(SecSemanticMatchOp.class);
 
-	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
+	//FIXME kovaza ontologije
+	
+//	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
+	private SemSim semSim = new SemSim("C:/D-Data/Git/itrust/itrust-common/src/main/resources/ontologies/securityprofiles.ttl");
 	
 	@SuppressWarnings("unused")
 	private KnowledgeBaseManager kbManager;

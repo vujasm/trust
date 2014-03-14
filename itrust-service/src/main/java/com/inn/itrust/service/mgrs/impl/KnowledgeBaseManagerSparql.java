@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.service.managers.impl;
+package com.inn.itrust.service.mgrs.impl;
 
 /*
  * #%L
@@ -70,9 +70,9 @@ import com.inn.itrust.service.LocationMapping;
 import com.inn.itrust.service.cfg.Configuration;
 import com.inn.itrust.service.component.ComponentIntegrated;
 import com.inn.itrust.service.event.OntologyCreatedEvent;
-import com.inn.itrust.service.managers.KnowledgeBaseManager;
-import com.inn.itrust.service.managers.SparqlGraphStoreFactory;
-import com.inn.itrust.service.managers.SparqlGraphStoreManager;
+import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
+import com.inn.itrust.service.mgrs.SparqlGraphStoreFactory;
+import com.inn.itrust.service.mgrs.SparqlGraphStoreManager;
 import com.inn.itrust.service.utils.ModelFether;
 import com.inn.itrust.service.utils.MyOntModelSpecFactory;
 
