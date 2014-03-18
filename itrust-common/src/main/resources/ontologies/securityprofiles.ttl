@@ -76,14 +76,6 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#A
-
-:A rdf:type owl:Class ;
-   
-   rdfs:subClassOf <http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES> .
-
-
-
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES
 
 :AES rdf:type owl:Class ;
@@ -126,35 +118,11 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#B
-
-:B rdf:type owl:Class ;
-   
-   rdfs:subClassOf :A .
-
-
-
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#C
-
-:C rdf:type owl:Class ;
-   
-   rdfs:subClassOf :B .
-
-
-
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CryptographicProtocol
 
 :CryptographicProtocol rdf:type owl:Class ;
                        
                        rdfs:subClassOf :SecurityTechnology .
-
-
-
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#D
-
-:D rdf:type owl:Class ;
-   
-   rdfs:subClassOf :C .
 
 
 
@@ -171,14 +139,6 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 :DSA-SHA1 rdf:type owl:Class ;
           
           rdfs:subClassOf :SecurityTechnology .
-
-
-
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#E
-
-:E rdf:type owl:Class ;
-   
-   rdfs:subClassOf :D .
 
 
 
