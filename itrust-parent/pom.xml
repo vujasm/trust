@@ -44,9 +44,9 @@
 		<module>../itrust-common-service</module>
 		<module>../itrust-service-methods</module>
 		<module>../itrust-service</module>
-		<module>../itrust-service-rest</module>
 		<module>../itrust-client-simple</module>
 		<module>../itrust-client-web</module>
+		<module>../itrust-vertx</module>
 	</modules>
 
 

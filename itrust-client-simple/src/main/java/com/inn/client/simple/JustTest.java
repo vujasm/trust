@@ -25,7 +25,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import com.inn.common.Const;
-import com.inn.itrust.semsimop.SemSim;
 
 public class JustTest {
 	
