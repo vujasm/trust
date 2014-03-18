@@ -2,7 +2,6 @@ package com.inn.vertx;
 
 /*
  * #%L
- * itrust-service-rest
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
