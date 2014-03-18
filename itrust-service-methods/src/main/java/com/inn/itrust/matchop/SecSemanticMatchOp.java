@@ -45,10 +45,7 @@ public class SecSemanticMatchOp {
 
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(SecSemanticMatchOp.class);
 
-	//FIXME kovaza ontologije
-	
-//	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
-	private SemSim semSim = new SemSim("C:/D-Data/Git/itrust/itrust-common/src/main/resources/ontologies/securityprofiles.ttl");
+	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
 	
 	@SuppressWarnings("unused")
 	private KnowledgeBaseManager kbManager;

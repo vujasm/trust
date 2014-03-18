@@ -23,7 +23,6 @@ package com.inn.itrust.service.utils;
 
 import java.net.URI;
 
-import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.adapters.AdapterFileManager;
 import org.apache.jena.riot.stream.StreamManager;
 
@@ -31,7 +30,6 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.service.LocationMapping;
 
 public class ModelFether {
@@ -71,14 +69,6 @@ public class ModelFether {
 //            model.read(url, lang);
 //        }
 //        return model;
-	}
-	//FiXME remove this
-	public static void main(String[] args) {
-		 System.err.println(RDFDataMgr.loadModel("ontologies/securityprofiles.ttl"));
-//		 OntModel model = ModelFactory.createOntologyModel(MyOntModelSpecFactory.getModelSpecShared());
-//		 System.out.println(model.read("trustontology.ttl", "TURTLE"));
-	  Model  m =new ModelFether().fetch("securityprofiles.ttl", null, MyOntModelSpecFactory.getModelSpecShared());
-	  System.out.println(m);
 	}
 
 }
