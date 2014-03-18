@@ -41,9 +41,6 @@ import slib.sml.sm.core.utils.SMconf;
 import slib.utils.ex.SLIB_Exception;
 import slib.utils.impl.Timer;
 
-import com.inn.itrust.model.vocabulary.ModelEnum;
-import com.inn.itrust.service.LocationMapping;
-
 /**
  * 
  * SemSim operator that uses a Semantic Measurement Library (SML)0 to compute semantic similarity of concepts from taxonomic Knowledge 
@@ -137,16 +134,18 @@ public class SemSim {
 
 	}
 
-	public static void main(String[] args) throws SLIB_Exception {
-		String ontoFile = LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI());
-		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
-		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#E";
-		try {
-			new SemSim(ontoFile).apply(concept1URI, concept2URI);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+//	public static void main(String[] args) throws SLIB_Exception {
+//		org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.OFF);
+//		String ontoFile = com.inn.itrust.service.LocationMapping.resolveLocation(
+//				com.inn.itrust.model.vocabulary.ModelEnum.SecurityProfiles.getURI());
+//		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
+//		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#E";
+//		try {
+//			new SemSim(ontoFile).apply(concept1URI, concept2URI);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 }
