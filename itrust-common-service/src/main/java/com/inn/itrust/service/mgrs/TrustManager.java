@@ -180,5 +180,14 @@ public interface TrustManager extends Component {
 	 */
 	boolean isTrusted(URI resourceURI, TrustRequest request, boolean useCache) throws Exception;
 	
+	
+	/**
+	 * Answers if resource is trusted in terms of global trust criteria
+	 * @param resource Resource URI
+	 * @return true if resource is trusted; otherwise false
+	 * @throws Exception
+	 */
+	boolean isTrusted(URI resourceURI) throws Exception;
+	
 
 }

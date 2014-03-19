@@ -344,7 +344,13 @@ public class BasicTrustManager extends ComponentIntegrated implements TrustManag
 	
 	@Override
 	public boolean isTrusted(URI resourceURI, TrustRequest request, boolean useCache) throws Exception {
-		Double index = obtainTrustIndex(resourceURI, request);
+		final Double index = obtainTrustIndex(resourceURI, request);
+		return new Value(index).isTrustworthy();
+	}
+	
+	@Override
+	public boolean isTrusted(URI resourceURI) throws Exception {
+		final Double index = obtainTrustIndex(resourceURI);
 		return new Value(index).isTrustworthy();
 	}
 
