@@ -1,4 +1,5 @@
-package com.inn.itrust.composition;
+package com.inn.itrust.op.composition;
+
 
 /*
  * #%L
@@ -22,9 +23,7 @@ package com.inn.itrust.composition;
 
 
 
-public interface TrustCompositionManager {
+public class TrustCompositionManagerImpl implements TrustCompositionManager{
 
-	
-	
 	
 }

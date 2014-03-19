@@ -1,4 +1,4 @@
-package com.inn.itrust.transitivity;
+package com.inn.itrust.op.prediction;
 
 /*
  * #%L
@@ -21,18 +21,23 @@ package com.inn.itrust.transitivity;
  */
 
 
+import com.inn.itrust.model.model.TResource;
+
 
 
 /**
- * Trust Transitivity may be important in some case.
- * Does TrustParticipant_A, who trusts  to a TrustParticipant_B who trust to  a TrustParticipant_C, 
- * trust to TrustParticipant_C ?
+ * Ideja je predikcija trusta. 
+ * Moze biti interesantno u slucajevima kad nemamo dovoljno informacija o kvaliteti servisa 
+ * ili o reputaciji servisa. (reputacija moze biti bazirana na povratnoj informaciji o
+ * od korisnika, popularnosti, i sl.)
+ * pogledam hidden markov model / da li predikcija u tom pravcu ima smisla
+ * 
  * @author marko
  *
  */
-public class TrustTransitivityManager {
+public interface TrustPredictionManager {
 	
 	
-	
+	void predict(TResource tResource);
 
 }

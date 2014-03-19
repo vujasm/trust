@@ -1,4 +1,4 @@
-package com.inn.itrust.propagation;
+package com.inn.itrust.op.composition;
 
 /*
  * #%L
@@ -21,22 +21,10 @@ package com.inn.itrust.propagation;
  */
 
 
-import com.inn.itrust.model.model.Agent;
-public class TrustAssessmentManagerImpl implements TrustAssessmentManager{
 
-	@Override
-	public void assessIt(Agent agent) {
-		
-		if ( isComposed(agent) == false) return ;
-		
-		// decompose & analize
-		
-	}
+public interface TrustCompositionManager {
 
-	private boolean isComposed(Agent agent) {
-		//TODO - trebam nacin za provjeriti da li je service / service object
-		//composed od drugih
-		return true;
-	}
-
+	
+	
+	
 }
