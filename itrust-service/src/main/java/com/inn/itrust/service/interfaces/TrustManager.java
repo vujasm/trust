@@ -1,4 +1,4 @@
-package com.inn.itrust.common.service;
+package com.inn.itrust.service.interfaces;
 
 /*
  * #%L
@@ -25,8 +25,10 @@ import java.net.URI;
 import java.util.List;
 
 import com.inn.common.OrderType;
-import com.inn.itrust.common.EnumScoreStrategy;
+import com.inn.itrust.Component;
 import com.inn.itrust.model.model.TrustRequest;
+import com.inn.itrust.op.enums.EnumScoreStrategy;
+import com.inn.itrust.service.kb.KnowledgeBaseManager;
 import com.inn.util.tree.Tree;
 
 

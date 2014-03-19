@@ -33,7 +33,7 @@
      <dependencies>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>itrust-common-service</artifactId>
+			<artifactId>itrust-service-kb</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>

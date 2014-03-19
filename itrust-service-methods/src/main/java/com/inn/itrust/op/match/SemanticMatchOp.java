@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 
-import com.inn.itrust.common.service.KnowledgeBaseManager;
 import com.inn.itrust.model.model.TrustAttribute;
 
 /**
@@ -37,7 +36,7 @@ public class SemanticMatchOp {
 
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(SemanticMatchOp.class);
 
-	public SemanticMatchOp(KnowledgeBaseManager kbManager) {
+	public SemanticMatchOp(com.inn.itrust.service.kb.KnowledgeBaseManager kbManager) {
 //		this.kbManager = kbManager;
 	}
 

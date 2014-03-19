@@ -1,8 +1,8 @@
-package com.inn.itrust.common;
+package com.inn.itrust.op.enums;
 
 /*
  * #%L
- * itrust-service
+ * itrust-methods
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
@@ -21,20 +21,11 @@ package com.inn.itrust.common;
  */
 
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.inn.itrust.model.vocabulary.ModelEnum;
-
-
-public class IgnoredModels {
-
-	public static Set<String> getModels() {
-		Set<String> set = new  HashSet<String>();
-		set.add(ModelEnum.Dul.getURI());
-		return set;
-	}
+public enum EnumNormalizationType {
 	
+	//0-1 Normalization	X' = \frac{X - X_{min}}{X_{max}-X_{min}}	Feature scaling used to bring all values into the range [0,1]
+	Zero_One_by_divMax, 
 	
+	Zero_One
 
 }

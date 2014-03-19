@@ -20,13 +20,12 @@ package com.inn.itrust.op.match;
  * #L%
  */
 
+
 import java.net.URI;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
 
-import com.inn.itrust.common.LocationMapping;
-import com.inn.itrust.common.service.KnowledgeBaseManager;
 import com.inn.itrust.model.model.SecurityAttribute;
 import com.inn.itrust.model.model.SecurityGoal;
 import com.inn.itrust.model.model.SecurityMechanism;
@@ -34,6 +33,8 @@ import com.inn.itrust.model.model.SecurityTechnology;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.op.semsim.SemSim;
+import com.inn.itrust.service.kb.KnowledgeBaseManager;
+import com.inn.itrust.service.kb.mapping.LocationMapping;
 
 /**
  * A specialized semantic match operator that semantically matches two given security semantic descriptions.
@@ -48,7 +49,7 @@ public class SecSemanticMatchOp {
 	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
 	
 	@SuppressWarnings("unused")
-	private KnowledgeBaseManager kbManager;
+	private com.inn.itrust.service.kb.KnowledgeBaseManager kbManager;
 
 	public SecSemanticMatchOp(KnowledgeBaseManager kbManager) {
 		this.kbManager = kbManager;

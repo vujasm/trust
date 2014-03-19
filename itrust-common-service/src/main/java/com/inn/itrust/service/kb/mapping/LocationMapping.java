@@ -1,4 +1,4 @@
-package com.inn.itrust.common;
+package com.inn.itrust.service.kb.mapping;
 
 /*
  * #%L

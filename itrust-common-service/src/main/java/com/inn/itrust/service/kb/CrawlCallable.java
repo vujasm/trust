@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.service.mgrs.impl;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -45,8 +45,6 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Stopwatch;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.service.command.ModelFether;
 
 
 public class CrawlCallable implements Callable<Boolean> {

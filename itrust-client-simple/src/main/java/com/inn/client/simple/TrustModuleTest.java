@@ -35,10 +35,10 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.inn.itrust.common.service.TrustManager;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.model.vocabulary.Trust;
 import com.inn.itrust.service.component.TrustComponent;
+import com.inn.itrust.service.interfaces.TrustManager;
 import com.inn.util.tree.Tree;
 
 public class TrustModuleTest {

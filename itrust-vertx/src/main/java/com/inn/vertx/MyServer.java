@@ -30,8 +30,8 @@ import org.vertx.java.platform.Verticle;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.inn.itrust.common.service.TrustManager;
 import com.inn.itrust.service.component.TrustComponent;
+import com.inn.itrust.service.interfaces.TrustManager;
 
 public class MyServer extends Verticle {
 

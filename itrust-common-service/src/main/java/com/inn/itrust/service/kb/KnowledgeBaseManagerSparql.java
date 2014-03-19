@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.service.mgrs.impl;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -64,22 +64,15 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
-import com.inn.itrust.common.IgnoredModels;
-import com.inn.itrust.common.LocationMapping;
-import com.inn.itrust.common.service.KnowledgeBaseManager;
-import com.inn.itrust.common.service.SparqlGraphStoreFactory;
-import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.config.Configuration;
-import com.inn.itrust.service.command.ModelFether;
-import com.inn.itrust.service.component.ComponentIntegrated;
-import com.inn.itrust.service.event.OntologyCreatedEvent;
-import com.inn.itrust.service.utils.MyOntModelSpecFactory;
+import com.inn.itrust.Configuration;
+import com.inn.itrust.service.kb.mapping.IgnoredModels;
+import com.inn.itrust.service.kb.mapping.LocationMapping;
 import com.inn.util.uri.URIUtil;
 
 /**
  * This class is a parametric tool for crawling for RDF data.
  */
-public class KnowledgeBaseManagerSparql extends ComponentIntegrated implements KnowledgeBaseManager {
+public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
 
     private static final Logger log = LoggerFactory.getLogger(KnowledgeBaseManagerSparql.class);
     private static final String DIRECT_SUBCLASS = "http://www.openrdf.org/schema/sesame#directSubClassOf";
@@ -99,7 +92,6 @@ public class KnowledgeBaseManagerSparql extends ComponentIntegrated implements K
 			@Named(Configuration.SPARQL_ENDPOINT_UPDATE_PROP) String updateEndpoint,
 			@Named(Configuration.SPARQL_ENDPOINT_SERVICE_PROP) String serviceEndpoint) throws Exception {
 
-        super(eventBus);
         Set<URI> defaultModels = ImmutableSet.of();
         ImmutableMap.Builder<String, String> locationMappings =  LocationMapping.getMapping();
         Set<String> ignoredImports = IgnoredModels.getModels();
@@ -164,7 +156,6 @@ public class KnowledgeBaseManagerSparql extends ComponentIntegrated implements K
             else{
             	this.ontoFetchAndStoreImportedOntologies(model);
             }
-			this.getEventBus().post(new OntologyCreatedEvent(new Date(), modelUri));
         }
     }
     

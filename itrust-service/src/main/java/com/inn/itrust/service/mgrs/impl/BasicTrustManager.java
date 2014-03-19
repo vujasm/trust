@@ -39,18 +39,11 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
-import com.inn.itrust.common.EnumScoreStrategy;
-import com.inn.itrust.common.IgnoredModels;
-import com.inn.itrust.common.LocationMapping;
-import com.inn.itrust.common.service.KnowledgeBaseManager;
-import com.inn.itrust.common.service.RankingManager;
-import com.inn.itrust.common.service.SparqlGraphStoreFactory;
-import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.common.service.TrustManager;
-import com.inn.itrust.config.Configuration;
+import com.inn.itrust.Configuration;
 import com.inn.itrust.config.GlobalTrustRequest;
 import com.inn.itrust.model.model.TrustRequest;
 import com.inn.itrust.model.model.Value;
+import com.inn.itrust.op.enums.EnumScoreStrategy;
 import com.inn.itrust.service.collectors.ActivityCollector;
 import com.inn.itrust.service.collectors.Collector;
 import com.inn.itrust.service.collectors.FeedbackCollector;
@@ -59,7 +52,13 @@ import com.inn.itrust.service.collectors.ReputationCollector;
 import com.inn.itrust.service.command.CreateUpdateTrustProfile;
 import com.inn.itrust.service.command.FillTaxonomy;
 import com.inn.itrust.service.command.ResourceMetadataFetcher;
-import com.inn.itrust.service.component.ComponentIntegrated;
+import com.inn.itrust.service.interfaces.RankingManager;
+import com.inn.itrust.service.interfaces.TrustManager;
+import com.inn.itrust.service.kb.KnowledgeBaseManager;
+import com.inn.itrust.service.kb.SparqlGraphStoreFactory;
+import com.inn.itrust.service.kb.SparqlGraphStoreManager;
+import com.inn.itrust.service.kb.mapping.IgnoredModels;
+import com.inn.itrust.service.kb.mapping.LocationMapping;
 import com.inn.util.tree.Node;
 import com.inn.util.tree.Tree;
 import com.inn.util.tuple.ListTuple;
@@ -73,7 +72,7 @@ import com.inn.util.tuple.Tuple2;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  * 
  */
-public class BasicTrustManager extends ComponentIntegrated implements TrustManager {
+public class BasicTrustManager  implements TrustManager {
 
 	private final List<Collector> collectors = Lists.newArrayList();
 	private boolean doSaveIntoStore = false;
@@ -94,7 +93,6 @@ public class BasicTrustManager extends ComponentIntegrated implements TrustManag
 			@Named(Configuration.SPARQL_ENDPOINT_UPDATE_PROP) String updateEndpoint,
 			@Named(Configuration.SPARQL_ENDPOINT_SERVICE_PROP) String serviceEndpoint) throws Exception {
 
-		super(eventBus);
 		Set<String> ignoredImports = IgnoredModels.getModels();
 		Set<URI> baseModels = ImmutableSet.of();
 		ImmutableMap.Builder<String, String> locationMappings = LocationMapping.getMapping();

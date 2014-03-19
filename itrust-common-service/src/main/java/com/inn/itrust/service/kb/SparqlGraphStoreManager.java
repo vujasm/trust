@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.common.service;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -50,7 +50,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * @author <a href="mailto:carlos.pedrinaci@open.ac.uk">Carlos Pedrinaci</a> (KMi - The Open University)
  * @since 02/10/2013
  */
-public interface SparqlGraphStoreManager extends Component {
+public interface SparqlGraphStoreManager extends com.inn.itrust.Component {
 
     URI getSparqlQueryEndpoint();
 

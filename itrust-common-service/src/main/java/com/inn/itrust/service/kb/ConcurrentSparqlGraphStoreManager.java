@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.service.mgrs.impl;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -86,10 +86,8 @@ import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.inn.common.Syntax;
-import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.config.Configuration;
+import com.inn.itrust.Configuration;
 import com.inn.itrust.model.vocabulary.NSPrefixes;
-import com.inn.itrust.service.utils.MyOntModelSpecFactory;
 
 public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManager {
 

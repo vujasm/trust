@@ -1,4 +1,4 @@
-package com.inn.itrust.common.service;
+package com.inn.itrust.service.interfaces;
 
 /*
  * #%L
@@ -26,8 +26,8 @@ import java.util.List;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
-import com.inn.itrust.common.EnumScoreStrategy;
 import com.inn.itrust.model.model.TrustProfile;
+import com.inn.itrust.op.enums.EnumScoreStrategy;
 import com.inn.util.tuple.Tuple2;
 
 

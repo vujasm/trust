@@ -1,6 +1,6 @@
 
 
-package com.inn.itrust.config;
+package com.inn.itrust;
 
 /*
  * #%L

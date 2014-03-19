@@ -1,5 +1,5 @@
 
-package com.inn.itrust.common.service;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -28,6 +28,7 @@ import java.util.Set;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.inn.itrust.Component;
 
 public interface KnowledgeBaseManager extends Component {
 

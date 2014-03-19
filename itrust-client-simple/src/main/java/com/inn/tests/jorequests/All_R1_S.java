@@ -28,8 +28,8 @@ import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
-import com.inn.itrust.common.EnumScoreStrategy;
 import com.inn.itrust.model.model.TrustRequest;
+import com.inn.itrust.op.enums.EnumScoreStrategy;
 
 public class All_R1_S {
 	

@@ -1,4 +1,4 @@
-package com.inn.itrust.service.utils;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -27,8 +27,8 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.inn.itrust.common.IgnoredModels;
-import com.inn.itrust.common.LocationMapping;
+import com.inn.itrust.service.kb.mapping.IgnoredModels;
+import com.inn.itrust.service.kb.mapping.LocationMapping;
 
 public class MyOntModelSpecFactory {
 	

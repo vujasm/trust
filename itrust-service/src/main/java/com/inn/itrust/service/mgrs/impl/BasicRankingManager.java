@@ -31,9 +31,6 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
-import com.inn.itrust.common.EnumScoreStrategy;
-import com.inn.itrust.common.service.KnowledgeBaseManager;
-import com.inn.itrust.common.service.RankingManager;
 import com.inn.itrust.model.io.ToModelParser;
 import com.inn.itrust.model.io.ext.SecProfileExpressionToModel;
 import com.inn.itrust.model.model.Agent;
@@ -42,10 +39,13 @@ import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.model.TrustProfile;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.itrust.model.vocabulary.ModelEnum;
+import com.inn.itrust.op.enums.EnumScoreStrategy;
 import com.inn.itrust.op.match.GeneralMatchOp;
 import com.inn.itrust.op.score.AbstractScoreStrategy;
 import com.inn.itrust.op.score.ScoreStrategyFactory;
 import com.inn.itrust.service.command.Sort;
+import com.inn.itrust.service.interfaces.RankingManager;
+import com.inn.itrust.service.kb.KnowledgeBaseManager;
 import com.inn.util.tuple.Tuple2;
 
 

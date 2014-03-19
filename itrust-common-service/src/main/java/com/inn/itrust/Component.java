@@ -1,5 +1,5 @@
 
-package com.inn.itrust.common.service;
+package com.inn.itrust;
 
 /*
  * #%L

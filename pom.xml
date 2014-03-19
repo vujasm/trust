@@ -41,7 +41,7 @@
 	<modules>
 		<module>/itrust-common</module>
 		<module>/itrust-model</module>
-		<module>/itrust-common-service</module>
+		<module>/itrust-service-kb</module>
 		<module>/itrust-service-methods</module>
 		<module>/itrust-service</module>
 		<module>/itrust-client-simple</module>

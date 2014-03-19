@@ -1,4 +1,4 @@
-package com.inn.itrust.service.command;
+package com.inn.itrust.service.kb;
 
 /*
  * #%L
@@ -30,7 +30,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.itrust.common.LocationMapping;
+import com.inn.itrust.service.kb.mapping.LocationMapping;
 
 public class ModelFether {
 

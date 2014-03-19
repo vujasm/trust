@@ -39,10 +39,10 @@ package com.inn.itrust.op.match;
 
 import java.util.List;
 
-import com.inn.itrust.common.service.KnowledgeBaseManager;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.itrust.model.vocabulary.Trust;
+import com.inn.itrust.service.kb.KnowledgeBaseManager;
 
 /**
  * TODO describe me

@@ -15,9 +15,9 @@
 	</properties>
     
     
-    <artifactId>itrust-common-service</artifactId>
+    <artifactId>itrust-service-kb</artifactId>
    	<version>${project.parent.version}</version>	
-	<name>itrust-common-service</name>
+	<name>itrust-service-kb</name>
 	<description>service commons lib</description>
 	<developers>
 		<developer>
