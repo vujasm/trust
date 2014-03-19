@@ -351,7 +351,7 @@ public class BasicTrustManager extends ComponentIntegrated implements TrustManag
 	
 	@Override
 	public boolean match(URI resource1uri, URI resource2uri) throws Exception {
-		// TODO Auto-generated method stub
+		// TODO Implement S-S match 
 		//get profiles and trust criteria and do vice-versa matching
 		return false;
 	}
