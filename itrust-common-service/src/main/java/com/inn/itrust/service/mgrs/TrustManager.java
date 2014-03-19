@@ -52,34 +52,34 @@ public interface TrustManager extends Component {
 	// */
 	// Set<URI> getLoadedModels();
 
-	/**
-	 * puts an ontology in the Trust triple store
-	 * 
-	 * @param ontologyUri
-	 * @param graphName
-	 */
-	void uploadOntology(URI ontologyUri, String graphName);
+//	/**
+//	 * puts an ontology in the Trust triple store
+//	 * 
+//	 * @param ontologyUri
+//	 * @param graphName
+//	 */
+//	void uploadOntology(URI ontologyUri, String graphName);
 
 	/**
 	 * @return KnowledgeBaseManager
 	 */
 	KnowledgeBaseManager getKnowledgeBaseManager();
 
-	/**
-	 * removes ontology from the Trust triple store
-	 * 
-	 * @param graphName
-	 */
-	void removeOntology(String graphName);
+//	/**
+//	 * removes ontology from the Trust triple store
+//	 * 
+//	 * @param graphName
+//	 */
+//	void removeOntology(String graphName);
 
 	/**
-	 * returns taxonomy for a given concept
+	 * Obtains taxonomy for a given concept
 	 * 
 	 * @param graphName
 	 * @param rootConcept
 	 * @return
 	 */
-	Tree computeTaxonomy(String graphName, String rootConcept);
+	Tree obtainTaxonomy(String graphName, String rootConcept);
 
 	/**
 	 * Answers ranking of resources in regards to the trust ranking criteria. To compute the trust indexes and ranking, the default strategy

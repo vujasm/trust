@@ -69,8 +69,6 @@ public class TrustComponent extends AbstractModule {
     }
     
 
-
-
     private Properties getProperties() {
         try {
             Properties properties = new Properties();

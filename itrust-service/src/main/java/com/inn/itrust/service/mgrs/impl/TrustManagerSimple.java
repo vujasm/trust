@@ -28,8 +28,6 @@ import java.util.Set;
 
 import javax.inject.Named;
 
-import org.apache.jena.riot.RDFDataMgr;
-
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -108,7 +106,7 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 	}
 
 	@Override
-	public Tree computeTaxonomy(String graphName, String rootConcept) {
+	public Tree obtainTaxonomy(String graphName, String rootConcept) {
 		Tree tree = new Tree();
 		OntModel model = graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
 		OntClass ontClass = model.getOntClass(rootConcept);
@@ -255,10 +253,10 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 		list.add(manager);
 	}
 
-	@Override
-	public void removeOntology(String graphName) {
-		kbManager.deleteModel(URI.create(graphName));
-	}
+//	@Override
+//	public void removeOntology(String graphName) {
+//		kbManager.deleteModel(URI.create(graphName));
+//	}
 
 	protected void saveIntoTripleStore(URI uri, Model model) {
 		if (doSaveIntoStore)
@@ -283,13 +281,13 @@ public class TrustManagerSimple extends ComponentIntegrated implements TrustMana
 		}
 	}
 
-	@Override
-	public void uploadOntology(URI ontologyUri, String graphName) {
-		Model model = RDFDataMgr.loadModel(ontologyUri.toASCIIString());
-		if (graphName == null)
-			graphName = ontologyUri.toASCIIString();
-		kbManager.uploadOntology(graphName.toLowerCase(), model, true);
-	}
+//	@Override
+//	public void uploadOntology(URI ontologyUri, String graphName) {
+//		Model model = RDFDataMgr.loadModel(ontologyUri.toASCIIString());
+//		if (graphName == null)
+//			graphName = ontologyUri.toASCIIString();
+//		kbManager.uploadOntology(graphName.toLowerCase(), model, true);
+//	}
 
 	/**
 	 * 

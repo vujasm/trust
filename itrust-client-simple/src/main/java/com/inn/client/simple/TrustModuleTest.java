@@ -63,7 +63,7 @@ public class TrustModuleTest {
 	}
 
 	public void computeTaxonomy() {
-		Tree t = trustManager.computeTaxonomy(ModelEnum.Trust.getURI(), Trust.TrustAttribute.getURI());
+		Tree t = trustManager.obtainTaxonomy(ModelEnum.Trust.getURI(), Trust.TrustAttribute.getURI());
 		System.out.println(t);
 	}
 
