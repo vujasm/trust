@@ -30,7 +30,7 @@ import org.vertx.java.platform.Verticle;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.inn.itrust.service.component.TrustComponent;
+import com.inn.itrust.module.TrustModule;
 import com.inn.itrust.service.interfaces.TrustManager;
 
 public class MyServer extends Verticle {
@@ -47,7 +47,7 @@ public class MyServer extends Verticle {
 			public void handle(HttpServerRequest req) {
 				BasicConfigurator.resetConfiguration();
 				BasicConfigurator.configure();
-				Injector injector = Guice.createInjector(new TrustComponent());
+				Injector injector = Guice.createInjector(new TrustModule());
 				final TrustManager trustManager = injector.getInstance(TrustManager.class);
 				String serviceId = req.params().get("srvcid");
 				double d = 0;

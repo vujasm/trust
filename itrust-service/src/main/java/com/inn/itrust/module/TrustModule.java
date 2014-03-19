@@ -1,4 +1,4 @@
-package com.inn.itrust.service.component;
+package com.inn.itrust.module;
 
 /*
  * #%L
@@ -26,7 +26,6 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.eventbus.EventBus;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
@@ -41,28 +40,16 @@ import com.inn.itrust.service.mgrs.impl.BasicRankingManager;
 import com.inn.itrust.service.mgrs.impl.BasicTrustManager;
 
 
-public class TrustComponent extends AbstractModule {
+public class TrustModule extends AbstractModule {
 	
-    private static final String CONFIG_PROPERTIES_FILENAME = "config.properties";
-
-    private static final Logger log = LoggerFactory.getLogger(TrustComponent.class);
-
+    private static final Logger log = LoggerFactory.getLogger(TrustModule.class);
 
     protected void configure() {
 
-    	 Names.bindProperties(binder(), getProperties());
-    	 
-        // Create the EventBus
-        final EventBus eventBus = new EventBus("MyEventBus");
-        
-        // Bind components
+    	Names.bindProperties(binder(), getProperties());
         bind(KnowledgeBaseManager.class).to(KnowledgeBaseManagerSparql.class);
         bind(TrustManager.class).to(BasicTrustManager.class);
         bind(RankingManager.class).to(BasicRankingManager.class);
-        bind(EventBus.class).toInstance(eventBus);
-
-        // Assisted Injection for the Graph Store Manager
-        log.info("install SparqlGraphStoreFactory for SparqlGraphStoreManager to ConcurrentSparqlGraphStoreManager");
         install(new FactoryModuleBuilder()
                 .implement(SparqlGraphStoreManager.class, ConcurrentSparqlGraphStoreManager.class)
                 .build(SparqlGraphStoreFactory.class));
@@ -72,10 +59,10 @@ public class TrustComponent extends AbstractModule {
     private Properties getProperties() {
         try {
             Properties properties = new Properties();
-            properties.load(getClass().getClassLoader().getResourceAsStream(CONFIG_PROPERTIES_FILENAME));
+            properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
             return properties;
         } catch (IOException ex) {
-            log.error("Error obtaining plugin properties", ex);
+            log.error("Error loading properties from config.properties", ex);
         }
         return new Properties();
     }

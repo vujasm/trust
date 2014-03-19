@@ -26,16 +26,25 @@ import java.net.URI;
 import uk.ac.open.kmi.sense.evaluation.Scorer;
 
 import com.google.inject.Guice;
-import com.inn.itrust.service.component.TrustComponent;
+import com.inn.itrust.module.TrustModule;
 import com.inn.itrust.service.interfaces.TrustManager;
 
+/**
+ * TrustScorer implements uk.ac.open.kmi.sense.evaluation.Scorer interface 
+ * to obtain trust score for COMPOSE service recommendation
+ * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ *
+ */
 public class TrustScorer implements Scorer{
 	
 	private com.inn.itrust.service.interfaces.TrustManager trustManager; 
 	public TrustScorer() {
-		trustManager =  Guice.createInjector(new TrustComponent()).getInstance(TrustManager.class);
+		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 	}
 	
+	/**
+	 * returns trust index of the resource identified with serviceId URI
+	 */
 	@Override
 	public Double apply(URI serviceId) {
 		try {

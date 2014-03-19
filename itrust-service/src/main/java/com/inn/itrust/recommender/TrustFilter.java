@@ -24,18 +24,28 @@ package com.inn.itrust.recommender;
 import java.net.URI;
 
 import com.google.inject.Guice;
-import com.inn.itrust.service.component.TrustComponent;
+import com.inn.itrust.module.TrustModule;
 import com.inn.itrust.service.interfaces.TrustManager;
 
 import uk.ac.open.kmi.sense.evaluation.Filter;
 
+/**
+ * TrustFilter implements uk.ac.open.kmi.sense.evaluation.Filter interface 
+ * for Guava-based filtering of services in COMPOSE Service Recommender
+ * 
+ * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ *
+ */
 public class TrustFilter implements Filter {
 	
 	private com.inn.itrust.service.interfaces.TrustManager trustManager; 
 	public TrustFilter() {
-		trustManager =  Guice.createInjector(new TrustComponent()).getInstance(TrustManager.class);
+		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 	}
 	
+	/**
+	 * returns true if resource identified with serviceId URI
+	 */
 	@Override
 	public boolean apply(URI serviceId) {
 		try {

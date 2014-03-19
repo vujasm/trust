@@ -37,7 +37,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.model.vocabulary.Trust;
-import com.inn.itrust.service.component.TrustComponent;
+import com.inn.itrust.module.TrustModule;
 import com.inn.itrust.service.interfaces.TrustManager;
 import com.inn.util.tree.Tree;
 
@@ -58,7 +58,7 @@ public class TrustModuleTest {
 		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 		org.apache.log4j.Logger.getRootLogger().setLevel(level);
-		injector = Guice.createInjector(new TrustComponent());
+		injector = Guice.createInjector(new TrustModule());
 		trustManager = injector.getInstance(TrustManager.class);
 	}
 
