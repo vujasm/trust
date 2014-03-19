@@ -37,8 +37,8 @@ import com.inn.itrust.service.mgrs.SparqlGraphStoreManager;
 import com.inn.itrust.service.mgrs.TrustManager;
 import com.inn.itrust.service.mgrs.impl.ConcurrentSparqlGraphStoreManager;
 import com.inn.itrust.service.mgrs.impl.KnowledgeBaseManagerSparql;
-import com.inn.itrust.service.mgrs.impl.RankingManagerSimple;
-import com.inn.itrust.service.mgrs.impl.TrustManagerSimple;
+import com.inn.itrust.service.mgrs.impl.BasicRankingManager;
+import com.inn.itrust.service.mgrs.impl.BasicTrustManager;
 
 
 public class TrustComponent extends AbstractModule {
@@ -57,8 +57,8 @@ public class TrustComponent extends AbstractModule {
         
         // Bind components
         bind(KnowledgeBaseManager.class).to(KnowledgeBaseManagerSparql.class);
-        bind(TrustManager.class).to(TrustManagerSimple.class);
-        bind(RankingManager.class).to(RankingManagerSimple.class);
+        bind(TrustManager.class).to(BasicTrustManager.class);
+        bind(RankingManager.class).to(BasicRankingManager.class);
         bind(EventBus.class).toInstance(eventBus);
 
         // Assisted Injection for the Graph Store Manager

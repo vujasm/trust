@@ -39,7 +39,6 @@ import com.inn.itrust.model.model.Agent;
 import com.inn.itrust.model.model.TResource;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.model.TrustProfile;
-import com.inn.itrust.model.model.Value;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.scoreop.AbstractScoreStrategy;
@@ -49,20 +48,24 @@ import com.inn.itrust.service.mgrs.KnowledgeBaseManager;
 import com.inn.itrust.service.mgrs.RankingManager;
 import com.inn.itrust.service.utils.Sort;
 
-public class RankingManagerSimple implements RankingManager {
+
+/**
+ * Implementation of RankingManager interface
+ * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ *
+ */
+public class BasicRankingManager implements RankingManager {
 
 	private ToModelParser parser = null;
 	private KnowledgeBaseManager knowledgeBaseManager;
 
 	@Inject
-	protected RankingManagerSimple(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
+	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
 		this.knowledgeBaseManager = kbManager;
 		OntModel model = kbManager.getModel(ModelEnum.Trust.getURI());
-		//FIXME mozda reimenuj ovaj unit ili vidi sta jos treba mu prosljediti
+		//FIXME rename TrustOntologyUtil and/or see what else should be passed for init
 		TrustOntologyUtil.init(model);
 	}
-
-	double thrustworthyTreshold = 0.7;
 
 	/**
 	 * 
@@ -77,29 +80,6 @@ public class RankingManagerSimple implements RankingManager {
 		printRank(sortedList);
 		return sortedList;
 	}
-
-	@Override
-	public boolean match(URI serviceRequestor, URI serviceRequested) {
-		return true;
-	}
-
-	@Override
-	public boolean isTrusted(URI service, TrustProfile trustProfileRequired, boolean useCache) {
-		return new Value(computeTrustIndex(service, trustProfileRequired, useCache, false)).isTrustworthy(thrustworthyTreshold);
-	}
-
-	@Override
-	public double computeTrustIndex(URI service, TrustProfile trustProfileRequired, boolean useCache, boolean updateCache) {
-		double val = Value.Trustworthy;
-		return val;
-	}
-
-	@Override
-	public double computeTrustIndex(TrustProfile trustProfile, TrustProfile reqTrustProfile, boolean useCache, boolean updateCache) {
-		double val = Value.Trustworthy;
-		return val;
-	}
-
 	
 	private List<Tuple2<Agent, Double>> obtainScores(List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,
 																List<TrustAttribute> attributeList, EnumScoreStrategy strategy) {

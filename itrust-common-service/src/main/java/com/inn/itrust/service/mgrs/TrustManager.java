@@ -156,5 +156,29 @@ public interface TrustManager extends Component {
 	 * @throws Exception
 	 */
 	Double obtainTrustIndex(URI resource) throws Exception;
+	
+	
+	
+	/** 
+	 * Answers if two resources can engage into trustworthy relation, 
+	 * considering their respective trust requirements and capabilities.
+	 * @param resource1URI URI of the resource that request communication with resource <code>resource2URI</code>
+	 * @param resource2URI URI of the resource requested
+	 * @return true if trustworthy relation
+	 * @throws Exception
+	 */
+	boolean match (URI resource1URI, URI resource2URI) throws Exception;
+	
+
+	/**
+	 * Answers if resource is trusted in terms of given trust criteria
+	 * @param resource Resource URI
+	 * @param request Trust criteria as a set of required trust attributes and their values and importance
+	 * @param useCache - true if cached trust index should be returned instead of re-computing it
+	 * @return true if resource is trusted; otherwise false
+	 * @throws Exception
+	 */
+	boolean isTrusted(URI resourceURI, TrustRequest request, boolean useCache) throws Exception;
+	
 
 }

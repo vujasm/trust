@@ -20,31 +20,25 @@ package com.inn.itrust.model.model;
  * #L%
  */
 
-
 /**
  * 
- * LevelOfTrust is a value between zero (0) and one (1). Zero denotates a distrust,
- * whereas one denotates a full trust.
+ * LevelOfTrust is a value between zero (0) and one (1). Zero denotates a distrust, whereas one denotates a full trust.
  * 
  * @author marko
  * 
  */
 public class Value {
 
-	private double numericalValue = 1;
+	private double numericalValue ;
 
 	public static final double Trustworthy = 1;
-	
+
 	public static final double NoTrustworthy = 0;
-	
-	public static final double Uknown = - 1;
+
+	public static final double Uknown = -1;
 
 	public Value(double val) {
 		this.numericalValue = val;
-	}
-	
-	public Value(){
-		
 	}
 
 	public double getNumericalValue() {
@@ -59,11 +53,8 @@ public class Value {
 		return (numericalValue >= treshhold);
 	}
 
-	public boolean isNoTrustworthy() {
-		return (numericalValue == NoTrustworthy);
+	public boolean isTrustworthy() {
+		return (numericalValue > 0.5);
 	}
 
 }
-
-
-//readme - shoudl I introduce MeasureOfTrust
