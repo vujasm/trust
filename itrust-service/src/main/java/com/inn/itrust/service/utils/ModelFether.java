@@ -30,7 +30,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.itrust.service.LocationMapping;
+import com.inn.itrust.common.LocationMapping;
 
 public class ModelFether {
 

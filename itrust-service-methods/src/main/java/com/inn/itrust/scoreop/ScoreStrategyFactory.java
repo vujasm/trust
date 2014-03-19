@@ -24,10 +24,10 @@ package com.inn.itrust.scoreop;
 import java.util.List;
 
 import com.inn.common.Tuple2;
+import com.inn.itrust.common.EnumNormalizationType;
+import com.inn.itrust.common.EnumScoreStrategy;
 import com.inn.itrust.model.model.Agent;
 import com.inn.itrust.model.model.TrustAttribute;
-import com.inn.itrust.service.enums.EnumNormalizationType;
-import com.inn.itrust.service.enums.EnumScoreStrategy;
 
 /**
  * TODO describe me

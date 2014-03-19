@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.itrust.service.component;
+package com.inn.itrust.common.service;
 
 /*
  * #%L
@@ -36,24 +36,54 @@ package com.inn.itrust.service.component;
  * #L%
  */
 
-import com.google.common.eventbus.EventBus;
-import com.google.inject.Inject;
-import com.inn.itrust.common.service.Component;
+import java.net.URI;
+import java.util.Set;
 
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.Model;
 
-public abstract class ComponentIntegrated implements Component {
+/**
+ * SparqlGraphStoreManager
+ * TODO: Provide Description
+ *
+ * @author <a href="mailto:carlos.pedrinaci@open.ac.uk">Carlos Pedrinaci</a> (KMi - The Open University)
+ * @since 02/10/2013
+ */
+public interface SparqlGraphStoreManager extends Component {
 
-  
-    private final EventBus eventBus; // inject
+    URI getSparqlQueryEndpoint();
 
-    @Inject
-    protected ComponentIntegrated(EventBus eventBus) throws Exception{
-        this.eventBus = eventBus;
-        eventBus.register(this);
-    }
+    URI getSparqlUpdateEndpoint();
 
-    public EventBus getEventBus() {
-        return eventBus;
-    }
+    URI getSparqlServiceEndpoint();
 
+    boolean canBeModified();
+
+    void addModelToGraph(URI graphUri, Model data);
+
+    boolean containsGraph(URI graphUri);
+
+    void deleteGraph(URI graphUri);
+
+    void putGraph(Model data);
+
+    void putGraph(URI graphUri, Model data);
+
+    void clearDataset();
+
+    Set<URI> listStoredGraphs();
+
+    Set<URI> listResourcesByQuery(String queryStr, String variableName);
+
+    boolean fetchAndStore(URI modelUri);
+
+    boolean fetchAndStore(URI modelUri, String syntax);
+    
+    public OntModel getGraph(URI graphUri, OntModelSpec modelSpec) ;
+
+    OntModel getGraph(URI graphUri);
+    
+    OntModel getGraphSparqlQuery(URI graphUri);
+    
 }

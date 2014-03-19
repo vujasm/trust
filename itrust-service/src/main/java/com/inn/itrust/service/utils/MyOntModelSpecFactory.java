@@ -27,8 +27,8 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.inn.itrust.service.IgnoredModels;
-import com.inn.itrust.service.LocationMapping;
+import com.inn.itrust.common.IgnoredModels;
+import com.inn.itrust.common.LocationMapping;
 
 public class MyOntModelSpecFactory {
 	

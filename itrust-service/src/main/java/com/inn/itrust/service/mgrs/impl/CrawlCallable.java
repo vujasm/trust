@@ -45,7 +45,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Stopwatch;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.inn.itrust.service.mgrs.SparqlGraphStoreManager;
+import com.inn.itrust.common.service.SparqlGraphStoreManager;
 import com.inn.itrust.service.utils.ModelFether;
 
 

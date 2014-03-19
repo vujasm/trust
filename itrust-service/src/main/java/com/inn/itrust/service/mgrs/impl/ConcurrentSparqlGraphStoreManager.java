@@ -86,9 +86,9 @@ import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.inn.common.Syntax;
+import com.inn.itrust.common.service.SparqlGraphStoreManager;
 import com.inn.itrust.model.vocabulary.NSPrefixes;
 import com.inn.itrust.service.cfg.Configuration;
-import com.inn.itrust.service.mgrs.SparqlGraphStoreManager;
 import com.inn.itrust.service.utils.MyOntModelSpecFactory;
 
 public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManager {
