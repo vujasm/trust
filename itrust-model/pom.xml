@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <artifactId>itrust-parent</artifactId>
+        <artifactId>itrust</artifactId>
         <groupId>com.innova.compose</groupId>
         <version>0.0.1</version>
-        <relativePath>../itrust-parent/pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
     
    	<version>${project.parent.version}</version>
@@ -13,7 +13,7 @@
 	<name>itrust-model</name>
 	<properties>
 		<jena.version>2.11.0</jena.version>
-   	 	<license.licenseResolver>${project.baseUri}../itrust-parent/license</license.licenseResolver>
+   	 <license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
 	<description>This is descr</description>
 	<developers>

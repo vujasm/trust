@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-        <artifactId>itrust-parent</artifactId>
+        <artifactId>itrust</artifactId>
         <groupId>com.innova.compose</groupId>
         <version>0.0.1</version>
-        <relativePath>../itrust-parent/pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
     
     <properties>
-   	 	<license.licenseResolver>${project.baseUri}../itrust-parent/license</license.licenseResolver>
+   	 	<license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
     
 	<artifactId>itrust-common</artifactId>
