@@ -44,8 +44,8 @@ import com.inn.itrust.model.model.TrustProfile;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.op.match.GeneralMatchOp;
-import com.inn.itrust.scoreop.AbstractScoreStrategy;
-import com.inn.itrust.scoreop.ScoreStrategyFactory;
+import com.inn.itrust.op.score.AbstractScoreStrategy;
+import com.inn.itrust.op.score.ScoreStrategyFactory;
 import com.inn.itrust.service.utils.Sort;
 
 

@@ -1,4 +1,4 @@
-package com.inn.itrust.scoreop;
+package com.inn.itrust.op.score;
 
 /*
  * #%L
