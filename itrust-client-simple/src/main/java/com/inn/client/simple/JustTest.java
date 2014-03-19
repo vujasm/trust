@@ -22,18 +22,27 @@ package com.inn.client.simple;
 
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URLEncoder;
 
 import com.inn.common.Const;
+import com.inn.itrust.recommender.TrustFilter;
+import com.inn.itrust.recommender.TrustScorer;
 
 public class JustTest {
 	
 	public static void main(String[] args) {
 //		System.out.println(SemSim.class.getClassLoader().getResource("ontologies/usdl-sec.ttl").toString());
 		try {
-			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
-			System.out.println(encodedUrl);
-		} catch (UnsupportedEncodingException e) {
+//			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
+//			System.out.println(encodedUrl);
+			try {
+				System.out.println(new TrustScorer().apply(URI.create(Const.Ts3)));
+				System.out.println(new TrustFilter().apply(URI.create(Const.Ts3)));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -54,7 +54,7 @@ public class Value {
 	}
 
 	public boolean isTrustworthy() {
-		return (numericalValue > 0.5);
+		return (numericalValue > 0.3);
 	}
 
 }
