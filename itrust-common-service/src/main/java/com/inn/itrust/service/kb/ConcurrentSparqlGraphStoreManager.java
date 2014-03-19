@@ -156,7 +156,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
         // Configure proxy if necessary
         configureProxy(proxyCfg);
 
-        modelSpec =  MyOntModelSpecFactory.createModelSpecification(locationMappings, ignoredImports);
+        modelSpec =  SharedOntModelSpec.createModelSpecification(locationMappings, ignoredImports);
 
         // set the executor
 //        executor = Executors.newFixedThreadPool(NUM_THREADS);

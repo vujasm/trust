@@ -30,7 +30,7 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.inn.itrust.service.kb.mapping.IgnoredModels;
 import com.inn.itrust.service.kb.mapping.LocationMapping;
 
-public class MyOntModelSpecFactory {
+public class SharedOntModelSpec {
 	
 	
 	private static OntModelSpec modelSpecShared ;

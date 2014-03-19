@@ -184,7 +184,7 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
     public boolean ontoFetchAndStoreImportedOntologies(Model model) {
     	
         boolean result = true;
-        OntModelSpec spec = MyOntModelSpecFactory.getModelSpecShared();
+        OntModelSpec spec = SharedOntModelSpec.getModelSpecShared();
         OntModel om = ModelFactory.createOntologyModel(spec, model);
         Set<String> uriLiteral = om.listImportedOntologyURIs();
         log.info("Attemptint to load imported ontologies. URIs: "+uriLiteral);
@@ -447,7 +447,7 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
     
     @Override
     public OntModel getModel(String modelUri, OntModelSpec spec) {
-    	spec.setDocumentManager(MyOntModelSpecFactory.getDocumentManagerShared());
+    	spec.setDocumentManager(SharedOntModelSpec.getDocumentManagerShared());
     	Model model =  new ModelFether().fetch(URI.create(modelUri),"TURTLE", spec);
     	OntModel oModel = ModelFactory.createOntologyModel(spec, model);
     	return oModel;

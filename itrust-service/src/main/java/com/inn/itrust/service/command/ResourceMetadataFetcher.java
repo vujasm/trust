@@ -31,7 +31,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.inn.common.Syntax;
 import com.inn.itrust.service.kb.ModelFether;
-import com.inn.itrust.service.kb.MyOntModelSpecFactory;
+import com.inn.itrust.service.kb.SharedOntModelSpec;
 import com.inn.itrust.service.kb.SparqlGraphStoreManager;
 
 
@@ -75,7 +75,7 @@ public class ResourceMetadataFetcher {
 		// try to find it on the web or via location mapping
 		if (externalModel == null && useMappedLocations) {
 			Log.info(this, "obtaining model from external source using Jena Jena's embedded support for retrieving models");
-			externalModel = new ModelFether().fetch(uri.toASCIIString(), Syntax.TTL.getName(), MyOntModelSpecFactory.getModelSpecShared());
+			externalModel = new ModelFether().fetch(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
 		}
 		// try to find it in internal registry
 
@@ -101,7 +101,7 @@ public class ResourceMetadataFetcher {
 		} else {
 			modelUnion = externalModel;
 		}
-		OntModel model = ModelFactory.createOntologyModel(MyOntModelSpecFactory.getModelSpecShared(), modelUnion);
+		OntModel model = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), modelUnion);
 
 		return model;
 	}
