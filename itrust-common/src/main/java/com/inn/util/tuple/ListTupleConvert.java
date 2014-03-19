@@ -1,4 +1,4 @@
-package com.inn.common.util;
+package com.inn.util.tuple;
 
 /*
  * #%L

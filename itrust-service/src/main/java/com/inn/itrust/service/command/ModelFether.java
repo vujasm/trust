@@ -1,4 +1,4 @@
-package com.inn.itrust.service.utils;
+package com.inn.itrust.service.command;
 
 /*
  * #%L

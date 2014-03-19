@@ -31,7 +31,6 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
-import com.inn.common.Tuple2;
 import com.inn.itrust.common.EnumScoreStrategy;
 import com.inn.itrust.common.service.KnowledgeBaseManager;
 import com.inn.itrust.common.service.RankingManager;
@@ -46,7 +45,8 @@ import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.op.match.GeneralMatchOp;
 import com.inn.itrust.op.score.AbstractScoreStrategy;
 import com.inn.itrust.op.score.ScoreStrategyFactory;
-import com.inn.itrust.service.utils.Sort;
+import com.inn.itrust.service.command.Sort;
+import com.inn.util.tuple.Tuple2;
 
 
 /**

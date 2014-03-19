@@ -21,12 +21,12 @@ package com.inn.itrust.model.factory;
  */
 
 
-import com.inn.common.util.UIDGenerator;
 import com.inn.itrust.model.model.SecurityAttribute;
 import com.inn.itrust.model.model.SecurityMechanism;
 import com.inn.itrust.model.model.TrustAttribute;
 import com.inn.itrust.model.model.TrustProfile;
 import com.inn.itrust.model.model.TrustRequest;
+import com.inn.util.uri.UIDGenerator;
 
 public class TrustModelFactory {
 

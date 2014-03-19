@@ -64,17 +64,17 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
-import com.inn.common.URIUtil;
 import com.inn.itrust.common.IgnoredModels;
 import com.inn.itrust.common.LocationMapping;
 import com.inn.itrust.common.service.KnowledgeBaseManager;
 import com.inn.itrust.common.service.SparqlGraphStoreFactory;
 import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.service.cfg.Configuration;
+import com.inn.itrust.config.Configuration;
+import com.inn.itrust.service.command.ModelFether;
 import com.inn.itrust.service.component.ComponentIntegrated;
 import com.inn.itrust.service.event.OntologyCreatedEvent;
-import com.inn.itrust.service.utils.ModelFether;
 import com.inn.itrust.service.utils.MyOntModelSpecFactory;
+import com.inn.util.uri.URIUtil;
 
 /**
  * This class is a parametric tool for crawling for RDF data.

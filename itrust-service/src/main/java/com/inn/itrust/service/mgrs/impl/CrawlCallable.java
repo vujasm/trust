@@ -46,7 +46,7 @@ import com.google.common.base.Stopwatch;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.service.utils.ModelFether;
+import com.inn.itrust.service.command.ModelFether;
 
 
 public class CrawlCallable implements Callable<Boolean> {

@@ -30,7 +30,6 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.inn.itrust.common.service.SparqlGraphStoreManager;
-import com.inn.itrust.service.utils.ModelFether;
 import com.inn.itrust.service.utils.MyOntModelSpecFactory;
 
 

@@ -1,4 +1,4 @@
-package com.inn.itrust.service.cfg;
+package com.inn.itrust.config;
 
 /*
  * #%L
@@ -25,7 +25,6 @@ import java.net.URI;
 
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
-import com.inn.common.util.UIDGenerator;
 import com.inn.itrust.model.factory.TrustModelFactory;
 import com.inn.itrust.model.model.SecurityAttribute;
 import com.inn.itrust.model.model.SecurityGoal;
@@ -34,6 +33,7 @@ import com.inn.itrust.model.model.TrustRequest;
 import com.inn.itrust.model.types.USDLSecExpression;
 import com.inn.itrust.model.vocabulary.Trust;
 import com.inn.itrust.model.vocabulary.UsdlSec;
+import com.inn.util.uri.UIDGenerator;
 
 /**
  *  Global (or, Absolute) Trust Criteria. This is a temp class for prototype

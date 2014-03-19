@@ -25,9 +25,9 @@ import java.net.URI;
 import java.util.List;
 
 import com.inn.common.OrderType;
-import com.inn.common.structure.tree.Tree;
 import com.inn.itrust.common.EnumScoreStrategy;
 import com.inn.itrust.model.model.TrustRequest;
+import com.inn.util.tree.Tree;
 
 
 /**

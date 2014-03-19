@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 
-import com.inn.common.match.SemanticMatchOutput;
 import com.inn.itrust.common.service.KnowledgeBaseManager;
 import com.inn.itrust.model.model.TrustAttribute;
 

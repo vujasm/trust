@@ -26,7 +26,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
-import com.inn.common.URIUtil;
+import com.inn.util.uri.URIUtil;
 
 public class TResource {
 

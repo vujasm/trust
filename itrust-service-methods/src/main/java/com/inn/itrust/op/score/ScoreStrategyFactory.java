@@ -23,11 +23,11 @@ package com.inn.itrust.op.score;
 
 import java.util.List;
 
-import com.inn.common.Tuple2;
 import com.inn.itrust.common.EnumNormalizationType;
 import com.inn.itrust.common.EnumScoreStrategy;
 import com.inn.itrust.model.model.Agent;
 import com.inn.itrust.model.model.TrustAttribute;
+import com.inn.util.tuple.Tuple2;
 
 /**
  * TODO describe me
