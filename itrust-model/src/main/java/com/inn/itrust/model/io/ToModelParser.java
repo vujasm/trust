@@ -65,7 +65,7 @@ public class ToModelParser {
 
 	/**
 	 * 
-	 * Takes Jena Rdf Model and converts it into Java Objects
+	 * Takes Jena Rdf Model and converts it into POJO
 	 * 
 	 * @param model
 	 *            jena rdf model

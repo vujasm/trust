@@ -22,6 +22,8 @@ package com.inn.itrust.op.semsim;
 
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.ValueFactoryImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import slib.sglib.algo.graph.utils.GAction;
 import slib.sglib.algo.graph.utils.GActionType;
@@ -52,6 +54,8 @@ import slib.utils.impl.Timer;
 public class SemSim {
 
 	private G g;
+	
+	 private static final Logger log = LoggerFactory.getLogger(SemSim.class);
 
 	/**
 	 * According to SML, the first semsim computation is expensive as the engine compute the IC 
@@ -67,9 +71,6 @@ public class SemSim {
 		URI graphURI = factory.createURI("http://graph/");
 		g = new GraphMemory(graphURI);
 
-//		System.out.println(uriOntology);
-		
-		//FIXME pogledaj da li ucitavanje moze biti classload ili relativno
 		GDataConf dataConf = new GDataConf(GFormat.TURTLE, uriOntology);
 
 		// We specify an action to root the vertices, typed as class without outgoing rdfs:subclassOf relationship
@@ -104,7 +105,6 @@ public class SemSim {
 		t.start();
 
 //		Set<URI> roots = new ValidatorDAG().getTaxonomicDAGRoots(g);
-//		System.out.println("Roots: " + roots);
 
 		// We compute the similarity between two concepts
 
@@ -127,7 +127,7 @@ public class SemSim {
 		URI uri2 = ValueFactoryImpl.getInstance().createURI(concept2URI);
 		
 		double sim = engine.computePairwiseSim(smConf, uri1 , uri2);
-		System.out.println("SemSim.java - > Similarity " + sim+" "+uri1+" -- "+uri2);
+		log.info("SemSim.java - > Similarity " + sim+" "+uri1+" -- "+uri2);
 		t.stop();
 		t.elapsedTime();
 		return sim;

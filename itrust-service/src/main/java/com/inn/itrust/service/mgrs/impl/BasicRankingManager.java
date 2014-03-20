@@ -24,6 +24,9 @@ package com.inn.itrust.service.mgrs.impl;
 import java.net.URI;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
@@ -58,6 +61,7 @@ public class BasicRankingManager implements RankingManager {
 
 	private ToModelParser parser = null;
 	private KnowledgeBaseManager knowledgeBaseManager;
+	 private static final Logger log = LoggerFactory.getLogger(BasicRankingManager.class);
 
 	@Inject
 	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
@@ -72,29 +76,50 @@ public class BasicRankingManager implements RankingManager {
 	 */
 	@Override
 	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustProfile trustProfileRequired, EnumScoreStrategy strategy, 
-					boolean excludeIfAttributeMissing, OrderType order)
-			throws Exception {
+					boolean excludeIfAttributeMissing, OrderType order) throws Exception {
+		
 		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustProfileRequired, excludeIfAttributeMissing);
-		List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);
+		List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);		
 		final List<Tuple2<URI, Double>> sortedList = new Sort().sort(scores, order);
 		printRank(sortedList);
 		return sortedList;
 	}
 	
+	//TODO see if needed to remove
+	protected List<TrustProfile> modelsToTrustPOJO(List<Model> models) throws Exception{
+		List<TrustProfile> list = Lists.newArrayList();
+		for (Model model : models) {
+			ToModelParser parser = getOrCreateToModelParser();
+			TrustProfile trustProfile = parser.parse(model);
+			if (trustProfile!=null)
+				list.add(trustProfile);
+		}
+		return null;
+	}
+
 	private List<Tuple2<Agent, Double>> obtainScores(List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,
 																List<TrustAttribute> attributeList, EnumScoreStrategy strategy) {
 		final AbstractScoreStrategy scoreStrategy = ScoreStrategyFactory.createScoreStrategy(attributeList, dataSet, strategy);
 		List<Tuple2<Agent, Double>> listAgentScore = Lists.newArrayList();
 		for (Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> dataAgent : dataSet) {
-			Tuple2<Agent, Double> result = computeIndex(dataAgent.getT1(), scoreStrategy);
-			listAgentScore.add(result);
+			final Agent agent = dataAgent.getT1();
+			if (dataAgent.getT2().isEmpty() == false){
+				Tuple2<Agent, Double> result = computeIndex(agent, scoreStrategy);
+				listAgentScore.add(result);
+			}
+			else{
+				String agentURI = agent.getUri().toASCIIString();
+				log.info("Trust profile of resource with URI "+agentURI+" has no any data. Its trust index is -1");
+				Tuple2<Agent, Double> result = new Tuple2<Agent, Double>(agent, -1D);
+				listAgentScore.add(result);
+			}
 		}
 		return listAgentScore;
 	}
 
 	
 	/**
-	 * Prepares data set. It may exclude agents that have no requested atttribute
+	 * Prepares data set. It may exclude agents that have no requested attribute
 	 * @param models
 	 * @param trustProfileRequired
 	 * @return
@@ -105,11 +130,13 @@ public class BasicRankingManager implements RankingManager {
 			for (Model model : models) {
 				ToModelParser parser = getOrCreateToModelParser();
 				TrustProfile trustProfile = parser.parse(model);
-				final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, trustProfileRequired, excludeIfAttributeMissing);
-				if (listEA != null){ //listEA is null in a case when filterIfMissingAttribute=true and Agent has no some requested attribute
-					final Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> t = new Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>(
-						trustProfile.getAgent(), listEA);
-					dataSet.add(t);
+				if (trustProfile!=null){
+					final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, trustProfileRequired, excludeIfAttributeMissing);
+					if (listEA != null){ //listEA is null in a case when filterIfMissingAttribute=true and Agent has no some requested attribute
+						final Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> t = new Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>(
+							trustProfile.getAgent(), listEA);
+						dataSet.add(t);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -121,11 +148,11 @@ public class BasicRankingManager implements RankingManager {
 
 	
 	private void printRank(List<Tuple2<URI, Double>> set) {
-		System.out.println("******** <ranking output> ************");
+		log.info("******** <ranking output> ************");
 		for (Tuple2<URI, Double> t : set) {
-			System.out.println(t.getT1() + " score " + t.getT2());
+			log.info(t.getT1() + " score " + t.getT2());
 		}
-		System.out.println("********  <ranking output> ************");
+		log.info("********  <ranking output> ************");
 	}
 
 	
@@ -144,21 +171,24 @@ public class BasicRankingManager implements RankingManager {
 	 * @param filterIfMissingAttribute 
 	 * @return
 	 */
-	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile trustProfile, TrustProfile reqTrustProfile,
-							boolean excludeIfAttributeMissing) throws Exception{
+	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile trustProfile, TrustProfile reqTrustProfile, boolean excludeIfAttributeMissing) throws Exception{
+		
 		final List<Tuple2<TrustAttribute, Double>> list = Lists.newArrayList();
-		List<TrustAttribute> reqAttributes = reqTrustProfile.getAttributes();
-		for (TrustAttribute reqAttribute : reqAttributes) {
-			TResource type = reqAttribute.obtainType();
-			System.out.println("evaluting "+type.getUri()+" for "+trustProfile.getAgent().getUri());
-			final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(trustProfile.getAttributes(), type.getUri());
-			System.out.println("they will be evaluated w.r.t "+attributes);
-			final double value = match(reqAttribute, attributes);
-			if (excludeIfAttributeMissing && value == 0){
-				return null;
-			}
-			else{
-				list.add(new Tuple2<TrustAttribute, Double>(reqAttribute, Double.valueOf(value)));
+		final List<TrustAttribute> reqAttributes = reqTrustProfile.getAttributes();
+
+		if (trustProfile.getAttributes().isEmpty() == false) {
+			for (TrustAttribute reqAttribute : reqAttributes) {
+				TResource type = reqAttribute.obtainType();
+				log.info("evaluting " + type.getUri() + " for " + trustProfile.getAgent().getUri());
+				final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(
+						trustProfile.getAttributes(), type.getUri());
+				log.info("they will be evaluated w.r.t " + attributes);
+				final double value = match(reqAttribute, attributes);
+				if (excludeIfAttributeMissing && value == 0) {
+					return null;
+				} else {
+					list.add(new Tuple2<TrustAttribute, Double>(reqAttribute, Double.valueOf(value)));
+				}
 			}
 		}
 		return list;

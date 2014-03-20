@@ -26,6 +26,10 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Named;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -72,7 +76,8 @@ import com.inn.util.tuple.Tuple2;
  * 
  */
 public class BasicTrustManager  implements TrustManager {
-
+	
+	private static final Logger log = LoggerFactory.getLogger(BasicTrustManager.class);
 	private final List<Collector> collectors = Lists.newArrayList();
 	private boolean doSaveIntoStore = false;
 	private final List<SparqlGraphStoreManager> externalGraphStoreMgrs = Lists.newArrayList();
@@ -122,8 +127,8 @@ public class BasicTrustManager  implements TrustManager {
 	 * @param model
 	 * @param uri
 	 */
-	private void createOrUpdateTrustProfile(OntModel model, URI uri) {
-		new CreateUpdateTrustProfile().apply(model, uri, collectors);
+	private OntModel fillTrustProfilForResource(OntModel model, URI uri) {
+		return new CreateUpdateTrustProfile().apply(model, uri, collectors);
 	}
 
 	/**
@@ -223,11 +228,11 @@ public class BasicTrustManager  implements TrustManager {
 	}
 
 	private void printList(List<Tuple2<URI, Double>> set, String note) {
-		System.out.println("******** <" + note + "> ************");
+		log.info("******** <" + note + "> ************");
 		for (Tuple2<URI, Double> t : set) {
-			System.out.println(t.getT1() + " score " + t.getT2());
+			log.info(t.getT1() + " score " + t.getT2());
 		}
-		System.out.println("******** </" + note + "> ************");
+		log.info("******** </" + note + "> ************");
 	}
 
 	@Override
@@ -305,7 +310,7 @@ public class BasicTrustManager  implements TrustManager {
 		List<Tuple2<URI, Model>> listModels = Lists.newArrayList();
 		for (URI uri : resources) {
 			OntModel model = fetchResourceMetadataFromRegistries(uri, false, true, false);
-			createOrUpdateTrustProfile(model, uri);
+			model = fillTrustProfilForResource(model, uri);
 			listModels.add(new Tuple2<URI, Model>(uri, model));
 		}
 		return listModels;

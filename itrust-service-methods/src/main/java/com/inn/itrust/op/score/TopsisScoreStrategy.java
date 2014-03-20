@@ -51,6 +51,7 @@ public class TopsisScoreStrategy extends AbstractScoreStrategy {
 		List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> normalizeddataSet = vectorNormalizationAndWeightening(dataSet, attributeList);
 		maxValues = identifyMaxValues(normalizeddataSet, attributeList);
 		minValues = identifyMinValues(normalizeddataSet, attributeList);
+		log.info("TopsisScoreStrategy initialized");
 	}
 
 	/**
@@ -115,10 +116,6 @@ public class TopsisScoreStrategy extends AbstractScoreStrategy {
 		return null;
 	}
 
-	@Override
-	protected Logger getLogger() {
-		return log;
-	}
 
 	@Override
 	public Double getScore(Agent agent) {
@@ -178,6 +175,12 @@ public class TopsisScoreStrategy extends AbstractScoreStrategy {
 	private Double getMinValue(TrustAttribute attribute) {
 		Double val = minValues.get(attribute);
 		return (val != null) ? val : 1D; // FiXME - provjeri da li da vrati 1 ili 0, ili nesto trece
+	}
+	
+	
+	@Override
+	protected Logger getLogger() {
+		return log;
 	}
 
 }

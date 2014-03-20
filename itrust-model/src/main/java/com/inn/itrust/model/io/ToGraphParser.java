@@ -27,6 +27,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
@@ -47,9 +48,9 @@ public class ToGraphParser {
 
 	}
 	
-	public Model parse(Agent  agent){
+	public OntModel parse(Agent  agent){
 		log.debug("transforming "+agent.getUri().toASCIIString()+" into Triples");
-		Model model = ModelFactory.createDefaultModel();
+		OntModel model = ModelFactory.createOntologyModel();
 		model.setNsPrefixes(NSPrefixes.map);
 		model.add(agent.asJenaResource(), RDF.type, Trust.Agent);
 		addProfile(agent, model);

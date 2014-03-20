@@ -43,12 +43,6 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 	private static final Logger log = LoggerFactory.getLogger(WeightedSumStrategy.class);
 	protected EnumNormalizationType enumNormalizationType;
 	
-	
-	@Override
-	protected Logger getLogger() {
-		return log;
-	}
-
 
 	protected WeightedSumStrategy(final List<TrustAttribute> attributeList, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,
 			final EnumNormalizationType enumNormalizationType) {
@@ -60,6 +54,7 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 	protected void init() {
 		identifyMaxValues(dataSet, attributeList);
 		identifyMinValues(dataSet, attributeList);
+		log.info("WeightedSumStrategy initialized");
 	}
 
 	/**
@@ -75,7 +70,7 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 				Double scaledVal = scaleTo01(t);
 				Double scaledImportance =  t.getT1().getImportance() / weightsSum;
 				score = score + (scaledVal * scaledImportance);
-				System.out.println("** "+attribute.obtainType().getUri()+" "+score +" as score = "+(score - (scaledVal * scaledImportance))
+				log.info("** "+attribute.obtainType().getUri()+" "+score +" as score = "+(score - (scaledVal * scaledImportance))
 						+" + ("+scaledVal+" * "+ t.getT1().getImportance()+" / "+weightsSum+")");
 		}
 		return score;
@@ -90,6 +85,11 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 		else{
 			return attributeValue;
 		}
+	}
+	
+	@Override
+	protected Logger getLogger() {
+		return log;
 	}
 
 	

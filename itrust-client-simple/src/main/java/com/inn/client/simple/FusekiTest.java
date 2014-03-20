@@ -37,8 +37,7 @@ public class FusekiTest {
 		DatasetAccessor datasetAccessor = DatasetAccessorFactory.createHTTP("http://localhost:3030/data/data");
 		String uri = "C:/P-Programs/jena-fuseki-1.0.0/Data/books.ttl";
 		Model data = RDFDataMgr.loadModel(uri.toLowerCase());
-//		System.out.println(data.toString());
-		System.out.println(datasetAccessor.getModel("http://example.com/books"));
+		System.err.println(datasetAccessor.getModel("http://example.com/books"));
 		datasetAccessor.putModel("http://example.com/books", data);
 		
 		

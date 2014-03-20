@@ -24,6 +24,7 @@ package com.inn.itrust.op.match;
 import java.net.URI;
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.inn.itrust.model.model.SecurityAttribute;
@@ -44,7 +45,7 @@ import com.inn.itrust.service.kb.mapping.LocationMapping;
  */
 public class SecSemanticMatchOp {
 
-	private static final org.slf4j.Logger log = LoggerFactory.getLogger(SecSemanticMatchOp.class);
+	 private static final Logger log = LoggerFactory.getLogger(SecSemanticMatchOp.class);
 
 	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
 	
@@ -74,7 +75,7 @@ public class SecSemanticMatchOp {
 			return 0;
 		}
 		result = sumNotNegative(val1, val2, val3) / countNotNegative(val1, val2, val3);
-		System.out.println("SecSematicMatch result "+result);
+		log.info("SecSematicMatch result "+result);
 		return result;
 	}
 

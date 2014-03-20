@@ -21,12 +21,13 @@ package com.inn.client.simple;
  */
 
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+
 import com.inn.common.Const;
-import com.inn.itrust.recommender.TrustFilter;
 import com.inn.itrust.recommender.TrustScorer;
 
 public class JustTest {
@@ -37,13 +38,16 @@ public class JustTest {
 //			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
 //			System.out.println(encodedUrl);
 			try {
-				System.out.println(new TrustScorer().apply(URI.create(Const.Ts3)));
-				System.out.println(new TrustFilter().apply(URI.create(Const.Ts3)));
+				BasicConfigurator.resetConfiguration();
+				BasicConfigurator.configure();
+				org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
+				TrustScorer s = new TrustScorer();
+				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_F")));
+				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_D")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

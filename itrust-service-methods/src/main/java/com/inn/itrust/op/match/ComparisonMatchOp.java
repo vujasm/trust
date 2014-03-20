@@ -22,6 +22,10 @@ package com.inn.itrust.op.match;
 
 
 import java.net.URI;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
 import com.inn.common.WarnException;
@@ -36,6 +40,8 @@ import com.inn.itrust.model.vocabulary.Trust;
  */
 public class ComparisonMatchOp {
 
+	 private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
+	
 	public double apply(final TrustAttribute reqAttribute, final TrustAttribute attribute) throws Exception {
 
 			RDFDatatype datatype = reqAttribute.getValueDatatype();
@@ -60,7 +66,7 @@ public class ComparisonMatchOp {
 	private double compareNumeric(TrustAttribute attribute, TrustAttribute reqAttribute) {
 		Object reqValo = reqAttribute.getValue();
 		Object valo = attribute.getValue();
-		System.out.println("comparing numeric values: requested <= value "+reqValo+" "+valo);
+		log.info("comparing numeric values: requested <= value "+reqValo+" "+valo);
 		double returnValue = 0;
 		if (reqValo != null) {
 			double v = Double.valueOf(valo.toString()).doubleValue();
@@ -69,7 +75,7 @@ public class ComparisonMatchOp {
 				returnValue = v;
 			}
 		}
-		System.out.println("comparing numeric values returns "+returnValue);
+		log.info("comparing numeric values returns "+returnValue);
 		return returnValue;
 	}
 

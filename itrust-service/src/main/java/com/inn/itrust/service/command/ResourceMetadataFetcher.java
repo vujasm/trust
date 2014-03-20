@@ -25,6 +25,8 @@ import java.net.URI;
 import java.util.List;
 
 import org.apache.jena.atlas.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -33,6 +35,7 @@ import com.inn.common.Syntax;
 import com.inn.itrust.service.kb.ModelFether;
 import com.inn.itrust.service.kb.SharedOntModelSpec;
 import com.inn.itrust.service.kb.SparqlGraphStoreManager;
+import com.inn.itrust.service.mgrs.impl.BasicTrustManager;
 
 
 /**
@@ -44,7 +47,7 @@ public class ResourceMetadataFetcher {
 	
 	private final SparqlGraphStoreManager graphStoreManager;
 	private final List<SparqlGraphStoreManager>   externalGraphStoreMgrs;
-	
+	private static final Logger log = LoggerFactory.getLogger(ResourceMetadataFetcher.class);
 	
 	public ResourceMetadataFetcher(final SparqlGraphStoreManager graphStoreManager, final List<SparqlGraphStoreManager> externalGraphStoreMgrs) {
 		this.graphStoreManager = graphStoreManager;
@@ -66,7 +69,7 @@ public class ResourceMetadataFetcher {
 		// Try to get the service descr from the external registries.
 		try {
 			if (fetchFromExternalRegistries) {
-				Log.info(this, "obtaining model from external registries using sparqlEndpoint");
+				log.info("obtaining model from external registries using sparqlEndpoint");
 				externalModel = fetchServiceFromExternalRegistry(uri);
 			}
 		} catch (Exception e) {
@@ -74,8 +77,12 @@ public class ResourceMetadataFetcher {
 		}
 		// try to find it on the web or via location mapping
 		if (externalModel == null && useMappedLocations) {
-			Log.info(this, "obtaining model from external source using Jena Jena's embedded support for retrieving models");
-			externalModel = new ModelFether().fetch(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
+			log.info( "obtaining model from external source using  Jena's embedded support for retrieving models");
+			try {
+				externalModel = new ModelFether().fetch(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
+			} catch (org.apache.jena.atlas.web.HttpException e) {
+				log.info(" There was model retrival failure. Failed to retrive model because "+e.getMessage());
+			}
 		}
 		// try to find it in internal registry
 
@@ -87,8 +94,7 @@ public class ResourceMetadataFetcher {
 			}
 		} catch (Exception e) {
 			if (e instanceof org.apache.jena.atlas.web.HttpException) {
-				Log.info(this, "internal registry using sparqlEndpoint connection refused");
-				System.err.println("sparqendpoint is not running");
+				log.info("internal registry using sparqlEndpoint connection refused - sparqendpoint is not running //"+e.getMessage());
 			} else {
 				e.printStackTrace();
 			}

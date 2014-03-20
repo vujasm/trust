@@ -48,8 +48,6 @@ public abstract class AbstractScoreStrategy {
 		sumAllWeights(attributeList);
 		init();
 	}
-
-	protected abstract Logger getLogger() ;
 	
 	public abstract Double getScore(Agent agent) ;
 	
@@ -119,6 +117,8 @@ public abstract class AbstractScoreStrategy {
 		return null;
 	}
 	
+	protected abstract Logger getLogger();
+
 	/**
 	 * 
 	 * @param agentDataSet

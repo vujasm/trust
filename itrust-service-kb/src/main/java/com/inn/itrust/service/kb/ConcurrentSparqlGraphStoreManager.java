@@ -604,8 +604,6 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
         log.debug("Evaluating SPARQL query in Knowledge Base: \n {}", queryStr);
         Query query = QueryFactory.create(queryStr);
         QueryExecution qexec = QueryExecutionFactory.sparqlService(this.getSparqlQueryEndpoint().toASCIIString(), query);
-        
-      //  System.out.println(this.getSparqlQueryEndpoint().toASCIIString());
 
         try {
             Stopwatch stopwatch = new Stopwatch();

@@ -24,6 +24,9 @@ package com.inn.itrust.op.match;
 import java.net.URI;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.collect.Ordering;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.inn.common.OrderType;
@@ -33,6 +36,8 @@ import com.inn.itrust.model.model.MetricValue;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 
 public class MetricMatchOp {
+	
+	 private static final Logger log = LoggerFactory.getLogger(MetricMatchOp.class);
 
 	/**
 	 * 
@@ -45,7 +50,7 @@ public class MetricMatchOp {
 	 */
 	public double apply(URI metricURI, final URI metricValue1URI, final URI metricValue2URI) {
 
-		System.out.println("comparing metricscale values R vs A"+metricValue1URI+" vs. "+metricValue2URI);
+		log.info("comparing metricscale values R vs A"+metricValue1URI+" vs. "+metricValue2URI);
 		Resource resource = TrustOntologyUtil.instance().retriveResource(metricURI);
 		Metric metric = new ToModelParser().parseMetric(resource);
 		double returnValue = 0; 
@@ -68,7 +73,7 @@ public class MetricMatchOp {
 			double relVal2 = positionOfArg2 / totalNo;
 			returnValue = (relVal1 > relVal2) ? 0 : relVal2;
 		}
-		System.out.println("comparing metricscale returns "+returnValue);
+		log.info("comparing metricscale returns "+returnValue);
 		return returnValue;
 	}
 

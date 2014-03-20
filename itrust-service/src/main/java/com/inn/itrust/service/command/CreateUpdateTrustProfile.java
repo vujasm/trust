@@ -29,11 +29,13 @@ import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.inn.itrust.model.factory.TrustModelFactory;
 import com.inn.itrust.model.io.ToGraphParser;
 import com.inn.itrust.model.model.Agent;
 import com.inn.itrust.model.vocabulary.Trust;
 import com.inn.itrust.service.collectors.Collector;
+import com.inn.itrust.service.kb.SharedOntModelSpec;
 import com.inn.util.uri.UIDGenerator;
 
 
@@ -58,11 +60,12 @@ public class CreateUpdateTrustProfile {
 	 * this method will create one. Trust profile data are collected by invoking
 	 * collectors.
 	 * 
-	 * @param model a rdf graph that either contains trust profile resource or has to get one
+	 * @param model as a rdf graph that either contains trust profile resource or has to get one
 	 * @param uri resource that needs trust profile
 	 * @param collectors a list of trust information collectors
+	 * @return model having trust profile data
 	 */
-	public void apply(OntModel model, URI uri, List<Collector> collectors){
+	public OntModel apply(OntModel model, URI uri, List<Collector> collectors){
 		if (model.contains(new Agent(uri).asJenaResource(), Trust.hasTrustProfile)) {
 			log.info("Profile for " + uri.toASCIIString() + " exists and has been found");
 		} else {
@@ -70,8 +73,8 @@ public class CreateUpdateTrustProfile {
 			Agent service = new Agent(uri);
 			TrustModelFactory trm = new TrustModelFactory(UIDGenerator.instanceTrust);
 			service.setHasTrustProfile(trm.createTrustProfile());
-			Model m = new ToGraphParser().parse(service);
-			model = (OntModel) model.union(m);
+			OntModel m = new ToGraphParser().parse(service);
+			model = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model.union(m));
 		}
 		for (Collector collector : collectors) {
 			Model collectedData = collector.collectInformation(uri);
@@ -79,6 +82,7 @@ public class CreateUpdateTrustProfile {
 				model = (OntModel) model.union(collectedData);
 			}
 		}
+		return model;
 	}
 
 }
