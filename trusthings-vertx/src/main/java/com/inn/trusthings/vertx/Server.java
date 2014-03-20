@@ -33,7 +33,7 @@ import com.google.inject.Injector;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
-public class MyServer extends Verticle {
+public class Server extends Verticle {
 
 	public void start() {
 
