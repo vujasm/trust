@@ -157,7 +157,7 @@ public class BasicTrustManager implements TrustManager {
 	 * 
 	 */
 	@Override
-	public List<URI> rankResources(List<URI> resources, TrustRequest trustRequest, OrderType order) throws Exception {
+	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustRequest trustRequest, OrderType order) throws Exception {
 		return rankResources(resources, trustRequest, globalStrategy, true, order);
 	}
 
@@ -165,10 +165,10 @@ public class BasicTrustManager implements TrustManager {
 	 * 
 	 */
 	@Override
-	public List<URI> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order) throws Exception {
+	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order) throws Exception {
 		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
-		final List<URI> rankedList = ListTupleConvert.toListOfTupleElement(scores, 1);
-		return rankedList;
+//		final List<URI> rankedList = ListTupleConvert.toListOfTupleElement(scores, 1);
+		return scores;
 	}
 
 	@Override
@@ -176,8 +176,13 @@ public class BasicTrustManager implements TrustManager {
 		final TrustRequest request = newGlobalTrustRequest();
 		return obtainTrustIndex(resourceURI, request);
 	}
-
+	
 	@Override
+	public List<Tuple2<URI, Double>> obtainTrustIndexes(List<URI> resourceURIs) throws Exception {
+		final TrustRequest request = newGlobalTrustRequest();
+		return processCall(resourceURIs, request, globalStrategy, false, OrderType.DESC, false);
+	}
+
 	public Double obtainTrustIndex(URI resourceURI, TrustRequest request) throws Exception {
 		List<URI> list = Lists.newArrayList();
 		list.add(resourceURI);

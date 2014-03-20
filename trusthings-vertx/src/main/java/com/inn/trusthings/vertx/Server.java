@@ -20,23 +20,31 @@ package com.inn.trusthings.vertx;
  */
 
 import java.net.URI;
+import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.http.HttpServer;
 import org.vertx.java.core.http.HttpServerRequest;
+import org.vertx.java.core.http.HttpServerResponse;
 import org.vertx.java.core.http.RouteMatcher;
+import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.platform.Verticle;
 
+import com.google.common.collect.Lists;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.inn.trusthings.json.MakeJson;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.util.tuple.Tuple2;
 
 public class Server extends Verticle {
 
 	public void start() {
 
+		BasicConfigurator.resetConfiguration();
+		BasicConfigurator.configure();
 		
 		HttpServer server = vertx.createHttpServer();
 
@@ -45,66 +53,68 @@ public class Server extends Verticle {
 		matcher.get("/trusthings", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
-				BasicConfigurator.resetConfiguration();
-				BasicConfigurator.configure();
 				Injector injector = Guice.createInjector(new TrustModule());
 				final TrustManager trustManager = injector.getInstance(TrustManager.class);
-				String serviceId = req.params().get("srvcid");
-				double d = 0;
+				List<String> ids = req.params().getAll("srvcid");
 				try {
-					d = trustManager.obtainTrustIndex(URI.create(serviceId));
+					List<URI> list = castToListUris(ids); 
+					List<Tuple2<URI, Double>> result = trustManager.obtainTrustIndexes(list);
+					String stringJson = new MakeJson().ofRankingResult(result);
+					respondJsonMsgToClient(stringJson, req.response());
 				} catch (Exception e) {
-					e.printStackTrace();
-					req.response().setStatusCode(400);
-					req.response().end(e.getMessage());
+					String stringJson = new MakeJson().ofError(e);
+					respondJsonMsgToClient(stringJson, req.response());
 				}
-				req.response().setStatusCode(200);
-				req.response().end(URI.create(serviceId).toASCIIString() + " has trust index " + d);
 			}
 		});
-
-		matcher.get("/webroot/:page", new Handler<HttpServerRequest>() {
+		
+		matcher.get("/pages/:page", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
 				String userDir = System.getProperties().getProperty("user.dir");
 				String file = req.params().get("page");
-				System.out.println(userDir + "/webroot/" + file);
 				req.response().setStatusCode(200);
-				req.response().sendFile(userDir + "/webroot/" + file);
+				req.response().sendFile(userDir + "/pages/" + file);
 			}
 		});
 
 		matcher.get("/", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
-				String userDir = System.getProperties().getProperty("user.dir");
+				String userDir = System.getProperties().getProperty("user.dir");				
 				String file = "index.html";
-				System.out.println(userDir + "/webroot/" + file);
+//				req.response().headers().add("Content-Type", "text/html; charset=UTF-8");
 				req.response().setStatusCode(200);
-				req.response().sendFile(userDir + "/webroot/" + file);
+				req.response().sendFile(userDir + "/pages/" + file);
 			}
 		});
 
 		server.requestHandler(matcher);
-
-		//
-		// // Register HTTP handler
-		// server.requestHandler(new Handler<HttpServerRequest>() {
-		// @Override
-		// public void handle(HttpServerRequest req) {
-		// String userDir = System.getProperties().getProperty("user.dir");
-		// String file = req.path().equals("/")? "index.html" : req.path();
-		// System.out.println(userDir+"webroot/"+file);
-		// req.response().setStatusCode(200);
-		// req.response().sendFile(userDir+"/webroot/"+file);
-		// }
-		//
-		// });
-
 		// start the server
 		server.listen(8888);
-
 		container.logger().info("Webserver started, listening on port: 8888");
-
 	}
+	
+
+	protected void respondJsonMsgToClient(String message, HttpServerResponse response) {
+		response.headers().add("Content-Type", "text/json; charset=UTF-8");
+		response.setStatusCode(200);
+		response.end(new JsonObject(message).encodePrettily());
+	}
+	
+	protected void respondJsonErrorMsgToClient(String message, HttpServerResponse response) {
+		response.headers().add("Content-Type", "text/json; charset=UTF-8");
+		response.setStatusCode(400);
+		response.end(new JsonObject(message).encodePrettily());
+	}
+	
+	protected List<URI> castToListUris(List<String> ids) {
+		List<URI> list = Lists.newArrayList();
+		for (String id : ids) {
+			list.add(URI.create(id));
+		}
+		return list;
+	}
+
+
 }

@@ -29,6 +29,7 @@ import com.inn.trusthings.model.pojo.TrustRequest;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.kb.KnowledgeBaseManager;
 import com.inn.util.tree.Tree;
+import com.inn.util.tuple.Tuple2;
 
 
 /**
@@ -68,9 +69,9 @@ public interface TrustManager{
 	 * @param resources A list of resource URI's
 	 * @param request Trust Ranking criteria as a set of required trust attributes and their values and importance
 	 * @param order OrderType ASC for ascending. DESC for descending.
-	 * @return A ordered list of ranked resources
+	 * @return A ordered list of ranked resources together with their respective trust index
 	 */
-	List<URI> rankResources(List<URI> resources, TrustRequest request, OrderType order) throws Exception;
+	List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustRequest request, OrderType order) throws Exception;
 
 	/**
 	 * Answers ranking of resources in regards to the trust ranking criteria.
@@ -80,10 +81,10 @@ public interface TrustManager{
 	 * @param scoreStrategy A trust index computing and ranking strategy
 	 * @param excludeIfAttributeMissing Exclude a resource from ranking in a case it lacks some of requested attributes.
 	 * @param order OrderType ASC for ascending. DESC for descending.
-	 * @return A ordered list of ranked resources.
+	 * @return A ordered list of ranked resources together with their respective trust index
 	 * @throws Exception
 	 */
-	List<URI> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing,
+	List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing,
 			OrderType order) throws Exception;
 
 	/**
@@ -135,7 +136,12 @@ public interface TrustManager{
 	 */
 	Double obtainTrustIndex(URI resource) throws Exception;
 	
-	
+	/**
+	 * Answers trust indexes for a resources without taking into account user perception of a trust
+	 * @param list
+	 * @return
+	 */
+	List<Tuple2<URI, Double>> obtainTrustIndexes(List<URI> list) throws Exception;
 	
 	/** 
 	 * Answers if two resources can engage into trustworthy relation, 
