@@ -1,4 +1,4 @@
-package com.inn.trusthings.recommender;
+package com.inn.trusthings.integration;
 
 /*
  * #%L
@@ -23,35 +23,36 @@ package com.inn.trusthings.recommender;
 
 import java.net.URI;
 
-import uk.ac.open.kmi.sense.evaluation.Scorer;
-
 import com.google.inject.Guice;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
+import uk.ac.open.kmi.sense.evaluation.Filter;
+
 /**
- * TrustScorer implements uk.ac.open.kmi.sense.evaluation.Scorer interface 
- * to obtain trust score for COMPOSE service recommendation
+ * TrustFilter implements uk.ac.open.kmi.sense.evaluation.Filter interface 
+ * for Guava-based filtering of services in COMPOSE Service Recommender
+ * 
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustScorer implements Scorer{
+public class TrustFilter implements Filter {
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
-	public TrustScorer() {
+	public TrustFilter() {
 		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 	}
 	
 	/**
-	 * returns trust index of the resource identified with serviceId URI
+	 * returns true if resource identified with serviceId URI
 	 */
 	@Override
-	public Double apply(URI serviceId) {
+	public boolean apply(URI serviceId) {
 		try {
-			return trustManager.obtainTrustIndex(serviceId);
+			return trustManager.isTrusted(serviceId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 0D;
+			return false;
 		}
 	}
 

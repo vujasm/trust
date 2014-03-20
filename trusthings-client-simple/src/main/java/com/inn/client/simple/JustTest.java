@@ -28,7 +28,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 
 import com.inn.common.Const;
-import com.inn.trusthings.recommender.TrustScorer;
+import com.inn.trusthings.integration.TrustScorer;
 
 public class JustTest {
 	
