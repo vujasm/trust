@@ -2,7 +2,7 @@ package com.inn.client.simple;
 
 /*
  * #%L
- * itrust-client-simple
+ * trusthings-client-simple
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
@@ -28,7 +28,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 
 import com.inn.common.Const;
-import com.inn.itrust.recommender.TrustScorer;
+import com.inn.trusthings.recommender.TrustScorer;
 
 public class JustTest {
 	

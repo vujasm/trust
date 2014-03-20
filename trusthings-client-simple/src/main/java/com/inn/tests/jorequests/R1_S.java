@@ -2,7 +2,7 @@ package com.inn.tests.jorequests;
 
 /*
  * #%L
- * itrust-client-simple
+ * trusthings-client-simple
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
@@ -25,7 +25,7 @@ import java.net.URI;
 
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
-import com.inn.itrust.model.pojo.TrustRequest;
+import com.inn.trusthings.model.pojo.TrustRequest;
 
 public class R1_S {
 	

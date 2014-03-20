@@ -2,7 +2,7 @@ package com.inn.client.simple;
 
 /*
  * #%L
- * itrust-client-simple
+ * trusthings-client-simple
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
@@ -35,10 +35,10 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.inn.itrust.model.vocabulary.ModelEnum;
-import com.inn.itrust.model.vocabulary.Trust;
-import com.inn.itrust.module.TrustModule;
-import com.inn.itrust.service.interfaces.TrustManager;
+import com.inn.trusthings.model.vocabulary.ModelEnum;
+import com.inn.trusthings.model.vocabulary.Trust;
+import com.inn.trusthings.module.TrustModule;
+import com.inn.trusthings.service.interfaces.TrustManager;
 import com.inn.util.tree.Tree;
 
 public class TrustModuleTest {

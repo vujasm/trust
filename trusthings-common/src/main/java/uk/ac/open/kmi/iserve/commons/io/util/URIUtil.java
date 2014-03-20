@@ -2,7 +2,7 @@ package uk.ac.open.kmi.iserve.commons.io.util;
 
 /*
  * #%L
- * itrust-common
+ * trusthings-common
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%

@@ -2,7 +2,7 @@ package com.inn.client.simple;
 
 /*
  * #%L
- * itrust-client-simple
+ * trusthings-client-simple
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%

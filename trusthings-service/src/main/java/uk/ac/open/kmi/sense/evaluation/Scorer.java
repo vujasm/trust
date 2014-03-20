@@ -2,7 +2,7 @@ package uk.ac.open.kmi.sense.evaluation;
 
 /*
  * #%L
- * itrust-service
+ * trusthings-service
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%

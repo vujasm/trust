@@ -2,7 +2,7 @@ package com.inn.tests.jorequests;
 
 /*
  * #%L
- * itrust-client-simple
+ * trusthings-client-simple
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
@@ -28,8 +28,8 @@ import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
-import com.inn.itrust.model.pojo.TrustRequest;
-import com.inn.itrust.op.enums.EnumScoreStrategy;
+import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.op.enums.EnumScoreStrategy;
 
 public class R3_allimportant_S {
 	

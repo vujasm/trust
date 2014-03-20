@@ -2,7 +2,7 @@ package com.inn.tests.jorequests;
 
 /*
  * #%L
- * itrust-client-simple
+ * trusthings-client-simple
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
@@ -24,16 +24,16 @@ import java.net.URI;
 
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
-import com.inn.itrust.model.factory.TrustModelFactory;
-import com.inn.itrust.model.pojo.SecurityAttribute;
-import com.inn.itrust.model.pojo.SecurityGoal;
-import com.inn.itrust.model.pojo.SecurityMechanism;
-import com.inn.itrust.model.pojo.SecurityTechnology;
-import com.inn.itrust.model.pojo.TrustAttribute;
-import com.inn.itrust.model.pojo.TrustRequest;
-import com.inn.itrust.model.types.USDLSecExpression;
-import com.inn.itrust.model.vocabulary.Trust;
-import com.inn.itrust.model.vocabulary.UsdlSec;
+import com.inn.trusthings.model.factory.TrustModelFactory;
+import com.inn.trusthings.model.pojo.SecurityAttribute;
+import com.inn.trusthings.model.pojo.SecurityGoal;
+import com.inn.trusthings.model.pojo.SecurityMechanism;
+import com.inn.trusthings.model.pojo.SecurityTechnology;
+import com.inn.trusthings.model.pojo.TrustAttribute;
+import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.model.types.USDLSecExpression;
+import com.inn.trusthings.model.vocabulary.Trust;
+import com.inn.trusthings.model.vocabulary.UsdlSec;
 import com.inn.util.json.MyJson;
 import com.inn.util.uri.UIDGenerator;
 

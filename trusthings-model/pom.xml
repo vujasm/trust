@@ -67,7 +67,7 @@
                                 -a http://www.compose-project.eu/ns/web-of-things/trust# \
                                 -i ${ontologies.dir}/trustontology.ttl \
                                 -e TTL \
-                                --package com.inn.itrust.model.vocabulary \
+                                --package com.inn.trusthings.model.vocabulary \
                                 -o ${project.basedir}/src/main/java \
                                 -n Trust \
                                 --owl
@@ -87,7 +87,7 @@
                                 -a http://www.linked-usdl.org/ns/usdl-sec# \
                                 -i ${ontologies.dir}/usdl-sec.ttl \
                                 -e TTL \
-                                --package com.inn.itrust.model.vocabulary \
+                                --package com.inn.trusthings.model.vocabulary \
                                 -o ${project.basedir}/src/main/java \
                                 -n UsdlSec \
                                 --owl

@@ -2,7 +2,7 @@ package com.inn.common;
 
 /*
  * #%L
- * itrust-common
+ * trusthings-common
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%

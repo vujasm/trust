@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 /*
  * #%L
- * itrust-common
+ * trusthings-common
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
