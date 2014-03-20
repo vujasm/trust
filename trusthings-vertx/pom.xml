@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<artifactId>itrust-vertx</artifactId>
+	<artifactId>trusthings-vertx</artifactId>
    		
-	<name>itrust-vertx</name>
+	<name>trusthings-vertx</name>
 	<packaging>jar</packaging>
 	<description>This is a Trust Vertx Server</description>
 	<developers>
@@ -22,7 +22,7 @@
 	</organization>
 	
 	<parent>
-        <artifactId>itrust</artifactId>
+        <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>
         <version>0.0.1</version>
        <relativePath>..</relativePath>
@@ -71,12 +71,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>itrust-service</artifactId>
+			<artifactId>trusthings-service</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>itrust-model</artifactId>
+			<artifactId>trusthings-model</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		 <dependency>

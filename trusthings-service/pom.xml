@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>itrust</artifactId>
+		<artifactId>trusthings</artifactId>
 		<groupId>com.innova.compose</groupId>
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
@@ -14,9 +14,9 @@
 	</properties>
 
 
-	<artifactId>itrust-service</artifactId>
+	<artifactId>trusthings-service</artifactId>
 	
-	<name>itrust-service</name>
+	<name>trusthings-service</name>
 	<description>This is descr</description>
 	<developers>
 		<developer>
@@ -78,12 +78,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>itrust-service-methods</artifactId>
+			<artifactId>trusthings-service-methods</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>itrust-model</artifactId>
+			<artifactId>trusthings-model</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>

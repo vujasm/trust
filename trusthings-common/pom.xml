@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-        <artifactId>itrust</artifactId>
+        <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>
         <version>0.0.1</version>
         <relativePath>..</relativePath>
@@ -13,8 +13,8 @@
    	 	<license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
     
-	<artifactId>itrust-common</artifactId>
-	<name>itrust-common</name>
+	<artifactId>trusthings-common</artifactId>
+	<name>trusthings-common</name>
 	<description>This is descr</description>
 	<developers>
 		<developer>

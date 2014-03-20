@@ -2,18 +2,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <artifactId>itrust</artifactId>
+        <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>
         <version>0.0.1</version>
         <relativePath>..</relativePath>
     </parent>
     
    	
-	<artifactId>itrust-model</artifactId>
-	<name>itrust-model</name>
+	<artifactId>trusthings-model</artifactId>
+	<name>trusthings-model</name>
 	<properties>
 		<jena.version>2.11.0</jena.version>
-		<ontologies.dir>${project.parent.basedir}/itrust-common/src/main/resources/ontologies</ontologies.dir>
+		<ontologies.dir>${project.parent.basedir}/trusthings-common/src/main/resources/ontologies</ontologies.dir>
    	 	<license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
 	<description>This is descr</description>
@@ -33,7 +33,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>itrust-common</artifactId>
+			<artifactId>trusthings-common</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
@@ -67,7 +67,7 @@
                                 -a http://www.compose-project.eu/ns/web-of-things/trust# \
                                 -i ${ontologies.dir}/trustontology.ttl \
                                 -e TTL \
-                                --package com.inn.itrust.model.vocabulary \
+                                --package com.inn.trusthings.model.vocabulary \
                                 -o ${project.basedir}/src/main/java \
                                 -n Trust \
                                 --owl
@@ -87,7 +87,7 @@
                                 -a http://www.linked-usdl.org/ns/usdl-sec# \
                                 -i ${ontologies.dir}/usdl-sec.ttl \
                                 -e TTL \
-                                --package com.inn.itrust.model.vocabulary \
+                                --package com.inn.trusthings.model.vocabulary \
                                 -o ${project.basedir}/src/main/java \
                                 -n UsdlSec \
                                 --owl
