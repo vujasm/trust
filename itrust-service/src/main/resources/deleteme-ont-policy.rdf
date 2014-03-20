@@ -1,5 +1,0 @@
-<DocumentManagerPolicy>
-  <!-- policy for controlling the document manager's behaviour -->
-  <processImports rdf:datatype="&xsd;boolean">true</processImports>
-  <cacheModels rdf:datatype="&xsd;boolean">true</cacheModels>
-</DocumentManagerPolicy>
