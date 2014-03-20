@@ -35,10 +35,4 @@ public interface SparqlGraphStoreFactory {
                                    @Assisted("baseModels") Set<URI> baseModels,
                                    @Assisted("locationMappings") Map<String, String> locationMappings,
                                    @Assisted("ignoredImports") Set<String> ignoredImports);
-	
-//	 SparqlGraphStoreManager create(
-//             @Assisted("baseModels") Set<URI> baseModels,
-//             @Assisted("locationMappings") Map<String, String> locationMappings,
-//             @Assisted("ignoredImports") Set<String> ignoredImports);
-    
 }

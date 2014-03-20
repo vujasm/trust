@@ -66,7 +66,7 @@ public class BasicRankingManager implements RankingManager {
 	@Inject
 	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
 		this.knowledgeBaseManager = kbManager;
-		OntModel model = kbManager.getModel(ModelEnum.Trust.getURI());
+		OntModel model = kbManager.getModelByJenaModelFetcher(ModelEnum.Trust.getURI());
 		//FIXME rename TrustOntologyUtil and/or see what else should be passed for init
 		TrustOntologyUtil.init(model);
 	}
@@ -211,7 +211,7 @@ public class BasicRankingManager implements RankingManager {
 		if (parser == null) {
 			parser = new ToModelParser();
 			String uri = ModelEnum.SecurityProfiles.getURI();
-			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri);
+			OntModel securityProfileModel = knowledgeBaseManager.getModelByJenaModelFetcher(uri);
 			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
 			parser.registerSpecificParser(secProfileExpressionToModel, Const.ParserNameSecurityProfileAsUSDLSec);
 		}

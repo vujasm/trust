@@ -1,4 +1,4 @@
-package com.inn.util.uri;
+package uk.ac.open.kmi.iserve.commons.io.util;
 
 /*
  * #%L

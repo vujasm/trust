@@ -40,22 +40,17 @@ import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import uk.ac.open.kmi.iserve.commons.io.Syntax;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableSet;
@@ -85,7 +80,6 @@ import com.hp.hpl.jena.update.UpdateRequest;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
-import com.inn.common.Syntax;
 import com.inn.itrust.Configuration;
 import com.inn.itrust.model.vocabulary.NSPrefixes;
 
@@ -93,7 +87,6 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
 
     private static final Logger log = LoggerFactory.getLogger(ConcurrentSparqlGraphStoreManager.class);
 
-    // Default Models that every Graph Store should have in iServe
     private static final URI RDF_URI = URI.create(RDF.getURI());
     private static final URI RDFS_URI = URI.create(RDFS.getURI());
     private static final URI OWL_URI = URI.create(OWL.NS);
@@ -102,15 +95,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
     private static final String JAVA_PROXY_HOST_PROP = "http.proxyHost";
     private static final String JAVA_PROXY_PORT_PROP = "http.proxyPort";
 
-    // Set backed by a ConcurrentHashMap to avoid race conditions
     private Set<URI> loadedModels;
-
-    // Default model that this Graph Store should have even when it is empty
-    // You can see this as default initialisation graphs that should be pre-loaded
-    private Set<URI> baseModels;
-
-    // Executor for doing the fetching of remote models
-    private ExecutorService executor;
 
     private DatasetAccessor datasetAccessor;
 
@@ -120,12 +105,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
     // To use SPARQL HTTP protocol for graph modification
     private URI sparqlServiceEndpoint;
 
-    // Keeps track of currently ongoing fetching tasks
-    private Map<URI, Future<Boolean>> fetchingMap;
-
 	private OntModelSpec modelSpec;
-	
-
 
     static class ProxyConfiguration {
         @Inject(optional = true)
@@ -148,19 +128,10 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
 
         this.loadedModels = Collections.newSetFromMap(new ConcurrentHashMap<URI, Boolean>());
         this.loadedModels.addAll(CORE_MODELS);
-
-        this.baseModels = baseModels;
-
-        this.fetchingMap = new ConcurrentHashMap<URI, Future<Boolean>>();
-
         // Configure proxy if necessary
         configureProxy(proxyCfg);
 
         modelSpec =  SharedOntModelSpec.createModelSpecification(locationMappings, ignoredImports);
-
-        // set the executor
-//        executor = Executors.newFixedThreadPool(NUM_THREADS);
-        executor = Executors.newSingleThreadExecutor();
 
         if (sparqlQueryEndpoint == null) {
             log.error(ConcurrentSparqlGraphStoreManager.class.getSimpleName() + " requires a SPARQL Query endpoint.");
@@ -194,71 +165,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
             prop.remove(JAVA_PROXY_HOST_PROP);
             prop.remove(JAVA_PROXY_PORT_PROP);
         }
-    }
-
-  
-    /**
-     * This method will be called when the server is initialised.
-     * If necessary it should take care of updating any indexes on boot time.
-     */
-    @Override
-    public void initialise() {
-    	
-        //this.loadedModels.addAll(listStoredGraphs());
-        //loadDefaultModels();
-        
-    }
-
-    /**
-     * This method will be called when the server is being shutdown.
-     * Ensure a clean shutdown.
-     */
-    @Override
-    public void shutdown() {
-        log.info("Shutting down Ontology crawlers.");
-        this.executor.shutdown();
-        // waiting 2 seconds
-        try {
-            this.executor.awaitTermination(2, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            log.error("Interrupted while waiting for threads to conclude crawling.", e);
-        }
-    }
-
-    /**
-     * Loads the default models for this Graph Store and verifies they were correctly retrieved
-     * NOTE: For now models with local mappings cannot be TTL for Jena does not guess the format properly in that case.
-     * We need to specify the format while loading in this case.
-     *
-     * @return True if they were all added correctly. False otherwise.
-     */
-
-    @SuppressWarnings("unused")
-	private boolean loadDefaultModels() {
-
-        Map<URI, Future<Boolean>> concurrentTasks = new HashMap<URI, Future<Boolean>>();
-        for (URI model : baseModels) {
-            concurrentTasks.put(model, this.asyncFetchModel(model, Syntax.N3.getName()));
-        }
-
-        boolean result = true;
-        for (URI modelUri : concurrentTasks.keySet()) {
-            Future<Boolean> f = concurrentTasks.get(modelUri);
-            try {
-                boolean fetched = f.get();
-                result = result && fetched;
-
-                if (!fetched) {
-                    log.error("Cannot load default model - {} - The software may not behave correctly. ");
-                }
-            } catch (Exception e) {
-                // Mark as invalid
-                log.error("There was an error while trying to fetch a remote model - {}", modelUri, e);
-                result = false;
-            }
-        }
-        return result;
-    }
+    }   
 
 
     /**
@@ -554,15 +461,7 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
      */
     @Override
     public void clearDataset() {
-
-        // Deleting via graph store protocol does not work apparently.
-        // Use HTTP protocol if possible
-//        if (this.sparqlServiceEndpoint != null) {
-//            datasetAccessor.deleteDefault();
-//        } else {
         clearDatasetSparqlUpdate();
-//        }
-        initialise();
     }
 
     private void clearDatasetSparqlUpdate() {
@@ -638,51 +537,6 @@ public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManage
         }
         return result.build();
     }
-
-    /**
-     * fetches an external RDFXML resource and stores it into dataset.
-     */
-    @Override
-    public boolean fetchAndStore(URI modelUri) {
-        return fetchAndStore(modelUri, Syntax.RDFXML.getName());
-    }
-
     
-    /**
-     * fetches an external resource and stores it into dataset. 
-     */
-    public boolean fetchAndStore(URI modelUri, String syntax) {
-        boolean fetched;
-        Future<Boolean> future = asyncFetchModel(modelUri, syntax);
-
-        try {
-            fetched = future.get();
-            // remove from the fetching map
-            this.fetchingMap.remove(modelUri);
-            if (!fetched) {
-                log.warn("Could not store model - {}", modelUri);
-            }
-
-        } catch (InterruptedException e) {
-            log.error("The system was interrupted while trying to fetch and store a remote model", e);
-            return false;
-        } catch (ExecutionException e) {
-            log.error("There was an error while trying to fetch and store a remote model", e);
-            return false;
-        }
-        return fetched;
-    }
-
-    private Future<Boolean> asyncFetchModel(URI modelUri, String syntax) {
-
-        // Check we are not downloading it already
-        if (this.fetchingMap.containsKey(modelUri)) {
-            return this.fetchingMap.get(modelUri);
-        }
-
-        Callable<Boolean> task = new CrawlCallable(this, modelSpec, modelUri, syntax);
-        log.debug("Fetching model - {}", modelUri);
-        return this.executor.submit(task);
-    }
     
 }

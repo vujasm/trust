@@ -32,7 +32,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.inn.itrust.service.kb.mapping.LocationMapping;
 
-public class ModelFether {
+public class JenaModelFether {
 
 	
 	public OntModel fetch(URI uri, String syntax, OntModelSpec modelSpec) {

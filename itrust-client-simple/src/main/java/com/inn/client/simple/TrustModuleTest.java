@@ -76,7 +76,7 @@ public class TrustModuleTest {
 
 	//testiranje kako jena radi inference taksonomije
 	public void testSubclass() {
-		OntModel base = trustManager.getKnowledgeBaseManager().getModel(ModelEnum.Trust.getURI());
+		OntModel base = trustManager.getKnowledgeBaseManager().getModelByJenaModelFetcher(ModelEnum.Trust.getURI());
 		OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
 		OntModel model = ModelFactory.createOntologyModel(spec, base);
 		final OntClass cls = model.getOntClass(Trust.SecurityAttribute.getURI().toString());

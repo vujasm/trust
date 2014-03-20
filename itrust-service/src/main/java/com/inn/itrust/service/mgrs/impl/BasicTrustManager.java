@@ -21,7 +21,6 @@ package com.inn.itrust.service.mgrs.impl;
  */
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Set;
 
@@ -54,7 +53,7 @@ import com.inn.itrust.service.collectors.QoSCollector;
 import com.inn.itrust.service.collectors.ReputationCollector;
 import com.inn.itrust.service.command.CreateUpdateTrustProfile;
 import com.inn.itrust.service.command.FillTaxonomy;
-import com.inn.itrust.service.command.ResourceMetadataFetcher;
+import com.inn.itrust.service.command.CommandSemanticMetadataFetch;
 import com.inn.itrust.service.interfaces.RankingManager;
 import com.inn.itrust.service.interfaces.TrustManager;
 import com.inn.itrust.service.kb.KnowledgeBaseManager;
@@ -75,8 +74,8 @@ import com.inn.util.tuple.Tuple2;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  * 
  */
-public class BasicTrustManager  implements TrustManager {
-	
+public class BasicTrustManager implements TrustManager {
+
 	private static final Logger log = LoggerFactory.getLogger(BasicTrustManager.class);
 	private final List<Collector> collectors = Lists.newArrayList();
 	private boolean doSaveIntoStore = false;
@@ -91,17 +90,14 @@ public class BasicTrustManager  implements TrustManager {
 	private EnumScoreStrategy globalStrategy = EnumScoreStrategy.Weighted_sum_model;
 
 	@Inject
-	public BasicTrustManager(EventBus eventBus, SparqlGraphStoreFactory graphStoreFactory,
-			RankingManager rankingManager, KnowledgeBaseManager kbManager,
-			@Named(Configuration.SPARQL_ENDPOINT_QUERY_PROP) String queryEndpoint,
-			@Named(Configuration.SPARQL_ENDPOINT_UPDATE_PROP) String updateEndpoint,
+	public BasicTrustManager(EventBus eventBus, SparqlGraphStoreFactory graphStoreFactory, RankingManager rankingManager, KnowledgeBaseManager kbManager,
+			@Named(Configuration.SPARQL_ENDPOINT_QUERY_PROP) String queryEndpoint, @Named(Configuration.SPARQL_ENDPOINT_UPDATE_PROP) String updateEndpoint,
 			@Named(Configuration.SPARQL_ENDPOINT_SERVICE_PROP) String serviceEndpoint) throws Exception {
 
 		Set<String> ignoredImports = IgnoredModels.getModels();
 		Set<URI> baseModels = ImmutableSet.of();
 		ImmutableMap.Builder<String, String> locationMappings = LocationMapping.getMapping();
-		this.graphStoreManager = graphStoreFactory.create(queryEndpoint, updateEndpoint, serviceEndpoint, baseModels,
-				locationMappings.build(), ignoredImports);
+		this.graphStoreManager = graphStoreFactory.create(queryEndpoint, updateEndpoint, serviceEndpoint, baseModels, locationMappings.build(), ignoredImports);
 		this.rankingManager = rankingManager;
 		this.kbManager = kbManager;
 		registerExternalGraphStoreManagers(externalGraphStoreMgrs, graphStoreFactory);
@@ -133,22 +129,17 @@ public class BasicTrustManager  implements TrustManager {
 
 	/**
 	 * 
-	 * Fetches a resource metadata as RDF graph (i.e. Jena model) from the registers
+	 * Loads semantic metadata (semantic annotations) for a resource identified with URI from the registered registers
 	 * 
-	 * @param uri
-	 *            TResource URI
-	 * @param fetchFromExternalRegistries
-	 *            true if data has to be retrieved from externally registers; otherwise false
-	 * @param useMappedLocations
-	 *            true if mapped location (e.g. local cache) should be used to retrieve data; otherwise false
-	 * @param fetchFromInternalRegirsty
-	 *            true if data has to be retrieved from internal registry; otherwise false
+	 * @param uri resource URI
+	 * @param fetchFromExternalRegistries true if data has to be retrieved from externally registers; otherwise false
+	 * @param useMappedLocations true if mapped location (e.g. local cache) should be used to retrieve data; otherwise
+	 *            false
+	 * @param fetchFromInternalRegirsty true if data has to be retrieved from internal registry; otherwise false
 	 * @return ontModel as a Jena model that contains statements about the resource
 	 */
-	private OntModel fetchResourceMetadataFromRegistries(URI uri, boolean fetchFromExternalRegistries,
-			boolean useMappedLocations, boolean fetchFromInternalRegirsty) {
-		return new ResourceMetadataFetcher(graphStoreManager, externalGraphStoreMgrs).apply(uri,
-				fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
+	private OntModel loadSemanticMetadata(URI uri, boolean fetchFromExternalRegistries, boolean useMappedLocations, boolean fetchFromInternalRegirsty) {
+		return new CommandSemanticMetadataFetch(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
 	}
 
 	@Override
@@ -156,23 +147,9 @@ public class BasicTrustManager  implements TrustManager {
 		return kbManager;
 	}
 
-	// @Override
-	// public Set<URI> getLoadedModels() {
-	// return kbManager.getLoadedModels();
-	// }
-
-	@Override
-	public void initialise() {
-		this.graphStoreManager.initialise();
-	}
-
 	@Override
 	public String listTrustParameters() {
-		try {
-			graphStoreManager.fetchAndStore(new URI(""));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+		//TODO implement me
 		return null;
 	}
 
@@ -188,17 +165,15 @@ public class BasicTrustManager  implements TrustManager {
 	 * 
 	 */
 	@Override
-	public List<URI> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy,
-			boolean excludeIfAttributeMissing, OrderType order) throws Exception {
-		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy,
-				excludeIfAttributeMissing, order, false);
+	public List<URI> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order) throws Exception {
+		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
 		final List<URI> rankedList = ListTupleConvert.toListOfTupleElement(scores, 1);
 		return rankedList;
 	}
 
 	@Override
 	public Double obtainTrustIndex(URI resourceURI) throws Exception {
-		final TrustRequest request = getOrCreateglobalTrustRequest();
+		final TrustRequest request = newGlobalTrustRequest();
 		return obtainTrustIndex(resourceURI, request);
 	}
 
@@ -206,16 +181,14 @@ public class BasicTrustManager  implements TrustManager {
 	public Double obtainTrustIndex(URI resourceURI, TrustRequest request) throws Exception {
 		List<URI> list = Lists.newArrayList();
 		list.add(resourceURI);
-		final List<Tuple2<URI, Double>> scores = processCall(list, request, globalStrategy, false, OrderType.DESC,
-				false);
+		final List<Tuple2<URI, Double>> scores = processCall(list, request, globalStrategy, false, OrderType.DESC, false);
 		return scores.get(0).getT2();
 	}
 
 	@Override
-	public List<URI> filterResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy,
-			boolean excludeIfAttributeMissing, OrderType order, final Double thresholdValue) throws Exception {
-		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy,
-				excludeIfAttributeMissing, order, false);
+	public List<URI> filterResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
+			final Double thresholdValue) throws Exception {
+		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
 		Iterable<Tuple2<URI, Double>> filtered = Iterables.filter(scores, new Predicate<Tuple2<URI, Double>>() {
 			@Override
 			public boolean apply(Tuple2<URI, Double> t) {
@@ -236,8 +209,7 @@ public class BasicTrustManager  implements TrustManager {
 	}
 
 	@Override
-	public List<URI> filterResources(List<URI> resources, TrustRequest request, OrderType order, Double thresholdValue)
-			throws Exception {
+	public List<URI> filterResources(List<URI> resources, TrustRequest request, OrderType order, Double thresholdValue) throws Exception {
 		return filterResources(resources, request, globalStrategy, true, order, thresholdValue);
 	}
 
@@ -259,28 +231,14 @@ public class BasicTrustManager  implements TrustManager {
 		Set<String> ignoredImports = IgnoredModels.getModels();
 		Set<URI> baseModels = ImmutableSet.of();
 		ImmutableMap.Builder<String, String> locationMappings = LocationMapping.getMapping();
-		SparqlGraphStoreManager manager = factory.create(Configuration.EXT_SPARQL_ENDPOINT_QUERY,
-				Configuration.EXT_SPARQL_ENDPOINT_UPDATE, Configuration.EXT_SPARQL_ENDPOINT_SERVICE, baseModels,
-				locationMappings.build(), ignoredImports);
+		SparqlGraphStoreManager manager = factory.create(Configuration.EXT_SPARQL_ENDPOINT_QUERY, Configuration.EXT_SPARQL_ENDPOINT_UPDATE,
+				Configuration.EXT_SPARQL_ENDPOINT_SERVICE, baseModels, locationMappings.build(), ignoredImports);
 		list.add(manager);
 	}
-
-	// @Override
-	// public void removeOntology(String graphName) {
-	// kbManager.deleteModel(URI.create(graphName));
-	// }
 
 	protected void saveIntoTripleStore(URI uri, Model model) {
 		if (doSaveIntoStore)
 			graphStoreManager.putGraph(uri, model);
-	}
-
-	/**
-	 * This method will be called when the server is being shutdown. Ensure a clean shutdown.
-	 */
-	@Override
-	public void shutdown() {
-		this.graphStoreManager.shutdown();
 	}
 
 	/**
@@ -293,14 +251,6 @@ public class BasicTrustManager  implements TrustManager {
 		}
 	}
 
-	// @Override
-	// public void uploadOntology(URI ontologyUri, String graphName) {
-	// Model model = RDFDataMgr.loadModel(ontologyUri.toASCIIString());
-	// if (graphName == null)
-	// graphName = ontologyUri.toASCIIString();
-	// kbManager.uploadOntology(graphName.toLowerCase(), model, true);
-	// }
-
 	/**
 	 * 
 	 * @param resources
@@ -309,7 +259,7 @@ public class BasicTrustManager  implements TrustManager {
 	private List<Tuple2<URI, Model>> obtainModels(List<URI> resources) {
 		List<Tuple2<URI, Model>> listModels = Lists.newArrayList();
 		for (URI uri : resources) {
-			OntModel model = fetchResourceMetadataFromRegistries(uri, false, true, false);
+			OntModel model = loadSemanticMetadata(uri, false, true, false);
 			model = fillTrustProfilForResource(model, uri);
 			listModels.add(new Tuple2<URI, Model>(uri, model));
 		}
@@ -327,9 +277,8 @@ public class BasicTrustManager  implements TrustManager {
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustRequest request,
-			EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order, boolean logRequest)
-			throws Exception {
+	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
+			boolean logRequest) throws Exception {
 		final List<Tuple2<URI, Model>> tupleModels = obtainModels(resources);
 		if (logRequest) {
 			storeModelsIntoStore(tupleModels);
@@ -343,24 +292,22 @@ public class BasicTrustManager  implements TrustManager {
 		return rankingManager.rankServiceModels(models, request, scoreStrategy, excludeIfAttributeMissing, order);
 	}
 
-	
 	@Override
 	public boolean isTrusted(URI resourceURI, TrustRequest request, boolean useCache) throws Exception {
 		final Double index = obtainTrustIndex(resourceURI, request);
 		return new Value(index).isTrustworthy();
 	}
-	
+
 	@Override
 	public boolean isTrusted(URI resourceURI) throws Exception {
 		final Double index = obtainTrustIndex(resourceURI);
 		return new Value(index).isTrustworthy();
 	}
 
-	
 	@Override
 	public boolean match(URI resource1uri, URI resource2uri) throws Exception {
-		// TODO Implement S-S match 
-		//get profiles and trust criteria and do vice-versa matching
+		// TODO Implement S-S match
+		// get profiles and trust criteria and do vice-versa matching
 		return false;
 	}
 
@@ -369,7 +316,7 @@ public class BasicTrustManager  implements TrustManager {
 	 * 
 	 * @return
 	 */
-	private TrustRequest getOrCreateglobalTrustRequest() {
+	private TrustRequest newGlobalTrustRequest() {
 		// TODO Define AbsoluteTrustRequest. It should be identified somehow, perhaps thru some survey. For now, we use
 		// a test one.
 		return GlobalTrustRequest.request();

@@ -25,7 +25,6 @@ import java.net.URI;
 import java.util.List;
 
 import com.inn.common.OrderType;
-import com.inn.itrust.Component;
 import com.inn.itrust.model.model.TrustRequest;
 import com.inn.itrust.op.enums.EnumScoreStrategy;
 import com.inn.itrust.service.kb.KnowledgeBaseManager;
@@ -37,7 +36,7 @@ import com.inn.util.tree.Tree;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public interface TrustManager extends Component {
+public interface TrustManager{
 
 	/**
 	 * retrives TrustAttribute taxonomy from data store/
@@ -46,32 +45,10 @@ public interface TrustManager extends Component {
 	 */
 	String listTrustParameters();
 
-	// /**
-	// * retrives all named graphs from the Trust triple store
-	// *
-	// * @return
-	// */
-	// Set<URI> getLoadedModels();
-
-//	/**
-//	 * puts an ontology in the Trust triple store
-//	 * 
-//	 * @param ontologyUri
-//	 * @param graphName
-//	 */
-//	void uploadOntology(URI ontologyUri, String graphName);
-
 	/**
 	 * @return KnowledgeBaseManager
 	 */
 	KnowledgeBaseManager getKnowledgeBaseManager();
-
-//	/**
-//	 * removes ontology from the Trust triple store
-//	 * 
-//	 * @param graphName
-//	 */
-//	void removeOntology(String graphName);
 
 	/**
 	 * Obtains taxonomy for a given concept

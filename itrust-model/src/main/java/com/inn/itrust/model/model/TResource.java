@@ -24,9 +24,10 @@ package com.inn.itrust.model.model;
 import java.net.URI;
 import java.util.List;
 
+import uk.ac.open.kmi.iserve.commons.io.util.URIUtil;
+
 import com.google.common.collect.Lists;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
-import com.inn.util.uri.URIUtil;
 
 public class TResource {
 
