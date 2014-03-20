@@ -24,6 +24,9 @@ package com.inn.tests.jorequests;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+
 import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
@@ -34,7 +37,7 @@ import com.inn.itrust.op.enums.EnumScoreStrategy;
 public class R4_S {
 	
 	public static void main(String[] args) {
-		
+	
 		List<URI> services = Lists.newArrayList();
 		services.add(URI.create(Const.Ts3));
 		services.add(URI.create(Const.Ts4));
