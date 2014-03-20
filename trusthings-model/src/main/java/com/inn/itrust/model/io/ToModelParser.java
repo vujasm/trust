@@ -45,15 +45,15 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.inn.common.Const;
 import com.inn.itrust.model.io.ext.SecProfileExpressionToModel;
-import com.inn.itrust.model.model.Agent;
-import com.inn.itrust.model.model.Metric;
-import com.inn.itrust.model.model.MetricValue;
-import com.inn.itrust.model.model.SecurityAttribute;
-import com.inn.itrust.model.model.SecurityCapability;
-import com.inn.itrust.model.model.SecurityRequirment;
-import com.inn.itrust.model.model.TResource;
-import com.inn.itrust.model.model.TrustAttribute;
-import com.inn.itrust.model.model.TrustProfile;
+import com.inn.itrust.model.pojo.Agent;
+import com.inn.itrust.model.pojo.Metric;
+import com.inn.itrust.model.pojo.MetricValue;
+import com.inn.itrust.model.pojo.SecurityAttribute;
+import com.inn.itrust.model.pojo.SecurityCapability;
+import com.inn.itrust.model.pojo.SecurityRequirment;
+import com.inn.itrust.model.pojo.TResource;
+import com.inn.itrust.model.pojo.TrustAttribute;
+import com.inn.itrust.model.pojo.TrustProfile;
 import com.inn.itrust.model.types.USDLSecExpression;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.model.vocabulary.Trust;
@@ -129,7 +129,7 @@ public class ToModelParser {
 				while (types.hasNext()) {
 					Resource type = (Resource) types.next();
 					if (attribute != null) {
-						attribute.addType(new com.inn.itrust.model.model.TResource(URI.create(type.getURI())));
+						attribute.addType(new com.inn.itrust.model.pojo.TResource(URI.create(type.getURI())));
 					}
 				}
 				tp.addAttribute(attribute);

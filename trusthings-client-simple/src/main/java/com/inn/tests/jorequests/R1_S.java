@@ -22,9 +22,10 @@ package com.inn.tests.jorequests;
 
 
 import java.net.URI;
+
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
-import com.inn.itrust.model.model.TrustRequest;
+import com.inn.itrust.model.pojo.TrustRequest;
 
 public class R1_S {
 	

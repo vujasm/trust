@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L

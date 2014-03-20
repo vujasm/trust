@@ -24,7 +24,7 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 
-import com.inn.itrust.model.model.TrustAttribute;
+import com.inn.itrust.model.pojo.TrustAttribute;
 
 /**
  * A semantic match operator that semantically matches two given semantic descriptions.

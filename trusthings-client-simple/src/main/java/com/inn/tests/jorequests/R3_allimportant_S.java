@@ -28,7 +28,7 @@ import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
-import com.inn.itrust.model.model.TrustRequest;
+import com.inn.itrust.model.pojo.TrustRequest;
 import com.inn.itrust.op.enums.EnumScoreStrategy;
 
 public class R3_allimportant_S {

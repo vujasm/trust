@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
 import com.inn.common.WarnException;
-import com.inn.itrust.model.model.TrustAttribute;
+import com.inn.itrust.model.pojo.TrustAttribute;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.itrust.model.vocabulary.Trust;
 

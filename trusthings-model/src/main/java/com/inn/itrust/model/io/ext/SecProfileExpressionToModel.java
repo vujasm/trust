@@ -34,10 +34,10 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.OWL2;
-import com.inn.itrust.model.model.SecurityAttribute;
-import com.inn.itrust.model.model.SecurityGoal;
-import com.inn.itrust.model.model.SecurityMechanism;
-import com.inn.itrust.model.model.SecurityTechnology;
+import com.inn.itrust.model.pojo.SecurityAttribute;
+import com.inn.itrust.model.pojo.SecurityGoal;
+import com.inn.itrust.model.pojo.SecurityMechanism;
+import com.inn.itrust.model.pojo.SecurityTechnology;
 import com.inn.itrust.model.vocabulary.UsdlSec;
 
 /**
@@ -103,12 +103,12 @@ public class SecProfileExpressionToModel {
 		}
 	}
 
-	private void fillTypes(com.inn.itrust.model.model.TResource tResource, Resource asResource) {
+	private void fillTypes(com.inn.itrust.model.pojo.TResource tResource, Resource asResource) {
 		Iterator<Resource> types = asResource.as(Individual.class).listRDFTypes(true);
 		while (types.hasNext()) {
 			Resource type = (Resource) types.next();
 			if (tResource != null) {
-				tResource.addType(new com.inn.itrust.model.model.TResource(URI.create(type.getURI())));
+				tResource.addType(new com.inn.itrust.model.pojo.TResource(URI.create(type.getURI())));
 			}
 		}
 	}

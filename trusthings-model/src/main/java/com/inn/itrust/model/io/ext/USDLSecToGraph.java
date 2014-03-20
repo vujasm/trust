@@ -21,7 +21,7 @@ package com.inn.itrust.model.io.ext;
  */
 
 
-import com.inn.itrust.model.model.SecurityAttribute;
+import com.inn.itrust.model.pojo.SecurityAttribute;
 
 public class USDLSecToGraph {
 	

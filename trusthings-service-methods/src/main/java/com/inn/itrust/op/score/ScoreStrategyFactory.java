@@ -23,8 +23,8 @@ package com.inn.itrust.op.score;
 
 import java.util.List;
 
-import com.inn.itrust.model.model.Agent;
-import com.inn.itrust.model.model.TrustAttribute;
+import com.inn.itrust.model.pojo.Agent;
+import com.inn.itrust.model.pojo.TrustAttribute;
 import com.inn.itrust.op.enums.EnumNormalizationType;
 import com.inn.itrust.op.enums.EnumScoreStrategy;
 import com.inn.util.tuple.Tuple2;

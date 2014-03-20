@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L
@@ -23,10 +23,12 @@ package com.inn.itrust.model.model;
 
 import java.net.URI;
 
-public class SecurityTechnology extends TResource {
+public class Matcher extends TResource {
 
-	public SecurityTechnology(URI uri) {
+	public Matcher(URI uri) {
 		super(uri);
 	}
 
+	public void build() {
+	}
 }

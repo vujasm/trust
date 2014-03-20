@@ -21,7 +21,7 @@ package com.inn.itrust.op.propagation;
  */
 
 
-import com.inn.itrust.model.model.Agent;
+import com.inn.itrust.model.pojo.Agent;
 public class TrustAssessmentManagerImpl implements TrustAssessmentManager{
 
 	@Override

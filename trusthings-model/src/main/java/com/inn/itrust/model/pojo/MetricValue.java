@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L
@@ -23,10 +23,32 @@ package com.inn.itrust.model.model;
 
 import java.net.URI;
 
-public class SecurityGoal extends TResource {
+public class MetricValue extends TResource{
 
-	public SecurityGoal(URI uri) {
+	public MetricValue(URI uri) {
 		super(uri);
+	}
+	
+	private MetricValue next;
+	
+	private Double rank;
+	
+	
+	public MetricValue getNext() {
+		return next;
+	}
+	
+	public void setNext(MetricValue next) {
+		this.next = next;
+	}
+	
+	
+	public void setRank(Double rank) {
+		this.rank = rank;
+	}
+	
+	public Double getRank() {
+		return rank;
 	}
 
 }

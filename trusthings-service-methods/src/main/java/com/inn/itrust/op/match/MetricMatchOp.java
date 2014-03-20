@@ -31,8 +31,8 @@ import com.google.common.collect.Ordering;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.inn.common.OrderType;
 import com.inn.itrust.model.io.ToModelParser;
-import com.inn.itrust.model.model.Metric;
-import com.inn.itrust.model.model.MetricValue;
+import com.inn.itrust.model.pojo.Metric;
+import com.inn.itrust.model.pojo.MetricValue;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 
 public class MetricMatchOp {

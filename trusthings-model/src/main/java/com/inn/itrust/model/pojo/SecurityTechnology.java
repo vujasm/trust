@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L
@@ -22,28 +22,11 @@ package com.inn.itrust.model.model;
 
 
 import java.net.URI;
-import java.util.List;
 
-import com.google.common.collect.Lists;
+public class SecurityTechnology extends TResource {
 
-public class SecurityMechanism extends TResource{
-
-	public SecurityMechanism(URI uri) {
+	public SecurityTechnology(URI uri) {
 		super(uri);
 	}
-	
-	public List<SecurityTechnology> getRealizedByTechnology() {
-		return realizedByTechnology;
-	}
-
-	public void addRealizedByTechnology(SecurityTechnology realizedByTechnology) {
-		this.realizedByTechnology.add(realizedByTechnology);
-	}
-	
-	public void removeRealizedByTechnology(SecurityTechnology realizedByTechnology) {
-		this.realizedByTechnology.remove(realizedByTechnology);
-	}
-
-	private List<SecurityTechnology> realizedByTechnology =  Lists.newArrayList();
 
 }

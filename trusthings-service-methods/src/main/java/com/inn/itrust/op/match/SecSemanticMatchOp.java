@@ -27,11 +27,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.inn.itrust.model.model.SecurityAttribute;
-import com.inn.itrust.model.model.SecurityGoal;
-import com.inn.itrust.model.model.SecurityMechanism;
-import com.inn.itrust.model.model.SecurityTechnology;
-import com.inn.itrust.model.model.TrustAttribute;
+import com.inn.itrust.model.pojo.SecurityAttribute;
+import com.inn.itrust.model.pojo.SecurityGoal;
+import com.inn.itrust.model.pojo.SecurityMechanism;
+import com.inn.itrust.model.pojo.SecurityTechnology;
+import com.inn.itrust.model.pojo.TrustAttribute;
 import com.inn.itrust.model.vocabulary.ModelEnum;
 import com.inn.itrust.op.semsim.SemSim;
 import com.inn.itrust.service.kb.KnowledgeBaseManager;

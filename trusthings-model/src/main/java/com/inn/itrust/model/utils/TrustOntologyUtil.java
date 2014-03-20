@@ -35,7 +35,7 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.inn.itrust.model.model.TResource;
+import com.inn.itrust.model.pojo.TResource;
 
 /**
  * 

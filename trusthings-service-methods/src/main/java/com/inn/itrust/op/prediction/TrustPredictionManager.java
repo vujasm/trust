@@ -21,7 +21,7 @@ package com.inn.itrust.op.prediction;
  */
 
 
-import com.inn.itrust.model.model.TResource;
+import com.inn.itrust.model.pojo.TResource;
 
 
 

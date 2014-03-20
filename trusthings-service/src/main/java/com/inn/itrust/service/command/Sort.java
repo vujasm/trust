@@ -27,7 +27,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.inn.common.OrderType;
-import com.inn.itrust.model.model.Agent;
+import com.inn.itrust.model.pojo.Agent;
 import com.inn.util.tuple.Tuple2;
 
 /**

@@ -32,10 +32,10 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.inn.itrust.model.model.Agent;
-import com.inn.itrust.model.model.TResource;
-import com.inn.itrust.model.model.TrustAttribute;
-import com.inn.itrust.model.model.TrustProfile;
+import com.inn.itrust.model.pojo.Agent;
+import com.inn.itrust.model.pojo.TResource;
+import com.inn.itrust.model.pojo.TrustAttribute;
+import com.inn.itrust.model.pojo.TrustProfile;
 import com.inn.itrust.model.vocabulary.NSPrefixes;
 import com.inn.itrust.model.vocabulary.Trust;
 

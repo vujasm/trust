@@ -28,8 +28,8 @@ import org.slf4j.Logger;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.inn.itrust.model.model.Agent;
-import com.inn.itrust.model.model.TrustAttribute;
+import com.inn.itrust.model.pojo.Agent;
+import com.inn.itrust.model.pojo.TrustAttribute;
 import com.inn.itrust.model.utils.TrustOntologyUtil;
 import com.inn.util.tuple.Tuple2;
 

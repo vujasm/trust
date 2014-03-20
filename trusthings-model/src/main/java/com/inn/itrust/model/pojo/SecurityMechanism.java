@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L
@@ -22,13 +22,28 @@ package com.inn.itrust.model.model;
 
 
 import java.net.URI;
+import java.util.List;
 
-public class Matcher extends TResource {
+import com.google.common.collect.Lists;
 
-	public Matcher(URI uri) {
+public class SecurityMechanism extends TResource{
+
+	public SecurityMechanism(URI uri) {
 		super(uri);
 	}
-
-	public void build() {
+	
+	public List<SecurityTechnology> getRealizedByTechnology() {
+		return realizedByTechnology;
 	}
+
+	public void addRealizedByTechnology(SecurityTechnology realizedByTechnology) {
+		this.realizedByTechnology.add(realizedByTechnology);
+	}
+	
+	public void removeRealizedByTechnology(SecurityTechnology realizedByTechnology) {
+		this.realizedByTechnology.remove(realizedByTechnology);
+	}
+
+	private List<SecurityTechnology> realizedByTechnology =  Lists.newArrayList();
+
 }

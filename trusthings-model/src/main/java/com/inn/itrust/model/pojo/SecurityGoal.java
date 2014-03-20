@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L
@@ -23,9 +23,9 @@ package com.inn.itrust.model.model;
 
 import java.net.URI;
 
-public class TrustRequest extends TrustProfile {
+public class SecurityGoal extends TResource {
 
-	public TrustRequest(URI uri) {
+	public SecurityGoal(URI uri) {
 		super(uri);
 	}
 

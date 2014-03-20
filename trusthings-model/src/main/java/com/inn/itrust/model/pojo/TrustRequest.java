@@ -1,4 +1,4 @@
-package com.inn.itrust.model.model;
+package com.inn.itrust.model.pojo;
 
 /*
  * #%L
@@ -22,28 +22,11 @@ package com.inn.itrust.model.model;
 
 
 import java.net.URI;
-import java.util.List;
 
-import com.google.common.collect.Lists;
+public class TrustRequest extends TrustProfile {
 
-public class Metric extends TResource{
-
-	public Metric(URI uri) {
+	public TrustRequest(URI uri) {
 		super(uri);
-	} 
-	
-	private List<MetricValue> metricValues = Lists.newArrayList();
-	
-	
-	public List<MetricValue> getMetricValues() {
-		return metricValues;
 	}
-	
-	public void addMetricValue(final MetricValue metricValue){
-		metricValues.add(metricValue);
-	}
-	
-	
-
 
 }

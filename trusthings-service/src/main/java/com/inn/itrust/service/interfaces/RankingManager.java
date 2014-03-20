@@ -26,7 +26,7 @@ import java.util.List;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
-import com.inn.itrust.model.model.TrustProfile;
+import com.inn.itrust.model.pojo.TrustProfile;
 import com.inn.itrust.op.enums.EnumScoreStrategy;
 import com.inn.util.tuple.Tuple2;
 

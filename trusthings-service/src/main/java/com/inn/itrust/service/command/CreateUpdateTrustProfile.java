@@ -32,7 +32,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.inn.itrust.model.factory.TrustModelFactory;
 import com.inn.itrust.model.io.ToGraphParser;
-import com.inn.itrust.model.model.Agent;
+import com.inn.itrust.model.pojo.Agent;
 import com.inn.itrust.model.vocabulary.Trust;
 import com.inn.itrust.service.collectors.Collector;
 import com.inn.itrust.service.kb.SharedOntModelSpec;
