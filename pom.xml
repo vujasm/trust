@@ -8,8 +8,10 @@
 	<name>itrust</name>
 
 	<properties>
+		<slf4jVersion>1.7.5</slf4jVersion>
 		<license.licenseName>my_license</license.licenseName>
 		<license.licenseResolver>${project.baseUri}/license</license.licenseResolver>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<licenses>
@@ -69,15 +71,15 @@
 
 		<plugins>
 
-        <!-- Tell maven to compile using Java 1.7 -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>1.7</source>
-                <target>1.7</target>
-            </configuration>
-        </plugin>
+			<!-- Tell maven to compile using Java 1.7 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -110,6 +112,18 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- TODO enable me 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4jVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4jVersion}</version>
+		</dependency> -->
+
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>

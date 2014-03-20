@@ -14,7 +14,7 @@
 	</properties>
 	
   <artifactId>itrust-service-methods</artifactId>
-   	<version>${project.parent.version}</version>	
+   		
   <name>itrust-service-methods</name>
   <description>This is descr</description>
       <developers>

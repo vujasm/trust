@@ -13,7 +13,7 @@
 	</properties>
     
   <artifactId>itrust-ui</artifactId>
-     	<version>${project.parent.version}</version>	
+     		
   <name>itrust-ui</name>
   <description>This is descr</description>
       <developers>

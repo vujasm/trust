@@ -8,7 +8,7 @@
         <relativePath>..</relativePath>
     </parent>
     
-   	<version>${project.parent.version}</version>
+   	
 	<artifactId>itrust-model</artifactId>
 	<name>itrust-model</name>
 	<properties>

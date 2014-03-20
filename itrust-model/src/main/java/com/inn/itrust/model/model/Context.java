@@ -23,13 +23,7 @@ package com.inn.itrust.model.model;
 
 /**
  * Context or domain where trust of participants is to be established. 
- * E.g. public transport, tourism,  retail. For each context, there can be
- * a recommended trust profile(s) provided.
- * 
- * 
- * The term context defines the nature of the service or service functions, and each Context has 
- * a name, a type and a functional specification, such as ‘rent a car’ or ‘buy a book’.
- * Context Type can be matched to a Service Type.
+ * E.g. public transport, tourism,  retail, shopping, finance,  news feeds.
  *
  * @author marko
  *

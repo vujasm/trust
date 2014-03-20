@@ -15,7 +15,7 @@
 
 
 	<artifactId>itrust-service</artifactId>
-	<version>${project.parent.version}</version>
+	
 	<name>itrust-service</name>
 	<description>This is descr</description>
 	<developers>

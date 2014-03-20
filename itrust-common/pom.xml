@@ -14,7 +14,6 @@
 	</properties>
     
 	<artifactId>itrust-common</artifactId>
-	<version>${project.parent.version}</version>
 	<name>itrust-common</name>
 	<description>This is descr</description>
 	<developers>
