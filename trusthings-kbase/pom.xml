@@ -15,9 +15,9 @@
 	</properties>
     
     
-    <artifactId>trusthings-service-kb</artifactId>
+    <artifactId>trusthings-kbase</artifactId>
    		
-	<name>trusthings-service-kb</name>
+	<name>trusthings-kbase</name>
 	<description>service commons lib</description>
 	<developers>
 		<developer>

@@ -33,7 +33,7 @@
      <dependencies>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
-			<artifactId>trusthings-service-kb</artifactId>
+			<artifactId>trusthings-kbase</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>

@@ -43,7 +43,7 @@
 	<modules>
 		<module>/trusthings-common</module>
 		<module>/trusthings-model</module>
-		<module>/trusthings-service-kb</module>
+		<module>/trusthings-kbase</module>
 		<module>/trusthings-service-methods</module>
 		<module>/trusthings-service</module>
 		<module>/trusthings-client-simple</module>
