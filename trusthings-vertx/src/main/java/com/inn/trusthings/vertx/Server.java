@@ -63,7 +63,7 @@ public class Server extends Verticle {
 					respondJsonMsgToClient(stringJson, req.response());
 				} catch (Exception e) {
 					String stringJson = new MakeJson().ofError(e);
-					respondJsonMsgToClient(stringJson, req.response());
+					respondJsonErrorMsgToClient(stringJson, req.response());
 				}
 			}
 		});
@@ -104,7 +104,7 @@ public class Server extends Verticle {
 	
 	protected void respondJsonErrorMsgToClient(String message, HttpServerResponse response) {
 		response.headers().add("Content-Type", "text/json; charset=UTF-8");
-		response.setStatusCode(400);
+		response.setStatusCode(500);
 		response.end(new JsonObject(message).encodePrettily());
 	}
 	

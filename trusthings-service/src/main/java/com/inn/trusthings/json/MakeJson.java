@@ -53,8 +53,12 @@ public class MakeJson {
 	
 	
 	public String ofError(Exception e) {
-		// TODO Auto-generated method stub
-		return null;
+		ObjectMapper jacksonMapper = new ObjectMapper();
+		jacksonMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		ObjectNode rootNode = jacksonMapper.createObjectNode();
+		rootNode.put("success", "false");
+		rootNode.put("message", e.getLocalizedMessage());
+		return rootNode.toString();
 	}
 	
 	public static void main(String[] args) {
@@ -72,7 +76,7 @@ public class MakeJson {
 		List<Tuple2<URI, Double>> l = Lists.newArrayList();
 		l.add(new Tuple2<URI, Double>(URI.create("http://localhost"), 1D));
 	
-		System.out.println(new MakeJson().ofRankingResult(l));
+		System.out.println(new MakeJson().ofError(new Exception("tes")));
 	}
 
 }
