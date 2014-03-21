@@ -89,6 +89,17 @@ public class Server extends Verticle {
 			}
 		});
 
+		
+		matcher.noMatch(new Handler<HttpServerRequest>() {
+			@Override
+			public void handle(HttpServerRequest req) {
+				String stringJson = new MakeJson().ofErrorSimpleMessage("bad request");
+				req.response().headers().add("Content-Type", "text/json; charset=UTF-8");
+				req.response().setStatusCode(400);
+				req.response().end(new JsonObject(stringJson).encodePrettily());
+			}
+		});
+		
 		server.requestHandler(matcher);
 		// start the server
 		server.listen(8888);

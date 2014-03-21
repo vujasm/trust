@@ -61,6 +61,15 @@ public class MakeJson {
 		return rootNode.toString();
 	}
 	
+	public String ofErrorSimpleMessage(String message) {
+		ObjectMapper jacksonMapper = new ObjectMapper();
+		jacksonMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		ObjectNode rootNode = jacksonMapper.createObjectNode();
+		rootNode.put("success", "false");
+		rootNode.put("message", message);
+		return rootNode.toString();
+	}
+	
 	public static void main(String[] args) {
 //		JsonObject jo = new JsonObject();
 //		JsonArray array = new JsonArray();
