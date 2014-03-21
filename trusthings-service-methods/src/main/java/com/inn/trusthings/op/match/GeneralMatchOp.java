@@ -45,7 +45,7 @@ import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.service.kb.KnowledgeBaseManager;
 
 /**
- * TODO describe me
+ * General match operator as a entry point for specific matchers
  *@author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */

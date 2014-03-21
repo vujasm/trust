@@ -88,6 +88,8 @@ public class BasicTrustManager implements TrustManager {
 	 * a default strategy for calculating trust index
 	 */
 	private EnumScoreStrategy globalStrategy = EnumScoreStrategy.Weighted_sum_model;
+	
+	private TrustRequest globalTrustRequest = GlobalTrustRequest.instance();
 
 	@Inject
 	public BasicTrustManager(EventBus eventBus, SparqlGraphStoreFactory graphStoreFactory, RankingManager rankingManager, KnowledgeBaseManager kbManager,
@@ -173,13 +175,13 @@ public class BasicTrustManager implements TrustManager {
 
 	@Override
 	public Double obtainTrustIndex(URI resourceURI) throws Exception {
-		final TrustRequest request = newGlobalTrustRequest();
+		final TrustRequest request = getGlobalTrustRequest();
 		return obtainTrustIndex(resourceURI, request);
 	}
 	
 	@Override
 	public List<Tuple2<URI, Double>> obtainTrustIndexes(List<URI> resourceURIs) throws Exception {
-		final TrustRequest request = newGlobalTrustRequest();
+		final TrustRequest request = getGlobalTrustRequest();
 		return processCall(resourceURIs, request, globalStrategy, false, OrderType.DESC, false);
 	}
 
@@ -317,14 +319,16 @@ public class BasicTrustManager implements TrustManager {
 	}
 
 	/**
-	 * Obtains absolute trust request (users' perception of trust is not taken into account)
+	 * Set absolute trust request (users' perception of trust is not taken into account)
 	 * 
 	 * @return
 	 */
-	private TrustRequest newGlobalTrustRequest() {
-		// TODO Define AbsoluteTrustRequest. It should be identified somehow, perhaps thru some survey. For now, we use
-		// a test one.
-		return GlobalTrustRequest.request();
+	public void setGlobalTrustPerception(TrustRequest request) {
+		this.globalTrustRequest = request; 
+	}
+	
+	private TrustRequest getGlobalTrustRequest() {
+		return globalTrustRequest;
 	}
 
 }

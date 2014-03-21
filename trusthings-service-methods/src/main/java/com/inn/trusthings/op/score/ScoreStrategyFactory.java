@@ -30,7 +30,7 @@ import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.util.tuple.Tuple2;
 
 /**
- * TODO describe me
+ * Factory for Trust Scorers
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */

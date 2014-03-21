@@ -30,9 +30,7 @@
     
     <properties>
    			 <license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
-   	 	
-   	 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+   	 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Set pullInDeps to true if you want any modules specified in the 'includes' and 'deploys' fields
     in your mod.json to be automatically pulled in during packaging and added inside your module. Doing this means your
     module won't download and install those dependencies at run-time when they're first requested. -->

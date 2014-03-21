@@ -22,12 +22,9 @@ package com.inn.client.simple;
 
 
 import java.net.URI;
-import java.net.URLEncoder;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
-
-import com.inn.common.Const;
 import com.inn.trusthings.integration.TrustScorer;
 
 public class JustTest {
@@ -42,8 +39,10 @@ public class JustTest {
 				BasicConfigurator.configure();
 				org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
 				TrustScorer s = new TrustScorer();
-				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_F")));
-				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_D")));
+				s.apply(URI.create("http://www.programmableweb.com/api/youtubes"));
+				
+//				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_F")));
+//				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_D")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

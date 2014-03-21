@@ -25,6 +25,7 @@ import java.net.URI;
 import java.util.List;
 
 import com.inn.common.OrderType;
+import com.inn.trusthings.config.GlobalTrustRequest;
 import com.inn.trusthings.model.pojo.TrustRequest;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.kb.KnowledgeBaseManager;
@@ -33,7 +34,7 @@ import com.inn.util.tuple.Tuple2;
 
 
 /**
- * TODO describe me
+ * Trust Manager Interface. It exposes methods for getting the trust indexes, trust ranking or filtering
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
@@ -172,6 +173,14 @@ public interface TrustManager{
 	 * @throws Exception
 	 */
 	boolean isTrusted(URI resourceURI) throws Exception;
+	
+
+	
+	/**
+	 *  Set global trust request. If not set, the trust manager will be using the default the default one {@link GlobalTrustRequest}
+	 * @param request Trust request
+	 */
+	public void setGlobalTrustPerception(TrustRequest request);
 	
 
 }

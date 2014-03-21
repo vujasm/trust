@@ -57,7 +57,7 @@ public class SecSemanticMatchOp {
 	}
 
 
-	// TODO consider to enhance result by implementing support for graph similarity matching
+	// enhance result by implementing support for graph similarity matching
 	// by SML (Semantic Measures Library) and/or graph querying
 	/**
 	 * 

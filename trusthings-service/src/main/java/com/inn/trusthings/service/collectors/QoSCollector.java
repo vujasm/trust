@@ -29,7 +29,6 @@ public class QoSCollector implements Collector{
 
 	@Override
 	public Model collectInformation(URI uri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

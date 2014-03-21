@@ -67,7 +67,6 @@ public class BasicRankingManager implements RankingManager {
 	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
 		this.knowledgeBaseManager = kbManager;
 		OntModel model = kbManager.getModelByJenaModelFetcher(ModelEnum.Trust.getURI());
-		//FIXME rename TrustOntologyUtil and/or see what else should be passed for init
 		TrustOntologyUtil.init(model);
 	}
 
@@ -94,7 +93,7 @@ public class BasicRankingManager implements RankingManager {
 			if (trustProfile!=null)
 				list.add(trustProfile);
 		}
-		return null;
+		return list;
 	}
 
 	private List<Tuple2<Agent, Double>> obtainScores(List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,

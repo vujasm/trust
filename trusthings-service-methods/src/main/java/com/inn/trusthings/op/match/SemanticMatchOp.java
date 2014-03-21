@@ -40,8 +40,6 @@ public class SemanticMatchOp {
 //		this.kbManager = kbManager;
 	}
 
-	// TODO consider to enhance result by implementing support for graph similarity matching
-	// by SML (Semantic Measures Library) and/or graph querying
 	public SemanticMatchOutput apply(TrustAttribute reqAttribute, List<TrustAttribute> attributes) {
 		// TODO implement me
 		log.warn("SemanticMatchOp is not implemented. Returned value is SemanticMatchOutput.Sem_Exact");

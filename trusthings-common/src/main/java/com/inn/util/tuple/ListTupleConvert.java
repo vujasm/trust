@@ -27,7 +27,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 /**
- * TODO describe me
+ * ListTupleConvert util
  *@author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */

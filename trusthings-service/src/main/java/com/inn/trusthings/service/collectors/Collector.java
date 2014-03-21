@@ -37,10 +37,9 @@ public interface Collector {
 	 * 
 	 * FIXME maybe collectors should be asynchr services, which run periodically.
 	 * However, in this case there should be runtime monitors, because after collector returns its value,
-	 * the value may influence the trust assessement.
-	 * @param uri TODO
-	 * @param uri 
-	 * @return TODO
+	 * the value may influence the trust assessment.
+	 * @param uri resource uri
+	 * @return Model
 	 * 
 	 */
 	Model collectInformation(URI uri);

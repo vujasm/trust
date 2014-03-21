@@ -34,8 +34,10 @@ public class TrustAssessmentManagerImpl implements TrustAssessmentManager{
 	}
 
 	private boolean isComposed(Agent agent) {
-		//TODO - trebam nacin za provjeriti da li je service / service object
-		//composed od drugih
+		//TODO isComposed of TrustAssessmentManagerImpl implement me
+		/*
+		 * there should be info if agent is composed
+		 */
 		return true;
 	}
 
