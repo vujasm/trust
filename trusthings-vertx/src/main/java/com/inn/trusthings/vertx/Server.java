@@ -69,13 +69,13 @@ public class Server extends Verticle {
 			}
 		});
 		
-		matcher.get("/pages/:page", new Handler<HttpServerRequest>() {
+		matcher.get("/web/:page", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
 				String userDir = System.getProperties().getProperty("user.dir");
 				String file = req.params().get("page");
 				req.response().setStatusCode(200);
-				req.response().sendFile(userDir + "/pages/" + file);
+				req.response().sendFile(userDir + "/web/" + file);
 			}
 		});
 
@@ -86,7 +86,7 @@ public class Server extends Verticle {
 				String file = "index.html";
 //				req.response().headers().add("Content-Type", "text/html; charset=UTF-8");
 				req.response().setStatusCode(200);
-				req.response().sendFile(userDir + "/pages/" + file);
+				req.response().sendFile(userDir + "/web/" + file);
 			}
 		});
 
@@ -103,7 +103,7 @@ public class Server extends Verticle {
 		
 		server.requestHandler(matcher);
 		// start the server
-		server.listen(8888);
+		server.listen(8888, "localhost");
 		container.logger().info("Webserver started, listening on port: 8888");
 	}
 	
