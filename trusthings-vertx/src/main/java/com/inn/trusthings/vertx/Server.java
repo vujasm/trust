@@ -42,6 +42,7 @@ import com.inn.util.tuple.Tuple2;
 public class Server extends Verticle {
 
 	public void start() {
+		
 
 		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
@@ -93,9 +94,9 @@ public class Server extends Verticle {
 		matcher.noMatch(new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
-				String stringJson = new MakeJson().ofErrorSimpleMessage("bad request");
+				String stringJson = new MakeJson().ofErrorSimpleMessage("bad request. the url you requested not found.");
 				req.response().headers().add("Content-Type", "text/json; charset=UTF-8");
-				req.response().setStatusCode(400);
+				req.response().setStatusCode(404);
 				req.response().end(new JsonObject(stringJson).encodePrettily());
 			}
 		});
