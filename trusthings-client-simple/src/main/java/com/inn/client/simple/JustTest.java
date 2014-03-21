@@ -25,6 +25,8 @@ import java.net.URI;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
+
+import com.inn.trusthings.integration.TrustFilter;
 import com.inn.trusthings.integration.TrustScorer;
 
 public class JustTest {
@@ -40,6 +42,8 @@ public class JustTest {
 				org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
 				TrustScorer s = new TrustScorer();
 				s.apply(URI.create("http://www.programmableweb.com/api/youtubes"));
+				
+				TrustFilter f = new TrustFilter();				f.apply(URI.create("http://www.programmableweb.com/api/youtube"));
 				
 //				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_F")));
 //				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_D")));
