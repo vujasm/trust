@@ -83,6 +83,16 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.inn.trusthings.Configuration;
 import com.inn.trusthings.model.vocabulary.NSPrefixes;
 
+
+/**
+ * 
+ * Note: ConcurrentSparqlGraphStoreManager is taken from iServe library https://github.com/kmi/iserve. 
+ * It has been slightly modified (some stuff is removed). The idea was to use SparqlGraphStore store for services and their security/trust NFPs 
+ * Depending on further design decision in regards to the store of trust annotations / indexes this class will be kept or removed.  
+ * TODO address the SparqlGraphStore store
+ * 
+ *
+ */
 public class ConcurrentSparqlGraphStoreManager implements SparqlGraphStoreManager {
 
     private static final Logger log = LoggerFactory.getLogger(ConcurrentSparqlGraphStoreManager.class);

@@ -69,7 +69,7 @@ public class CreateUpdateTrustProfile {
 		if (model.contains(new Agent(uri).asJenaResource(), Trust.hasTrustProfile)) {
 			log.info("Profile for " + uri.toASCIIString() + " exists and has been found");
 		} else {
-			log.info("No profile exists for " + uri.toASCIIString() + ". System will create one and add it to the model graf.");
+			log.info("No profile exists for " + uri.toASCIIString() + ". Creating the profile.");
 			Agent service = new Agent(uri);
 			TrustModelFactory trm = new TrustModelFactory(UIDGenerator.instanceTrust);
 			service.setHasTrustProfile(trm.createTrustProfile());

@@ -76,7 +76,7 @@ public class CommandSemanticMetadataFetch {
 		}
 		// try to find it on the web or via location mapping
 		if (externalModel == null && useMappedLocations) {
-			log.info("obtaining model from external source using  Jena's embedded support for retrieving models");
+			log.info("obtaining model using jena location mapping support for retrieving models");
 			try {
 				externalModel = new JenaModelFether().fetch(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
 			} catch (org.apache.jena.atlas.web.HttpException e) {

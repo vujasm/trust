@@ -65,6 +65,17 @@ import com.inn.trusthings.service.kb.mapping.IgnoredModels;
 import com.inn.trusthings.service.kb.mapping.LocationMapping;
 
 
+/**
+ * 
+ * Note: KnowledgeBaseManagerSparql is taken from iServe library https://github.com/kmi/iserve. 
+ * It has been modified (most of methods from original version are removed bcs not needed at this point). 
+ * The idea was to use same store for services and their security/trust NFPs 
+ * Depending on further design decision in regards to the store of trust annotations / indexes this class will be kept or removed.  
+ * TODO address the trust store
+ * 
+ * 
+ *
+ */
 public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
 
     private static final Logger log = LoggerFactory.getLogger(KnowledgeBaseManagerSparql.class);

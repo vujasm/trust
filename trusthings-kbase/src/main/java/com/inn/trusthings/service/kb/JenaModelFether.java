@@ -25,6 +25,8 @@ import java.net.URI;
 
 import org.apache.jena.riot.adapters.AdapterFileManager;
 import org.apache.jena.riot.stream.StreamManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -34,6 +36,8 @@ import com.inn.trusthings.service.kb.mapping.LocationMapping;
 
 public class JenaModelFether {
 
+	
+	private static final Logger log = LoggerFactory.getLogger(JenaModelFether.class);
 	
 	public OntModel fetch(URI uri, String syntax, OntModelSpec modelSpec) {
 		return fetch(uri.toASCIIString(), syntax, modelSpec);
@@ -49,7 +53,12 @@ public class JenaModelFether {
 	public OntModel fetch(String url, String syntax, OntModelSpec modelSpec) {
 		StreamManager streamManager = StreamManager.makeDefaultStreamManager();
 		streamManager.setLocationMapper(LocationMapping.obtainLocationMapper());
-		Model m = new AdapterFileManager(streamManager, LocationMapping.obtainLocationMapper()).loadModel(url);
+		String localuri = LocationMapping.resolveLocation(url);
+		if (localuri == null){
+			 log.info("model with id <"+url+"> is not conained in a test set");
+			 return null;
+		}
+		Model m = new AdapterFileManager(streamManager).loadModel(localuri);
 	    OntModel model = ModelFactory.createOntologyModel(modelSpec, m);
 	    return model;
 
