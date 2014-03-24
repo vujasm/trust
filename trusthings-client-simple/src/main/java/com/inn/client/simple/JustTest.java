@@ -41,7 +41,9 @@ public class JustTest {
 				BasicConfigurator.configure();
 				org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
 				TrustScorer s = new TrustScorer();
-				s.apply(URI.create("http://www.programmableweb.com/api/youtubes"));
+				
+				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
+				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtubes")));
 				
 				TrustFilter f = new TrustFilter();				f.apply(URI.create("http://www.programmableweb.com/api/youtube"));
 				
