@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.kb;
+package com.inn.trusthings.kb;
 
 /*
  * #%L
@@ -32,7 +32,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.trusthings.service.kb.mapping.LocationMapping;
+import com.inn.trusthings.kb.config.LocationMapping;
 
 public class JenaModelFether {
 

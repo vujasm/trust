@@ -32,9 +32,9 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.trusthings.service.kb.JenaModelFether;
-import com.inn.trusthings.service.kb.SharedOntModelSpec;
-import com.inn.trusthings.service.kb.SparqlGraphStoreManager;
+import com.inn.trusthings.kb.JenaModelFether;
+import com.inn.trusthings.kb.SharedOntModelSpec;
+import com.inn.trusthings.kb.SparqlGraphStoreManager;
 
 /**
  * Metadata fetch command responsible for obtaining resource annotations either from local file system / online / triple

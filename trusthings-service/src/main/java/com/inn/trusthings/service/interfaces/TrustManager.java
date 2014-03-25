@@ -25,10 +25,10 @@ import java.net.URI;
 import java.util.List;
 
 import com.inn.common.OrderType;
-import com.inn.trusthings.config.GlobalTrustRequest;
+import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.model.pojo.TrustRequest;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
-import com.inn.trusthings.service.kb.KnowledgeBaseManager;
+import com.inn.trusthings.service.config.GlobalTrustRequest;
 import com.inn.util.tree.Tree;
 import com.inn.util.tuple.Tuple2;
 

@@ -34,6 +34,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
+import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.model.io.ToModelParser;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
 import com.inn.trusthings.model.pojo.Agent;
@@ -48,7 +49,6 @@ import com.inn.trusthings.op.score.AbstractScoreStrategy;
 import com.inn.trusthings.op.score.ScoreStrategyFactory;
 import com.inn.trusthings.service.command.Sort;
 import com.inn.trusthings.service.interfaces.RankingManager;
-import com.inn.trusthings.service.kb.KnowledgeBaseManager;
 import com.inn.util.tuple.Tuple2;
 
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.trusthings.service.kb;
+package com.inn.trusthings.kb;
 
 /*
  * #%L
@@ -61,8 +61,8 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.inn.trusthings.Configuration;
-import com.inn.trusthings.service.kb.mapping.IgnoredModels;
-import com.inn.trusthings.service.kb.mapping.LocationMapping;
+import com.inn.trusthings.kb.config.IgnoredModels;
+import com.inn.trusthings.kb.config.LocationMapping;
 
 
 /**

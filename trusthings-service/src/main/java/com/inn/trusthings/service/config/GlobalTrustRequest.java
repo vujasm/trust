@@ -1,4 +1,4 @@
-package com.inn.trusthings.config;
+package com.inn.trusthings.service.config;
 
 /*
  * #%L

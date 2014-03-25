@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.kb.mapping;
+package com.inn.trusthings.kb.config;
 
 /*
  * #%L

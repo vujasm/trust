@@ -23,14 +23,55 @@ package com.inn.trusthings.service.collectors;
 
 import java.net.URI;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
+import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.inn.trusthings.model.factory.TrustModelFactory;
+import com.inn.trusthings.model.pojo.Agent;
+import com.inn.trusthings.model.pojo.TrustAttribute;
+import com.inn.trusthings.model.vocabulary.Trust;
+import com.inn.uti.httpclient.Client;
+import com.inn.util.uri.UIDGenerator;
 
-public class ReputationCollector implements Collector{
+public class ReputationCollector extends AbstractCollector{
+
+	public ReputationCollector(String sourceUri) {
+		super(sourceUri);
+	}
 
 	@Override
 	public Model collectInformation(URI uri) {
+		Resource  r = new Agent(uri).asJenaResource();
+		Double reputationIndex = obtainReputationIndex(uri);
+		if (reputationIndex != null){
+			OntModel model = ModelFactory.createOntologyModel();
+			TrustModelFactory trm = new TrustModelFactory(UIDGenerator.instanceTrust);
+			TrustAttribute attribute = trm.createTrustAttibute();
+			attribute.addType(URI.create(Trust.Reputation.getURI()));
+			attribute.setValue(reputationIndex);
+			attribute.setValueDatatype(XSDDouble.XSDdouble);
+			model.add(r,Trust.hasAttribute, attribute.asJenaResource());
+			return model;
+		}
+		else{
+			return null;	
+		}
+	}
+
+	private double obtainReputationIndex(URI uri) {
 		
-		return null;
+		Client client =  new Client();
+		JsonNode node = client.getJsonAsJsonNode(getSourceUri()+"/srvcid"+uri.toASCIIString());
+		//TODO process node
+		return 0;
+	}
+
+	@Override
+	public String getName() {
+		return "reputation";
 	}
 	
 }

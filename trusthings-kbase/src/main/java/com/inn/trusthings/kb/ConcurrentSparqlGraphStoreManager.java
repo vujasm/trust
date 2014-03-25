@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.inn.trusthings.service.kb;
+package com.inn.trusthings.kb;
 
 /*
  * #%L

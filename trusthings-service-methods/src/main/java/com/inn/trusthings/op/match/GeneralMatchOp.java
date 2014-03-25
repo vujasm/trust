@@ -39,10 +39,10 @@ package com.inn.trusthings.op.match;
 
 import java.util.List;
 
+import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.trusthings.model.vocabulary.Trust;
-import com.inn.trusthings.service.kb.KnowledgeBaseManager;
 
 /**
  * General match operator as a entry point for specific matchers

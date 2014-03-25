@@ -36,7 +36,7 @@ public class SemanticMatchOp {
 
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(SemanticMatchOp.class);
 
-	public SemanticMatchOp(com.inn.trusthings.service.kb.KnowledgeBaseManager kbManager) {
+	public SemanticMatchOp(com.inn.trusthings.kb.KnowledgeBaseManager kbManager) {
 //		this.kbManager = kbManager;
 	}
 

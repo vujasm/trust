@@ -42,25 +42,22 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
 import com.inn.trusthings.Configuration;
-import com.inn.trusthings.config.GlobalTrustRequest;
+import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.kb.SparqlGraphStoreFactory;
+import com.inn.trusthings.kb.SparqlGraphStoreManager;
+import com.inn.trusthings.kb.config.IgnoredModels;
+import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.pojo.TrustRequest;
 import com.inn.trusthings.model.pojo.Value;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
-import com.inn.trusthings.service.collectors.ActivityCollector;
 import com.inn.trusthings.service.collectors.Collector;
-import com.inn.trusthings.service.collectors.FeedbackCollector;
-import com.inn.trusthings.service.collectors.QoSCollector;
-import com.inn.trusthings.service.collectors.ReputationCollector;
 import com.inn.trusthings.service.command.CommandSemanticMetadataFetch;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
+import com.inn.trusthings.service.config.CollectorEnum;
+import com.inn.trusthings.service.config.GlobalTrustRequest;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustManager;
-import com.inn.trusthings.service.kb.KnowledgeBaseManager;
-import com.inn.trusthings.service.kb.SparqlGraphStoreFactory;
-import com.inn.trusthings.service.kb.SparqlGraphStoreManager;
-import com.inn.trusthings.service.kb.mapping.IgnoredModels;
-import com.inn.trusthings.service.kb.mapping.LocationMapping;
 import com.inn.util.tree.Node;
 import com.inn.util.tree.Tree;
 import com.inn.util.tuple.ListTuple;
@@ -225,10 +222,11 @@ public class BasicTrustManager implements TrustManager {
 	 * data into rdf model.
 	 */
 	private void registerCollectors() {
-		collectors.add(new ReputationCollector());
-		collectors.add(new FeedbackCollector());
-		collectors.add(new ActivityCollector());
-		collectors.add(new QoSCollector());
+		//TODO enable collectors
+//		collectors.add(CollectorEnum.Activity.getCollector());
+//		collectors.add(CollectorEnum.QoS.getCollector());
+//		collectors.add(CollectorEnum.Reputation.getCollector());
+//		collectors.add(CollectorEnum.Feedback.getCollector());
 	}
 
 	/**

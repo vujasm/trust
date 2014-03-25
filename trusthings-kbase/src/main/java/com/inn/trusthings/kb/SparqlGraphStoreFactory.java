@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.kb;
+package com.inn.trusthings.kb;
 
 /*
  * #%L

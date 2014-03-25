@@ -25,11 +25,20 @@ import java.net.URI;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class FeedbackCollector implements Collector{
+public class FeedbackCollector extends AbstractCollector{
+
+	public FeedbackCollector(String sourceUri) {
+		super(sourceUri);
+	}
 
 	@Override
 	public Model collectInformation(URI uri) {
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "feedback.rating";
 	}
 
 }

@@ -25,10 +25,19 @@ import java.net.URI;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class ActivityCollector implements Collector{
+public class ActivityCollector extends AbstractCollector{
+
+	public ActivityCollector(String sourceUri) {
+		super(sourceUri);
+	}
 
 	@Override
 	public Model collectInformation(URI uri) {
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "activityMonitoring";
 	}
 }

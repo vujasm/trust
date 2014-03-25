@@ -43,5 +43,7 @@ public interface Collector {
 	 * 
 	 */
 	Model collectInformation(URI uri);
+	
+	abstract String getName();
 
 }

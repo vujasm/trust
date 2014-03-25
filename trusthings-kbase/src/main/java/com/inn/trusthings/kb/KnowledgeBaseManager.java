@@ -1,4 +1,5 @@
-package com.inn.trusthings.service.kb;
+
+package com.inn.trusthings.kb;
 
 /*
  * #%L
@@ -20,6 +21,7 @@ package com.inn.trusthings.service.kb;
  * #L%
  */
 
+
 import java.net.URI;
 import java.util.Set;
 
@@ -27,36 +29,22 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public interface SparqlGraphStoreManager {
+public interface KnowledgeBaseManager {
 
-    URI getSparqlQueryEndpoint();
+    boolean containsModel(URI modelUri);
 
-    URI getSparqlUpdateEndpoint();
+    boolean deleteModel(URI modelUri);
 
-    URI getSparqlServiceEndpoint();
-
-    boolean canBeModified();
-
-    void addModelToGraph(URI graphUri, Model data);
-
-    boolean containsGraph(URI graphUri);
-
-    void deleteGraph(URI graphUri);
-
-    void putGraph(Model data);
-
-    void putGraph(URI graphUri, Model data);
-
-    void clearDataset();
-
-    Set<URI> listStoredGraphs();
-
-    Set<URI> listResourcesByQuery(String queryStr, String variableName);
+    SparqlGraphStoreManager getGraphStoreManager();
     
-    OntModel getGraph(URI graphUri, OntModelSpec modelSpec) ;
+    Set<URI> getLoadedModels();
 
-    OntModel getGraph(URI graphUri);
-    
-    OntModel getGraphSparqlQuery(URI graphUri);
-    
+    OntModel getModelByJenaModelFetcher(String modelUri);
+
+    OntModel getModelByJenaModelFetcher(String modelUri, OntModelSpec spec);
+
+	void uploadModel(URI modelUri, Model model, boolean forceUpdate, boolean isOntology);
+
+	void uploadOntology(String modelName, Model model, boolean forceUpdate);
+
 }

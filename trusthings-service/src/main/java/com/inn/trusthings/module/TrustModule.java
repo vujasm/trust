@@ -29,13 +29,13 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
+import com.inn.trusthings.kb.ConcurrentSparqlGraphStoreManager;
+import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.kb.KnowledgeBaseManagerSparql;
+import com.inn.trusthings.kb.SparqlGraphStoreFactory;
+import com.inn.trusthings.kb.SparqlGraphStoreManager;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustManager;
-import com.inn.trusthings.service.kb.ConcurrentSparqlGraphStoreManager;
-import com.inn.trusthings.service.kb.KnowledgeBaseManager;
-import com.inn.trusthings.service.kb.KnowledgeBaseManagerSparql;
-import com.inn.trusthings.service.kb.SparqlGraphStoreFactory;
-import com.inn.trusthings.service.kb.SparqlGraphStoreManager;
 import com.inn.trusthings.service.mgrs.impl.BasicRankingManager;
 import com.inn.trusthings.service.mgrs.impl.BasicTrustManager;
 

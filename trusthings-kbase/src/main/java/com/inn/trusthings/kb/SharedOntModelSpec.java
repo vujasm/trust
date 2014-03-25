@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.kb;
+package com.inn.trusthings.kb;
 
 /*
  * #%L
@@ -27,8 +27,8 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.inn.trusthings.service.kb.mapping.IgnoredModels;
-import com.inn.trusthings.service.kb.mapping.LocationMapping;
+import com.inn.trusthings.kb.config.IgnoredModels;
+import com.inn.trusthings.kb.config.LocationMapping;
 
 public class SharedOntModelSpec {
 	

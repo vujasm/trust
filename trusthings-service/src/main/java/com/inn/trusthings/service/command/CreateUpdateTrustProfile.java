@@ -30,12 +30,12 @@ import org.slf4j.LoggerFactory;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.io.ToGraphParser;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.service.collectors.Collector;
-import com.inn.trusthings.service.kb.SharedOntModelSpec;
 import com.inn.util.uri.UIDGenerator;
 
 
@@ -76,6 +76,7 @@ public class CreateUpdateTrustProfile {
 			OntModel m = new ToGraphParser().parse(service);
 			model = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model.union(m));
 		}
+		//TODO filter collector to obtain only data needed by a user
 		for (Collector collector : collectors) {
 			Model collectedData = collector.collectInformation(uri);
 			if (collectedData != null) {

@@ -27,6 +27,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityGoal;
 import com.inn.trusthings.model.pojo.SecurityMechanism;
@@ -34,8 +36,6 @@ import com.inn.trusthings.model.pojo.SecurityTechnology;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.op.semsim.SemSim;
-import com.inn.trusthings.service.kb.KnowledgeBaseManager;
-import com.inn.trusthings.service.kb.mapping.LocationMapping;
 
 /**
  * A specialized semantic match operator that semantically matches two given security semantic descriptions.
@@ -50,7 +50,7 @@ public class SecSemanticMatchOp {
 	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
 	
 	@SuppressWarnings("unused")
-	private com.inn.trusthings.service.kb.KnowledgeBaseManager kbManager;
+	private com.inn.trusthings.kb.KnowledgeBaseManager kbManager;
 
 	public SecSemanticMatchOp(KnowledgeBaseManager kbManager) {
 		this.kbManager = kbManager;

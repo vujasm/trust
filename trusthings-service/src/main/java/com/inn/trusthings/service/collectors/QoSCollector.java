@@ -25,11 +25,20 @@ import java.net.URI;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class QoSCollector implements Collector{
+public class QoSCollector extends AbstractCollector{
+
+	public QoSCollector(String sourceUri) {
+		super(sourceUri);
+	}
 
 	@Override
 	public Model collectInformation(URI uri) {
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "qos";
 	}
 
 }
