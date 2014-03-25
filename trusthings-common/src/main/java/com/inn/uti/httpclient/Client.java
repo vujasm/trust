@@ -37,15 +37,12 @@ public class Client {
 	 */
 	public JsonNode getJsonAsJsonNode(String uri) {
 
-		String output = getJSONReponse(uri);
-		System.out.println(output);
+		final String output = getJSONReponse(uri);
 		ObjectMapper m = new ObjectMapper();
 		JsonNode node = null;
 		try {
 			node = m.readTree(output);
-
-			// System.out.println(node.get("indexes").get(0).get("rank"));
-
+			// to parse -> node.get("indexes").get(0).get("rank"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Failed JSON parsing: error code : " + e.getMessage());
@@ -60,6 +57,7 @@ public class Client {
 	 */
 	public String getJSONReponse(String uri) {
 
+		//FIXME pass username/password as parameters
 		com.sun.jersey.api.client.Client client = com.sun.jersey.api.client.Client.create();
 		client.addFilter(new HTTPBasicAuthFilter("username", "password"));
 		WebResource webResource = client
