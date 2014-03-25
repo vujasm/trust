@@ -23,7 +23,6 @@ package com.inn.restcall;
 public class Rest {
 
 	public static void main(String[] args) {
-
 		String s = new com.inn.uti.httpclient.Client()
 				.getJSONReponse("http://localhost:8888/trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_a.owls%23CITY_TRAFFIC_SERVICE_A");
 		System.out.println(s);
