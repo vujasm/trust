@@ -1,9 +1,9 @@
 {
 
 
-   "host": "localhost",
+   "host":"localhost",
 	
-   "port": "8888",
+   "port":8887,
 
   // Java verticle
   "main":"com.inn.trusthings.vertx.Server",

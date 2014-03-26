@@ -31,9 +31,12 @@ import org.vertx.java.core.http.RouteMatcher;
 import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.platform.Verticle;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.hp.hpl.jena.ontology.OntDocumentManager;
+import com.hp.hpl.jena.ontology.OntologyException;
 import com.inn.trusthings.json.MakeJson;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -82,7 +85,7 @@ public class Server extends Verticle {
 		matcher.get("/", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
-				String userDir = System.getProperties().getProperty("user.dir");				
+				String userDir = System.getProperties().getProperty("user.dir");	
 				String file = "index.html";
 //				req.response().headers().add("Content-Type", "text/html; charset=UTF-8");
 				req.response().setStatusCode(200);
@@ -103,8 +106,20 @@ public class Server extends Verticle {
 		
 		server.requestHandler(matcher);
 		// start the server
-		server.listen(8888, "localhost");
-		container.logger().info("Webserver started, listening on port: 8888");
+		System.out.println("Config is " + container.config());
+		Integer port = container.config().getInteger("port");
+		String host = container.config().getString("host");
+		server.listen(((port)!=null)? port:8888, ((host)!=null)? host:"localhost");
+		String userDir = System.getProperties().getProperty("user.dir");	
+		try {
+			System.out.println(new ObjectMapper().toString());
+			System.out.println(userDir + new OntologyException("aa"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		container.logger().info("Webserver started");
+
 	}
 	
 
