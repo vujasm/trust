@@ -20,6 +20,7 @@ package com.inn.trusthings.vertx;
  */
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
@@ -111,13 +112,7 @@ public class Server extends Verticle {
 		String host = container.config().getString("host");
 		server.listen(((port)!=null)? port:8888, ((host)!=null)? host:"localhost");
 		String userDir = System.getProperties().getProperty("user.dir");	
-		try {
-			System.out.println(new ObjectMapper().toString());
-			System.out.println(userDir + new OntologyException("aa"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("The userDir is: "+userDir);
 		container.logger().info("Webserver started");
 
 	}

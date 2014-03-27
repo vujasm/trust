@@ -22,6 +22,7 @@ package com.inn.client.simple;
 
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
@@ -33,6 +34,9 @@ public class JustTest {
 	
 	public static void main(String[] args) {
 //		System.out.println(SemSim.class.getClassLoader().getResource("ontologies/usdl-sec.ttl").toString());
+		
+	
+		
 		try {
 //			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
 //			System.out.println(encodedUrl);
