@@ -1,19 +1,12 @@
 {
-
-
-   "host":"localhost",
-	
-   "port":8887,
-
-  // Java verticle
+  "host":"localhost",	
+  "port":8887,
+  "webroot":"C:/Users/marko/webroot",
   "main":"com.inn.trusthings.vertx.Server",
-
   "description":"Innova Trust Module",
   "licenses": ["The Apache Software License Version 2.0"],
   "author": "Marko Vujasinovic @ INNOVA S.p.A.",
-
   "keywords": ["internet of things", "compose fp7", "trust", "ranking"],
   "homepage": "http://compose-project.eu",
-
   "auto-redeploy": true
 }
