@@ -43,9 +43,9 @@ public class ReputationCollector extends AbstractCollector{
 	}
 
 	@Override
-	public Model collectInformation(URI uri) {
-		Resource  r = new Agent(uri).asJenaResource();
-		Double reputationIndex = obtainReputationIndex(uri);
+	public Model collectInformation(String resourceIdentifier) {
+		Resource  r = new Agent(URI.create(resourceIdentifier)).asJenaResource();
+		Double reputationIndex = obtainReputationIndex(URI.create(resourceIdentifier));
 		if (reputationIndex != null){
 			OntModel model = ModelFactory.createOntologyModel();
 			TrustModelFactory trm = new TrustModelFactory(UIDGenerator.instanceTrust);

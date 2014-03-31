@@ -21,8 +21,6 @@ package com.inn.trusthings.service.collectors;
  */
 
 
-import java.net.URI;
-
 import com.hp.hpl.jena.rdf.model.Model;
 
 public class ActivityCollector extends AbstractCollector{
@@ -32,7 +30,7 @@ public class ActivityCollector extends AbstractCollector{
 	}
 
 	@Override
-	public Model collectInformation(URI uri) {
+	public Model collectInformation(String resourceIdentifier) {
 		return null;
 	}
 

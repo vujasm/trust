@@ -78,7 +78,7 @@ public class CreateUpdateTrustProfile {
 		}
 		//TODO filter collector to obtain only data needed by a user
 		for (Collector collector : collectors) {
-			Model collectedData = collector.collectInformation(uri);
+			Model collectedData = collector.collectInformation(uri.toASCIIString());
 			if (collectedData != null) {
 				model = (OntModel) model.union(collectedData);
 			}
