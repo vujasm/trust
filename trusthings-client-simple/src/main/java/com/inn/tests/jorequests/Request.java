@@ -30,7 +30,7 @@ import com.inn.trusthings.model.pojo.SecurityGoal;
 import com.inn.trusthings.model.pojo.SecurityMechanism;
 import com.inn.trusthings.model.pojo.SecurityTechnology;
 import com.inn.trusthings.model.pojo.TrustAttribute;
-import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.types.USDLSecExpression;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.model.vocabulary.UsdlSec;
@@ -43,9 +43,9 @@ public class Request {
 	 * 
 	 * @return
 	 */
-	protected static TrustRequest request_Example_1() {
+	protected static TrustCriteria request_Example_1() {
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustRequest trustRequest = factory.createTrustRequest();
+		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -81,10 +81,10 @@ public class Request {
 	 * 
 	 * @return
 	 */
-	protected static TrustRequest request_Example_2() {
+	protected static TrustCriteria request_Example_2() {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustRequest trustRequest = factory.createTrustRequest();
+		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -131,10 +131,10 @@ public class Request {
 	 * 
 	 * @return
 	 */
-	protected static TrustRequest request_Example_3(double... importance) {
+	protected static TrustCriteria request_Example_3(double... importance) {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustRequest trustRequest = factory.createTrustRequest();
+		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -177,10 +177,10 @@ public class Request {
 		return trustRequest;
 	}
 
-	protected static TrustRequest request_Example_4(double... importance) {
+	protected static TrustCriteria request_Example_4(double... importance) {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustRequest trustRequest = factory.createTrustRequest();
+		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));

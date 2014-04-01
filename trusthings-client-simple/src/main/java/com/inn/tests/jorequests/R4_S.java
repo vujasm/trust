@@ -29,7 +29,7 @@ import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
-import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 
 public class R4_S {
@@ -40,7 +40,7 @@ public class R4_S {
 		services.add(URI.create(Const.Ts3));
 		services.add(URI.create(Const.Ts4));
 		services.add(URI.create(Const.Ts5));
-		TrustRequest trustRequest = Request.request_Example_4(1, 1, 1, 1);
+		TrustCriteria trustRequest = Request.request_Example_4(1, 1, 1, 1);
 		try {
 			new TrustModuleTest().getTrustManager().
 			rankResources(services, trustRequest, EnumScoreStrategy.Weighted_sum_model, false, OrderType.DESC);

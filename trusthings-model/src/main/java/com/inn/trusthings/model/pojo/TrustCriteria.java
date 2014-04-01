@@ -23,9 +23,9 @@ package com.inn.trusthings.model.pojo;
 
 import java.net.URI;
 
-public class TrustRequest extends TrustProfile {
+public class TrustCriteria extends TrustProfile {
 
-	public TrustRequest(URI uri) {
+	public TrustCriteria(URI uri) {
 		super(uri);
 	}
 

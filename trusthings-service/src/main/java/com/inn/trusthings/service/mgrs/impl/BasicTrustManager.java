@@ -47,7 +47,7 @@ import com.inn.trusthings.kb.SparqlGraphStoreFactory;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
 import com.inn.trusthings.kb.config.IgnoredModels;
 import com.inn.trusthings.kb.config.LocationMapping;
-import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.Value;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.collectors.Collector;
@@ -55,7 +55,7 @@ import com.inn.trusthings.service.command.CommandSemanticMetadataFetch;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
 import com.inn.trusthings.service.config.CollectorEnum;
-import com.inn.trusthings.service.config.GlobalTrustRequest;
+import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustManager;
 import com.inn.util.tree.Node;
@@ -86,7 +86,7 @@ public class BasicTrustManager implements TrustManager {
 	 */
 	private EnumScoreStrategy globalStrategy = EnumScoreStrategy.Weighted_sum_model;
 	
-	private TrustRequest globalTrustRequest = GlobalTrustRequest.instance();
+	private TrustCriteria globalTrustCriteria = GlobalTrustCriteria.instance();
 
 	@Inject
 	public BasicTrustManager(EventBus eventBus, SparqlGraphStoreFactory graphStoreFactory, RankingManager rankingManager, KnowledgeBaseManager kbManager,
@@ -157,43 +157,43 @@ public class BasicTrustManager implements TrustManager {
 	 * 
 	 */
 	@Override
-	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustRequest trustRequest, OrderType order) throws Exception {
-		return rankResources(resources, trustRequest, globalStrategy, true, order);
+	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustCriteria criteria, OrderType order) throws Exception {
+		return rankResources(resources, criteria, globalStrategy, true, order);
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order) throws Exception {
-		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
+	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order) throws Exception {
+		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, scoreStrategy, excludeIfAttributeMissing, order, false);
 //		final List<URI> rankedList = ListTupleConvert.toListOfTupleElement(scores, 1);
 		return scores;
 	}
 
 	@Override
 	public Double obtainTrustIndex(URI resourceURI) throws Exception {
-		final TrustRequest request = getGlobalTrustRequest();
-		return obtainTrustIndex(resourceURI, request);
+		final TrustCriteria criteria = getGlobalTrustCriteria();
+		return obtainTrustIndex(resourceURI, criteria);
 	}
 	
 	@Override
 	public List<Tuple2<URI, Double>> obtainTrustIndexes(List<URI> resourceURIs) throws Exception {
-		final TrustRequest request = getGlobalTrustRequest();
-		return processCall(resourceURIs, request, globalStrategy, false, OrderType.DESC, false);
+		final TrustCriteria criteria = getGlobalTrustCriteria();
+		return processCall(resourceURIs, criteria, globalStrategy, false, OrderType.DESC, false);
 	}
 
-	public Double obtainTrustIndex(URI resourceURI, TrustRequest request) throws Exception {
+	public Double obtainTrustIndex(URI resourceURI, TrustCriteria criteria) throws Exception {
 		List<URI> list = Lists.newArrayList();
 		list.add(resourceURI);
-		final List<Tuple2<URI, Double>> scores = processCall(list, request, globalStrategy, false, OrderType.DESC, false);
+		final List<Tuple2<URI, Double>> scores = processCall(list, criteria, globalStrategy, false, OrderType.DESC, false);
 		return scores.get(0).getT2();
 	}
 
 	@Override
-	public List<URI> filterResources(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
+	public List<URI> filterResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
 			final Double thresholdValue) throws Exception {
-		final List<Tuple2<URI, Double>> scores = processCall(resources, request, scoreStrategy, excludeIfAttributeMissing, order, false);
+		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, scoreStrategy, excludeIfAttributeMissing, order, false);
 		Iterable<Tuple2<URI, Double>> filtered = Iterables.filter(scores, new Predicate<Tuple2<URI, Double>>() {
 			@Override
 			public boolean apply(Tuple2<URI, Double> t) {
@@ -214,8 +214,8 @@ public class BasicTrustManager implements TrustManager {
 	}
 
 	@Override
-	public List<URI> filterResources(List<URI> resources, TrustRequest request, OrderType order, Double thresholdValue) throws Exception {
-		return filterResources(resources, request, globalStrategy, true, order, thresholdValue);
+	public List<URI> filterResources(List<URI> resources, TrustCriteria criteria, OrderType order, Double thresholdValue) throws Exception {
+		return filterResources(resources, criteria, globalStrategy, true, order, thresholdValue);
 	}
 
 	/**
@@ -275,7 +275,7 @@ public class BasicTrustManager implements TrustManager {
 	/**
 	 * 
 	 * @param resources
-	 * @param request
+	 * @param recriteriaquest
 	 * @param scoreStrategy
 	 * @param excludeIfAttributeMissing
 	 * @param order
@@ -283,7 +283,7 @@ public class BasicTrustManager implements TrustManager {
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustRequest request, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
+	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
 			boolean logRequest) throws Exception {
 		final List<Tuple2<URI, Model>> tupleModels = obtainModels(resources);
 		if (logRequest) {
@@ -295,12 +295,12 @@ public class BasicTrustManager implements TrustManager {
 				return (Model) t.getT2();
 			}
 		});
-		return rankingManager.rankServiceModels(models, request, scoreStrategy, excludeIfAttributeMissing, order);
+		return rankingManager.rankServiceModels(models, criteria, scoreStrategy, excludeIfAttributeMissing, order);
 	}
 
 	@Override
-	public boolean isTrusted(URI resourceURI, TrustRequest request, boolean useCache) throws Exception {
-		final Double index = obtainTrustIndex(resourceURI, request);
+	public boolean isTrusted(URI resourceURI, TrustCriteria criteria) throws Exception {
+		final Double index = obtainTrustIndex(resourceURI, criteria);
 		return new Value(index).isTrustworthy();
 	}
 
@@ -318,16 +318,16 @@ public class BasicTrustManager implements TrustManager {
 	}
 
 	/**
-	 * Set absolute trust request (users' perception of trust is not taken into account)
+	 * Set absolute trust criteria (users' perception of trust is not taken into account)
 	 * 
 	 * @return
 	 */
-	public void setGlobalTrustPerception(TrustRequest request) {
-		this.globalTrustRequest = request; 
+	public void setGlobalTrustPerception(TrustCriteria criteria) {
+		this.globalTrustCriteria = criteria; 
 	}
 	
-	private TrustRequest getGlobalTrustRequest() {
-		return globalTrustRequest;
+	private TrustCriteria getGlobalTrustCriteria() {
+		return globalTrustCriteria;
 	}
 
 }

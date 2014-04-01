@@ -25,7 +25,7 @@ import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityMechanism;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustProfile;
-import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.util.uri.UIDGenerator;
 
 public class TrustModelFactory {
@@ -40,8 +40,8 @@ public class TrustModelFactory {
 		return new TrustProfile(uidGenerator.create(TrustProfile.class));
 	}
 	
-	public TrustRequest createTrustRequest() {
-		return new TrustRequest(uidGenerator.create(TrustRequest.class));
+	public TrustCriteria createTrustRequest() {
+		return new TrustCriteria(uidGenerator.create(TrustCriteria.class));
 	}
 
 	public TrustAttribute createTrustAttibute() {

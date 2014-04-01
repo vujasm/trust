@@ -29,7 +29,7 @@ import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityGoal;
 import com.inn.trusthings.model.pojo.TrustAttribute;
-import com.inn.trusthings.model.pojo.TrustRequest;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.types.USDLSecExpression;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.model.vocabulary.UsdlSec;
@@ -42,12 +42,12 @@ import com.inn.util.uri.UIDGenerator;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  * 
  */
-public class GlobalTrustRequest {
+public class GlobalTrustCriteria {
 
-	public static TrustRequest instance() {
+	public static TrustCriteria instance() {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustRequest trustRequest = factory.createTrustRequest();
+		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		//reputation
 		TrustAttribute att1 = factory.createTrustAttibute();
