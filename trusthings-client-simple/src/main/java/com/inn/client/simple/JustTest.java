@@ -27,8 +27,13 @@ import java.net.URISyntaxException;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 
+import com.google.inject.Guice;
 import com.inn.trusthings.integration.TrustFilter;
 import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.model.vocabulary.ModelEnum;
+import com.inn.trusthings.module.TrustModule;
+import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.util.tree.Tree;
 
 public class JustTest {
 	
@@ -44,13 +49,19 @@ public class JustTest {
 				BasicConfigurator.resetConfiguration();
 				BasicConfigurator.configure();
 				org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
-				TrustScorer s = new TrustScorer();
 				
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtubes")));
 				
-				TrustFilter f = new TrustFilter();				f.apply(URI.create("http://www.programmableweb.com/api/youtube"));
+				TrustManager trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
+				Tree t = trustManager.obtainTaxonomy(ModelEnum.Trust.getURI(), "http://www.compose-project.eu/ns/web-of-things/trust#TrustAttribute");
+				System.out.println(t);
 				
+//				TrustScorer s = new TrustScorer();
+//				
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtubes")));
+//				
+//				TrustFilter f = new TrustFilter();				f.apply(URI.create("http://www.programmableweb.com/api/youtube"));
+//				
 //				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_F")));
 //				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_D")));
 			} catch (Exception e) {

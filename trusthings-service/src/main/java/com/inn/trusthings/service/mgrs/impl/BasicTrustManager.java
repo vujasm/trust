@@ -106,7 +106,8 @@ public class BasicTrustManager implements TrustManager {
 	@Override
 	public Tree obtainTaxonomy(String graphName, String rootConcept) {
 		Tree tree = new Tree();
-		OntModel model = graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
+		OntModel model = kbManager.getModelByJenaModelFetcher(graphName,  OntModelSpec.OWL_MEM_TRANS_INF);//graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
+		System.out.println(model);
 		OntClass ontClass = model.getOntClass(rootConcept);
 		Node root = new Node(ontClass.getLocalName());
 		tree.setRoot(root);
