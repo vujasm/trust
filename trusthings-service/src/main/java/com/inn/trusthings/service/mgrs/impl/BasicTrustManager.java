@@ -173,13 +173,13 @@ public class BasicTrustManager implements TrustManager {
 
 	@Override
 	public Double obtainTrustIndex(URI resourceURI) throws Exception {
-		final TrustCriteria criteria = getGlobalTrustCriteria();
+		final TrustCriteria criteria = getGlobalTrustPerception();
 		return obtainTrustIndex(resourceURI, criteria);
 	}
 	
 	@Override
 	public List<Tuple2<URI, Double>> obtainTrustIndexes(List<URI> resourceURIs) throws Exception {
-		final TrustCriteria criteria = getGlobalTrustCriteria();
+		final TrustCriteria criteria = getGlobalTrustPerception();
 		return processCall(resourceURIs, criteria, globalStrategy, false, OrderType.DESC, false);
 	}
 
@@ -326,7 +326,7 @@ public class BasicTrustManager implements TrustManager {
 		this.globalTrustCriteria = criteria; 
 	}
 	
-	private TrustCriteria getGlobalTrustCriteria() {
+	public TrustCriteria getGlobalTrustPerception() {
 		return globalTrustCriteria;
 	}
 

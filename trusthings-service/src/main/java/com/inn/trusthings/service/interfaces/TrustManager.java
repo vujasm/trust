@@ -182,5 +182,8 @@ public interface TrustManager{
 	 */
 	public void setGlobalTrustPerception(TrustCriteria criteria);
 	
+	
+	public TrustCriteria getGlobalTrustPerception();
+	
 
 }

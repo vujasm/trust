@@ -39,7 +39,7 @@
 		
 <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#NFP_SECURITY_PRICE>
 		a   wl:NonfunctionalParameter , trust:QoSAttribute ;
-		trust:hasValue "0.3"^^<http://www.w3.org/2001/XMLSchema#double> .
+		trust:hasValue "0.5"^^<http://www.w3.org/2001/XMLSchema#double> .
 	  
 <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFICREREPORT_PROCESS>
       a       msm:Operation ;

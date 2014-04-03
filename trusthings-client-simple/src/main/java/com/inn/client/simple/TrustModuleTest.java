@@ -44,7 +44,7 @@ import com.inn.util.tree.Tree;
 public class TrustModuleTest {
 
 	protected static final Logger log = LoggerFactory.getLogger(TrustModuleTest.class);
-	Level level = Level.INFO;
+	Level level = Level.OFF;
 
 
 	private Injector injector;

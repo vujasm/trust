@@ -35,8 +35,10 @@ import org.vertx.java.platform.Verticle;
 import com.google.common.collect.Lists;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.inn.common.OrderType;
 import com.inn.trusthings.json.MakeJson;
 import com.inn.trusthings.module.TrustModule;
+import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.interfaces.TrustManager;
 import com.inn.util.tuple.Tuple2;
 
@@ -65,6 +67,25 @@ public class Server extends Verticle {
 				try {
 					List<URI> list = castToListUris(ids); 
 					List<Tuple2<URI, Double>> result = trustManager.obtainTrustIndexes(list);
+					String stringJson = new MakeJson().ofRankingResult(result);
+					respondJsonMsgToClient(stringJson, req.response());
+				} catch (Exception e) {
+					String stringJson = new MakeJson().ofError(e);
+					respondJsonErrorMsgToClient(stringJson, req.response());
+				}
+			}
+		});
+		
+		matcher.get("/trusthingsrank", new Handler<HttpServerRequest>() {
+			@Override
+			public void handle(HttpServerRequest req) {
+				Injector injector = Guice.createInjector(new TrustModule());
+				final TrustManager trustManager = injector.getInstance(TrustManager.class);
+				List<String> ids = req.params().getAll("srvcid");
+				try {
+					List<URI> list = castToListUris(ids); 
+					List<Tuple2<URI, Double>> result = trustManager.rankResources(list, trustManager.getGlobalTrustPerception(), 
+							EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
 					String stringJson = new MakeJson().ofRankingResult(result);
 					respondJsonMsgToClient(stringJson, req.response());
 				} catch (Exception e) {
