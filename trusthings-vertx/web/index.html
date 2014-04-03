@@ -7,21 +7,18 @@
     <table border="0" cellpadding="10">
       <tr>
         <td>
-          <img src="http://www.compose-project.eu/sites/all/themes/omega_compose/logo.png">
+          <img src="web/logo.png">
         </td>
         <td>
-          <h1>Trusthings - Trustworthy IoT Services</h1>
         </td>
       </tr>
     </table>
-
-    <p>This is the home page for the prototype of Trustworthy Internet of Things Services Web service. 
-    The service does computation of trust index of Internet of Things Services and their ranking. </p>
+    <p>This is the home page for the prototype of a Web service for evaluating trust index of Internet of Things Services and their ranking. </p>
     <p>To do simple tests, with this <a href="/web/request.json">request</a>, you can execute either of the following links:
     <ul>
-      <li>Compute Service 'A'<a href="trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_a.owls%23CITY_TRAFFIC_SERVICE_A">trust index</a>.
-  	  <li>Compute Service 'B' <a href="trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_b.owls%23CITY_TRAFFIC_SERVICE_B">trust index</a>.
-  	  <li>Services 'A', 'B', 'C' <a href="trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_a.owls%23CITY_TRAFFIC_SERVICE_A&srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_b.owls%23CITY_TRAFFIC_SERVICE_B"">rank A and B</a>.
+      <li>Compute Service <a href="/web/city_traffic_service_A.txt">'A'</a>  <a href="trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_a.owls%23CITY_TRAFFIC_SERVICE_A"> trust index</a>.
+  	  <li>Compute Service <a href="/web/city_traffic_service_B.txt">'B'</a>  <a href="trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_b.owls%23CITY_TRAFFIC_SERVICE_B"> trust index</a>.
+  	  <li>Services 'A', 'B'  <a href="trusthings?srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_a.owls%23CITY_TRAFFIC_SERVICE_A&srvcid=http%3A%2F%2F127.0.0.1%2Fservices%2F1.1%2Fcity_traffic_service_b.owls%23CITY_TRAFFIC_SERVICE_B"">click here to rank A and B</a>.
     </ul>
   </body>
 </html>
