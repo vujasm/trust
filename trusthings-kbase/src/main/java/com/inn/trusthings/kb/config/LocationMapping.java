@@ -35,23 +35,13 @@ public class LocationMapping {
 	public static Builder<String, String> getMapping() {
 		
 		ImmutableMap.Builder<String, String> map = ImmutableMap.builder();
-		
-		
-		//FIXME remove this stuff out of here
 
 		map.put(ModelEnum.Trust.getURI(),  					Const.repoOntologies+"trustontology.ttl");
 		map.put(ModelEnum.SecuritypolicyVocab.getURI(),		Const.repoOntologies+"securitypolicyvocab.ttl");
 		map.put(ModelEnum.UsdlSec.getURI(),					Const.repoOntologies+"usdl-sec.ttl");
 		map.put(ModelEnum.Ssn.getURI(),						Const.repoOntologies+"ssn.owl");
 		map.put(ModelEnum.SecurityProfiles.getURI(), 		Const.repoOntologies+"securityprofiles.ttl");
-		map.put(ModelEnum.Dul.getURI(), 							"http://www.loa-cnr.it/ontologies/DUL.owl");
-
-		map.put(Const.Ts3, Const.repoModels+"city_traffic_service_A.ttl");
-		map.put(Const.Ts4, Const.repoModels+"city_traffic_service_B.ttl");
-		map.put(Const.Ts5, Const.repoModels+"city_traffic_service_C.ttl");
-		map.put("http://www.programmableweb.com/api/flickr", Const.repoModels+"api_flickr.ttl");
-		map.put("http://www.programmableweb.com/api/twitter", Const.repoModels+"api_twitter.ttl");
-		map.put("http://www.programmableweb.com/api/youtube", Const.repoModels+"api_youtube.ttl");
+		map.put(ModelEnum.Dul.getURI(), 					"http://www.loa-cnr.it/ontologies/DUL.owl");
 		
         return map;
 	}

@@ -158,7 +158,7 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
         for (URI modelUri : modelUris) {
             // Only fetch those that are not there
             if (!this.graphStoreManager.containsGraph(modelUri)) {
-            	   Model m = new JenaModelFether().fetch(modelUri.toASCIIString(), Syntax.RDFXML.getName(), SharedOntModelSpec.getModelSpecShared());
+            	   Model m = RDFModelsHandler.getGlobalInstance().fetch(modelUri.toASCIIString(), Syntax.RDFXML.getName(), SharedOntModelSpec.getModelSpecShared());
                    this.graphStoreManager.putGraph(m);
             }
         }
@@ -203,7 +203,7 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
     @Override
     public OntModel getModelByJenaModelFetcher(String modelUri, OntModelSpec spec) {
     	spec.setDocumentManager(SharedOntModelSpec.getDocumentManagerShared());
-    	Model model =  new JenaModelFether().fetch(URI.create(modelUri),"TURTLE", spec);
+    	Model model =  RDFModelsHandler.getGlobalInstance().fetch(URI.create(modelUri),"TURTLE", spec);
     	OntModel oModel = ModelFactory.createOntologyModel(spec, model);
     	return oModel;
     }

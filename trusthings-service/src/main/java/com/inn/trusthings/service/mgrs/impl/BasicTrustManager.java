@@ -20,6 +20,7 @@ package com.inn.trusthings.service.mgrs.impl;
  * #L%
  */
 
+import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
 import java.util.Set;
@@ -42,7 +43,9 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
 import com.inn.trusthings.Configuration;
+import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreFactory;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
 import com.inn.trusthings.kb.config.IgnoredModels;
@@ -54,7 +57,6 @@ import com.inn.trusthings.service.collectors.Collector;
 import com.inn.trusthings.service.command.CommandSemanticMetadataFetch;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
-import com.inn.trusthings.service.config.CollectorEnum;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -107,7 +109,6 @@ public class BasicTrustManager implements TrustManager {
 	public Tree obtainTaxonomy(String graphName, String rootConcept) {
 		Tree tree = new Tree();
 		OntModel model = kbManager.getModelByJenaModelFetcher(graphName,  OntModelSpec.OWL_MEM_TRANS_INF);//graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
-		System.out.println(model);
 		OntClass ontClass = model.getOntClass(rootConcept);
 		Node root = new Node(ontClass.getLocalName());
 		tree.setRoot(root);
@@ -322,6 +323,14 @@ public class BasicTrustManager implements TrustManager {
 	
 	public TrustCriteria getGlobalTrustPerception() {
 		return globalTrustCriteria;
+	}
+	
+	
+	@Override
+	public void addResourceDescription(URI resourceURI, InputStream inputStream) {
+		//TODO - consider to replace with some real backend db
+		RDFModelsHandler.getGlobalInstance().fetch(resourceURI.toASCIIString(), inputStream,  SharedOntModelSpec.getModelSpecShared());
+		
 	}
 
 }

@@ -37,11 +37,16 @@ import com.inn.trusthings.service.interfaces.TrustManager;
  */
 public class TrustScorer implements Scorer{
 	
-	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
+	private com.inn.trusthings.service.interfaces.TrustManager trustManager;
+	
 	public TrustScorer() {
 		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 	}
 	
+	public TrustScorer(TrustManager trustManager) {
+		this.trustManager = trustManager;
+	}
+
 	/**
 	 * returns trust index of the resource identified with serviceId URI
 	 */

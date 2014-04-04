@@ -29,15 +29,9 @@ public class Const {
 	
 	public static final String underScore = "_";
 	
-	//TODO remove the Ts constants 
-	public static final String Ts3 = "http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_A";
-	public static final String Ts4 = "http://127.0.0.1/services/1.1/city_traffic_service_b.owls#CITY_TRAFFIC_SERVICE_B";
-	public static final String Ts5 = "http://127.0.0.1/services/1.1/city_traffic_service_c.owls#CITY_TRAFFIC_SERVICE_C";
-
 	public static String repoModels = "modelrepo/";
 	public static String repoOntologies = "ontologies/";
-	
-	
+		
 	public static String ParserNameSecurityProfileAsUSDLSec = "usdlsec";
 
 }

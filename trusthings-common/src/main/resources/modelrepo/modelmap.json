@@ -1,0 +1,8 @@
+{
+	"http://localhost/services/CITY_TRAFFIC_SERVICE_A" : "city_traffic_service_A.ttl",
+	"http://localhost/services/CITY_TRAFFIC_SERVICE_B" : "city_traffic_service_B.ttl",
+	"http://localhost/services/CITY_TRAFFIC_SERVICE_C" : "city_traffic_service_C.ttl",
+	"http://www.programmableweb.com/api/flickr" : "api_flickr.ttl",
+	"http://www.programmableweb.com/api/twitter" : "api_twitter.ttl",
+	"http://www.programmableweb.com/api/youtube" : "api_youtube.ttl"
+}

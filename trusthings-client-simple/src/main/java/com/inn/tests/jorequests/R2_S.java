@@ -26,8 +26,8 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
-import com.inn.common.Const;
 import com.inn.common.OrderType;
+import com.inn.testtemp.DescriptionsEnum;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 
@@ -36,9 +36,9 @@ public class R2_S {
 	public static void main(String[] args) {
 		
 		List<URI> services = Lists.newArrayList();
-		services.add(URI.create(Const.Ts3));
-		services.add(URI.create(Const.Ts4));
-		services.add(URI.create(Const.Ts5));
+		services.add(URI.create(DescriptionsEnum.TSA.getURI()));
+		services.add(URI.create(DescriptionsEnum.TSB.getURI()));
+		services.add(URI.create(DescriptionsEnum.TSC.getURI()));
 		TrustCriteria trustRequest = Request.request_Example_2();
 		try {
 			new TrustModuleTest().getTrustManager().

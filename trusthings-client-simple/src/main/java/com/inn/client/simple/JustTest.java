@@ -21,50 +21,32 @@ package com.inn.client.simple;
  */
 
 
+import java.io.FileInputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
-
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
 
 import com.google.inject.Guice;
-import com.inn.trusthings.integration.TrustFilter;
 import com.inn.trusthings.integration.TrustScorer;
-import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
-import com.inn.util.tree.Tree;
 
 public class JustTest {
 	
 	public static void main(String[] args) {
-//		System.out.println(SemSim.class.getClassLoader().getResource("ontologies/usdl-sec.ttl").toString());
-		
-	
-		
-		try {
-//			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
-//			System.out.println(encodedUrl);
+
 			try {
 				
+				URI youtube = URI.create("http://www.programmableweb.com/api/youtube");
+				String loc = "C://D-Data//Git//itrust//trusthings-common//src//main//resources//modelrepo//";
 				TrustManager trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
-				Tree t = trustManager.obtainTaxonomy(ModelEnum.Trust.getURI(), "http://www.compose-project.eu/ns/web-of-things/trust#TrustAttribute");
-				System.out.println(t);
-				
-//				TrustScorer s = new TrustScorer();
+				FileInputStream is = new FileInputStream(loc+"api_flickr.ttl");
+				trustManager.addResourceDescription(youtube, is);
+				TrustScorer s = new TrustScorer(trustManager);
+				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
+				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
 //				
-//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
-//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtubes")));
-//				
-//				TrustFilter f = new TrustFilter();				f.apply(URI.create("http://www.programmableweb.com/api/youtube"));
-//				
-//				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_F")));
-//				System.out.println(s.apply(URI.create("http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_D")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 }

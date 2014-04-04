@@ -43,6 +43,11 @@ public class TrustFilter implements Filter {
 		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 	}
 	
+	public TrustFilter(TrustManager trustManager) {
+		this.trustManager = trustManager;
+	}
+
+	
 	/**
 	 * returns true if resource identified with serviceId URI
 	 */

@@ -24,7 +24,7 @@ package com.inn.tests.jorequests;
 import java.net.URI;
 
 import com.inn.client.simple.TrustModuleTest;
-import com.inn.common.Const;
+import com.inn.testtemp.DescriptionsEnum;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 
 public class R1_S {
@@ -33,7 +33,7 @@ public class R1_S {
 		
 		TrustCriteria trustRequest = Request.request_Example_1();
 		try {
-			new TrustModuleTest().getTrustManager().obtainTrustIndex(URI.create(Const.Ts3), trustRequest);
+			new TrustModuleTest().getTrustManager().obtainTrustIndex(URI.create(DescriptionsEnum.TSA.getURI()), trustRequest);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -32,7 +32,7 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.trusthings.kb.JenaModelFether;
+import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
 
@@ -76,9 +76,21 @@ public class CommandSemanticMetadataFetch {
 		}
 		// try to find it on the web or via location mapping
 		if (externalModel == null && useMappedLocations) {
-			log.info("obtaining model using jena location mapping support for retrieving models");
+			log.info("obtaining model using com.inn.RDFModelHandler for loading / retrieving {cached} models. "
+					+ "	Caching is "+RDFModelsHandler.getGlobalInstance().isCachingModels());
 			try {
-				externalModel = new JenaModelFether().fetch(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
+			
+			   externalModel = RDFModelsHandler.getGlobalInstance().
+							fetchDescriptionFromFileSystem(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
+
+				if ( externalModel == null){
+						log.info("requested model for "+ uri.toASCIIString()+ " not found. If you have description use "
+								+ "addResourceDescription(URI resourceURI, InputStream inputStream) of TrustManager to add it into module");
+
+				}
+				
+			
+				
 			} catch (org.apache.jena.atlas.web.HttpException e) {
 				log.info(" There was model retrival failure. Failed to retrive model because " + e.getMessage());
 			}
