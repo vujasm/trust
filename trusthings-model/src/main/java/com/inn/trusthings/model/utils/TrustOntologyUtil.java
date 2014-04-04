@@ -124,11 +124,7 @@ public class TrustOntologyUtil {
 		}));
 	}
 	
-	//FIXME - vec na ovom nivou ce morati imati semanticki retrival, jer ako korisnik trazi secAttr a resource je anotiran sa sec capab
-	//tada metoda findType nece raditi. Moram naci sve nad tipove / podtipove i uraditi retrival.
-	//note ---- ipak sam odlucio da ne. jer ako reputation ima subklase activity/populariyu/rating tada ce
-	//za atribut reputation dobiti i popularity/rating. Mozda najbolje da korisnik iskaze direktno da li zeli security capab ili sec req
-	//jer to zapravo i jesu dva razlicita (disjoint) pojma
+	
 	public   synchronized <T extends TResource> List<T> filterByTypeDirect(final List<T> resources, final URI type) {
 		List<T> list = Lists.newArrayList(Iterables.filter(resources, new Predicate<T>() {
 			@Override

@@ -147,12 +147,6 @@ public class BasicTrustManager implements TrustManager {
 		return kbManager;
 	}
 
-	@Override
-	public String listTrustParameters() {
-		//TODO implement me
-		return null;
-	}
-
 	/**
 	 * 
 	 */

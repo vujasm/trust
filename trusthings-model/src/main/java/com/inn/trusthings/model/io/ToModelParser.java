@@ -111,8 +111,7 @@ public class ToModelParser {
 				Individual individual = rdfNode.as(Individual.class);
 				Iterator<Resource> types = individual.listRDFTypes(true);
 
-				// FIXME razlozi ovo nekako da nije zakovano. mozda da mapiras
-				// ili preko datatype koji u slucaju securitija nosi usdl-sec
+				// FIXME it needs better design, more generic type checking
 				if (attribute == null) {
 					if (isOfType(individual, Trust.SecurityCapability.getURI())) {
 						attribute = new SecurityCapability(URI.create(individual.getURI()));
@@ -163,7 +162,7 @@ public class ToModelParser {
 		final RDFDatatype datype = individualValue.asLiteral().getDatatype();
 		final String lexicalForm = individualValue.asLiteral().getLexicalForm();
 		
-		//TODO uradi elegantnije - razlozi i implementiraj slucaj kad je opis ne iz predefinisanog securityprofila vec zapravo expression
+		//TODO needs better design/implementation. Not supported when sec description is not comming from predefined profile, but it in fact an expression
 		if (datype.getURI().equals(USDLSecExpression.TYPE.getURI())  && lexicalForm.startsWith(ModelEnum.SecurityProfiles.getURI())) {
 			SecProfileExpressionToModel parser = (SecProfileExpressionToModel) specificParsers.get(Const.ParserNameSecurityProfileAsUSDLSec);
 			if (parser == null) {

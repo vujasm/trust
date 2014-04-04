@@ -39,7 +39,7 @@ import com.inn.trusthings.model.pojo.TrustProfile;
 import com.inn.trusthings.model.vocabulary.NSPrefixes;
 import com.inn.trusthings.model.vocabulary.Trust;
 
-//TODO check if this class implemented 
+//TODO check if this class implementation is done 
 public class ToGraphParser {
 
 	private static final Logger log = LoggerFactory.getLogger(ToGraphParser.class);

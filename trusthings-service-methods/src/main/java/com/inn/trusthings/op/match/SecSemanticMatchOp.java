@@ -208,7 +208,7 @@ public class SecSemanticMatchOp {
 
 	private double invokeSemSim(URI uri1, URI uri2) throws Exception{
 		/*
-		 * TODO before calling semsim, it should be checked for disjointness and if disjoint return 0. 
+		 * TODO consider: before calling semsim, it should be checked for disjointness and if disjoint return 0. 
 		 * The check for disjointness is slow with Jena but DL reasoners (e.g. Fact++) could be of better value. 
 		 * For the moment, we set disjointness threshold on a semsim result
 		 */

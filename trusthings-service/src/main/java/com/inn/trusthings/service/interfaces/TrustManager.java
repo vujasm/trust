@@ -41,13 +41,6 @@ import com.inn.util.tuple.Tuple2;
 public interface TrustManager{
 
 	/**
-	 * retrives TrustAttribute taxonomy from data store/
-	 * 
-	 * @return
-	 */
-	String listTrustParameters();
-
-	/**
 	 * @return KnowledgeBaseManager
 	 */
 	KnowledgeBaseManager getKnowledgeBaseManager();
