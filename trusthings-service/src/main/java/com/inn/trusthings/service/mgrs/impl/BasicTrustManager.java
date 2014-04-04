@@ -306,7 +306,7 @@ public class BasicTrustManager implements TrustManager {
 
 	@Override
 	public boolean match(URI resource1uri, URI resource2uri) throws Exception {
-		// TODO Implement S-S match
+		// TODO implement S-S match
 		// get profiles and trust criteria and do vice-versa matching
 		return false;
 	}

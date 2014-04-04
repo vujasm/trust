@@ -37,7 +37,7 @@ public class LocationMapping {
 		ImmutableMap.Builder<String, String> map = ImmutableMap.builder();
 		
 		
-		//FIXME - Remove this stuff out of here
+		//FIXME remove this stuff out of here
 
 		map.put(ModelEnum.Trust.getURI(),  					Const.repoOntologies+"trustontology.ttl");
 		map.put(ModelEnum.SecuritypolicyVocab.getURI(),		Const.repoOntologies+"securitypolicyvocab.ttl");

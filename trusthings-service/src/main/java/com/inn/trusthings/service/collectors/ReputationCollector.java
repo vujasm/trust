@@ -65,6 +65,7 @@ public class ReputationCollector extends AbstractCollector{
 		
 		Client client =  new Client();
 		JsonNode node = client.getJsonAsJsonNode(getSourceUri()+"/srvcid"+uri.toASCIIString());
+		System.out.println(node);
 		//TODO process obtained reputation bundle
 		return 0;
 	}

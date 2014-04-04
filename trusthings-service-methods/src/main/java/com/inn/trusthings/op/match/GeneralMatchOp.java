@@ -64,7 +64,6 @@ public class GeneralMatchOp {
 	
 	public double apply(TrustAttribute reqAttribute, List<TrustAttribute> attributes) throws Exception {
 		if (attributes.isEmpty()){
-			//TODO
 			// If there is no attribute matching requested attribute,then value is
 			// 0. this is pessimistic approach.
 			// A optimistic approach would be to remove attribute out of

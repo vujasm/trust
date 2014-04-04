@@ -84,7 +84,7 @@ public class BasicRankingManager implements RankingManager {
 		return sortedList;
 	}
 	
-	//TODO see if needed to remove
+	//TODO to remove?
 	protected List<TrustProfile> modelsToTrustPOJO(List<Model> models) throws Exception{
 		List<TrustProfile> list = Lists.newArrayList();
 		for (Model model : models) {

@@ -27,15 +27,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.Const;
-import com.inn.common.OrderType;
-import com.inn.trusthings.model.pojo.TrustCriteria;
-import com.inn.trusthings.op.enums.EnumScoreStrategy;
+
 import com.inn.trusthings.service.interfaces.TrustManager;
 
 public class All_R1_S {
