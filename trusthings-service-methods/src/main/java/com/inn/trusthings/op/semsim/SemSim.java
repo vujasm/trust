@@ -20,17 +20,18 @@ package com.inn.trusthings.op.semsim;
  * #L%
  */
 
+import java.io.InputStream;
+
 import org.openrdf.model.URI;
 import org.openrdf.model.impl.ValueFactoryImpl;
+import org.openrdf.rio.RDFFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import slib.sglib.algo.graph.utils.GAction;
 import slib.sglib.algo.graph.utils.GActionType;
-import slib.sglib.io.conf.GDataConf;
-import slib.sglib.io.conf.GraphConf;
-import slib.sglib.io.loader.GraphLoaderGeneric;
-import slib.sglib.io.util.GFormat;
+import slib.sglib.algo.graph.utils.GraphActionExecutor;
+import slib.sglib.io.loader.rdf.RDFLoader;
 import slib.sglib.model.graph.G;
 import slib.sglib.model.impl.graph.memory.GraphMemory;
 import slib.sglib.model.impl.repo.URIFactoryMemory;
@@ -40,7 +41,6 @@ import slib.sml.sm.core.metrics.ic.utils.IC_Conf_Topo;
 import slib.sml.sm.core.metrics.ic.utils.ICconf;
 import slib.sml.sm.core.utils.SMConstants;
 import slib.sml.sm.core.utils.SMconf;
-import slib.utils.ex.SLIB_Exception;
 import slib.utils.impl.Timer;
 
 /**
@@ -70,20 +70,16 @@ public class SemSim {
 		URIFactory factory = URIFactoryMemory.getSingleton();
 		URI graphURI = factory.createURI("http://graph/");
 		g = new GraphMemory(graphURI);
-
-		GDataConf dataConf = new GDataConf(GFormat.TURTLE, uriOntology);
-
-		// We specify an action to root the vertices, typed as class without outgoing rdfs:subclassOf relationship
+		//REROOTING to root the vertices, typed as class without outgoing rdfs:subclassOf relationship
 		// Those vertices are linked to owl:Thing by an eddge x rdfs:subClassOf owl:Thing
 		GAction actionRerootConf = new GAction(GActionType.REROOTING);
-
-		// We now create the configuration we will specify to the generic loader
-		GraphConf gConf = new GraphConf();
-		gConf.addGDataConf(dataConf);
-		gConf.addGAction(actionRerootConf);
 		try {
-			GraphLoaderGeneric.load(gConf, g);
-		} catch (SLIB_Exception e) {
+			 InputStream is = getClass().getClassLoader().getResourceAsStream(uriOntology);
+		     RDFLoader loader = new RDFLoader(RDFFormat.TURTLE);
+		     loader.load(g, is);
+		     is.close(); 
+		     GraphActionExecutor.applyAction(factory, actionRerootConf, g);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -103,29 +99,14 @@ public class SemSim {
 		
 		Timer t = new Timer();
 		t.start();
-
-//		Set<URI> roots = new ValidatorDAG().getTaxonomicDAGRoots(g);
-
-		// We compute the similarity between two concepts
-
-		// URI cityURI = factory.createURI("http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth2");
-
-		// // First we configure an intrincic IC
-		// ICconf icConf = new IC_Conf_Topo(SMConstants.FLAG_ICI_DEPTH_MAX_NONLINEAR);
-		// // Then we configure the pairwise measure to use, we here choose to use Lin formula
-		// SMconf smConf = new SMconf(SMConstants.FLAG_SIM_PAIRWISE_DAG_NODE_LIN_1998, icConf);
-
-		// First we configure an intrincic IC
+		// First  configure an intrincic IC
 		ICconf icConf = new IC_Conf_Topo(SMConstants.FLAG_ICI_SANCHEZ_2011);
-		// Then we configure the pairwise measure to use, we here choose to use Lin formula
+		// Then configure the pairwise measure to use, we here choose to use Lin formula
 		SMconf smConf = new SMconf(SMConstants.FLAG_SIM_PAIRWISE_DAG_NODE_LIN_1998, icConf);
-
-		// We define the engine used to compute the similarity
+		// pass graph to the SE engine
 		SM_Engine engine = new SM_Engine(g);
-
 		URI uri1 = ValueFactoryImpl.getInstance().createURI(concept1URI);
 		URI uri2 = ValueFactoryImpl.getInstance().createURI(concept2URI);
-		
 		double sim = engine.computePairwiseSim(smConf, uri1 , uri2);
 		log.info("SemSim.java - > Similarity " + sim+" "+uri1+" -- "+uri2);
 		t.stop();
@@ -136,12 +117,13 @@ public class SemSim {
 
 //	public static void main(String[] args) throws SLIB_Exception {
 //		org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.OFF);
-//		String ontoFile = com.inn.trusthings.service.LocationMapping.resolveLocation(
+//		String ontoFile = LocationMapping.resolveLocation(
 //				com.inn.trusthings.model.vocabulary.ModelEnum.SecurityProfiles.getURI());
 //		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
-//		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#E";
+//		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth";
 //		try {
-//			new SemSim(ontoFile).apply(concept1URI, concept2URI);
+//			double d = new SemSim(ontoFile).apply(concept1URI, concept2URI);
+//			System.out.println(d);
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}

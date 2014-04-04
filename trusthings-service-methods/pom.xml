@@ -31,7 +31,7 @@
 		<dependency>
 		<groupId>org.slib.sglib</groupId>
 		<artifactId>slib-dist</artifactId>
-		<version>0.6-all-jar</version>
+		<version>0.7.4-20140404-0947-all-jar</version>
 <!-- 		<scope>system</scope> -->
 <!-- 		<systemPath>${basedir}/lib/slib-dist-0.6-all-jar.jar</systemPath> -->
 </dependency>
