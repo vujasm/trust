@@ -43,6 +43,7 @@ public class JustTest {
 				TrustScorer s = new TrustScorer(trustManager);
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
+				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
 //				
 			} catch (Exception e) {
 				e.printStackTrace();
