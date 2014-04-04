@@ -33,7 +33,7 @@ import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.vocabulary.Trust;
-import com.inn.uti.httpclient.Client;
+import com.inn.util.httpclient.Client;
 import com.inn.util.uri.UIDGenerator;
 
 public class ReputationCollector extends AbstractCollector{

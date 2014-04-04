@@ -1,4 +1,4 @@
-package com.inn.uti.httpclient;
+package com.inn.util.httpclient;
 
 /*
  * #%L
