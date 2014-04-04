@@ -28,6 +28,8 @@ import org.openrdf.rio.RDFFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.inn.trusthings.kb.config.LocationMapping;
+
 import slib.sglib.algo.graph.utils.GAction;
 import slib.sglib.algo.graph.utils.GActionType;
 import slib.sglib.algo.graph.utils.GraphActionExecutor;
@@ -115,19 +117,19 @@ public class SemSim {
 
 	}
 
-//	public static void main(String[] args) throws SLIB_Exception {
+	public static void main(String[] args) throws Exception {
 //		org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.OFF);
-//		String ontoFile = LocationMapping.resolveLocation(
-//				com.inn.trusthings.model.vocabulary.ModelEnum.SecurityProfiles.getURI());
-//		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
-//		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth";
-//		try {
-//			double d = new SemSim(ontoFile).apply(concept1URI, concept2URI);
-//			System.out.println(d);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
+		String ontoFile = LocationMapping.resolveLocation(
+				com.inn.trusthings.model.vocabulary.ModelEnum.SecurityProfiles.getURI());
+		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
+		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth";
+		try {
+			double d = new SemSim(ontoFile).apply(concept1URI, concept2URI);
+			System.out.println(d);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }

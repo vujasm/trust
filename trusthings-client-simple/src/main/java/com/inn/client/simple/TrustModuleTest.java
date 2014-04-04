@@ -55,9 +55,6 @@ public class TrustModuleTest {
 	}
 
 	private void init() {
-		BasicConfigurator.resetConfiguration();
-		BasicConfigurator.configure();
-		org.apache.log4j.Logger.getRootLogger().setLevel(level);
 		injector = Guice.createInjector(new TrustModule());
 		trustManager = injector.getInstance(TrustManager.class);
 	}

@@ -47,18 +47,18 @@ public class All_R1_S {
 			
 			TrustManager t = new TrustModuleTest().getTrustManager();
 			test(1, t);
-			test(10, t);
-			test(50, t);
-		    test(100, t);
-		    test(200, t);
-		    test(500, t);
-		    test(1000, t);
-		    test(2000, t);
-		    test(5000, t);
-		    test(10000, t);
-		    test(20000, t);
-		    test(50000, t);
-		    test(100000, t);
+//			test(10, t);
+//			test(50, t);
+//		    test(100, t);
+//		    test(200, t);
+//		    test(500, t);
+//		    test(1000, t);
+//		    test(2000, t);
+//		    test(5000, t);
+//		    test(10000, t);
+//		    test(20000, t);
+//		    test(50000, t);
+//		    test(100000, t);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

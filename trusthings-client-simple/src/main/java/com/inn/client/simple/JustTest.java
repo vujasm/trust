@@ -46,10 +46,6 @@ public class JustTest {
 //			String encodedUrl = URLEncoder.encode(Const.Ts4, "UTF-8");
 //			System.out.println(encodedUrl);
 			try {
-				BasicConfigurator.resetConfiguration();
-				BasicConfigurator.configure();
-				org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
-				
 				
 				TrustManager trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 				Tree t = trustManager.obtainTaxonomy(ModelEnum.Trust.getURI(), "http://www.compose-project.eu/ns/web-of-things/trust#TrustAttribute");

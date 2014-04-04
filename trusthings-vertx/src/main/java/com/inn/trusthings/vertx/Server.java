@@ -48,12 +48,7 @@ public class Server extends Verticle {
 	private static final String DEFAULT_HOST = "localhost";
 
 	public void start() {
-		
 
-		BasicConfigurator.resetConfiguration();
-		BasicConfigurator.configure();
-		org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
-		
 		HttpServer server = vertx.createHttpServer();
 
 		RouteMatcher matcher = new RouteMatcher();
