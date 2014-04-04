@@ -16,20 +16,6 @@
 		<ontologies.dir>${project.parent.basedir}/trusthings-common/src/main/resources/ontologies</ontologies.dir>
    	 	<license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
-	<description>This is descr</description>
-	<developers>
-		<developer>
-			
-			<name>Marko Vujasinovic</name>
-			<email>m.vujasinovic-{AT}-innova-eu.net</email>
-			<organization>INNOVA S.p.A</organization>
-			<organizationUrl>www.innova-eu.net</organizationUrl>
-		</developer>
-	</developers>
-	<organization>
-		<name>INNOVA S.p.A</name>
-		<url>www.innova-eu.net</url>
-	</organization>
 	<dependencies>
 		<dependency>
 			<groupId>com.innova.compose</groupId>

@@ -6,21 +6,7 @@
    		
 	<name>trusthings-vertx</name>
 	<packaging>jar</packaging>
-	<description>This is a Trust Vertx Server</description>
-	<developers>
-		<developer>
-			
-			<name>Marko Vujasinovic</name>
-			<email>m.vujasinovic-{AT}-innova-eu.net</email>
-			<organization>INNOVA S.p.A</organization>
-			<organizationUrl>www.innova-eu.net</organizationUrl>
-		</developer>
-	</developers>
-	<organization>
-		<name>INNOVA S.p.A</name>
-		<url>www.innova-eu.net</url>
-	</organization>
-	
+
 	<parent>
         <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>

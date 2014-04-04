@@ -7,27 +7,11 @@
         <version>0.0.1</version>
        <relativePath>..</relativePath>
     </parent>
-    
             <properties>
    	 	<license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
-    
+
   <artifactId>trusthings-ui</artifactId>
-     		
   <name>trusthings-ui</name>
-  <description>This is descr</description>
-      <developers>
-        <developer>
-            
-            <name>Marko Vujasinovic</name>
-            <email>m.vujasinovic-{AT}-innova-eu.net</email>
-            <organization>INNOVA S.p.A</organization>
-            <organizationUrl>www.innova-eu.net</organizationUrl>
-        </developer>
-    </developers>
-    <organization>
-        <name>INNOVA S.p.A</name>
-        <url>www.innova-eu.net</url>
-    </organization>
   
 </project>
