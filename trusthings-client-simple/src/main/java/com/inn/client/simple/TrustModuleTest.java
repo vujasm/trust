@@ -23,7 +23,6 @@ package com.inn.client.simple;
 import java.net.URI;
 import java.util.Set;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
