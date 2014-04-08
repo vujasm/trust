@@ -140,6 +140,7 @@ public class BasicRankingManager implements RankingManager {
 			for (Model model : models) {
 				ToModelParser parser = getOrCreateToModelParser();
 				TrustProfile trustProfile = parser.parse(model);
+				System.out.println(model);
 				if (trustProfile!=null){
 					final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, trustProfileRequired, excludeIfAttributeMissing);
 					if (listEA != null){ //listEA is null in a case when filterIfMissingAttribute=true and Agent has no some requested attribute

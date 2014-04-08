@@ -13,7 +13,7 @@
 <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#_TRAFFICREPORT>
       a       msm:MessagePart .
 
-<http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFIC_SERVICE_A>
+<http://localhost/services/CITY_TRAFFIC_SERVICE_A>
       a       msm:Service ;
 	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#TRUST_PROFILE> ;
       msm:hasOperation <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#CITY_TRAFFICREREPORT_PROCESS> .

@@ -41,9 +41,10 @@ public class JustTest {
 				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
 //				trustManager.addResourceDescription(youtube, is);
 				TrustScorer s = new TrustScorer();
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/twitter")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
+				System.out.println(s.apply(URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_B")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/twitter")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
 //				
 			} catch (Exception e) {
 				e.printStackTrace();
