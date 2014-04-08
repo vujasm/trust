@@ -195,13 +195,13 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
      * 
      */
     @Override
-    public OntModel getModelByJenaModelFetcher(String modelUri) {
-    	return getModelByJenaModelFetcher(modelUri, SharedOntModelSpec.getModelSpecShared());
+    public OntModel getModel(String modelUri, RDFModelsHandler modelHandler) {
+    	return getModel(modelUri, SharedOntModelSpec.getModelSpecShared(), null);
     }
     
     
     @Override
-    public OntModel getModelByJenaModelFetcher(String modelUri, OntModelSpec spec) {
+    public OntModel getModel(String modelUri, OntModelSpec spec, RDFModelsHandler modelHandler) {
     	spec.setDocumentManager(SharedOntModelSpec.getDocumentManagerShared());
     	Model model =  RDFModelsHandler.getGlobalInstance().fetch(URI.create(modelUri),"TURTLE", spec);
     	OntModel oModel = ModelFactory.createOntologyModel(spec, model);

@@ -5,17 +5,17 @@
   <appender name="console" class="org.apache.log4j.ConsoleAppender"> 
     <param name="Target" value="System.out"/> 
     <layout class="org.apache.log4j.PatternLayout"> 
-      <param name="ConversionPattern" value=" [%d{HH:mm:ss}] %-5p %c{1} - %m%n"/> 
+      <param name="ConversionPattern" value=" [%d{HH:mm:ss,SSS}] %-5p %c{1} - %m%n"/> 
     </layout> 
   </appender> 
  <logger name="slib">
       <level value="OFF" />
  </logger>
   <logger name="com.inn">
-      <level value="off" />
+      <level value="warn" />
   </logger>
   <root> 
-    <priority value ="off" /> 
+    <priority value ="warn" /> 
     <appender-ref ref="console" /> 
   </root>
   

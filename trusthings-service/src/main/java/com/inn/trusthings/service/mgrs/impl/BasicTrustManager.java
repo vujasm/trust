@@ -20,10 +20,14 @@ package com.inn.trusthings.service.mgrs.impl;
  * #L%
  */
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
 
@@ -31,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Predicate;
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
@@ -108,7 +113,7 @@ public class BasicTrustManager implements TrustManager {
 	@Override
 	public Tree obtainTaxonomy(String graphName, String rootConcept) {
 		Tree tree = new Tree();
-		OntModel model = kbManager.getModelByJenaModelFetcher(graphName,  OntModelSpec.OWL_MEM_TRANS_INF);//graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
+		OntModel model = kbManager.getModel(graphName,  OntModelSpec.OWL_MEM_TRANS_INF, RDFModelsHandler.getGlobalInstance());//graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
 		OntClass ontClass = model.getOntClass(rootConcept);
 		Node root = new Node(ontClass.getLocalName());
 		tree.setRoot(root);
@@ -280,6 +285,7 @@ public class BasicTrustManager implements TrustManager {
 	 */
 	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
 			boolean logRequest) throws Exception {
+		Stopwatch timer = new Stopwatch().start();
 		final List<Tuple2<URI, Model>> tupleModels = obtainModels(resources);
 		if (logRequest) {
 			storeModelsIntoStore(tupleModels);
@@ -290,6 +296,8 @@ public class BasicTrustManager implements TrustManager {
 				return (Model) t.getT2();
 			}
 		});
+		timer.stop();
+		log.warn("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		return rankingManager.rankServiceModels(models, criteria, scoreStrategy, excludeIfAttributeMissing, order);
 	}
 
@@ -330,7 +338,18 @@ public class BasicTrustManager implements TrustManager {
 	public void addResourceDescription(URI resourceURI, InputStream inputStream) {
 		//TODO - consider to replace with some real backend db
 		RDFModelsHandler.getGlobalInstance().fetch(resourceURI.toASCIIString(), inputStream,  SharedOntModelSpec.getModelSpecShared());
-		
+	}
+	
+	@Override
+	public void addResourceDescription(URI resourceURI, File file) {
+		//TODO - consider to replace with some real backend db
+		FileInputStream inputStream;
+		try {
+			inputStream = new FileInputStream(file);
+			RDFModelsHandler.getGlobalInstance().fetch(resourceURI.toASCIIString(), inputStream,  SharedOntModelSpec.getModelSpecShared());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

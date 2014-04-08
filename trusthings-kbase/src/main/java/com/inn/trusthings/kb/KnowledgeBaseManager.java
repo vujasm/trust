@@ -62,9 +62,9 @@ public interface KnowledgeBaseManager {
     
     Set<URI> getLoadedModels();
 
-    OntModel getModelByJenaModelFetcher(String modelUri);
+    OntModel getModel(String modelUri, RDFModelsHandler modelHandler);
 
-    OntModel getModelByJenaModelFetcher(String modelUri, OntModelSpec spec);
+    OntModel getModel(String modelUri, OntModelSpec spec, RDFModelsHandler modelHandler);
 
 	void uploadModel(URI modelUri, Model model, boolean forceUpdate, boolean isOntology);
 

@@ -94,8 +94,12 @@ public class RDFModelsHandler {
 		JsonNode node =  modelmap.get(uri);
 		if (node == null)
 			return null;
-		InputStream is = getClass().getResourceAsStream("/modelrepo/"+node.textValue());
-		return fetch(uri, is, modelSpec);
+		if (hasCachedModel(uri))
+			return getFromCache(uri);
+		else{
+			InputStream is = getClass().getResourceAsStream("/modelrepo/"+node.textValue());
+			return fetch(uri, is, modelSpec);
+		}
 		
 	}
 
@@ -129,6 +133,7 @@ public class RDFModelsHandler {
 	}
 
 	public boolean hasCachedModel(String filenameOrURI) {
+//		System.out.println("cache size "+modelCache.size());
 		return modelCache.containsKey(filenameOrURI);
 	}
 

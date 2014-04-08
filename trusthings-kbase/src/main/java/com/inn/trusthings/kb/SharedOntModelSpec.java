@@ -58,6 +58,7 @@ public class SharedOntModelSpec {
 
         OntDocumentManager documentManager = new OntDocumentManager();
 
+
         for (Map.Entry<String, String> mapping : locationMappings.entrySet()) {
             documentManager.addAltEntry(mapping.getKey(), mapping.getValue());
         }
@@ -68,7 +69,7 @@ public class SharedOntModelSpec {
         }
 
         // follow imports for now..
-        documentManager.setProcessImports(true);
+        documentManager.setProcessImports(false);
 
         OntModelSpec ontModelSpec =  new OntModelSpec(OntModelSpec.OWL_MEM);
         ontModelSpec.setDocumentManager(documentManager);

@@ -23,10 +23,12 @@ package com.inn.trusthings.service.mgrs.impl;
 
 import java.net.URI;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
@@ -35,6 +37,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.model.io.ToModelParser;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
 import com.inn.trusthings.model.pojo.Agent;
@@ -66,7 +69,7 @@ public class BasicRankingManager implements RankingManager {
 	@Inject
 	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
 		this.knowledgeBaseManager = kbManager;
-		OntModel model = kbManager.getModelByJenaModelFetcher(ModelEnum.Trust.getURI());
+		OntModel model = kbManager.getModel(ModelEnum.Trust.getURI(), RDFModelsHandler.getGlobalInstance());
 		TrustOntologyUtil.init(model);
 	}
 
@@ -76,10 +79,18 @@ public class BasicRankingManager implements RankingManager {
 	@Override
 	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustProfile trustProfileRequired, EnumScoreStrategy strategy, 
 					boolean excludeIfAttributeMissing, OrderType order) throws Exception {
-		
+		Stopwatch timer = new Stopwatch().start();
 		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustProfileRequired, excludeIfAttributeMissing);
-		List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);		
+		timer.stop();
+		log.warn("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+		timer.reset().start();
+		List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);
+		timer.stop();
+		log.warn("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
+		timer.reset().start();
 		final List<Tuple2<URI, Double>> sortedList = new Sort().sort(scores, order);
+		timer.stop();
+		log.warn("sorted  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
 		printRank(sortedList);
 		return sortedList;
 	}
@@ -210,7 +221,7 @@ public class BasicRankingManager implements RankingManager {
 		if (parser == null) {
 			parser = new ToModelParser();
 			String uri = ModelEnum.SecurityProfiles.getURI();
-			OntModel securityProfileModel = knowledgeBaseManager.getModelByJenaModelFetcher(uri);
+			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri, RDFModelsHandler.getGlobalInstance());
 			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
 			parser.registerSpecificParser(secProfileExpressionToModel, Const.ParserNameSecurityProfileAsUSDLSec);
 		}

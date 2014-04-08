@@ -28,7 +28,9 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
+import com.inn.common.OrderType;
 import com.inn.testtemp.DescriptionsEnum;
+import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
 public class All_R1_S {
@@ -42,7 +44,7 @@ public class All_R1_S {
 		try {
 			
 			TrustManager t = new TrustModuleTest().getTrustManager();
-			test(1, t);
+//			test(1, t);
 //			test(10, t);
 //			test(50, t);
 //		    test(100, t);
@@ -54,7 +56,7 @@ public class All_R1_S {
 //		    test(10000, t);
 //		    test(20000, t);
 //		    test(50000, t);
-//		    test(100000, t);
+		    test(100000, t);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,6 +65,7 @@ public class All_R1_S {
 
 		private static void test(int size, TrustManager t) throws Exception {
 
+			TrustManager tt = new TrustModuleTest().getTrustManager();
 			List<URI> services = Lists.newArrayList();
 			for (int i = 0; i < size; i++) {
 				services.add(URI.create(DescriptionsEnum.TSA.getURI()));
@@ -70,10 +73,10 @@ public class All_R1_S {
 				services.add(URI.create(DescriptionsEnum.TSC.getURI()));
 			}
 		    Stopwatch timer = new Stopwatch().start();
-//			t.rankResources(services, t.getGlobalTrustPerception(), EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
-			t.obtainTrustIndexes(services);
+			t.rankResources(services, t.getGlobalTrustPerception(), EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
+//			tt.obtainTrustIndexes(services);
 			timer.stop();
-		    System.out.println(timer.elapsed(TimeUnit.MILLISECONDS));
+		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.MILLISECONDS));
 		}
 
 }

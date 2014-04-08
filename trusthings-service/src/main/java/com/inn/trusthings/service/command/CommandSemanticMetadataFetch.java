@@ -89,7 +89,7 @@ public class CommandSemanticMetadataFetch {
 
 				}
 				
-			
+//				return ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared());
 				
 			} catch (org.apache.jena.atlas.web.HttpException e) {
 				log.info(" There was model retrival failure. Failed to retrive model because " + e.getMessage());

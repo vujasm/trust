@@ -35,6 +35,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.module.TrustModule;
@@ -73,7 +74,7 @@ public class TrustModuleTest {
 
 	//testiranje kako jena radi inference taksonomije
 	public void testSubclass() {
-		OntModel base = trustManager.getKnowledgeBaseManager().getModelByJenaModelFetcher(ModelEnum.Trust.getURI());
+		OntModel base = trustManager.getKnowledgeBaseManager().getModel(ModelEnum.Trust.getURI(), RDFModelsHandler.getGlobalInstance());
 		OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
 		OntModel model = ModelFactory.createOntologyModel(spec, base);
 		final OntClass cls = model.getOntClass(Trust.SecurityAttribute.getURI().toString());

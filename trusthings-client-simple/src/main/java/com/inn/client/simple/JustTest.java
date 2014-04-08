@@ -38,11 +38,11 @@ public class JustTest {
 				URI youtube = URI.create("http://www.programmableweb.com/api/youtube");
 				String loc = "C://D-Data//Git//itrust//trusthings-common//src//main//resources//modelrepo//";
 				TrustManager trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
-				FileInputStream is = new FileInputStream(loc+"api_flickr.ttl");
-				trustManager.addResourceDescription(youtube, is);
-				TrustScorer s = new TrustScorer(trustManager);
+				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
+//				trustManager.addResourceDescription(youtube, is);
+				TrustScorer s = new TrustScorer();
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
+				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/twitter")));
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
 //				
 			} catch (Exception e) {

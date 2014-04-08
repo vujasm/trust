@@ -21,6 +21,7 @@ package com.inn.trusthings.service.interfaces;
  */
 
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
@@ -180,11 +181,19 @@ public interface TrustManager{
 	public TrustCriteria getGlobalTrustPerception();
 
 	/**
-	 * Add a resource description (i.e. a rdf graph) in a resource descriptions base
+	 * Add a resource description from input stream in a resource descriptions base. Please note this method does persist the description.
 	 * @param resourceURI Resource URI / identifier
 	 * @param inputStream an input stream of a resource description data (e.g. file input stream, byte input stream, string input stream)
 	 */
 	void addResourceDescription(URI resourceURI, InputStream inputStream);
+	
+	/**
+	 * Add a resource description from a file in a resource descriptions base. Please note this method does persist the description.
+	 * @param resourceURI Resource URI / identifier
+	 * @param file a file containing resource description
+	 */
+	void addResourceDescription(URI resourceURI, File file);
+	
 	
 
 	
