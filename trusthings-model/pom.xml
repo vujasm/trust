@@ -7,8 +7,6 @@
         <version>0.0.2</version>
         <relativePath>..</relativePath>
     </parent>
-    
-   	
 	<artifactId>trusthings-model</artifactId>
 	<name>trusthings-model</name>
 	<properties>
