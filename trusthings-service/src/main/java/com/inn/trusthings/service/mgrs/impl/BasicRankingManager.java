@@ -78,9 +78,10 @@ public class BasicRankingManager implements RankingManager {
 	 */
 	@Override
 	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustProfile trustProfileRequired, EnumScoreStrategy strategy, 
-					boolean excludeIfAttributeMissing, OrderType order) throws Exception {
+					boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception {
 		Stopwatch timer = new Stopwatch().start();
-		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustProfileRequired, excludeIfAttributeMissing);
+		//FIXME !!!! filterByCriteriaNotMet
+		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustProfileRequired, filterByAttributeMissing);
 		timer.stop();
 		log.warn("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		timer.reset().start();
@@ -118,6 +119,7 @@ public class BasicRankingManager implements RankingManager {
 				listAgentScore.add(result);
 			}
 			else{
+				//return -1 if no data/information about resource
 				String agentURI = agent.getUri().toASCIIString();
 				log.info("Trust profile of resource with URI "+agentURI+" has no any data. Its trust index is -1");
 				Tuple2<Agent, Double> result = new Tuple2<Agent, Double>(agent, -1D);

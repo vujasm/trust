@@ -8,7 +8,7 @@
 @prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
 @prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
 
-<http://127.0.0.1/services/1.1/flickr.owls#flickr>
+<http://www.programmableweb.com/api/flickr>
       a       msm:Service ;
 	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/flickr.owls#TRUST_PROFILE>.
 

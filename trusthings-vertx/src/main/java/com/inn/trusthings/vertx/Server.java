@@ -77,7 +77,7 @@ public class Server extends Verticle {
 				List<String> ids = req.params().getAll("srvcid");
 				try {
 					List<URI> list = castToListUris(ids); 
-					List<Tuple2<URI, Double>> result = trustManager.rankResources(list, trustManager.getGlobalTrustPerception(), 
+					List<Tuple2<URI, Double>> result = trustManager.rankResources(list, trustManager.getGlobalTrustCriteria(), 
 							EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
 					String stringJson = new MakeJson().ofRankingResult(result);
 					respondJsonMsgToClient(stringJson, req.response());

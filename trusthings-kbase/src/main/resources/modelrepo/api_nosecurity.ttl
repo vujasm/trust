@@ -8,24 +8,19 @@
 @prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
 @prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
 
-<http://www.programmableweb.com/api/youtube>
+<http://www.programmableweb.com/api/nosecurity>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/youtube.owls#TRUST_PROFILE>.
+	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/nosecurity#TRUST_PROFILE>.
 
-<http://127.0.0.1/services/1.1/youtube.owls#TRUST_PROFILE> 
+<http://127.0.0.1/services/1.1/nosecurity#TRUST_PROFILE> 
        a    trust:TrustProfile;
-	  trust:hasAttribute <http://127.0.0.1/services/1.1/youtube.owls#NFP_SECURITY_AUTHENTICATION_1> ;
-	  trust:hasAttribute <http://127.0.0.1/services/1.1/youtube.owls#NFP_SECURITY_REPUTATION> ;
-	  trust:hasAttribute <http://127.0.0.1/services/1.1/youtube.owls#NFP_SECURITY_QoS> .
-		
-<http://127.0.0.1/services/1.1/youtube.owls#NFP_SECURITY_AUTHENTICATION_1>
-		a   wl:NonfunctionalParameter , trust:SecurityCapability ;
-		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
+	  trust:hasAttribute <http://127.0.0.1/services/1.1/nosecurity#NFP_REPUTATION> ;
+	  trust:hasAttribute <http://127.0.0.1/services/1.1/nosecurity#NFP_QoS> .
 
-<http://127.0.0.1/services/1.1/youtube.owls#NFP_SECURITY_REPUTATION>
+<http://127.0.0.1/services/1.1/nosecurity#NFP_REPUTATION>
 		a   wl:NonfunctionalParameter , trust:Reputation ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#high"^^<http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale> .
 		
-<http://127.0.0.1/services/1.1/youtube.owls#NFP_SECURITY_QoS>
+<http://127.0.0.1/services/1.1/nosecurity#NFP_QoS>
 		a   wl:NonfunctionalParameter , trust:QoSAttribute ;
 		trust:hasValue "1"^^<http://www.w3.org/2001/XMLSchema#double> .

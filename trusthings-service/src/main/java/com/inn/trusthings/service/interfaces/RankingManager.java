@@ -50,7 +50,7 @@ public interface RankingManager {
 	 */	
 	
 	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustProfile trustProfileRequired, EnumScoreStrategy strategy,
-			 boolean excludeIfAttributeMissing, OrderType order) throws Exception ;
+			 boolean excludeIfAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception ;
 	
 //	/**
 //	 * how close a service matches given criteria

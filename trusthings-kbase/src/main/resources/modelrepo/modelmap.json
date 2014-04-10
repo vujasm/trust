@@ -4,5 +4,7 @@
 	"http://localhost/services/CITY_TRAFFIC_SERVICE_C" : "city_traffic_service_C.ttl",
 	"http://www.programmableweb.com/api/flickr" : "api_flickr.ttl",
 	"http://www.programmableweb.com/api/twitter" : "api_twitter.ttl",
-	"http://www.programmableweb.com/api/youtube" : "api_youtube.ttl"
+	"http://www.programmableweb.com/api/youtube" : "api_youtube.ttl",
+	"http://www.programmableweb.com/api/lowreputation" : "api_lowreputation.ttl",
+	"http://www.programmableweb.com/api/nosecurity" : "api_nosecurity.ttl"
 }

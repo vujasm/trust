@@ -30,26 +30,26 @@ import com.inn.trusthings.service.interfaces.TrustManager;
 import uk.ac.open.kmi.sense.evaluation.Filter;
 
 /**
- * TrustFilter implements uk.ac.open.kmi.sense.evaluation.Filter interface 
+ * TrustFilterByThreshold implements uk.ac.open.kmi.sense.evaluation.Filter interface 
  * for Guava-based filtering of services in COMPOSE Service Recommender
  * 
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustFilter implements Filter {
+public class TrustFilterByThreshold implements Filter {
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
-	public TrustFilter() {
+	public TrustFilterByThreshold() {
 		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
 	}
 	
-	public TrustFilter(TrustManager trustManager) {
+	public TrustFilterByThreshold(TrustManager trustManager) {
 		this.trustManager = trustManager;
 	}
 
 	
 	/**
-	 * returns true if resource identified with serviceId URI
+	 * returns true if resource identified with serviceId URI is evaluated as trusted in respect to the trust threshold value
 	 */
 	@Override
 	public boolean apply(URI serviceId) {

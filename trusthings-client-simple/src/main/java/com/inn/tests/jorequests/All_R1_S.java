@@ -73,7 +73,7 @@ public class All_R1_S {
 				services.add(URI.create(DescriptionsEnum.TSC.getURI()));
 			}
 		    Stopwatch timer = new Stopwatch().start();
-			t.rankResources(services, t.getGlobalTrustPerception(), EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
+			t.rankResources(services, t.getGlobalTrustCriteria(), EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
 //			tt.obtainTrustIndexes(services);
 			timer.stop();
 		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.MILLISECONDS));

@@ -87,7 +87,7 @@ public interface TrustManager{
 	 * Filter list of resources in regards to the trust ranking criteria and trust index threshold value. To compute the trust indexes and
 	 * ranking, the default strategy is used. Resources that do not meet some of particular criteria are not excluded from the ranking. For
 	 * filtering using other strategies and control under excluding/including resource that does not meet some of criterion, please @see
-	 * {@link TrustManager} {@link #filterResources(List, TrustCriteria, EnumScoreStrategy, boolean, OrderType, Double)}
+	 * {@link TrustManager} {@link #filterResources(List, TrustCriteria, EnumScoreStrategy, boolean, boolean, OrderType, Double)}
 	 * 
 	 * @param resources A list of resources URI's
 	 * @param criteria Trust Ranking criteria as a set of required trust attributes and their values and importance
@@ -103,14 +103,24 @@ public interface TrustManager{
 	 * @param resources A list of resources URI's
 	 * @param criteria Trust criteria as a set of required trust attributes and their values and importance
 	 * @param scoreStrategy A trust index computing and ranking strategy
-	 * @param excludeIfAttributeMissing Exclude a resources from ranking in a case it lack some of requested attributes.
+	 * @param filterByAttributeMissing Exclude a resources from ranking in a case it lack some of requested attributes.
+	 * @param filterByCriteriaNotMet TODO
 	 * @param order OrderType ASC for ascending. DESC for descending.
 	 * @param thresholdValue Threshold value
 	 * @return A ordered list of filtered resources
 	 * @throws Exception
 	 */
 	List<URI> filterResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy,
-			boolean excludeIfAttributeMissing, OrderType order, Double thresholdValue) throws Exception;
+			boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order, Double thresholdValue) throws Exception;
+	
+	/**
+	 * 
+	 * @param resources resources A list of resources URI's
+	 * @param criteria Trust criteria as a set of required trust attributes and their values and importance
+	 * @return  A filtered list of filtered resources
+	 * @throws Exception
+	 */
+	public List<URI> filterByCriteriaNotMeet(List<URI> resources, TrustCriteria criteria) throws Exception;
 
 	/**
 	 * Answers trust index for a resource with taking into an account user perception of trust (which is expressed using <code>request</code>
@@ -175,10 +185,10 @@ public interface TrustManager{
 	 *  Set global trust request. If not set, the trust manager will be using the default the default one {@link GlobalTrustCriteria}
 	 * @param criteria Trust request
 	 */
-	public void setGlobalTrustPerception(TrustCriteria criteria);
+	public void setGlobalTrustCriteria(TrustCriteria criteria);
 	
 	
-	public TrustCriteria getGlobalTrustPerception();
+	public TrustCriteria getGlobalTrustCriteria();
 
 	/**
 	 * Add a resource description from input stream in a resource descriptions base. Please note this method does persist the description.

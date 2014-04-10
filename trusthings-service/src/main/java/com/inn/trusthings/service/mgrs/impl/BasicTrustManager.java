@@ -165,35 +165,40 @@ public class BasicTrustManager implements TrustManager {
 	 * 
 	 */
 	@Override
-	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order) throws Exception {
-		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, scoreStrategy, excludeIfAttributeMissing, order, false);
+	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean filterByAttributeMissing, OrderType order) throws Exception {
+		boolean filterByCriteriaNotMet = false;
+		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, scoreStrategy, filterByAttributeMissing, filterByCriteriaNotMet, order, false);
 //		final List<URI> rankedList = ListTupleConvert.toListOfTupleElement(scores, 1);
 		return scores;
 	}
 
 	@Override
 	public Double obtainTrustIndex(URI resourceURI) throws Exception {
-		final TrustCriteria criteria = getGlobalTrustPerception();
+		final TrustCriteria criteria = getGlobalTrustCriteria();
 		return obtainTrustIndex(resourceURI, criteria);
 	}
 	
 	@Override
 	public List<Tuple2<URI, Double>> obtainTrustIndexes(List<URI> resourceURIs) throws Exception {
-		final TrustCriteria criteria = getGlobalTrustPerception();
-		return processCall(resourceURIs, criteria, globalStrategy, false, OrderType.DESC, false);
+		final TrustCriteria criteria = getGlobalTrustCriteria();
+		boolean filterByCriteriaNotMet = false;
+		boolean filterByAttributeMissing = false;
+		return processCall(resourceURIs, criteria, globalStrategy, filterByAttributeMissing, filterByCriteriaNotMet, OrderType.DESC, false);
 	}
 
 	public Double obtainTrustIndex(URI resourceURI, TrustCriteria criteria) throws Exception {
 		List<URI> list = Lists.newArrayList();
 		list.add(resourceURI);
-		final List<Tuple2<URI, Double>> scores = processCall(list, criteria, globalStrategy, false, OrderType.DESC, false);
+		boolean filterByCriteriaNotMet = false;
+		boolean filterByAttributeMissing = false;
+		final List<Tuple2<URI, Double>> scores = processCall(list, criteria, globalStrategy, filterByAttributeMissing, filterByCriteriaNotMet, OrderType.DESC, false);
 		return scores.get(0).getT2();
 	}
 
 	@Override
-	public List<URI> filterResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
-			final Double thresholdValue) throws Exception {
-		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, scoreStrategy, excludeIfAttributeMissing, order, false);
+	public List<URI> filterResources(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean filterByAttributeMissing, boolean filterByCriteriaNotMet,
+			OrderType order, final Double thresholdValue) throws Exception {
+		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, scoreStrategy, filterByAttributeMissing, filterByCriteriaNotMet, order, false);
 		Iterable<Tuple2<URI, Double>> filtered = Iterables.filter(scores, new Predicate<Tuple2<URI, Double>>() {
 			@Override
 			public boolean apply(Tuple2<URI, Double> t) {
@@ -201,6 +206,22 @@ public class BasicTrustManager implements TrustManager {
 			}
 		});
 		printList(Lists.newArrayList(filtered), " filtered with thresholdValue value of " + thresholdValue);
+		final List<URI> filteredList = ListTupleConvert.toListOfTupleElement(Lists.newArrayList(filtered), 1);
+		return filteredList;
+	}
+	
+	@Override
+	public List<URI> filterByCriteriaNotMeet(List<URI> resources, TrustCriteria criteria) throws Exception {
+		boolean filterByCriteriaNotMet = true;
+		boolean filterByAttributeMissing = true;
+		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, globalStrategy, filterByAttributeMissing, filterByCriteriaNotMet, OrderType.DESC, false);
+		Iterable<Tuple2<URI, Double>> filtered = Iterables.filter(scores, new Predicate<Tuple2<URI, Double>>() {
+			@Override
+			public boolean apply(Tuple2<URI, Double> t) {
+				return (Double.valueOf(t.getT2()).compareTo(0D) == 0);
+			}
+		});
+		printList(Lists.newArrayList(filtered), " filtered out those having at least one of criteria not meet");
 		final List<URI> filteredList = ListTupleConvert.toListOfTupleElement(Lists.newArrayList(filtered), 1);
 		return filteredList;
 	}
@@ -215,7 +236,7 @@ public class BasicTrustManager implements TrustManager {
 
 	@Override
 	public List<URI> filterResources(List<URI> resources, TrustCriteria criteria, OrderType order, Double thresholdValue) throws Exception {
-		return filterResources(resources, criteria, globalStrategy, true, order, thresholdValue);
+		return filterResources(resources, criteria, globalStrategy, true, true, order, thresholdValue);
 	}
 
 	/**
@@ -277,13 +298,13 @@ public class BasicTrustManager implements TrustManager {
 	 * @param resources
 	 * @param recriteriaquest
 	 * @param scoreStrategy
-	 * @param excludeIfAttributeMissing
+	 * @param filterByAttributeMissing
 	 * @param order
 	 * @param logRequest
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean excludeIfAttributeMissing, OrderType order,
+	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order,
 			boolean logRequest) throws Exception {
 		Stopwatch timer = new Stopwatch().start();
 		final List<Tuple2<URI, Model>> tupleModels = obtainModels(resources);
@@ -298,7 +319,7 @@ public class BasicTrustManager implements TrustManager {
 		});
 		timer.stop();
 		log.warn("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
-		return rankingManager.rankServiceModels(models, criteria, scoreStrategy, excludeIfAttributeMissing, order);
+		return rankingManager.rankServiceModels(models, criteria, scoreStrategy, filterByAttributeMissing, filterByCriteriaNotMet, order);
 	}
 
 	@Override
@@ -325,11 +346,11 @@ public class BasicTrustManager implements TrustManager {
 	 * 
 	 * @return
 	 */
-	public void setGlobalTrustPerception(TrustCriteria criteria) {
+	public void setGlobalTrustCriteria(TrustCriteria criteria) {
 		this.globalTrustCriteria = criteria; 
 	}
 	
-	public TrustCriteria getGlobalTrustPerception() {
+	public TrustCriteria getGlobalTrustCriteria() {
 		return globalTrustCriteria;
 	}
 	
