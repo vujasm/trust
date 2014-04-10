@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.net.URI;
 
 import com.google.inject.Guice;
+import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustScorer;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -48,11 +49,13 @@ public class JustTest {
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/lowreputation")));
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/nosecurity")));
 				
+				boolean b = new TrustFilterByExclusion().apply(URI.create("http://www.programmableweb.com/api/youtube"));
+				System.out.println(b);
+				
 //				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 	}
 }
 

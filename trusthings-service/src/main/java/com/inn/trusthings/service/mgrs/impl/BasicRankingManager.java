@@ -64,7 +64,9 @@ public class BasicRankingManager implements RankingManager {
 
 	private ToModelParser parser = null;
 	private KnowledgeBaseManager knowledgeBaseManager;
-	 private static final Logger log = LoggerFactory.getLogger(BasicRankingManager.class);
+	private static final Logger log = LoggerFactory.getLogger(BasicRankingManager.class);
+	
+	private boolean rigorousEval = false;
 
 	@Inject
 	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
@@ -81,17 +83,18 @@ public class BasicRankingManager implements RankingManager {
 					boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception {
 		Stopwatch timer = new Stopwatch().start();
 		//FIXME !!!! filterByCriteriaNotMet
-		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustProfileRequired, filterByAttributeMissing);
+			boolean rigorous = filterByCriteriaNotMet;
+			final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustProfileRequired, filterByAttributeMissing, rigorous);
 		timer.stop();
-		log.warn("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+		log.info("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		timer.reset().start();
-		List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);
+			List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);
 		timer.stop();
-		log.warn("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
+		log.info("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
 		timer.reset().start();
-		final List<Tuple2<URI, Double>> sortedList = new Sort().sort(scores, order);
+			final List<Tuple2<URI, Double>> sortedList = new Sort().sort(scores, order);
 		timer.stop();
-		log.warn("sorted  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
+		log.info("sorted  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
 		printRank(sortedList);
 		return sortedList;
 	}
@@ -131,19 +134,25 @@ public class BasicRankingManager implements RankingManager {
 
 	
 	/**
-	 * Prepares data set. It may exclude agents that have no requested attribute
+	 * 	Prepares data set. It may exclude agents that have no requested attribute if filterByAttributeMissing true, \
+	 * or evaluate as zero if rigorous is true and attributed evaluated lower than expected 
 	 * @param models
 	 * @param trustProfileRequired
+	 * @param filterByAttributeMissing
+	 * @param rigorous
 	 * @return
 	 */
-	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, TrustProfile trustProfileRequired, boolean excludeIfAttributeMissing) {
+	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, TrustProfile trustProfileRequired, boolean filterByAttributeMissing, boolean rigorous) {
+		
+		rigorousEval = rigorous;
+		
 		List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = Lists.newArrayList();
 		try {
 			for (Model model : models) {
 				ToModelParser parser = getOrCreateToModelParser();
 				TrustProfile trustProfile = parser.parse(model);
 				if (trustProfile!=null){
-					final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, trustProfileRequired, excludeIfAttributeMissing);
+					final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, trustProfileRequired, filterByAttributeMissing);
 					if (listEA != null){ //listEA is null in a case when filterIfMissingAttribute=true and Agent has no some requested attribute
 						final Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> t = new Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>(
 							trustProfile.getAgent(), listEA);
@@ -153,6 +162,9 @@ public class BasicRankingManager implements RankingManager {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally{
+			rigorousEval = false;
 		}
 		return dataSet;
 
@@ -183,7 +195,7 @@ public class BasicRankingManager implements RankingManager {
 	 * @param filterIfMissingAttribute 
 	 * @return
 	 */
-	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile trustProfile, TrustProfile reqTrustProfile, boolean excludeIfAttributeMissing) throws Exception{
+	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile trustProfile, TrustProfile reqTrustProfile, boolean filterIfMissingAttribute) throws Exception{
 		
 		final List<Tuple2<TrustAttribute, Double>> list = Lists.newArrayList();
 		final List<TrustAttribute> reqAttributes = reqTrustProfile.getAttributes();
@@ -196,9 +208,12 @@ public class BasicRankingManager implements RankingManager {
 						trustProfile.getAttributes(), type.getUri());
 				log.info("they will be evaluated w.r.t " + attributes);
 				final double value = match(reqAttribute, attributes);
-				if (excludeIfAttributeMissing && value == 0) {
+				if (filterIfMissingAttribute && value == 0) {
 					return null;
-				} else {
+				} else if (rigorousEval && value==0){
+					return null;
+				} else
+				{
 					list.add(new Tuple2<TrustAttribute, Double>(reqAttribute, Double.valueOf(value)));
 				}
 			}

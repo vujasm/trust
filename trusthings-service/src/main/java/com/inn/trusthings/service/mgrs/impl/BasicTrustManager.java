@@ -215,14 +215,8 @@ public class BasicTrustManager implements TrustManager {
 		boolean filterByCriteriaNotMet = true;
 		boolean filterByAttributeMissing = true;
 		final List<Tuple2<URI, Double>> scores = processCall(resources, criteria, globalStrategy, filterByAttributeMissing, filterByCriteriaNotMet, OrderType.DESC, false);
-		Iterable<Tuple2<URI, Double>> filtered = Iterables.filter(scores, new Predicate<Tuple2<URI, Double>>() {
-			@Override
-			public boolean apply(Tuple2<URI, Double> t) {
-				return (Double.valueOf(t.getT2()).compareTo(0D) == 0);
-			}
-		});
-		printList(Lists.newArrayList(filtered), " filtered out those having at least one of criteria not meet");
-		final List<URI> filteredList = ListTupleConvert.toListOfTupleElement(Lists.newArrayList(filtered), 1);
+		printList(Lists.newArrayList(scores), " filtered out those having at least one of criteria not meet");
+		final List<URI> filteredList = ListTupleConvert.toListOfTupleElement(Lists.newArrayList(scores), 1);
 		return filteredList;
 	}
 
@@ -318,7 +312,7 @@ public class BasicTrustManager implements TrustManager {
 			}
 		});
 		timer.stop();
-		log.warn("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+		log.info("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		return rankingManager.rankServiceModels(models, criteria, scoreStrategy, filterByAttributeMissing, filterByCriteriaNotMet, order);
 	}
 
