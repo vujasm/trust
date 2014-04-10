@@ -34,7 +34,7 @@ import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.types.USDLSecExpression;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.model.vocabulary.UsdlSec;
-import com.inn.util.json.MyJson;
+import com.inn.util.json.IAFJSONParser;
 import com.inn.util.uri.UIDGenerator;
 
 public class Request {
@@ -144,7 +144,7 @@ public class Request {
 
 		TrustAttribute att2 = factory.createTrustAttibute();
 		att2.addType(URI.create(Trust.QoSAttribute.getURI()));
-		att2.setValue("0.3");
+		att2.setValue("0.5");
 		att2.setValueDatatype(XSDDouble.XSDdouble);
 		att2.setImportance(importance[3]);
 
@@ -221,7 +221,7 @@ public class Request {
 	}
 	
 	public static void main(String[] args) {
-	System.out.println( MyJson.toJson(request_Example_4(1,1,1,1)));
+	System.out.println( IAFJSONParser.toJson(request_Example_3(1,1,1,1)));
 	}
 
 }

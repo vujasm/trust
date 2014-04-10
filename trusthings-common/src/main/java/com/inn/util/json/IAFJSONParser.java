@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 
 
-public class MyJson {
+public class IAFJSONParser {
 	
 	public static synchronized String toJson(Object o){
 

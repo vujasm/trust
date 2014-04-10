@@ -51,7 +51,7 @@ public class TResource {
 		this.uri = uri;
 	}
 	
-	public String getLocalName(){
+	public String uriToLocalName(){
 		return URIUtil.getLocalName(getUri());
 	}
 
