@@ -4,7 +4,7 @@
   <parent>
         <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
        <relativePath>..</relativePath>
     </parent>
 
@@ -21,12 +21,12 @@
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-kbase</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-model</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.2</version>
 		</dependency>
 		<dependency>
 		<groupId>org.slib.sglib</groupId>
