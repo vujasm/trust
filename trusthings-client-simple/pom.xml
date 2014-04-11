@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>trusthings</artifactId>
 		<groupId>com.innova.compose</groupId>
-		<version>0.0.2</version>
+		<version>0.0.2.1</version>
 		<relativePath>..</relativePath>
 	</parent>
 
@@ -34,22 +34,22 @@
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-common</artifactId>
-			<version>0.0.2</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-service-methods</artifactId>
-			<version>0.0.2</version>
+				<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-model</artifactId>
-			<version>0.0.2</version>
+				<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-service</artifactId>
-			<version>0.0.2</version>
+				<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.ws.rs</groupId>

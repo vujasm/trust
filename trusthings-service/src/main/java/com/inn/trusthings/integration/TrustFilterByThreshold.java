@@ -23,8 +23,7 @@ package com.inn.trusthings.integration;
 
 import java.net.URI;
 
-import com.google.inject.Guice;
-import com.inn.trusthings.module.TrustModule;
+import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
 import uk.ac.open.kmi.sense.evaluation.Filter;
@@ -40,7 +39,7 @@ public class TrustFilterByThreshold implements Filter {
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
 	public TrustFilterByThreshold() {
-		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
+		trustManager = Factory.createInstance(TrustManager.class);
 	}
 	
 	public TrustFilterByThreshold(TrustManager trustManager) {

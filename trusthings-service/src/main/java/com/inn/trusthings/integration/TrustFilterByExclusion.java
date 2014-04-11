@@ -25,9 +25,8 @@ import java.net.URI;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.google.inject.Guice;
 import com.inn.trusthings.model.pojo.TrustCriteria;
-import com.inn.trusthings.module.TrustModule;
+import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
 import uk.ac.open.kmi.sense.evaluation.Filter;
@@ -43,7 +42,7 @@ public class TrustFilterByExclusion implements Filter {
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
 	public TrustFilterByExclusion() {
-		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
+		trustManager = Factory.createInstance(TrustManager.class);
 	}
 	
 	public TrustFilterByExclusion(TrustManager trustManager) {

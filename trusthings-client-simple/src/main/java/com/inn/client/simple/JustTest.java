@@ -24,9 +24,9 @@ package com.inn.client.simple;
 import java.io.FileInputStream;
 import java.net.URI;
 
-import com.google.inject.Guice;
 import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
@@ -38,7 +38,7 @@ public class JustTest {
 				
 				URI youtube = URI.create("http://www.programmableweb.com/api/youtube");
 				String loc = "C://D-Data//Git//itrust//trusthings-kbase//src//main//resources//modelrepo//";
-				TrustManager trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
+				TrustManager trustManager =  Factory.createInstance(TrustManager.class);
 				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
 //				trustManager.addResourceDescription(youtube, is);
 				TrustFilterByExclusion s = new TrustFilterByExclusion();

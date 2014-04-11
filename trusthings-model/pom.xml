@@ -4,7 +4,7 @@
 	<parent>
         <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>
-        <version>0.0.2</version>
+        <version>0.0.2.1</version>
         <relativePath>..</relativePath>
     </parent>
 	<artifactId>trusthings-model</artifactId>
@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-common</artifactId>
-			<version>0.0.2</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
             <groupId>org.apache.jena</groupId>
