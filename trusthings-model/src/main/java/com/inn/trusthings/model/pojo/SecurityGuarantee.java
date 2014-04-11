@@ -23,9 +23,9 @@ package com.inn.trusthings.model.pojo;
 
 import java.net.URI;
 
-public class SecurityCapability extends SecurityAttribute {
+public class SecurityGuarantee extends SecurityAttribute {
 
-	public SecurityCapability(URI uri) {
+	public SecurityGuarantee(URI uri) {
 		super(uri);
 	}
 

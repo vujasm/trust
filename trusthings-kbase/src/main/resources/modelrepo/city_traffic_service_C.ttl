@@ -26,7 +26,7 @@
 	  trust:hasAttribute <http://127.0.0.1/services/1.1/city_traffic_service_c.owls#NFP_SECURITY_PRICE> .
 	  
 <http://127.0.0.1/services/1.1/city_traffic_service_c.owls#NFP_SECURITY_AUTHENTICATION_OAUTH2>
-		a   trust:SecurityCapability ;
+		a   trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 
 <http://127.0.0.1/services/1.1/city_traffic_service_c.owls#NFP_SECURITY_REPUTATION>

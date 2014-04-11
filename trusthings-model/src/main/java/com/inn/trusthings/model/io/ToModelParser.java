@@ -49,7 +49,7 @@ import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.Metric;
 import com.inn.trusthings.model.pojo.MetricValue;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
-import com.inn.trusthings.model.pojo.SecurityCapability;
+import com.inn.trusthings.model.pojo.SecurityGuarantee;
 import com.inn.trusthings.model.pojo.SecurityRequirment;
 import com.inn.trusthings.model.pojo.TResource;
 import com.inn.trusthings.model.pojo.TrustAttribute;
@@ -113,8 +113,8 @@ public class ToModelParser {
 
 				// FIXME it needs better design, more generic type checking
 				if (attribute == null) {
-					if (isOfType(individual, Trust.SecurityCapability.getURI())) {
-						attribute = new SecurityCapability(URI.create(individual.getURI()));
+					if (isOfType(individual, Trust.SecurityGuarantee.getURI())) {
+						attribute = new SecurityGuarantee(URI.create(individual.getURI()));
 						attribute = parseSecurityAttribute(individual, (SecurityAttribute) attribute);
 					} else if (isOfType(individual, Trust.SecurityRequirment.getURI())) {
 						attribute = new SecurityRequirment(URI.create(individual.getURI()));

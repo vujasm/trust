@@ -26,11 +26,11 @@
 	  trust:hasAttribute <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#NFP_SECURITY_PRICE> .
 	  	  
 <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#NFP_SECURITY_AUTHORIZATION>
-		a   wl:NonfunctionalParameter , trust:SecurityCapability ;
+		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_xacml"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 		
 <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#NFP_SECURITY_AUTHENTICATION>
-		a   wl:NonfunctionalParameter , trust:SecurityCapability ;
+		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_password_HTTPBasicAuth"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 
 <http://127.0.0.1/services/1.1/city_traffic_service_a.owls#NFP_SECURITY_REPUTATION>

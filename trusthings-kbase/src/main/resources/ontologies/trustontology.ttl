@@ -372,9 +372,9 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityCapability
+###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee
 
-:SecurityCapability rdf:type owl:Class ;
+:SecurityGuarantee rdf:type owl:Class ;
                     
                     rdfs:subClassOf :SecurityAttribute .
 

@@ -61,14 +61,14 @@ public class Request {
 
 		SecurityAttribute att3 = factory.createSecurityAttribute();
 		att3.setValueDatatype(USDLSecExpression.TYPE);
-		att3.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att3.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal1 = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		att3.addSecurityGoal(goal1);
 		att3.setImportance(1);
 
 		SecurityAttribute att4 = factory.createSecurityAttribute();
 		att4.setValueDatatype(USDLSecExpression.TYPE);
-		att4.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att4.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal2 = new SecurityGoal(URI.create(UsdlSec.Confidentiality.getURI()));
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(1);
@@ -100,7 +100,7 @@ public class Request {
 
 		SecurityAttribute att3 = factory.createSecurityAttribute();
 		att3.setValueDatatype(USDLSecExpression.TYPE);
-		att3.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att3.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal1 = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		att3.addSecurityGoal(goal1);
 		SecurityMechanism mechanism = factory.createSecurityMechanism();
@@ -112,7 +112,7 @@ public class Request {
 
 		SecurityAttribute att4 = factory.createSecurityAttribute();
 		att4.setValueDatatype(USDLSecExpression.TYPE);
-		att4.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att4.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal2 = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		SecurityMechanism mechanism2 = factory.createSecurityMechanism();
 		SecurityTechnology securityTechnology2 = new SecurityTechnology(
@@ -150,7 +150,7 @@ public class Request {
 
 		SecurityAttribute att3 = factory.createSecurityAttribute();
 		att3.setValueDatatype(USDLSecExpression.TYPE);
-		att3.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att3.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal1 = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		att3.addSecurityGoal(goal1);
 		SecurityMechanism mechanism = factory.createSecurityMechanism();
@@ -162,7 +162,7 @@ public class Request {
 
 		SecurityAttribute att4 = factory.createSecurityAttribute();
 		att4.setValueDatatype(USDLSecExpression.TYPE);
-		att4.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att4.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal2 = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		SecurityMechanism mechanism2 = factory.createSecurityMechanism();
 		SecurityTechnology securityTechnology2 = new SecurityTechnology(
@@ -196,21 +196,21 @@ public class Request {
 
 		SecurityAttribute att3 = factory.createSecurityAttribute();
 		att3.setValueDatatype(USDLSecExpression.TYPE);
-		att3.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att3.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal2 = new SecurityGoal(URI.create(UsdlSec.Authorization.getURI()));
 		att3.addSecurityGoal(goal2);
 		att3.setImportance(importance[0]);
 
 		SecurityAttribute att4 = factory.createSecurityAttribute();
 		att4.setValueDatatype(USDLSecExpression.TYPE);
-		att4.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att4.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		goal2 = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(importance[1]);
 
 		SecurityAttribute att5 = factory.createSecurityAttribute();
 		att5.setValueDatatype(USDLSecExpression.TYPE);
-		att5.addType(URI.create(Trust.SecurityCapability.getURI()));
+		att5.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		goal2 = new SecurityGoal(URI.create(UsdlSec.Confidentiality.getURI()));
 		att5.addSecurityGoal(goal2);
 		att5.setImportance(importance[1]);
