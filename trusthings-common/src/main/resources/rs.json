@@ -1,0 +1,62 @@
+{
+  "attributes" : [ 
+  
+  {
+    "importance" : 1.0,
+    "value" : "http://www.compose-project.eu/ns/web-of-things/trust#low",
+    "minValue" : null,
+    "maxValue" : null,
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#Reputation"
+    } ]
+  }, 
+  
+  {
+    "importance" : 1.0,
+    "value" : "0.5",
+    "minValue" : null,
+    "maxValue" : null,
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute"
+    } ]
+  },
+   
+  {
+    "importance" : 1.0,
+    "implementedBy" : [ {      
+      "realizedByTechnology" : [ {
+        "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth"
+      } ],
+      "typesAll" : [ {
+       "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Token"
+    }]
+    } ],
+    "securityGoals" : [ {
+      "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Authentication"
+    } ],
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityCapability"
+    } ]
+  },
+   
+  {
+    "importance" : 1.0,
+    "implementedBy" : [ {
+      "realizedByTechnology" : [ {
+        "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth"
+      } ],
+      "typesAll" : [
+      {
+       "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Token"
+      } ]
+    } ],
+    "securityGoals" : [ {
+      "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Authentication"
+    } ],
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityCapability"
+    } ]
+  }  
+  
+   ]
+}
