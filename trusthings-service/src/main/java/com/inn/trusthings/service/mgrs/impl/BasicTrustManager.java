@@ -48,6 +48,7 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
 import com.inn.trusthings.Configuration;
+import com.inn.trusthings.json.MakePOJO;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.SharedOntModelSpec;
@@ -333,6 +334,12 @@ public class BasicTrustManager implements TrustManager {
 		// TODO implement S-S match
 		// get profiles and trust criteria and do vice-versa matching
 		return false;
+	}
+	
+	@Override
+	public void setGlobalTrustCriteria(String criteriaAsJson) {
+		TrustCriteria criteria = new MakePOJO().ofTrustCriteria(criteriaAsJson);
+		this.globalTrustCriteria = criteria;
 	}
 
 	/**

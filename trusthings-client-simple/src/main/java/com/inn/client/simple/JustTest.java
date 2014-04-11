@@ -22,10 +22,14 @@ package com.inn.client.simple;
 
 
 import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 
+import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.json.MakePOJO;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -39,9 +43,13 @@ public class JustTest {
 				URI youtube = URI.create("http://www.programmableweb.com/api/youtube");
 				String loc = "C://D-Data//Git//itrust//trusthings-kbase//src//main//resources//modelrepo//";
 				TrustManager trustManager =  Factory.createInstance(TrustManager.class);
-				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
+//				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
 //				trustManager.addResourceDescription(youtube, is);
-				TrustFilterByExclusion s = new TrustFilterByExclusion();
+				
+				InputStream is = MakePOJO.class.getResourceAsStream("/global.json");
+				String	string = CharStreams.toString(new InputStreamReader(is));
+				trustManager.setGlobalTrustCriteria(string);
+				TrustFilterByExclusion s = new TrustFilterByExclusion(trustManager);
 //				System.out.println(s.apply(URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_A")));
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
 				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/twitter")));

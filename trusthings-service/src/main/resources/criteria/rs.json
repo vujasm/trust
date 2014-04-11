@@ -1,17 +1,17 @@
 {
-  "uri" : "http://localhost/requests#TrustCriteria_c7bc7cde-3f42-4e59-8ad1-7735c3c2a5f6",
+  "uri" : "http://localhost/requests#TrustCriteria_73aba3ec-6c7e-446b-81c5-510cb40a0ba0",
   "label" : null,
   "comment" : null,
   "agent" : null,
   "context" : null,
   "attributes" : [ {
-    "uri" : "http://localhost/requests#TrustProfile_db39ebfd-8dfe-4500-ab42-989729893365",
+    "uri" : "http://localhost/requests#TrustProfile_530af3c7-709d-49ba-80bf-c203334c360e",
     "label" : null,
     "comment" : null,
     "importance" : 1.0,
-    "value" : "http://www.compose-project.eu/ns/web-of-things/trust#low",
-    "minValue" : null,
-    "maxValue" : null,
+    "value" : "http://www.compose-project.eu/ns/web-of-things/trust#high",
+    "minValue" : "null",
+    "maxValue" : "null",
     "valueDatatype" : {
       "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale",
       "javaClass" : null
@@ -20,18 +20,16 @@
       "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
       "label" : null,
       "comment" : null,
-      "typesAll" : [ ],
-      "localName" : "Reputation"
-    } ],
-    "localName" : "TrustProfile_db39ebfd-8dfe-4500-ab42-989729893365"
+      "typesAll" : [ ]
+    } ]
   }, {
-    "uri" : "http://localhost/requests#TrustProfile_7ea14213-a450-44b9-a53b-657548480ede",
+    "uri" : "http://localhost/requests#TrustProfile_60c4bb68-619f-453e-b11a-f61d8e0bd6e1",
     "label" : null,
     "comment" : null,
     "importance" : 1.0,
     "value" : "0.5",
-    "minValue" : null,
-    "maxValue" : null,
+    "minValue" : "null",
+    "maxValue" : "null",
     "valueDatatype" : {
       "uri" : "http://www.w3.org/2001/XMLSchema#double",
       "javaClass" : "java.lang.Double"
@@ -40,12 +38,10 @@
       "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute",
       "label" : null,
       "comment" : null,
-      "typesAll" : [ ],
-      "localName" : "QoSAttribute"
-    } ],
-    "localName" : "TrustProfile_7ea14213-a450-44b9-a53b-657548480ede"
+      "typesAll" : [ ]
+    } ]
   }, {
-    "uri" : "http://localhost/requests#SecurityAttribute_8c0b048d-63d0-43bc-9d31-c89e2347b12a",
+    "uri" : "http://localhost/requests#SecurityAttribute_56bba482-6bcb-4c9a-894c-c105b2fede18",
     "label" : null,
     "comment" : null,
     "importance" : 1.0,
@@ -57,36 +53,36 @@
       "javaClass" : null
     },
     "implementedBy" : [ {
-      "uri" : "http://localhost/requests#SecurityMechanism_7bfb6890-a009-49b3-b11b-daa78a057018",
+      "uri" : "http://localhost/requests#SecurityMechanism_df1a39cb-aa51-42f0-9459-7f7f284ec580",
       "label" : null,
       "comment" : null,
       "realizedByTechnology" : [ {
         "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth",
         "label" : null,
         "comment" : null,
-        "typesAll" : [ ],
-        "localName" : "OAuth"
+        "typesAll" : [ ]
       } ],
-      "typesAll" : [ ],
-      "localName" : "SecurityMechanism_7bfb6890-a009-49b3-b11b-daa78a057018"
+      "typesAll" : [ {
+        "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Token",
+        "label" : null,
+        "comment" : null,
+        "typesAll" : [ ]
+      } ]
     } ],
     "securityGoals" : [ {
-      "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Authentication",
+      "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Confidentiality",
       "label" : null,
       "comment" : null,
-      "typesAll" : [ ],
-      "localName" : "Authentication"
+      "typesAll" : [ ]
     } ],
     "typesAll" : [ {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityCapability",
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
       "label" : null,
       "comment" : null,
-      "typesAll" : [ ],
-      "localName" : "SecurityCapability"
-    } ],
-    "localName" : "SecurityAttribute_8c0b048d-63d0-43bc-9d31-c89e2347b12a"
+      "typesAll" : [ ]
+    } ]
   }, {
-    "uri" : "http://localhost/requests#SecurityAttribute_0450780b-c8ab-487a-b3c2-ad61b56606de",
+    "uri" : "http://localhost/requests#SecurityAttribute_d34b54c8-4dd1-4fb8-bc49-9a2db9075edf",
     "label" : null,
     "comment" : null,
     "importance" : 1.0,
@@ -98,35 +94,34 @@
       "javaClass" : null
     },
     "implementedBy" : [ {
-      "uri" : "http://localhost/requests#SecurityMechanism_e4846d23-cda5-4b23-9c0a-ded2c0ec4086",
+      "uri" : "http://localhost/requests#SecurityMechanism_735e7592-3c69-4476-828a-bfc91b511f80",
       "label" : null,
       "comment" : null,
       "realizedByTechnology" : [ {
         "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth",
         "label" : null,
         "comment" : null,
-        "typesAll" : [ ],
-        "localName" : "HTTPBasicAuth"
+        "typesAll" : [ ]
       } ],
-      "typesAll" : [ ],
-      "localName" : "SecurityMechanism_e4846d23-cda5-4b23-9c0a-ded2c0ec4086"
+      "typesAll" : [ {
+        "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Token",
+        "label" : null,
+        "comment" : null,
+        "typesAll" : [ ]
+      } ]
     } ],
     "securityGoals" : [ {
       "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Authentication",
       "label" : null,
       "comment" : null,
-      "typesAll" : [ ],
-      "localName" : "Authentication"
+      "typesAll" : [ ]
     } ],
     "typesAll" : [ {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityCapability",
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
       "label" : null,
       "comment" : null,
-      "typesAll" : [ ],
-      "localName" : "SecurityCapability"
-    } ],
-    "localName" : "SecurityAttribute_0450780b-c8ab-487a-b3c2-ad61b56606de"
+      "typesAll" : [ ]
+    } ]
   } ],
-  "typesAll" : [ ],
-  "localName" : "TrustCriteria_c7bc7cde-3f42-4e59-8ad1-7735c3c2a5f6"
+  "typesAll" : [ ]
 }

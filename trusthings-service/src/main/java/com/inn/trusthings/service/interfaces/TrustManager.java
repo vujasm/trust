@@ -183,9 +183,16 @@ public interface TrustManager{
 	
 	/**
 	 *  Set global trust request. If not set, the trust manager will be using the default the default one {@link GlobalTrustCriteria}
-	 * @param criteria Trust request
+	 * @param criteria Trust criteria as POJO
 	 */
 	public void setGlobalTrustCriteria(TrustCriteria criteria);
+	
+	
+	/**
+	 * Set global trust request. If not set, the trust manager will be using the default the default one {@link GlobalTrustCriteria}
+	 * @param critaeriaAsJson  Trust criteria as Json string
+	 */
+	public void setGlobalTrustCriteria(String critaeriaAsJson) ; 
 	
 	
 	public TrustCriteria getGlobalTrustCriteria();

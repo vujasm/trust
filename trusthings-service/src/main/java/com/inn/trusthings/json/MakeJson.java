@@ -28,7 +28,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.collect.Lists;
 import com.inn.util.tuple.Tuple2;
 
 public class MakeJson {
@@ -82,10 +81,10 @@ public class MakeJson {
 //		jo.putArray("result", array);
 //		System.out.println(jo.encode());
 //		System.out.println(jo.encodePrettily());
-		List<Tuple2<URI, Double>> l = Lists.newArrayList();
-		l.add(new Tuple2<URI, Double>(URI.create("http://localhost"), 1D));
-	
-		System.out.println(new MakeJson().ofError(new Exception("tes")));
+//		List<Tuple2<URI, Double>> l = Lists.newArrayList();
+//		l.add(new Tuple2<URI, Double>(URI.create("http://localhost"), 1D));
+//	
+//		System.out.println(new MakeJson().ofError(new Exception("tes")));
 	}
 
 }

@@ -45,6 +45,8 @@ public class RDFModelsHandler {
 	Map<String, OntModel> modelCache = Maps.newConcurrentMap();
 	
 	private static RDFModelsHandler globalInstance  = null;
+	
+	private final String modelrepo = "modelrepo";
 	//private static final Logger log = LoggerFactory.getLogger(RDFModelsHandler.class);
 
 	private JsonNode modelmap = null;
@@ -52,7 +54,7 @@ public class RDFModelsHandler {
 	private RDFModelsHandler() {
 
 		try {
-			InputStream is = this.getClass().getResourceAsStream("/modelrepo/modelmap.json");
+			InputStream is = this.getClass().getResourceAsStream("/"+modelrepo+"/modelmap");
 			String s = CharStreams.toString(new InputStreamReader(is));
 			ObjectMapper m = new ObjectMapper();
 			modelmap = m.readTree(s);
@@ -97,7 +99,7 @@ public class RDFModelsHandler {
 		if (hasCachedModel(uri))
 			return getFromCache(uri);
 		else{
-			InputStream is = getClass().getResourceAsStream("/modelrepo/"+node.textValue());
+			InputStream is = getClass().getResourceAsStream("/"+modelrepo+"/"+node.textValue());
 			return fetch(uri, is, modelSpec);
 		}
 		

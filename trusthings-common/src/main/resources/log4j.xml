@@ -32,7 +32,7 @@
       <level value="OFF" />
  </logger>
   <logger name="com.inn">
-      <level value="off" />
+      <level value="OFF" />
   </logger>
   <root> 
     <priority value ="info" /> 
