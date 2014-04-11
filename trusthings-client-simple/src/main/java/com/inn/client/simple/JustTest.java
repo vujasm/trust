@@ -46,7 +46,7 @@ public class JustTest {
 //				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
 //				trustManager.addResourceDescription(youtube, is);
 				
-				InputStream is = MakePOJO.class.getResourceAsStream("/global.json");
+				InputStream is = MakePOJO.class.getResourceAsStream("/criteria/criteria1.json");
 				String	string = CharStreams.toString(new InputStreamReader(is));
 				trustManager.setGlobalTrustCriteria(string);
 				TrustFilterByExclusion s = new TrustFilterByExclusion(trustManager);
