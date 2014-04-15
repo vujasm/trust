@@ -94,7 +94,7 @@ public class RDFModelsHandler {
 	
 	public synchronized OntModel fetchDescriptionFromFileSystem(String uri, String syntax, OntModelSpec modelSpec) {
 		JsonNode node =  modelmap.get(uri);
-		if (node == null)
+		if (node == null && hasCachedModel(uri) == false)
 			return null;
 		if (hasCachedModel(uri))
 			return getFromCache(uri);
