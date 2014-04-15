@@ -66,7 +66,7 @@ public class CreateUpdateTrustProfile {
 	 * @return model having trust profile data
 	 */
 	public OntModel apply(OntModel model, URI uri, List<Collector> collectors){
-		if (model.contains(new Agent(uri).asJenaResource(), Trust.hasTrustProfile)) {
+		if (model.contains(new Agent(uri).asJenaResource(), Trust.hasProfile)) {
 			log.info("Profile for " + uri.toASCIIString() + " exists and has been found");
 		} else {
 			log.info("No profile exists for " + uri.toASCIIString() + ". Creating the profile.");

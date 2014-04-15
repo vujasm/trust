@@ -61,7 +61,7 @@ public class ToGraphParser {
 		TrustProfile profile = agent.getHasTrustProfile();
 		if (profile != null){
 			model.add(profile.asJenaResource(), RDF.type, Trust.TrustProfile);
-			model.add(agent.asJenaResource(), Trust.hasTrustProfile, profile.asJenaResource());
+			model.add(agent.asJenaResource(), Trust.hasProfile, profile.asJenaResource());
 			addParameters(profile, model);
 		}	
 	}

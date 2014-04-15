@@ -92,7 +92,7 @@ public class ToModelParser {
 	}
 
 	private Resource findAgentURI(OntModel oModel) throws Exception {
-		ResIterator iterator = oModel.listSubjectsWithProperty(Trust.hasTrustProfile);
+		ResIterator iterator = oModel.listSubjectsWithProperty(Trust.hasProfile);
 		if (iterator.hasNext()) {
 			return iterator.next();
 		} else {
