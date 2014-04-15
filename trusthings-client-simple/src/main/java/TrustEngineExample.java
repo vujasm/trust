@@ -43,22 +43,26 @@ public class TrustEngineExample {
 			is.close();
 			
 			//add some descriptions (trust profiles)
-			URI resource1Id = URI.create("http://localhost/services/foo_1");
-			URI resource2Id = URI.create("http://localhost/services/foo_2");
-			InputStream r1is = TrustEngineExample.class.getResourceAsStream("/modelrepo/foo_1.ttl");
-			trustManager.addResourceDescription(resource1Id,r1is);
-			InputStream r2is = TrustEngineExample.class.getResourceAsStream("/modelrepo/foo_2.ttl");
-			trustManager.addResourceDescription(resource2Id, r2is);
+			URI service_a = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_A");			
+			URI service_b = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_B");
+			URI service_d = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_D");
+			InputStream r1is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_A.ttl");
+			trustManager.addResourceDescription(service_a,r1is);
+			InputStream r2is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_B.ttl");
+			trustManager.addResourceDescription(service_b, r2is);
 			r2is.close();
-			
+			InputStream r3is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_D.ttl");
+			trustManager.addResourceDescription(service_d, r3is);
+			r3is.close();
 			/*
 			 * SCORING
 			 */
 			//create trust scorer and pass trustManager
 			TrustScorer s = new TrustScorer(trustManager);
 			//obtain and print trust indexes for resources
-			System.out.println(resource1Id.toASCIIString()+" has trust index value:"+s.apply(resource1Id));
-			System.out.println(resource2Id.toASCIIString()+" has trust index value:"+s.apply(resource2Id));
+			System.out.println(service_a.toASCIIString()+" has trust index value:"+s.apply(service_a));
+			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(service_b));
+			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(service_d));
 			
 			/*
 			 * FILTERING
@@ -66,8 +70,9 @@ public class TrustEngineExample {
 			//create trust filer to filter out those not trusted
 			TrustFilterByExclusion f = new TrustFilterByExclusion(trustManager);
 			//obtain trust indexes for resources
-			System.out.println(resource1Id.toASCIIString()+" is trusted = "+f.apply(resource1Id));
-			System.out.println(resource2Id.toASCIIString()+" is trusted = "+f.apply(resource2Id));
+			System.out.println(service_a.toASCIIString()+" is trusted = "+f.apply(service_a));
+			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(service_b));
+			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(service_d));
 			
 			
 		} catch (IOException e) {

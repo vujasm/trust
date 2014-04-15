@@ -8,34 +8,34 @@
 @prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
 @prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
 
-<http://localhost/services/foo_1>
+<http://localhost/services/CITY_TRAFFIC_SERVICE_D>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://localhost/services/foo_1#TRUST_PROFILE>.
+	  trust:hasTrustProfile <http://localhost/services/CITY_TRAFFIC_SERVICE_D#TRUST_PROFILE>.
 
-<http://localhost/services/foo_1#TRUST_PROFILE> 
+<http://localhost/services/CITY_TRAFFIC_SERVICE_D#TRUST_PROFILE> 
        a    trust:TrustProfile;
-	  trust:hasAttribute <http://localhost/services/foo_1#NFP_SECURITY_AUTHENTICATION_1> ;
-	  trust:hasAttribute <http://localhost/services/foo_1#NFP_SECURITY_AUTHENTICATION_2> ;
-	  trust:hasAttribute <http://localhost/services/foo_1#NFP_SECURITY_CONFIDENTIALITY> ;
-	  trust:hasAttribute <http://localhost/services/foo_1#NFP_SECURITY_REPUTATION> ;
-	  trust:hasAttribute <http://localhost/services/foo_1#NFP_SECURITY_QoS> .
+	  trust:hasAttribute <http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_AUTHENTICATION_1> ;
+	  trust:hasAttribute <http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_AUTHENTICATION_2> ;
+	  trust:hasAttribute <http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_CONFIDENTIALITY> ;
+	  trust:hasAttribute <http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_REPUTATION> ;
+	  trust:hasAttribute <http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_QoS> .
 	  	  
-<http://localhost/services/foo_1#NFP_SECURITY_AUTHENTICATION_1>
+<http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_AUTHENTICATION_1>
 		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 
-<http://localhost/services/foo_1#NFP_SECURITY_AUTHENTICATION_2>
+<http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_AUTHENTICATION_2>
 		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_apikey"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 		
-		<http://localhost/services/foo_1#NFP_SECURITY_CONFIDENTIALITY>
+		<http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_CONFIDENTIALITY>
 		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentiality_encryption_SSL"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 		
-<http://localhost/services/foo_1#NFP_SECURITY_REPUTATION>
+<http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_REPUTATION>
 		a   wl:NonfunctionalParameter , trust:Reputation ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#high"^^<http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale> .
 		
-<http://localhost/services/foo_1#NFP_SECURITY_QoS>
+<http://localhost/services/CITY_TRAFFIC_SERVICE_D#NFP_SECURITY_QoS>
 		a   wl:NonfunctionalParameter , trust:QoSAttribute ;
 		trust:hasValue "1"^^<http://www.w3.org/2001/XMLSchema#double> .
