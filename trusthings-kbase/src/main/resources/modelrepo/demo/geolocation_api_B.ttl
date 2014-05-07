@@ -23,7 +23,7 @@
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_apikey"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 
 <http://localhost/services/Geolocation_API_B#NFP_POPULARITY>
-		a   wl:NonfunctionalParameter , trust:Rating ;
+		a   wl:NonfunctionalParameter , trust:Popularity ;
 		trust:hasValue "0.3"^^<http://www.w3.org/2001/XMLSchema#double> .
 		
 <http://localhost/services/Geolocation_API_B#NFP_AVAILABILITY>
