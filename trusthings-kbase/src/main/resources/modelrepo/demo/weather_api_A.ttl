@@ -10,7 +10,7 @@
 
 <http://localhost/services/Weather_API_A>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://localhost/services/Weather_API_A#TRUST_PROFILE>.
+	  trust:hasProfile <http://localhost/services/Weather_API_A#TRUST_PROFILE>.
 
 <http://localhost/services/Weather_API_A#TRUST_PROFILE> 
        a    trust:TrustProfile;

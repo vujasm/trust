@@ -45,6 +45,9 @@ public class ComparisonMatchOp {
 	public double apply(final TrustAttribute reqAttribute, final TrustAttribute attribute) throws Exception {
 
 			RDFDatatype datatype = reqAttribute.getValueDatatype();
+			
+			System.out.println(datatype);
+			
 			if (isNumericDataType(datatype)) {
 				  return compareNumeric(attribute, reqAttribute);
 			} else if (isMetricScale(datatype)) {

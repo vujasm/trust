@@ -159,7 +159,7 @@ public class BasicTrustManager implements TrustManager {
 	 */
 	@Override
 	public List<Tuple2<URI, Double>> rankResources(List<URI> resources, TrustCriteria criteria, OrderType order) throws Exception {
-		return rankResources(resources, criteria, globalStrategy, true, order);
+		return rankResources(resources, criteria, globalStrategy, false, order);
 	}
 
 	/**

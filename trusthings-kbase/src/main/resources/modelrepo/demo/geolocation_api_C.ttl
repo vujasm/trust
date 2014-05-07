@@ -10,7 +10,7 @@
 
 <http://localhost/services/Geolocation_API_C>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://localhost/services/Geolocation_API_C#TRUST_PROFILE>.
+	  trust:hasProfile <http://localhost/services/Geolocation_API_C#TRUST_PROFILE>.
 
 <http://localhost/services/Geolocation_API_C#TRUST_PROFILE> 
        a    trust:TrustProfile;

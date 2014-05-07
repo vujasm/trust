@@ -9,18 +9,18 @@
 @prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
 
 <http://localhost/services/Wind_Sensor_A>
-      a       msm:Service ;
-	  trust:hasTrustProfile <http://localhost/services/Wind_Sensor_A#TRUST_PROFILE>.
+      a       msm:Service , trust:Agent;
+	  trust:hasProfile <http://localhost/services/Wind_Sensor_A#TRUST_PROFILE>.
 
 <http://localhost/services/Wind_Sensor_A#TRUST_PROFILE> 
-       a    trust:TrustProfile;
+	  a    trust:TrustProfile;
 	  trust:hasAttribute <http://localhost/services/Wind_Sensor_A#NFP_SecurityGuarantee_1> ;
-	  trust:hasAttribute <http://localhost/services/Wind_Sensor_A#NFP_REPUTATION> ;
+	  trust:hasAttribute <http://localhost/services/Wind_Sensor_A#NFP_REPUTATION> .
 		
 <http://localhost/services/Wind_Sensor_A#NFP_SecurityGuarantee_1>
 		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
 
-<http://localhost/services/Wind_Sensor_A#NFP_REPUTATION>
+<http://localhost/services/Wind_Sensor_A#NFP_REPUTATION> 
 		a   wl:NonfunctionalParameter , trust:Reputation ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#high"^^<http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale> .

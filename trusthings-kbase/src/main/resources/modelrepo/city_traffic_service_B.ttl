@@ -15,7 +15,7 @@
 
 <http://localhost/services/CITY_TRAFFIC_SERVICE_B>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/city_traffic_service_b.owls#TRUST_PROFILE> ;
+	  trust:hasProfile <http://127.0.0.1/services/1.1/city_traffic_service_b.owls#TRUST_PROFILE> ;
       msm:hasOperation <http://127.0.0.1/services/1.1/city_traffic_service_b.owls#CITY_TRAFFICREREPORT_PROCESS> .
 	  
 <http://127.0.0.1/services/1.1/city_traffic_service_b.owls#TRUST_PROFILE> 

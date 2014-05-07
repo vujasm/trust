@@ -7,9 +7,9 @@
 	"http://localhost/services/Geolocation_API_B" : "modelrepo/demo/geolocation_api_B.ttl",
 	"http://localhost/services/Geolocation_API_C" : "modelrepo/demo/geolocation_api_C.ttl",
 	
-	"http://localhost/services/Wind_Sensor_A" : "modelrepo/wind_sensors_api_A.ttl",
-	"http://localhost/services/Wind_Sensor_B" : "modelrepo/wind_sensors_api_B.ttl",
-	"http://localhost/services/Wind_Sensor_C" : "modelrepo/wind_sensors_api_C.ttl",
+	"http://localhost/services/Wind_Sensor_A" : "modelrepo/demo/wind_sensors_api_A.ttl",
+	"http://localhost/services/Wind_Sensor_B" : "modelrepo/demo/wind_sensors_api_B.ttl",
+	"http://localhost/services/Wind_Sensor_C" : "modelrepo/demo/wind_sensors_api_C.ttl",
 	
 	
 	"http://localhost/services/CITY_TRAFFIC_SERVICE_A" : "modelrepo/city_traffic_service_A.ttl",

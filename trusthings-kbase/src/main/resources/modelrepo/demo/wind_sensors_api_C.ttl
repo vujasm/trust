@@ -9,13 +9,13 @@
 @prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
 
 <http://localhost/services/Wind_Sensor_C>
-      a       msm:Service ;
-	  trust:hasTrustProfile <http://localhost/services/Wind_Sensor_C#TRUST_PROFILE>.
+      a       msm:Service , trust:Agent;
+	  trust:hasProfile <http://localhost/services/Wind_Sensor_C#TRUST_PROFILE>.
 
 <http://localhost/services/Wind_Sensor_C#TRUST_PROFILE> 
        a    trust:TrustProfile;
 	  trust:hasAttribute <http://localhost/services/Wind_Sensor_C#NFP_SecurityGuarantee_1> ;
-	  trust:hasAttribute <http://localhost/services/Wind_Sensor_C#NFP_REPUTATION> ;
+	  trust:hasAttribute <http://localhost/services/Wind_Sensor_C#NFP_REPUTATION> .
 		
 <http://localhost/services/Wind_Sensor_C#NFP_SecurityGuarantee_1>
 		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;

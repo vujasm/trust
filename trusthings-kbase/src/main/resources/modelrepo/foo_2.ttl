@@ -10,7 +10,7 @@
 
 <http://localhost/services/foo_2>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/foo2#TRUST_PROFILE>.
+	  trust:hasProfile <http://127.0.0.1/services/1.1/foo2#TRUST_PROFILE>.
 
 <http://127.0.0.1/services/1.1/foo2#TRUST_PROFILE> 
        a    trust:TrustProfile;

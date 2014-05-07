@@ -104,6 +104,9 @@ public class MakePOJO {
 					if (uri.toASCIIString().equals(Trust.Reputation.getURI())){
 						attr.setValueDatatype(new BaseDatatype(Trust.ReputationScale.getURI()));
 					}
+					if (uri.toASCIIString().equals(Trust.Rating.getURI())){
+						attr.setValueDatatype(new BaseDatatype(Trust.RatingScale.getURI()));
+					}
 				}
 			}
 			attr.addType(uri);

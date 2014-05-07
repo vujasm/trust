@@ -64,9 +64,9 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasTrustProfile
+###  http://www.compose-project.eu/ns/web-of-things/trust#hasProfile
 
-:hasTrustProfile rdf:type owl:ObjectProperty ;
+:hasProfile rdf:type owl:ObjectProperty ;
                  
                  rdfs:domain :Agent ;
                  
@@ -78,7 +78,7 @@
 
 :isTrustProfileOf rdf:type owl:ObjectProperty ;
                   
-                  owl:inverseOf :hasTrustProfile .
+                  owl:inverseOf :hasProfile .
 
 
 
@@ -215,7 +215,7 @@
                          owl:someValuesFrom :TrustProfile
                        ] ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :hasTrustProfile ;
+                         owl:onProperty :hasProfile ;
                          owl:someValuesFrom :TrustProfile
                        ] ;
        

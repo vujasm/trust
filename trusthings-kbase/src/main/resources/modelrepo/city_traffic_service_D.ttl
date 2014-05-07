@@ -10,7 +10,7 @@
 
 <http://localhost/services/CITY_TRAFFIC_SERVICE_D>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://localhost/services/CITY_TRAFFIC_SERVICE_D#TRUST_PROFILE>.
+	  trust:hasProfile <http://localhost/services/CITY_TRAFFIC_SERVICE_D#TRUST_PROFILE>.
 
 <http://localhost/services/CITY_TRAFFIC_SERVICE_D#TRUST_PROFILE> 
        a    trust:TrustProfile;

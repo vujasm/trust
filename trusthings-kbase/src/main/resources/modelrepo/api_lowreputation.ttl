@@ -10,7 +10,7 @@
 
 <http://www.programmableweb.com/api/lowreputation>
       a       msm:Service ;
-	  trust:hasTrustProfile <http://127.0.0.1/services/1.1/lowreputation#TRUST_PROFILE>.
+	  trust:hasProfile <http://127.0.0.1/services/1.1/lowreputation#TRUST_PROFILE>.
 
 <http://127.0.0.1/services/1.1/lowreputation#TRUST_PROFILE> 
        a    trust:TrustProfile;
