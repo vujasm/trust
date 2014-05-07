@@ -1,10 +1,23 @@
 {
-	"http://localhost/services/CITY_TRAFFIC_SERVICE_A" : "city_traffic_service_A.ttl",
-	"http://localhost/services/CITY_TRAFFIC_SERVICE_B" : "city_traffic_service_B.ttl",
-	"http://localhost/services/CITY_TRAFFIC_SERVICE_C" : "city_traffic_service_C.ttl",
-	"http://www.programmableweb.com/api/flickr" : "api_flickr.ttl",
-	"http://www.programmableweb.com/api/twitter" : "api_twitter.ttl",
-	"http://www.programmableweb.com/api/youtube" : "api_youtube.ttl",
-	"http://www.programmableweb.com/api/lowreputation" : "api_lowreputation.ttl",
-	"http://www.programmableweb.com/api/nosecurity" : "api_nosecurity.ttl"
+	"http://localhost/services/Weather_API_A" : "modelrepo/demo/weather_api_A.ttl",
+	"http://localhost/services/Weather_API_B" : "modelrepo/demo/weather_api_B.ttl",
+	"http://localhost/services/Weather_API_C" : "modelrepo/demo/weather_api_C.ttl",
+	
+	"http://localhost/services/Geolocation_API_A" : "modelrepo/demo/geolocation_api_A.ttl",
+	"http://localhost/services/Geolocation_API_B" : "modelrepo/demo/geolocation_api_B.ttl",
+	"http://localhost/services/Geolocation_API_C" : "modelrepo/demo/geolocation_api_C.ttl",
+	
+	"http://localhost/services/Wind_Sensor_A" : "modelrepo/wind_sensors_api_A.ttl",
+	"http://localhost/services/Wind_Sensor_B" : "modelrepo/wind_sensors_api_B.ttl",
+	"http://localhost/services/Wind_Sensor_C" : "modelrepo/wind_sensors_api_C.ttl",
+	
+	
+	"http://localhost/services/CITY_TRAFFIC_SERVICE_A" : "modelrepo/city_traffic_service_A.ttl",
+	"http://localhost/services/CITY_TRAFFIC_SERVICE_B" : "modelrepo/city_traffic_service_B.ttl",
+	"http://localhost/services/CITY_TRAFFIC_SERVICE_C" : "modelrepo/city_traffic_service_C.ttl",
+	"http://www.programmableweb.com/api/flickr" : "modelrepo/api_flickr.ttl",
+	"http://www.programmableweb.com/api/twitter" : "modelrepo/api_twitter.ttl",
+	"http://www.programmableweb.com/api/youtube" : "modelrepo/api_youtube.ttl",
+	"http://www.programmableweb.com/api/lowreputation" : "modelrepo/api_lowreputation.ttl",
+	"http://www.programmableweb.com/api/nosecurity" : "modelrepo/api_nosecurity.ttl"
 }

@@ -99,7 +99,7 @@ public class RDFModelsHandler {
 		if (hasCachedModel(uri))
 			return getFromCache(uri);
 		else{
-			InputStream is = getClass().getResourceAsStream("/"+modelrepo+"/"+node.textValue());
+			InputStream is = getClass().getResourceAsStream("/"+node.textValue());
 			return fetch(uri, is, modelSpec);
 		}
 		
