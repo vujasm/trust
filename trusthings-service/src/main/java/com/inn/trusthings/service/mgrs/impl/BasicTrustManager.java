@@ -231,7 +231,7 @@ public class BasicTrustManager implements TrustManager {
 
 	@Override
 	public List<URI> filterResources(List<URI> resources, TrustCriteria criteria, OrderType order, Double thresholdValue) throws Exception {
-		return filterResources(resources, criteria, globalStrategy, true, true, order, thresholdValue);
+		return filterResources(resources, criteria, globalStrategy, true, false, order, thresholdValue);
 	}
 
 	/**

@@ -59,9 +59,10 @@ public class TrustModuleTest {
 		trustManager = injector.getInstance(TrustManager.class);
 	}
 
-	public void computeTaxonomy() {
+	public Tree computeTaxonomy() {
 		Tree t = trustManager.obtainTaxonomy(ModelEnum.Trust.getURI(), Trust.TrustAttribute.getURI());
 		System.out.println(t);
+		return t;
 	}
 
 	public void getLoadedModels() {

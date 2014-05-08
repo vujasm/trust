@@ -8,19 +8,19 @@
 @prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
 @prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
 
-<http://localhost/services/Weather_API_B>
+<http://localhost/services/Weather_API_C>
       a       msm:Service ;
-	  trust:hasProfile <http://localhost/services/Weather_API_B#TRUST_PROFILE>.
+	  trust:hasProfile <http://localhost/services/Weather_API_C#TRUST_PROFILE>.
 
-<http://localhost/services/Weather_API_B#TRUST_PROFILE> 
+<http://localhost/services/Weather_API_C#TRUST_PROFILE> 
        a    trust:TrustProfile;
-	  trust:hasAttribute <http://localhost/services/Weather_API_B#NFP_RATING> ;
-	  trust:hasAttribute <http://localhost/services/Weather_API_B#NFP_AVAILABILITY> .
+	  trust:hasAttribute <http://localhost/services/Weather_API_C#NFP_RATING> ;
+	  trust:hasAttribute <http://localhost/services/Weather_API_C#NFP_AVAILABILITY> .
 		
-<http://localhost/services/Weather_API_B#NFP_RATING>
+<http://localhost/services/Weather_API_C#NFP_RATING>
 		a   wl:NonfunctionalParameter , trust:Rating ;
 		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#twoStar"^^<http://www.compose-project.eu/ns/web-of-things/trust#RatingScale> .
 		
-<http://localhost/services/Weather_API_B#NFP_AVAILABILITY>
+<http://localhost/services/Weather_API_C#NFP_AVAILABILITY>
 		a   wl:NonfunctionalParameter , trust:Availability ;
 		trust:hasValue "0.6"^^<http://www.w3.org/2001/XMLSchema#double> .

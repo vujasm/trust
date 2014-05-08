@@ -35,11 +35,12 @@ import com.inn.util.tuple.Tuple2;
 
 public class demo2 {
 	
-	public void runExample(){
+	public String runExample(TrustManager trustManager, int what){
+		
+		String  output = "";
 		
 		try {
-			//create trust manager
-			TrustManager trustManager =  Factory.createInstance(TrustManager.class);
+
 			//load (from json file) and set trust criteria 
 			InputStream is = demo2.class.getResourceAsStream("/criteria/demo/criteria_sc_b.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
@@ -55,20 +56,32 @@ public class demo2 {
 			TrustCriteria criteriapojo = new MakePOJO().ofTrustCriteria(criteria);
 			List<URI> list = Lists.newArrayList();
 			list.add(service_a);list.add(service_b);list.add(service_c);
-			List<Tuple2<URI, Double>> result = trustManager.rankResources(list, criteriapojo, OrderType.DESC);
-			for (Tuple2<URI, Double> t : result) {
-				System.out.println(t.getT1() + " has trust score "+t.getT2());
-			}
+			if (what ==1){
+				List<Tuple2<URI, Double>> result = trustManager.rankResources(list, criteriapojo, OrderType.DESC);
+					for (Tuple2<URI, Double> t : result) {
+						output = output+"\n"+t.getT1() + " has trust score "+t.getT2();
+					}
+				}
+				else{
+					List<URI> result = trustManager.filterResources(list, criteriapojo, OrderType.DESC, 0.5);
+					for (URI t : result) {
+						output = output+"\n"+t.toASCIIString();
+					}
+				}
+
 			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		return output;
+		
 	}
 	
 	public static void main(String[] args) {
-		new demo2().runExample();
+		TrustManager trustManager =  Factory.createInstance(TrustManager.class);
+		new demo2().runExample(trustManager, 2);
 	}
 
 }
