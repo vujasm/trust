@@ -1,4 +1,4 @@
-package com.inn.gui.tree;
+package com.inn.gui;
 
 /*
  * #%L
@@ -21,20 +21,17 @@ package com.inn.gui.tree;
  */
 
 
-import javax.swing.tree.TreeModel;
+import java.applet.Applet;
+import java.awt.Button;
 
-public class Builder {
-	
-	
-	public static TreeModel getModel(com.inn.util.tree.Tree tree){
-		
-		Node rootNode = new Node(tree.getRoot());
-		Model model = new Model(rootNode);
-		
-		
-		
-		return model;
-		
+public class HW extends Applet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public HW() {
+		add(new Button("ttt"));
 	}
-
 }

@@ -1,5 +1,26 @@
 package com.inn.gui;
 
+/*
+ * #%L
+ * trusthings-client-simple
+ * %%
+ * Copyright (C) 2014 INNOVA S.p.A
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -43,7 +64,7 @@ public class Application {
 
 	private JFrame frame;
 
-	ViewerDialog dialog = new ViewerDialog();
+	
 	
 	private JPanel panelCriteria;
 	
@@ -154,13 +175,13 @@ public class Application {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (demo == 1){
-					showAgentDescr(Controller.getScorestDemo1());
+					showAgentDescr(Controller.getScorestDemo1(), "Trust scores (resources are ordered from trusted to less trusted)");
 				}
 				else if (demo == 2){
-					showAgentDescr(Controller.getScorestDemo2());
+					showAgentDescr(Controller.getScorestDemo2(),"Trust scores (resources are ordered from trusted to less trusted)");
 				}
 				else {
-					showAgentDescr(Controller.getScorestDemo3());
+					showAgentDescr(Controller.getScorestDemo3(),"Trust scores (resources are ordered from trusted to less trusted)");
 				}
 			}
 		});
@@ -198,7 +219,7 @@ public class Application {
 				}
 				if (path!=null){
 				String descr = ResourceReader.getResourceAsStringForClasspath(path);
-				showAgentDescr(descr);
+				showAgentDescr(descr, "Trust criteria in JSON syntax");
 				}
 			}
 		});
@@ -211,10 +232,11 @@ public class Application {
 		JButton button = new JButton("Filter");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String title = "Trusted services- filtering using trust threshold of 0.5";
 				switch (demo){
-				case 1:showAgentDescr(Controller.getFilteredDemo1()); break;
-				case 2:showAgentDescr(Controller.getFilteredDemo2()); break;
-				case 3:showAgentDescr(Controller.getFilteredDemo3()); break;
+				case 1:showAgentDescr(Controller.getFilteredDemo1(), title); break;
+				case 2:showAgentDescr(Controller.getFilteredDemo2(), title); break;
+				case 3:showAgentDescr(Controller.getFilteredDemo3(), title); break;
 				}
 			}});
 		
@@ -226,11 +248,13 @@ public class Application {
 			public void actionPerformed(ActionEvent e) {
 				String descr = ""; 
 				String item = (String) list.getSelectedValue();
+				String title = "";
 				if (item !=null){
 					String id = parse(item);
 					descr = ResourceReader.getTrustDescr(id);
+					 title = "Trust profile (trust-related attributes) of "+id;
 				}
-				showAgentDescr(descr);
+				showAgentDescr(descr,title);
 			}
 		});
 		
@@ -278,8 +302,8 @@ public class Application {
 				panelCriteria.repaint();
 			}
 		});
-		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 	}
+		
 	
 	
 	private JPanel createPanelCritera(Node n) {
@@ -368,7 +392,7 @@ public class Application {
 		comboBoxGoal.setBounds(7, 25, 120, 20);
 		comboBoxGoal.setModel(new DefaultComboBoxModel(new String[] 
 				{"Authentication","Authorization","Availability", "Anonymity", 
-						"Accountability", "Confidentiality", "Correctness", "Identification", "Policy Compliance", "Privacy"}));
+						"Accountability", "Confidentiality", "Correctness", "Identification", "Policy Compliance", "Privacy", ""}));
 		panelCriteria.add(comboBoxGoal);
 		
 		JLabel lblValue = new JLabel("Mechanism");
@@ -379,15 +403,15 @@ public class Application {
 		comboBoxMechanism.setBounds(128, 25, 120, 20);
 		comboBoxMechanism.setModel(new DefaultComboBoxModel(new String[] 
 				{"Access Control", "Certificate", "Cryptography", 
-				"Token", "Certification", "Certificate Exchange", "Monitoring", "Password Exchange", "Usage Control"}));
+				"Token", "Certification", "Certificate Exchange", "Monitoring", "Password Exchange", "Usage Control", ""}));
 		panelCriteria.add(comboBoxMechanism);
 		
 		JLabel lblTechno = new JLabel("Technology");
-		lblTechno.setBounds(230, 7, 88, 14);
+		lblTechno.setBounds(250, 7, 88, 14);
 		panelCriteria.add(lblTechno);
 		
 		JComboBox comboBoxTech = new JComboBox();
-		comboBoxTech.setBounds(230, 25, 120, 20);
+		comboBoxTech.setBounds(250, 25, 120, 20);
 		comboBoxTech.setModel(new DefaultComboBoxModel(new String[] 
 				{"RSA-SHA1",
 				"RSA",
@@ -397,7 +421,7 @@ public class Application {
 				"OAuth2",
 				"OpenID",
 				"APIKey","HTTPBasicAuth" ,"SessionID", "CryptographicProtocol" ,"TSL" ,"SSL", "XACML"
-				,"DSA-SHA1" ,"X509","HMAC-SHA1","AES","AES256bit","AES128bit","SAML","DES"}));
+				,"DSA-SHA1" ,"X509","HMAC-SHA1","AES","AES256bit","AES128bit","SAML","DES", ""}));
 		panelCriteria.add(comboBoxTech);
 		
 		//
@@ -432,9 +456,13 @@ public class Application {
 		return panelCriteria;
 	}
 
-	protected void showAgentDescr(String descr) {
+	protected void showAgentDescr(String descr, String title) {
+		ViewerDialog dialog = new ViewerDialog();
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setContent("");
 		dialog.setContent(descr);
+		dialog.setLocationRelativeTo(null);
+		dialog.setTitle(title);
 		dialog.setVisible(true);
 	}
 

@@ -11,7 +11,7 @@
 	<name>trusthings-model</name>
 	<properties>
 		<jena.version>2.11.0</jena.version>
-		<ontologies.dir>${project.parent.basedir}/trusthings-kbase/src/main/resources/ontologies</ontologies.dir>
+		<ontologies.dir>${project.baseUri}../trusthings-kbase/src/main/resources/ontologies</ontologies.dir>
    	 	<license.licenseResolver>${project.baseUri}../license</license.licenseResolver>
 	</properties>
 	<dependencies>
