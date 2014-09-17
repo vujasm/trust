@@ -24,12 +24,14 @@ package com.inn.trusthings.service.config;
 import com.inn.trusthings.service.collectors.ActivityCollector;
 import com.inn.trusthings.service.collectors.Collector;
 import com.inn.trusthings.service.collectors.FeedbackCollector;
+import com.inn.trusthings.service.collectors.InternalCollector;
 import com.inn.trusthings.service.collectors.QoSCollector;
 import com.inn.trusthings.service.collectors.ReputationCollector;
 
 public enum CollectorEnum {
 	
 
+	InternalCollector (new InternalCollector("jdbc url")),
 	Reputation( new ReputationCollector("http://localhost//")),
 	Activity( new ActivityCollector("http://localhost//")),
 	Feedback( new FeedbackCollector("http://localhost//")),

@@ -70,7 +70,7 @@ public class SemSim {
 		uriOntology = format(uriOntology);
 		
 		URIFactory factory = URIFactoryMemory.getSingleton();
-		URI graphURI = factory.createURI("http://graph/");
+		URI graphURI = factory.getURI("http://graph/");
 		g = new GraphMemory(graphURI);
 		//REROOTING to root the vertices, typed as class without outgoing rdfs:subclassOf relationship
 		// Those vertices are linked to owl:Thing by an eddge x rdfs:subClassOf owl:Thing

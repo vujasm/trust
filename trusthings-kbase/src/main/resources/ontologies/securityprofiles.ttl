@@ -63,9 +63,58 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 #################################################################
 #
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#certificateAuthorityPlace
+
+:certificateAuthorityPlace rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:domain :CertificateAuthority ;
+                           
+                           rdfs:range :Place .
+
+
+
+
+
+#################################################################
+#
 #    Classes
 #
 #################################################################
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#000_Times_Per_Day
+
+<http://www.compose-project.eu/ns/web-of-things/security/profiles#000_Times_Per_Day> rdf:type owl:Class ;
+                                                                                     
+                                                                                     rdfs:label "000 Times Per Day"@en ;
+                                                                                     
+                                                                                     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#128bit_Random_Uuid_Account_Key
+
+<http://www.compose-project.eu/ns/web-of-things/security/profiles#128bit_Random_Uuid_Account_Key> rdf:type owl:Class ;
+                                                                                                  
+                                                                                                  rdfs:label "128bit Random Uuid Account Key"@en ;
+                                                                                                  
+                                                                                                  rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#2_legged_OAuth
+
+<http://www.compose-project.eu/ns/web-of-things/security/profiles#2_legged_OAuth> rdf:type owl:Class ;
+                                                                                  
+                                                                                  rdfs:label "2-legged OAuth"@en ;
+                                                                                  
+                                                                                  rdfs:subClassOf :AuthenticationTechnology .
+
 
 
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES
@@ -73,6 +122,14 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 <http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES> rdf:type owl:Class ;
                                                                         
                                                                         rdfs:subClassOf :DES .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AE
+
+:AE rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
 
 
 
@@ -108,6 +165,184 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#API_Id
+
+:API_Id rdf:type owl:Class ;
+        
+        rdfs:label "API Id"@en ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#API_Key
+
+:API_Key rdf:type owl:Class ;
+         
+         rdfs:label "API Key"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Access_Token
+
+:Access_Token rdf:type owl:Class ;
+              
+              rdfs:label "Access Token"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Account_Id
+
+:Account_Id rdf:type owl:Class ;
+            
+            rdfs:label "Account Id"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Activation_Key
+
+:Activation_Key rdf:type owl:Class ;
+                
+                rdfs:label "Activation Key"@en ;
+                
+                rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AddTrust
+
+:AddTrust rdf:type owl:Class ;
+          
+          rdfs:label "AddTrust"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Additional_Key
+
+:Additional_Key rdf:type owl:Class ;
+                
+                rdfs:label "Additional Key"@en ;
+                
+                rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AdminCA
+
+:AdminCA rdf:type owl:Class ;
+         
+         rdfs:label "AdminCA"@en ;
+         
+         rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AetnaInc
+
+:AetnaInc rdf:type owl:Class ;
+          
+          rdfs:label "Aetna Inc"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Affiliate_Id_Required
+
+:Affiliate_Id_Required rdf:type owl:Class ;
+                       
+                       rdfs:label "Affiliate Id Required"@en ;
+                       
+                       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Alpha
+
+:Alpha rdf:type owl:Class ;
+       
+       rdfs:label "Alpha"@en ;
+       
+       rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Anonymous_Session
+
+:Anonymous_Session rdf:type owl:Class ;
+                   
+                   rdfs:label "Anonymous Session"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Arizona
+
+:Arizona rdf:type owl:Class ;
+         
+         rdfs:subClassOf :US .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Asp_net_Forms_Authentication_Service
+
+:Asp_net_Forms_Authentication_Service rdf:type owl:Class ;
+                                      
+                                      rdfs:label "Asp.net Forms Authentication Service"@en ;
+                                      
+                                      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Atom_X_wsse
+
+:Atom_X_wsse rdf:type owl:Class ;
+             
+             rdfs:label "Atom X-wsse"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Auth
+
+:Auth rdf:type owl:Class ;
+      
+      rdfs:label "Auth"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Auth_Code
+
+:Auth_Code rdf:type owl:Class ;
+           
+           rdfs:label "Auth Code"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Auth_Id
+
+:Auth_Id rdf:type owl:Class ;
+         
+         rdfs:label "Auth Id"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AuthenticationTechnology
 
 :AuthenticationTechnology rdf:type owl:Class ;
@@ -115,6 +350,322 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
                           rdfs:subClassOf :SecurityTechnology ;
                           
                           owl:disjointWith :CryptographicProtocol .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authentication_Id
+
+:Authentication_Id rdf:type owl:Class ;
+                   
+                   rdfs:label "Authentication Id"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authentication_Method
+
+:Authentication_Method rdf:type owl:Class ;
+                       
+                       rdfs:label "Authentication Method"@en ;
+                       
+                       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authenticationguid
+
+:Authenticationguid rdf:type owl:Class ;
+                    
+                    rdfs:label "Authenticationguid"@en ;
+                    
+                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authorization_By_Client_Ip
+
+:Authorization_By_Client_Ip rdf:type owl:Class ;
+                            
+                            rdfs:label "Authorization By Client Ip"@en ;
+                            
+                            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authsub
+
+:Authsub rdf:type owl:Class ;
+         
+         rdfs:label "Authsub"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Available_By_Request
+
+:Available_By_Request rdf:type owl:Class ;
+                      
+                      rdfs:label "Available By Request"@en ;
+                      
+                      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Awsaccesskeyid
+
+:Awsaccesskeyid rdf:type owl:Class ;
+                
+                rdfs:label "Awsaccesskeyid"@en ;
+                
+                rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BBAW
+
+:BBAW rdf:type owl:Class ;
+      
+      rdfs:label "BBAW"@en ;
+      
+      rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BE
+
+:BE rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BM
+
+:BM rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BadenWuerttemberg
+
+:BadenWuerttemberg rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :DE .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Beacon_Key
+
+:Beacon_Key rdf:type owl:Class ;
+            
+            rdfs:label "Beacon Key"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Bloomberg_Terminal_Authentication
+
+:Bloomberg_Terminal_Authentication rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Bloomberg Terminal Authentication"@en ;
+                                   
+                                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Business_Id
+
+:Business_Id rdf:type owl:Class ;
+             
+             rdfs:label "Business Id"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#But_Not_Required_During_Beta_Phase
+
+:But_Not_Required_During_Beta_Phase rdf:type owl:Class ;
+                                    
+                                    rdfs:label "But Not Required During Beta Phase"@en ;
+                                    
+                                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CH
+
+:CH rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#COMODO
+
+:COMODO rdf:type owl:Class ;
+        
+        rdfs:label "COMODO"@en ;
+        
+        rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Calvados
+
+:Calvados rdf:type owl:Class ;
+          
+          rdfs:subClassOf :FR .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Certificate
+
+:Certificate rdf:type owl:Class ;
+             
+             rdfs:label "Certificate"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CertificateAuthority
+
+:CertificateAuthority rdf:type owl:Class .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Certum
+
+:Certum rdf:type owl:Class ;
+        
+        rdfs:label "Certum"@en ;
+        
+        rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Account
+
+:Client_Account rdf:type owl:Class ;
+                
+                rdfs:label "Client Account"@en ;
+                
+                rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Certificate
+
+:Client_Certificate rdf:type owl:Class ;
+                    
+                    rdfs:label "Client Certificate"@en ;
+                    
+                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Id
+
+:Client_Id rdf:type owl:Class ;
+           
+           rdfs:label "Client Id"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Key
+
+:Client_Key rdf:type owl:Class ;
+            
+            rdfs:label "Client Key"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Login
+
+:Client_Login rdf:type owl:Class ;
+              
+              rdfs:label "Client Login"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Clientauth
+
+:Clientauth rdf:type owl:Class ;
+            
+            rdfs:label "Clientauth"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Clientlogin
+
+:Clientlogin rdf:type owl:Class ;
+             
+             rdfs:label "Clientlogin"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Company_Id
+
+:Company_Id rdf:type owl:Class ;
+            
+            rdfs:label "Company Id"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Configuration
+
+:Configuration rdf:type owl:Class ;
+               
+               rdfs:label "Configuration"@en ;
+               
+               rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Contact_Provider_For_Detailed_Information
+
+:Contact_Provider_For_Detailed_Information rdf:type owl:Class ;
+                                           
+                                           rdfs:label "Contact Provider For Detailed Information"@en ;
+                                           
+                                           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Cookie
+
+:Cookie rdf:type owl:Class ;
+        
+        rdfs:label "Cookie"@en ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CrazyDomains
+
+:CrazyDomains rdf:type owl:Class ;
+              
+              rdfs:label "Crazy Domains"@en ;
+              
+              rdfs:subClassOf :CertificateAuthority .
 
 
 
@@ -126,6 +677,44 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Custom
+
+:Custom rdf:type owl:Class ;
+        
+        rdfs:label "Custom"@en ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Custom_Http_Authentication_Scheme
+
+:Custom_Http_Authentication_Scheme rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Custom Http Authentication Scheme"@en ;
+                                   
+                                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Cybertrust
+
+:Cybertrust rdf:type owl:Class ;
+            
+            rdfs:label "Cybertrust"@en ;
+            
+            rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DE
+
+:DE rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DES
 
 :DES rdf:type owl:Class ;
@@ -134,11 +723,343 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DFN
+
+:DFN rdf:type owl:Class ;
+     
+     rdfs:label "DFN"@en ;
+     
+     rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DKFZ
+
+:DKFZ rdf:type owl:Class ;
+      
+      rdfs:label "DKFZ"@en ;
+      
+      rdfs:subClassOf :CertificateAuthority .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DSA-SHA1
 
 :DSA-SHA1 rdf:type owl:Class ;
           
           rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Dedicated_Url
+
+:Dedicated_Url rdf:type owl:Class ;
+               
+               rdfs:label "Dedicated Url"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Developer_Id
+
+:Developer_Id rdf:type owl:Class ;
+              
+              rdfs:label "Developer Id"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Developer_Key
+
+:Developer_Key rdf:type owl:Class ;
+               
+               rdfs:label "Developer Key"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Developer_Ticket
+
+:Developer_Ticket rdf:type owl:Class ;
+                  
+                  rdfs:label "Developer Ticket"@en ;
+                  
+                  rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Develper_Keyword
+
+:Develper_Keyword rdf:type owl:Class ;
+                  
+                  rdfs:label "Develper Keyword"@en ;
+                  
+                  rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DigiCert
+
+:DigiCert rdf:type owl:Class ;
+          
+          rdfs:label "DigiCert"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DigiSign
+
+:DigiSign rdf:type owl:Class ;
+          
+          rdfs:label "Digi-Sign"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Dreamhost
+
+:Dreamhost rdf:type owl:Class ;
+           
+           rdfs:label "Dreamhost"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Dublin
+
+:Dublin rdf:type owl:Class ;
+        
+        rdfs:subClassOf :IE .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Email
+
+:Email rdf:type owl:Class ;
+       
+       rdfs:label "Email"@en ;
+       
+       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Encrypted__Secure_Shell
+
+:Encrypted__Secure_Shell rdf:type owl:Class ;
+                         
+                         rdfs:label "Encrypted  Secure Shell"@en ;
+                         
+                         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Entrust
+
+:Entrust rdf:type owl:Class ;
+         
+         rdfs:label "Entrust"@en ;
+         
+         rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Equifax
+
+:Equifax rdf:type owl:Class ;
+         
+         rdfs:label "Equifax"@en ;
+         
+         rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#EssentialSSL
+
+:EssentialSSL rdf:type owl:Class ;
+              
+              rdfs:label "EssentialSSL"@en ;
+              
+              rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#FR
+
+:FR rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Facebook
+
+:Facebook rdf:type owl:Class ;
+          
+          rdfs:label "Facebook"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Fleet_Credentials
+
+:Fleet_Credentials rdf:type owl:Class ;
+                   
+                   rdfs:label "Fleet Credentials"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Flexible
+
+:Flexible rdf:type owl:Class ;
+          
+          rdfs:label "Flexible"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Form
+
+:Form rdf:type owl:Class ;
+      
+      rdfs:label "Form"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GB
+
+:GB rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Game_Key
+
+:Game_Key rdf:type owl:Class ;
+          
+          rdfs:label "Game Key"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Gandi
+
+:Gandi rdf:type owl:Class ;
+       
+       rdfs:label "Gandi"@en ;
+       
+       rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GeoTrust
+
+:GeoTrust rdf:type owl:Class ;
+          
+          rdfs:label "GeoTrust"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Get
+
+:Get rdf:type owl:Class ;
+     
+     rdfs:label "Get"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Get_Query_String_Parameters
+
+:Get_Query_String_Parameters rdf:type owl:Class ;
+                             
+                             rdfs:label "Get Query String Parameters"@en ;
+                             
+                             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GlobalSign
+
+:GlobalSign rdf:type owl:Class ;
+            
+            rdfs:label "GlobalSign"@en ;
+            
+            rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GlobeSSL
+
+:GlobeSSL rdf:type owl:Class ;
+          
+          rdfs:label "GlobeSSL"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GoDaddy
+
+:GoDaddy rdf:type owl:Class ;
+         
+         rdfs:label "Go Daddy"@en ;
+         
+         rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Google
+
+:Google rdf:type owl:Class ;
+        
+        rdfs:label "Google"@en ;
+        
+        rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Google_Web_Auth
+
+:Google_Web_Auth rdf:type owl:Class ;
+                 
+                 rdfs:label "Google Web Auth"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GreaterManchester
+
+:GreaterManchester rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :GB .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Gridauth_Gasession_Id
+
+:Gridauth_Gasession_Id rdf:type owl:Class ;
+                       
+                       rdfs:label "Gridauth Gasession Id"@en ;
+                       
+                       rdfs:subClassOf :AuthenticationTechnology .
 
 
 
@@ -166,9 +1087,539 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTP_Basic_Authentication
+
+:HTTP_Basic_Authentication rdf:type owl:Class ;
+                           
+                           rdfs:label "HTTP Basic Authentication"@en ;
+                           
+                           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Hash
+
+:Hash rdf:type owl:Class ;
+      
+      rdfs:label "Hash"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Hmac
+
+:Hmac rdf:type owl:Class ;
+      
+      rdfs:label "Hmac"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Hmac_Signed_Requests
+
+:Hmac_Signed_Requests rdf:type owl:Class ;
+                      
+                      rdfs:label "Hmac Signed Requests"@en ;
+                      
+                      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Authorization
+
+:Http_Authorization rdf:type owl:Class ;
+                    
+                    rdfs:label "Http Authorization"@en ;
+                    
+                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Basic_Authentication_Over_Ssl
+
+:Http_Basic_Authentication_Over_Ssl rdf:type owl:Class ;
+                                    
+                                    rdfs:label "Http Basic Authentication Over Ssl"@en ;
+                                    
+                                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Basic_Over_Ssl
+
+:Http_Basic_Over_Ssl rdf:type owl:Class ;
+                     
+                     rdfs:label "Http Basic Over Ssl"@en ;
+                     
+                     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Digest_Authentication
+
+:Http_Digest_Authentication rdf:type owl:Class ;
+                            
+                            rdfs:label "Http Digest Authentication"@en ;
+                            
+                            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Get
+
+:Http_Get rdf:type owl:Class ;
+          
+          rdfs:label "Http Get"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Header
+
+:Http_Header rdf:type owl:Class ;
+             
+             rdfs:label "Http Header"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Over_Ssl
+
+:Http_Over_Ssl rdf:type owl:Class ;
+               
+               rdfs:label "Http Over Ssl"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Post
+
+:Http_Post rdf:type owl:Class ;
+           
+           rdfs:label "Http Post"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_auth
+
+:Http_auth rdf:type owl:Class ;
+           
+           rdfs:label "Http-auth"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#IE
+
+:IE rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#IP_Whitelist
+
+:IP_Whitelist rdf:type owl:Class ;
+              
+              rdfs:label "IP Whitelist"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#IT
+
+:IT rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Identity_Verification
+
+:Identity_Verification rdf:type owl:Class ;
+                       
+                       rdfs:label "Identity Verification"@en ;
+                       
+                       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#InCommon
+
+:InCommon rdf:type owl:Class ;
+          
+          rdfs:label "InCommon"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Integration_Key
+
+:Integration_Key rdf:type owl:Class ;
+                 
+                 rdfs:label "Integration Key"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Intermediate
+
+:Intermediate rdf:type owl:Class ;
+              
+              rdfs:label "Intermediate"@en ;
+              
+              rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Address_Check
+
+:Ip_Address_Check rdf:type owl:Class ;
+                  
+                  rdfs:label "Ip Address Check"@en ;
+                  
+                  rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Address_Level_Security
+
+:Ip_Address_Level_Security rdf:type owl:Class ;
+                           
+                           rdfs:label "Ip Address Level Security"@en ;
+                           
+                           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Authentication
+
+:Ip_Authentication rdf:type owl:Class ;
+                   
+                   rdfs:label "Ip Authentication"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Based_Identification
+
+:Ip_Based_Identification rdf:type owl:Class ;
+                         
+                         rdfs:label "Ip Based Identification"@en ;
+                         
+                         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ipsec
+
+:Ipsec rdf:type owl:Class ;
+       
+       rdfs:label "Ipsec"@en ;
+       
+       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Istockphoto_Member_Authentication
+
+:Istockphoto_Member_Authentication rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Istockphoto Member Authentication"@en ;
+                                   
+                                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#JP
+
+:JP rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#KEYNECTIS
+
+:KEYNECTIS rdf:type owl:Class ;
+           
+           rdfs:label "KEYNECTIS"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#KR
+
+:KR rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Key
+
+:Key rdf:type owl:Class ;
+     
+     rdfs:label "Key"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Key_based
+
+:Key_based rdf:type owl:Class ;
+           
+           rdfs:label "Key-based"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Key_based_Authentication
+
+:Key_based_Authentication rdf:type owl:Class ;
+                          
+                          rdfs:label "Key-based Authentication"@en ;
+                          
+                          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#License_Key
+
+:License_Key rdf:type owl:Class ;
+             
+             rdfs:label "License Key"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Login_Credentials
+
+:Login_Credentials rdf:type owl:Class ;
+                   
+                   rdfs:label "Login Credentials"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Login_Id
+
+:Login_Id rdf:type owl:Class ;
+          
+          rdfs:label "Login Id"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Login__Facebook
+
+:Login__Facebook rdf:type owl:Class ;
+                 
+                 rdfs:label "Login  Facebook"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#MSITMachine
+
+:MSITMachine rdf:type owl:Class ;
+             
+             rdfs:label "MSIT Machine"@en ;
+             
+             rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Mac
+
+:Mac rdf:type owl:Class ;
+     
+     rdfs:label "Mac"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5
+
+:Md5 rdf:type owl:Class ;
+     
+     rdfs:label "Md5"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5_Checksum
+
+:Md5_Checksum rdf:type owl:Class ;
+              
+              rdfs:label "Md5 Checksum"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5_On_Parameters
+
+:Md5_On_Parameters rdf:type owl:Class ;
+                   
+                   rdfs:label "Md5 On Parameters"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5_Signature
+
+:Md5_Signature rdf:type owl:Class ;
+               
+               rdfs:label "Md5 Signature"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Meez_Account
+
+:Meez_Account rdf:type owl:Class ;
+              
+              rdfs:label "Meez Account"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Merchant_Account_Id_Only
+
+:Merchant_Account_Id_Only rdf:type owl:Class ;
+                          
+                          rdfs:label "Merchant Account Id Only"@en ;
+                          
+                          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Microsoft
+
+:Microsoft rdf:type owl:Class ;
+           
+           rdfs:label "Microsoft"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Microsoft_Passport
+
+:Microsoft_Passport rdf:type owl:Class ;
+                    
+                    rdfs:label "Microsoft Passport"@en ;
+                    
+                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Multiple_Developer_Keys_Required
+
+:Multiple_Developer_Keys_Required rdf:type owl:Class ;
+                                  
+                                  rdfs:label "Multiple Developer Keys Required"@en ;
+                                  
+                                  rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Mysub_rest_askimet_com
+
+:Mysub_rest_askimet_com rdf:type owl:Class ;
+                        
+                        rdfs:label "Mysub.rest.askimet.com"@en ;
+                        
+                        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#NL
+
+:NL rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Nazwa
+
+:Nazwa rdf:type owl:Class ;
+       
+       rdfs:label "Nazwa"@en ;
+       
+       rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#NetworkSolutions
+
+:NetworkSolutions rdf:type owl:Class ;
+                  
+                  rdfs:label "Network Solutions"@en ;
+                  
+                  rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#NewJersey
+
+:NewJersey rdf:type owl:Class ;
+           
+           rdfs:subClassOf :US .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#None
+
+:None rdf:type owl:Class ;
+      
+      rdfs:label "None"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ntlm
+
+:Ntlm rdf:type owl:Class ;
+      
+      rdfs:label "Ntlm"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth
 
 :OAuth rdf:type owl:Class ;
+       
+       rdfs:label "OAuth"@en ;
        
        rdfs:subClassOf :AuthenticationTechnology .
 
@@ -182,11 +1633,185 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth_2_0
+
+:OAuth_2_0 rdf:type owl:Class ;
+           
+           rdfs:label "OAuth 2.0"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OpenID
 
 :OpenID rdf:type owl:Class ;
         
         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Openid
+
+:Openid rdf:type owl:Class ;
+        
+        rdfs:label "Openid"@en ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Optional_Ip_Authentication
+
+:Optional_Ip_Authentication rdf:type owl:Class ;
+                            
+                            rdfs:label "Optional Ip Authentication"@en ;
+                            
+                            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Oracle
+
+:Oracle rdf:type owl:Class ;
+        
+        rdfs:label "Oracle"@en ;
+        
+        rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Owner_Credentials
+
+:Owner_Credentials rdf:type owl:Class ;
+                   
+                   rdfs:label "Owner Credentials"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#PL
+
+:PL rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Partner_Id
+
+:Partner_Id rdf:type owl:Class ;
+            
+            rdfs:label "Partner Id"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Pin
+
+:Pin rdf:type owl:Class ;
+     
+     rdfs:label "Pin"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Place
+
+:Place rdf:type owl:Class .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Positive
+
+:Positive rdf:type owl:Class ;
+          
+          rdfs:label "Positive"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Pre_registered_Ip_Address
+
+:Pre_registered_Ip_Address rdf:type owl:Class ;
+                           
+                           rdfs:label "Pre-registered Ip Address"@en ;
+                           
+                           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Private_Key
+
+:Private_Key rdf:type owl:Class ;
+             
+             rdfs:label "Private Key"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Production_Environments
+
+:Production_Environments rdf:type owl:Class ;
+                         
+                         rdfs:label "Production Environments"@en ;
+                         
+                         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Program_Id
+
+:Program_Id rdf:type owl:Class ;
+            
+            rdfs:label "Program Id"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Proprietary_Format
+
+:Proprietary_Format rdf:type owl:Class ;
+                    
+                    rdfs:label "Proprietary Format"@en ;
+                    
+                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Proprietary_Network_Authorizations
+
+:Proprietary_Network_Authorizations rdf:type owl:Class ;
+                                    
+                                    rdfs:label "Proprietary Network Authorizations"@en ;
+                                    
+                                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Queue_Level_Access_Control
+
+:Queue_Level_Access_Control rdf:type owl:Class ;
+                            
+                            rdfs:label "Queue Level Access Control"@en ;
+                            
+                            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#QuoVadisGlobal
+
+:QuoVadisGlobal rdf:type owl:Class ;
+                
+                rdfs:label "QuoVadis Global"@en ;
+                
+                rdfs:subClassOf :CertificateAuthority .
 
 
 
@@ -214,11 +1839,49 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Rapid
+
+:Rapid rdf:type owl:Class ;
+       
+       rdfs:label "Rapid"@en ;
+       
+       rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RegisterDotCom
+
+:RegisterDotCom rdf:type owl:Class ;
+                
+                rdfs:label "RegisterDotCom"@en ;
+                
+                rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Role_Based_Access_Control
+
+:Role_Based_Access_Control rdf:type owl:Class ;
+                           
+                           rdfs:label "Role Based Access Control"@en ;
+                           
+                           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML
 
 :SAML rdf:type owl:Class ;
       
       rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SE
+
+:SE rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
 
 
 
@@ -230,9 +1893,117 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSLdotCom
+
+:SSLdotCom rdf:type owl:Class ;
+           
+           rdfs:label "SSLdotCom"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSLv3
+
+:SSLv3 rdf:type owl:Class ;
+       
+       rdfs:subClassOf :SSL .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Saml
+
+:Saml rdf:type owl:Class ;
+      
+      rdfs:label "Saml"@en ;
+      
+      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Sandbox
+
+:Sandbox rdf:type owl:Class ;
+         
+         rdfs:label "Sandbox"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Secret_Key
+
+:Secret_Key rdf:type owl:Class ;
+            
+            rdfs:label "Secret Key"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Secure_Asp_Script
+
+:Secure_Asp_Script rdf:type owl:Class ;
+                   
+                   rdfs:label "Secure Asp Script"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SecurityTechnology
 
 :SecurityTechnology rdf:type owl:Class .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Security_Code
+
+:Security_Code rdf:type owl:Class ;
+               
+               rdfs:label "Security Code"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Security_Key
+
+:Security_Key rdf:type owl:Class ;
+              
+              rdfs:label "Security Key"@en ;
+              
+              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#See_Windows_Live_Id
+
+:See_Windows_Live_Id rdf:type owl:Class ;
+                     
+                     rdfs:label "See Windows Live Id"@en ;
+                     
+                     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Serial_Number
+
+:Serial_Number rdf:type owl:Class ;
+               
+               rdfs:label "Serial Number"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session
+
+:Session rdf:type owl:Class ;
+         
+         rdfs:label "Session"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
 
 
 
@@ -244,11 +2015,511 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Authentication
+
+:Session_Authentication rdf:type owl:Class ;
+                        
+                        rdfs:label "Session Authentication"@en ;
+                        
+                        rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Id
+
+:Session_Id rdf:type owl:Class ;
+            
+            rdfs:label "Session Id"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Key_Over_Ssl
+
+:Session_Key_Over_Ssl rdf:type owl:Class ;
+                      
+                      rdfs:label "Session Key Over Ssl"@en ;
+                      
+                      rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Sharing
+
+:Session_Sharing rdf:type owl:Class ;
+                 
+                 rdfs:label "Session Sharing"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Signature
+
+:Signature rdf:type owl:Class ;
+           
+           rdfs:label "Signature"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Site_Id
+
+:Site_Id rdf:type owl:Class ;
+         
+         rdfs:label "Site Id"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Site_Key
+
+:Site_Key rdf:type owl:Class ;
+          
+          rdfs:label "Site Key"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Soap_Login_Method
+
+:Soap_Login_Method rdf:type owl:Class ;
+                   
+                   rdfs:label "Soap Login Method"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Some_Authenticated
+
+:Some_Authenticated rdf:type owl:Class ;
+                    
+                    rdfs:label "Some Authenticated"@en ;
+                    
+                    rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Some_Proprietary_Authorization
+
+:Some_Proprietary_Authorization rdf:type owl:Class ;
+                                
+                                rdfs:label "Some Proprietary Authorization"@en ;
+                                
+                                rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Space_Id
+
+:Space_Id rdf:type owl:Class ;
+          
+          rdfs:label "Space Id"@en ;
+          
+          rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssh
+
+:Ssh rdf:type owl:Class ;
+     
+     rdfs:label "Ssh"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssh_Key
+
+:Ssh_Key rdf:type owl:Class ;
+         
+         rdfs:label "Ssh Key"@en ;
+         
+         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssl
+
+:Ssl rdf:type owl:Class ;
+     
+     rdfs:label "Ssl"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssl_Based
+
+:Ssl_Based rdf:type owl:Class ;
+           
+           rdfs:label "Ssl Based"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssl_Client_Certificates
+
+:Ssl_Client_Certificates rdf:type owl:Class ;
+                         
+                         rdfs:label "Ssl Client Certificates"@en ;
+                         
+                         rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Sso
+
+:Sso rdf:type owl:Class ;
+     
+     rdfs:label "Sso"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Starfield
+
+:Starfield rdf:type owl:Class ;
+           
+           rdfs:label "Starfield"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Static_Ip
+
+:Static_Ip rdf:type owl:Class ;
+           
+           rdfs:label "Static Ip"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Symantec
+
+:Symantec rdf:type owl:Class ;
+          
+          rdfs:label "Symantec"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TBS
+
+:TBS rdf:type owl:Class ;
+     
+     rdfs:label "TBS"@en ;
+     
+     rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TITrustTechnologies
+
+:TITrustTechnologies rdf:type owl:Class ;
+                     
+                     rdfs:label "TI Trust Technologies"@en ;
+                     
+                     rdfs:subClassOf :CertificateAuthority .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSL
 
 :TSL rdf:type owl:Class ;
      
      rdfs:subClassOf :CryptographicProtocol .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSLv3
+
+:TSLv3 rdf:type owl:Class ;
+       
+       rdfs:subClassOf :TSL .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TWCA
+
+:TWCA rdf:type owl:Class ;
+      
+      rdfs:label "TWCA"@en ;
+      
+      rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Terena
+
+:Terena rdf:type owl:Class ;
+        
+        rdfs:label "Terena"@en ;
+        
+        rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Thawte
+
+:Thawte rdf:type owl:Class ;
+        
+        rdfs:label "Thawte"@en ;
+        
+        rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ticket_Id
+
+:Ticket_Id rdf:type owl:Class ;
+           
+           rdfs:label "Ticket Id"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Timestamp
+
+:Timestamp rdf:type owl:Class ;
+           
+           rdfs:label "Timestamp"@en ;
+           
+           rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Token
+
+:Token rdf:type owl:Class ;
+       
+       rdfs:label "Token"@en ;
+       
+       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Transaction_Key
+
+:Transaction_Key rdf:type owl:Class ;
+                 
+                 rdfs:label "Transaction Key"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TrendMicro
+
+:TrendMicro rdf:type owl:Class ;
+            
+            rdfs:label "Trend Micro"@en ;
+            
+            rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TrustSign
+
+:TrustSign rdf:type owl:Class ;
+           
+           rdfs:label "TrustSign"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TrustedSecure
+
+:TrustedSecure rdf:type owl:Class ;
+               
+               rdfs:label "Trusted Secure"@en ;
+               
+               rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Twitter_Account
+
+:Twitter_Account rdf:type owl:Class ;
+                 
+                 rdfs:label "Twitter Account"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Twitter_Id
+
+:Twitter_Id rdf:type owl:Class ;
+            
+            rdfs:label "Twitter Id"@en ;
+            
+            rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#UK
+
+:UK rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#US
+
+:US rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Place .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#USERTrust
+
+:USERTrust rdf:type owl:Class ;
+           
+           rdfs:label "USERTrust"@en ;
+           
+           rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#UT
+
+:UT rdf:type owl:Class ;
+    
+    rdfs:subClassOf :US .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#UTNUSERFirstHardware
+
+:UTNUSERFirstHardware rdf:type owl:Class ;
+                      
+                      rdfs:label "UTN-USERFirst-Hardware"@en ;
+                      
+                      rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Uri
+
+:Uri rdf:type owl:Class ;
+     
+     rdfs:label "Uri"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Username_password
+
+:Username_password rdf:type owl:Class ;
+                   
+                   rdfs:label "Username/password"@en ;
+                   
+                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Varies_By_Pricing_Option_Selected
+
+:Varies_By_Pricing_Option_Selected rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Varies By Pricing Option Selected"@en ;
+                                   
+                                   rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#VeriSign
+
+:VeriSign rdf:type owl:Class ;
+          
+          rdfs:label "VeriSign"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Vodafone
+
+:Vodafone rdf:type owl:Class ;
+          
+          rdfs:label "Vodafone"@en ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Waf
+
+:Waf rdf:type owl:Class ;
+     
+     rdfs:label "Waf"@en ;
+     
+     rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Washington
+
+:Washington rdf:type owl:Class ;
+            
+            rdfs:subClassOf :US .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Web_Service_Security_(wss)
+
+<http://www.compose-project.eu/ns/web-of-things/security/profiles#Web_Service_Security_(wss)> rdf:type owl:Class ;
+                                                                                              
+                                                                                              rdfs:label "Web Service Security (wss)"@en ;
+                                                                                              
+                                                                                              rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Windows_Live_Id
+
+:Windows_Live_Id rdf:type owl:Class ;
+                 
+                 rdfs:label "Windows Live Id"@en ;
+                 
+                 rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ws_addressing
+
+:Ws_addressing rdf:type owl:Class ;
+               
+               rdfs:label "Ws-addressing"@en ;
+               
+               rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ws_security
+
+:Ws_security rdf:type owl:Class ;
+             
+             rdfs:label "Ws-security"@en ;
+             
+             rdfs:subClassOf :AuthenticationTechnology .
 
 
 
@@ -265,6 +2536,26 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 :XACML rdf:type owl:Class ;
        
        rdfs:subClassOf :SecurityTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#X_509
+
+:X_509 rdf:type owl:Class ;
+       
+       rdfs:label "X.509"@en ;
+       
+       rdfs:subClassOf :AuthenticationTechnology .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security/profiles#X_wsse
+
+:X_wsse rdf:type owl:Class ;
+        
+        rdfs:label "X-wsse"@en ;
+        
+        rdfs:subClassOf :AuthenticationTechnology .
 
 
 
