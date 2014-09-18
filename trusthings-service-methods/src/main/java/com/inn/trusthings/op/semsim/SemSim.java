@@ -120,7 +120,7 @@ public class SemSim {
 	public static void main(String[] args) throws Exception {
 //		org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.OFF);
 		String ontoFile = LocationMapping.resolveLocation(
-				com.inn.trusthings.model.vocabulary.ModelEnum.SecurityProfiles.getURI());
+				com.inn.trusthings.model.vocabulary.ModelEnum.SecurityOntology.getURI());
 		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
 		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth";
 		try {

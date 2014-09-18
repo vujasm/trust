@@ -59,7 +59,7 @@ public class Controller {
 	}
 	
 	public static void main(String[] args) {
-		Tree t = trustManager.obtainTaxonomy(ModelEnum.SecurityProfiles.getURI(),"http://www.compose-project.eu/ns/web-of-things/security/profiles#SecurityTechnology");
+		Tree t = trustManager.obtainTaxonomy(ModelEnum.SecurityOntology.getURI(),"http://www.compose-project.eu/ns/web-of-things/security/profiles#SecurityTechnology");
 		System.out.println(t);
 	}
 

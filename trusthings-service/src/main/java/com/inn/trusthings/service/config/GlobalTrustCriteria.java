@@ -28,6 +28,7 @@ import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityGoal;
+import com.inn.trusthings.model.pojo.SecurityTechnology;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.types.USDLSecExpression;
@@ -83,6 +84,7 @@ public class GlobalTrustCriteria {
 		att4.addType(URI.create(Trust.SecurityGuarantee.getURI()));
 		SecurityGoal goal = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		att4.addSecurityGoal(goal);
+		att4.addRealizedByTechnology(new SecurityTechnology(URI.create("http://www.compose-project.eu/ns/web-of-things/security#OAuth_2_0")));
 		att4.setImportance(1);
 		trustRequest.addAttribute(att4);
 		}

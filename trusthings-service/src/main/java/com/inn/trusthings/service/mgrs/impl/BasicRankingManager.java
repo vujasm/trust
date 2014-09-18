@@ -238,7 +238,7 @@ public class BasicRankingManager implements RankingManager {
 	private ToModelParser getOrCreateToModelParser() {
 		if (parser == null) {
 			parser = new ToModelParser();
-			String uri = ModelEnum.SecurityProfiles.getURI();
+			String uri = ModelEnum.SecurityOntology.getURI();
 			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri, RDFModelsHandler.getGlobalInstance());
 //			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
 //			parser.registerSpecificParser(secProfileExpressionToModel, Const.parserNameSecurityProfileAsUSDLSecExpression);

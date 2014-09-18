@@ -47,7 +47,7 @@ public class SecSemanticMatchOp {
 
 	 private static final Logger log = LoggerFactory.getLogger(SecSemanticMatchOp.class);
 
-	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityProfiles.getURI()));
+	private SemSim semSim = new SemSim(LocationMapping.resolveLocation(ModelEnum.SecurityOntology.getURI()));
 	
 	@SuppressWarnings("unused")
 	private com.inn.trusthings.kb.KnowledgeBaseManager kbManager;
@@ -108,8 +108,8 @@ public class SecSemanticMatchOp {
 		double semsim = 0;
 		final List<SecurityMechanism> mechanismsR = reqAttribute.getImplementedBy();
 		if (mechanismsR.isEmpty()) {
-			log.info("Doing security technology match, but there was no security mechanism matching: no requested so returns -1");
-			return -1;
+			//log.info("Doing security technology match, but there was no security mechanism matching: no requested so returns -1");
+			//return -1;
 		}
 
 		List<SecurityTechnology> securityTechnologies = reqAttribute.getRealizedByTechnology();

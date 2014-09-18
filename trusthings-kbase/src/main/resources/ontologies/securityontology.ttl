@@ -1,4 +1,4 @@
-@prefix : <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+@prefix : <http://www.compose-project.eu/ns/web-of-things/security#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -7,9 +7,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix usdl-sec: <http://www.linked-usdl.org/ns/usdl-sec#> .
-@base <http://www.compose-project.eu/ns/web-of-things/security/profiles> .
+@base <http://www.compose-project.eu/ns/web-of-things/security> .
 
-<http://www.compose-project.eu/ns/web-of-things/security/profiles> rdf:type owl:Ontology ;
+<http://www.compose-project.eu/ns/web-of-things/security> rdf:type owl:Ontology ;
                                                                    
                                                                    dc:rights "Copyright...COMPOSE project.."^^xsd:string ;
                                                                    
@@ -68,7 +68,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#certificateAuthorityPlace
+###  http://www.compose-project.eu/ns/web-of-things/security#certificateAuthorityPlace
 
 :certificateAuthorityPlace rdf:type owl:ObjectProperty ;
                            
@@ -87,9 +87,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#000_Times_Per_Day
+###  http://www.compose-project.eu/ns/web-of-things/security#000_Times_Per_Day
 
-<http://www.compose-project.eu/ns/web-of-things/security/profiles#000_Times_Per_Day> rdf:type owl:Class ;
+<http://www.compose-project.eu/ns/web-of-things/security#000_Times_Per_Day> rdf:type owl:Class ;
                                                                                      
                                                                                      rdfs:label "000 Times Per Day"@en ;
                                                                                      
@@ -97,9 +97,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#128bit_Random_Uuid_Account_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#128bit_Random_Uuid_Account_Key
 
-<http://www.compose-project.eu/ns/web-of-things/security/profiles#128bit_Random_Uuid_Account_Key> rdf:type owl:Class ;
+<http://www.compose-project.eu/ns/web-of-things/security#128bit_Random_Uuid_Account_Key> rdf:type owl:Class ;
                                                                                                   
                                                                                                   rdfs:label "128bit Random Uuid Account Key"@en ;
                                                                                                   
@@ -107,9 +107,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#2_legged_OAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#2_legged_OAuth
 
-<http://www.compose-project.eu/ns/web-of-things/security/profiles#2_legged_OAuth> rdf:type owl:Class ;
+<http://www.compose-project.eu/ns/web-of-things/security#2_legged_OAuth> rdf:type owl:Class ;
                                                                                   
                                                                                   rdfs:label "2-legged OAuth"@en ;
                                                                                   
@@ -117,15 +117,15 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES
+###  http://www.compose-project.eu/ns/web-of-things/security#3DES
 
-<http://www.compose-project.eu/ns/web-of-things/security/profiles#3DES> rdf:type owl:Class ;
+<http://www.compose-project.eu/ns/web-of-things/security#3DES> rdf:type owl:Class ;
                                                                         
                                                                         rdfs:subClassOf :DES .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AE
+###  http://www.compose-project.eu/ns/web-of-things/security#AE
 
 :AE rdf:type owl:Class ;
     
@@ -133,7 +133,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES
+###  http://www.compose-project.eu/ns/web-of-things/security#AES
 
 :AES rdf:type owl:Class ;
      
@@ -141,7 +141,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES128bit
+###  http://www.compose-project.eu/ns/web-of-things/security#AES128bit
 
 :AES128bit rdf:type owl:Class ;
            
@@ -149,7 +149,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES256bit
+###  http://www.compose-project.eu/ns/web-of-things/security#AES256bit
 
 :AES256bit rdf:type owl:Class ;
            
@@ -157,7 +157,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#APIKey
+###  http://www.compose-project.eu/ns/web-of-things/security#APIKey
 
 :APIKey rdf:type owl:Class ;
         
@@ -165,7 +165,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#API_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#API_Id
 
 :API_Id rdf:type owl:Class ;
         
@@ -175,7 +175,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#API_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#API_Key
 
 :API_Key rdf:type owl:Class ;
          
@@ -185,7 +185,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Access_Token
+###  http://www.compose-project.eu/ns/web-of-things/security#Access_Token
 
 :Access_Token rdf:type owl:Class ;
               
@@ -195,7 +195,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Account_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Account_Id
 
 :Account_Id rdf:type owl:Class ;
             
@@ -205,7 +205,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Activation_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Activation_Key
 
 :Activation_Key rdf:type owl:Class ;
                 
@@ -215,7 +215,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AddTrust
+###  http://www.compose-project.eu/ns/web-of-things/security#AddTrust
 
 :AddTrust rdf:type owl:Class ;
           
@@ -225,7 +225,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Additional_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Additional_Key
 
 :Additional_Key rdf:type owl:Class ;
                 
@@ -235,7 +235,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AdminCA
+###  http://www.compose-project.eu/ns/web-of-things/security#AdminCA
 
 :AdminCA rdf:type owl:Class ;
          
@@ -245,7 +245,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AetnaInc
+###  http://www.compose-project.eu/ns/web-of-things/security#AetnaInc
 
 :AetnaInc rdf:type owl:Class ;
           
@@ -255,7 +255,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Affiliate_Id_Required
+###  http://www.compose-project.eu/ns/web-of-things/security#Affiliate_Id_Required
 
 :Affiliate_Id_Required rdf:type owl:Class ;
                        
@@ -265,7 +265,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Alpha
+###  http://www.compose-project.eu/ns/web-of-things/security#Alpha
 
 :Alpha rdf:type owl:Class ;
        
@@ -275,7 +275,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Anonymous_Session
+###  http://www.compose-project.eu/ns/web-of-things/security#Anonymous_Session
 
 :Anonymous_Session rdf:type owl:Class ;
                    
@@ -285,7 +285,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Arizona
+###  http://www.compose-project.eu/ns/web-of-things/security#Arizona
 
 :Arizona rdf:type owl:Class ;
          
@@ -293,7 +293,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Asp_net_Forms_Authentication_Service
+###  http://www.compose-project.eu/ns/web-of-things/security#Asp_net_Forms_Authentication_Service
 
 :Asp_net_Forms_Authentication_Service rdf:type owl:Class ;
                                       
@@ -303,7 +303,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Atom_X_wsse
+###  http://www.compose-project.eu/ns/web-of-things/security#Atom_X_wsse
 
 :Atom_X_wsse rdf:type owl:Class ;
              
@@ -313,7 +313,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Auth
+###  http://www.compose-project.eu/ns/web-of-things/security#Auth
 
 :Auth rdf:type owl:Class ;
       
@@ -323,7 +323,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Auth_Code
+###  http://www.compose-project.eu/ns/web-of-things/security#Auth_Code
 
 :Auth_Code rdf:type owl:Class ;
            
@@ -333,7 +333,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Auth_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Auth_Id
 
 :Auth_Id rdf:type owl:Class ;
          
@@ -343,7 +343,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AuthenticationTechnology
+###  http://www.compose-project.eu/ns/web-of-things/security#AuthenticationTechnology
 
 :AuthenticationTechnology rdf:type owl:Class ;
                           
@@ -353,7 +353,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authentication_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Authentication_Id
 
 :Authentication_Id rdf:type owl:Class ;
                    
@@ -363,7 +363,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authentication_Method
+###  http://www.compose-project.eu/ns/web-of-things/security#Authentication_Method
 
 :Authentication_Method rdf:type owl:Class ;
                        
@@ -373,7 +373,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authenticationguid
+###  http://www.compose-project.eu/ns/web-of-things/security#Authenticationguid
 
 :Authenticationguid rdf:type owl:Class ;
                     
@@ -383,7 +383,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authorization_By_Client_Ip
+###  http://www.compose-project.eu/ns/web-of-things/security#Authorization_By_Client_Ip
 
 :Authorization_By_Client_Ip rdf:type owl:Class ;
                             
@@ -393,7 +393,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Authsub
+###  http://www.compose-project.eu/ns/web-of-things/security#Authsub
 
 :Authsub rdf:type owl:Class ;
          
@@ -403,7 +403,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Available_By_Request
+###  http://www.compose-project.eu/ns/web-of-things/security#Available_By_Request
 
 :Available_By_Request rdf:type owl:Class ;
                       
@@ -413,7 +413,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Awsaccesskeyid
+###  http://www.compose-project.eu/ns/web-of-things/security#Awsaccesskeyid
 
 :Awsaccesskeyid rdf:type owl:Class ;
                 
@@ -423,7 +423,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BBAW
+###  http://www.compose-project.eu/ns/web-of-things/security#BBAW
 
 :BBAW rdf:type owl:Class ;
       
@@ -433,7 +433,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BE
+###  http://www.compose-project.eu/ns/web-of-things/security#BE
 
 :BE rdf:type owl:Class ;
     
@@ -441,7 +441,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BM
+###  http://www.compose-project.eu/ns/web-of-things/security#BM
 
 :BM rdf:type owl:Class ;
     
@@ -449,7 +449,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#BadenWuerttemberg
+###  http://www.compose-project.eu/ns/web-of-things/security#BadenWuerttemberg
 
 :BadenWuerttemberg rdf:type owl:Class ;
                    
@@ -457,7 +457,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Beacon_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Beacon_Key
 
 :Beacon_Key rdf:type owl:Class ;
             
@@ -467,7 +467,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Bloomberg_Terminal_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Bloomberg_Terminal_Authentication
 
 :Bloomberg_Terminal_Authentication rdf:type owl:Class ;
                                    
@@ -477,7 +477,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Business_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Business_Id
 
 :Business_Id rdf:type owl:Class ;
              
@@ -487,7 +487,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#But_Not_Required_During_Beta_Phase
+###  http://www.compose-project.eu/ns/web-of-things/security#But_Not_Required_During_Beta_Phase
 
 :But_Not_Required_During_Beta_Phase rdf:type owl:Class ;
                                     
@@ -497,7 +497,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CH
+###  http://www.compose-project.eu/ns/web-of-things/security#CH
 
 :CH rdf:type owl:Class ;
     
@@ -505,7 +505,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#COMODO
+###  http://www.compose-project.eu/ns/web-of-things/security#COMODO
 
 :COMODO rdf:type owl:Class ;
         
@@ -515,7 +515,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Calvados
+###  http://www.compose-project.eu/ns/web-of-things/security#Calvados
 
 :Calvados rdf:type owl:Class ;
           
@@ -523,7 +523,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Certificate
+###  http://www.compose-project.eu/ns/web-of-things/security#Certificate
 
 :Certificate rdf:type owl:Class ;
              
@@ -533,13 +533,13 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CertificateAuthority
+###  http://www.compose-project.eu/ns/web-of-things/security#CertificateAuthority
 
 :CertificateAuthority rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Certum
+###  http://www.compose-project.eu/ns/web-of-things/security#Certum
 
 :Certum rdf:type owl:Class ;
         
@@ -549,7 +549,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Account
+###  http://www.compose-project.eu/ns/web-of-things/security#Client_Account
 
 :Client_Account rdf:type owl:Class ;
                 
@@ -559,7 +559,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Certificate
+###  http://www.compose-project.eu/ns/web-of-things/security#Client_Certificate
 
 :Client_Certificate rdf:type owl:Class ;
                     
@@ -569,7 +569,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Client_Id
 
 :Client_Id rdf:type owl:Class ;
            
@@ -579,7 +579,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Client_Key
 
 :Client_Key rdf:type owl:Class ;
             
@@ -589,7 +589,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Client_Login
+###  http://www.compose-project.eu/ns/web-of-things/security#Client_Login
 
 :Client_Login rdf:type owl:Class ;
               
@@ -599,7 +599,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Clientauth
+###  http://www.compose-project.eu/ns/web-of-things/security#Clientauth
 
 :Clientauth rdf:type owl:Class ;
             
@@ -609,7 +609,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Clientlogin
+###  http://www.compose-project.eu/ns/web-of-things/security#Clientlogin
 
 :Clientlogin rdf:type owl:Class ;
              
@@ -619,7 +619,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Company_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Company_Id
 
 :Company_Id rdf:type owl:Class ;
             
@@ -629,7 +629,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Configuration
+###  http://www.compose-project.eu/ns/web-of-things/security#Configuration
 
 :Configuration rdf:type owl:Class ;
                
@@ -639,7 +639,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Contact_Provider_For_Detailed_Information
+###  http://www.compose-project.eu/ns/web-of-things/security#Contact_Provider_For_Detailed_Information
 
 :Contact_Provider_For_Detailed_Information rdf:type owl:Class ;
                                            
@@ -649,7 +649,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Cookie
+###  http://www.compose-project.eu/ns/web-of-things/security#Cookie
 
 :Cookie rdf:type owl:Class ;
         
@@ -659,7 +659,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CrazyDomains
+###  http://www.compose-project.eu/ns/web-of-things/security#CrazyDomains
 
 :CrazyDomains rdf:type owl:Class ;
               
@@ -669,7 +669,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#CryptographicProtocol
+###  http://www.compose-project.eu/ns/web-of-things/security#CryptographicProtocol
 
 :CryptographicProtocol rdf:type owl:Class ;
                        
@@ -677,7 +677,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Custom
+###  http://www.compose-project.eu/ns/web-of-things/security#Custom
 
 :Custom rdf:type owl:Class ;
         
@@ -687,7 +687,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Custom_Http_Authentication_Scheme
+###  http://www.compose-project.eu/ns/web-of-things/security#Custom_Http_Authentication_Scheme
 
 :Custom_Http_Authentication_Scheme rdf:type owl:Class ;
                                    
@@ -697,7 +697,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Cybertrust
+###  http://www.compose-project.eu/ns/web-of-things/security#Cybertrust
 
 :Cybertrust rdf:type owl:Class ;
             
@@ -707,7 +707,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DE
+###  http://www.compose-project.eu/ns/web-of-things/security#DE
 
 :DE rdf:type owl:Class ;
     
@@ -715,7 +715,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DES
+###  http://www.compose-project.eu/ns/web-of-things/security#DES
 
 :DES rdf:type owl:Class ;
      
@@ -723,7 +723,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DFN
+###  http://www.compose-project.eu/ns/web-of-things/security#DFN
 
 :DFN rdf:type owl:Class ;
      
@@ -733,7 +733,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DKFZ
+###  http://www.compose-project.eu/ns/web-of-things/security#DKFZ
 
 :DKFZ rdf:type owl:Class ;
       
@@ -743,7 +743,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DSA-SHA1
+###  http://www.compose-project.eu/ns/web-of-things/security#DSA-SHA1
 
 :DSA-SHA1 rdf:type owl:Class ;
           
@@ -751,7 +751,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Dedicated_Url
+###  http://www.compose-project.eu/ns/web-of-things/security#Dedicated_Url
 
 :Dedicated_Url rdf:type owl:Class ;
                
@@ -761,7 +761,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Developer_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Developer_Id
 
 :Developer_Id rdf:type owl:Class ;
               
@@ -771,7 +771,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Developer_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Developer_Key
 
 :Developer_Key rdf:type owl:Class ;
                
@@ -781,7 +781,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Developer_Ticket
+###  http://www.compose-project.eu/ns/web-of-things/security#Developer_Ticket
 
 :Developer_Ticket rdf:type owl:Class ;
                   
@@ -791,7 +791,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Develper_Keyword
+###  http://www.compose-project.eu/ns/web-of-things/security#Develper_Keyword
 
 :Develper_Keyword rdf:type owl:Class ;
                   
@@ -801,7 +801,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DigiCert
+###  http://www.compose-project.eu/ns/web-of-things/security#DigiCert
 
 :DigiCert rdf:type owl:Class ;
           
@@ -811,7 +811,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#DigiSign
+###  http://www.compose-project.eu/ns/web-of-things/security#DigiSign
 
 :DigiSign rdf:type owl:Class ;
           
@@ -821,7 +821,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Dreamhost
+###  http://www.compose-project.eu/ns/web-of-things/security#Dreamhost
 
 :Dreamhost rdf:type owl:Class ;
            
@@ -831,7 +831,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Dublin
+###  http://www.compose-project.eu/ns/web-of-things/security#Dublin
 
 :Dublin rdf:type owl:Class ;
         
@@ -839,7 +839,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Email
+###  http://www.compose-project.eu/ns/web-of-things/security#Email
 
 :Email rdf:type owl:Class ;
        
@@ -849,7 +849,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Encrypted__Secure_Shell
+###  http://www.compose-project.eu/ns/web-of-things/security#Encrypted__Secure_Shell
 
 :Encrypted__Secure_Shell rdf:type owl:Class ;
                          
@@ -859,7 +859,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Entrust
+###  http://www.compose-project.eu/ns/web-of-things/security#Entrust
 
 :Entrust rdf:type owl:Class ;
          
@@ -869,7 +869,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Equifax
+###  http://www.compose-project.eu/ns/web-of-things/security#Equifax
 
 :Equifax rdf:type owl:Class ;
          
@@ -879,7 +879,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#EssentialSSL
+###  http://www.compose-project.eu/ns/web-of-things/security#EssentialSSL
 
 :EssentialSSL rdf:type owl:Class ;
               
@@ -889,7 +889,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#FR
+###  http://www.compose-project.eu/ns/web-of-things/security#FR
 
 :FR rdf:type owl:Class ;
     
@@ -897,7 +897,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Facebook
+###  http://www.compose-project.eu/ns/web-of-things/security#Facebook
 
 :Facebook rdf:type owl:Class ;
           
@@ -907,7 +907,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Fleet_Credentials
+###  http://www.compose-project.eu/ns/web-of-things/security#Fleet_Credentials
 
 :Fleet_Credentials rdf:type owl:Class ;
                    
@@ -917,7 +917,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Flexible
+###  http://www.compose-project.eu/ns/web-of-things/security#Flexible
 
 :Flexible rdf:type owl:Class ;
           
@@ -927,7 +927,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Form
+###  http://www.compose-project.eu/ns/web-of-things/security#Form
 
 :Form rdf:type owl:Class ;
       
@@ -937,7 +937,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GB
+###  http://www.compose-project.eu/ns/web-of-things/security#GB
 
 :GB rdf:type owl:Class ;
     
@@ -945,7 +945,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Game_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Game_Key
 
 :Game_Key rdf:type owl:Class ;
           
@@ -955,7 +955,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Gandi
+###  http://www.compose-project.eu/ns/web-of-things/security#Gandi
 
 :Gandi rdf:type owl:Class ;
        
@@ -965,7 +965,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GeoTrust
+###  http://www.compose-project.eu/ns/web-of-things/security#GeoTrust
 
 :GeoTrust rdf:type owl:Class ;
           
@@ -975,7 +975,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Get
+###  http://www.compose-project.eu/ns/web-of-things/security#Get
 
 :Get rdf:type owl:Class ;
      
@@ -985,7 +985,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Get_Query_String_Parameters
+###  http://www.compose-project.eu/ns/web-of-things/security#Get_Query_String_Parameters
 
 :Get_Query_String_Parameters rdf:type owl:Class ;
                              
@@ -995,7 +995,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GlobalSign
+###  http://www.compose-project.eu/ns/web-of-things/security#GlobalSign
 
 :GlobalSign rdf:type owl:Class ;
             
@@ -1005,7 +1005,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GlobeSSL
+###  http://www.compose-project.eu/ns/web-of-things/security#GlobeSSL
 
 :GlobeSSL rdf:type owl:Class ;
           
@@ -1015,7 +1015,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GoDaddy
+###  http://www.compose-project.eu/ns/web-of-things/security#GoDaddy
 
 :GoDaddy rdf:type owl:Class ;
          
@@ -1025,7 +1025,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Google
+###  http://www.compose-project.eu/ns/web-of-things/security#Google
 
 :Google rdf:type owl:Class ;
         
@@ -1035,7 +1035,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Google_Web_Auth
+###  http://www.compose-project.eu/ns/web-of-things/security#Google_Web_Auth
 
 :Google_Web_Auth rdf:type owl:Class ;
                  
@@ -1045,7 +1045,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#GreaterManchester
+###  http://www.compose-project.eu/ns/web-of-things/security#GreaterManchester
 
 :GreaterManchester rdf:type owl:Class ;
                    
@@ -1053,7 +1053,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Gridauth_Gasession_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Gridauth_Gasession_Id
 
 :Gridauth_Gasession_Id rdf:type owl:Class ;
                        
@@ -1063,7 +1063,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HMAC-SHA1
+###  http://www.compose-project.eu/ns/web-of-things/security#HMAC-SHA1
 
 :HMAC-SHA1 rdf:type owl:Class ;
            
@@ -1071,7 +1071,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#HTTPBasicAuth
 
 :HTTPBasicAuth rdf:type owl:Class ;
                
@@ -1079,7 +1079,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPDigestAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#HTTPDigestAuth
 
 :HTTPDigestAuth rdf:type owl:Class ;
                 
@@ -1087,7 +1087,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTP_Basic_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#HTTP_Basic_Authentication
 
 :HTTP_Basic_Authentication rdf:type owl:Class ;
                            
@@ -1097,7 +1097,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Hash
+###  http://www.compose-project.eu/ns/web-of-things/security#Hash
 
 :Hash rdf:type owl:Class ;
       
@@ -1107,7 +1107,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Hmac
+###  http://www.compose-project.eu/ns/web-of-things/security#Hmac
 
 :Hmac rdf:type owl:Class ;
       
@@ -1117,7 +1117,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Hmac_Signed_Requests
+###  http://www.compose-project.eu/ns/web-of-things/security#Hmac_Signed_Requests
 
 :Hmac_Signed_Requests rdf:type owl:Class ;
                       
@@ -1127,7 +1127,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Authorization
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Authorization
 
 :Http_Authorization rdf:type owl:Class ;
                     
@@ -1137,7 +1137,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Basic_Authentication_Over_Ssl
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Basic_Authentication_Over_Ssl
 
 :Http_Basic_Authentication_Over_Ssl rdf:type owl:Class ;
                                     
@@ -1147,7 +1147,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Basic_Over_Ssl
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Basic_Over_Ssl
 
 :Http_Basic_Over_Ssl rdf:type owl:Class ;
                      
@@ -1157,7 +1157,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Digest_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Digest_Authentication
 
 :Http_Digest_Authentication rdf:type owl:Class ;
                             
@@ -1167,7 +1167,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Get
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Get
 
 :Http_Get rdf:type owl:Class ;
           
@@ -1177,7 +1177,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Header
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Header
 
 :Http_Header rdf:type owl:Class ;
              
@@ -1187,7 +1187,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Over_Ssl
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Over_Ssl
 
 :Http_Over_Ssl rdf:type owl:Class ;
                
@@ -1197,7 +1197,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_Post
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_Post
 
 :Http_Post rdf:type owl:Class ;
            
@@ -1207,7 +1207,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Http_auth
+###  http://www.compose-project.eu/ns/web-of-things/security#Http_auth
 
 :Http_auth rdf:type owl:Class ;
            
@@ -1217,7 +1217,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#IE
+###  http://www.compose-project.eu/ns/web-of-things/security#IE
 
 :IE rdf:type owl:Class ;
     
@@ -1225,7 +1225,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#IP_Whitelist
+###  http://www.compose-project.eu/ns/web-of-things/security#IP_Whitelist
 
 :IP_Whitelist rdf:type owl:Class ;
               
@@ -1235,7 +1235,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#IT
+###  http://www.compose-project.eu/ns/web-of-things/security#IT
 
 :IT rdf:type owl:Class ;
     
@@ -1243,7 +1243,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Identity_Verification
+###  http://www.compose-project.eu/ns/web-of-things/security#Identity_Verification
 
 :Identity_Verification rdf:type owl:Class ;
                        
@@ -1253,7 +1253,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#InCommon
+###  http://www.compose-project.eu/ns/web-of-things/security#InCommon
 
 :InCommon rdf:type owl:Class ;
           
@@ -1263,7 +1263,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Integration_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Integration_Key
 
 :Integration_Key rdf:type owl:Class ;
                  
@@ -1273,7 +1273,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Intermediate
+###  http://www.compose-project.eu/ns/web-of-things/security#Intermediate
 
 :Intermediate rdf:type owl:Class ;
               
@@ -1283,7 +1283,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Address_Check
+###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Address_Check
 
 :Ip_Address_Check rdf:type owl:Class ;
                   
@@ -1293,7 +1293,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Address_Level_Security
+###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Address_Level_Security
 
 :Ip_Address_Level_Security rdf:type owl:Class ;
                            
@@ -1303,7 +1303,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Authentication
 
 :Ip_Authentication rdf:type owl:Class ;
                    
@@ -1313,7 +1313,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ip_Based_Identification
+###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Based_Identification
 
 :Ip_Based_Identification rdf:type owl:Class ;
                          
@@ -1323,7 +1323,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ipsec
+###  http://www.compose-project.eu/ns/web-of-things/security#Ipsec
 
 :Ipsec rdf:type owl:Class ;
        
@@ -1333,7 +1333,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Istockphoto_Member_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Istockphoto_Member_Authentication
 
 :Istockphoto_Member_Authentication rdf:type owl:Class ;
                                    
@@ -1343,7 +1343,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#JP
+###  http://www.compose-project.eu/ns/web-of-things/security#JP
 
 :JP rdf:type owl:Class ;
     
@@ -1351,7 +1351,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#KEYNECTIS
+###  http://www.compose-project.eu/ns/web-of-things/security#KEYNECTIS
 
 :KEYNECTIS rdf:type owl:Class ;
            
@@ -1361,7 +1361,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#KR
+###  http://www.compose-project.eu/ns/web-of-things/security#KR
 
 :KR rdf:type owl:Class ;
     
@@ -1369,7 +1369,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Key
 
 :Key rdf:type owl:Class ;
      
@@ -1379,7 +1379,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Key_based
+###  http://www.compose-project.eu/ns/web-of-things/security#Key_based
 
 :Key_based rdf:type owl:Class ;
            
@@ -1389,7 +1389,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Key_based_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Key_based_Authentication
 
 :Key_based_Authentication rdf:type owl:Class ;
                           
@@ -1399,7 +1399,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#License_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#License_Key
 
 :License_Key rdf:type owl:Class ;
              
@@ -1409,7 +1409,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Login_Credentials
+###  http://www.compose-project.eu/ns/web-of-things/security#Login_Credentials
 
 :Login_Credentials rdf:type owl:Class ;
                    
@@ -1419,7 +1419,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Login_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Login_Id
 
 :Login_Id rdf:type owl:Class ;
           
@@ -1429,7 +1429,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Login__Facebook
+###  http://www.compose-project.eu/ns/web-of-things/security#Login__Facebook
 
 :Login__Facebook rdf:type owl:Class ;
                  
@@ -1439,7 +1439,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#MSITMachine
+###  http://www.compose-project.eu/ns/web-of-things/security#MSITMachine
 
 :MSITMachine rdf:type owl:Class ;
              
@@ -1449,7 +1449,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Mac
+###  http://www.compose-project.eu/ns/web-of-things/security#Mac
 
 :Mac rdf:type owl:Class ;
      
@@ -1459,7 +1459,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5
+###  http://www.compose-project.eu/ns/web-of-things/security#Md5
 
 :Md5 rdf:type owl:Class ;
      
@@ -1469,7 +1469,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5_Checksum
+###  http://www.compose-project.eu/ns/web-of-things/security#Md5_Checksum
 
 :Md5_Checksum rdf:type owl:Class ;
               
@@ -1479,7 +1479,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5_On_Parameters
+###  http://www.compose-project.eu/ns/web-of-things/security#Md5_On_Parameters
 
 :Md5_On_Parameters rdf:type owl:Class ;
                    
@@ -1489,7 +1489,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Md5_Signature
+###  http://www.compose-project.eu/ns/web-of-things/security#Md5_Signature
 
 :Md5_Signature rdf:type owl:Class ;
                
@@ -1499,7 +1499,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Meez_Account
+###  http://www.compose-project.eu/ns/web-of-things/security#Meez_Account
 
 :Meez_Account rdf:type owl:Class ;
               
@@ -1509,7 +1509,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Merchant_Account_Id_Only
+###  http://www.compose-project.eu/ns/web-of-things/security#Merchant_Account_Id_Only
 
 :Merchant_Account_Id_Only rdf:type owl:Class ;
                           
@@ -1519,7 +1519,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Microsoft
+###  http://www.compose-project.eu/ns/web-of-things/security#Microsoft
 
 :Microsoft rdf:type owl:Class ;
            
@@ -1529,7 +1529,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Microsoft_Passport
+###  http://www.compose-project.eu/ns/web-of-things/security#Microsoft_Passport
 
 :Microsoft_Passport rdf:type owl:Class ;
                     
@@ -1539,7 +1539,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Multiple_Developer_Keys_Required
+###  http://www.compose-project.eu/ns/web-of-things/security#Multiple_Developer_Keys_Required
 
 :Multiple_Developer_Keys_Required rdf:type owl:Class ;
                                   
@@ -1549,7 +1549,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Mysub_rest_askimet_com
+###  http://www.compose-project.eu/ns/web-of-things/security#Mysub_rest_askimet_com
 
 :Mysub_rest_askimet_com rdf:type owl:Class ;
                         
@@ -1559,7 +1559,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#NL
+###  http://www.compose-project.eu/ns/web-of-things/security#NL
 
 :NL rdf:type owl:Class ;
     
@@ -1567,7 +1567,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Nazwa
+###  http://www.compose-project.eu/ns/web-of-things/security#Nazwa
 
 :Nazwa rdf:type owl:Class ;
        
@@ -1577,7 +1577,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#NetworkSolutions
+###  http://www.compose-project.eu/ns/web-of-things/security#NetworkSolutions
 
 :NetworkSolutions rdf:type owl:Class ;
                   
@@ -1587,7 +1587,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#NewJersey
+###  http://www.compose-project.eu/ns/web-of-things/security#NewJersey
 
 :NewJersey rdf:type owl:Class ;
            
@@ -1595,7 +1595,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#None
+###  http://www.compose-project.eu/ns/web-of-things/security#None
 
 :None rdf:type owl:Class ;
       
@@ -1605,7 +1605,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ntlm
+###  http://www.compose-project.eu/ns/web-of-things/security#Ntlm
 
 :Ntlm rdf:type owl:Class ;
       
@@ -1615,7 +1615,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#OAuth
 
 :OAuth rdf:type owl:Class ;
        
@@ -1625,7 +1625,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth2
+###  http://www.compose-project.eu/ns/web-of-things/security#OAuth2
 
 :OAuth2 rdf:type owl:Class ;
         
@@ -1633,7 +1633,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth_2_0
+###  http://www.compose-project.eu/ns/web-of-things/security#OAuth_2_0
 
 :OAuth_2_0 rdf:type owl:Class ;
            
@@ -1643,7 +1643,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OpenID
+###  http://www.compose-project.eu/ns/web-of-things/security#OpenID
 
 :OpenID rdf:type owl:Class ;
         
@@ -1651,7 +1651,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Openid
+###  http://www.compose-project.eu/ns/web-of-things/security#Openid
 
 :Openid rdf:type owl:Class ;
         
@@ -1661,7 +1661,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Optional_Ip_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Optional_Ip_Authentication
 
 :Optional_Ip_Authentication rdf:type owl:Class ;
                             
@@ -1671,7 +1671,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Oracle
+###  http://www.compose-project.eu/ns/web-of-things/security#Oracle
 
 :Oracle rdf:type owl:Class ;
         
@@ -1681,7 +1681,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Owner_Credentials
+###  http://www.compose-project.eu/ns/web-of-things/security#Owner_Credentials
 
 :Owner_Credentials rdf:type owl:Class ;
                    
@@ -1691,7 +1691,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#PL
+###  http://www.compose-project.eu/ns/web-of-things/security#PL
 
 :PL rdf:type owl:Class ;
     
@@ -1699,7 +1699,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Partner_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Partner_Id
 
 :Partner_Id rdf:type owl:Class ;
             
@@ -1709,7 +1709,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Pin
+###  http://www.compose-project.eu/ns/web-of-things/security#Pin
 
 :Pin rdf:type owl:Class ;
      
@@ -1719,13 +1719,13 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Place
+###  http://www.compose-project.eu/ns/web-of-things/security#Place
 
 :Place rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Positive
+###  http://www.compose-project.eu/ns/web-of-things/security#Positive
 
 :Positive rdf:type owl:Class ;
           
@@ -1735,7 +1735,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Pre_registered_Ip_Address
+###  http://www.compose-project.eu/ns/web-of-things/security#Pre_registered_Ip_Address
 
 :Pre_registered_Ip_Address rdf:type owl:Class ;
                            
@@ -1745,7 +1745,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Private_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Private_Key
 
 :Private_Key rdf:type owl:Class ;
              
@@ -1755,7 +1755,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Production_Environments
+###  http://www.compose-project.eu/ns/web-of-things/security#Production_Environments
 
 :Production_Environments rdf:type owl:Class ;
                          
@@ -1765,7 +1765,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Program_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Program_Id
 
 :Program_Id rdf:type owl:Class ;
             
@@ -1775,7 +1775,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Proprietary_Format
+###  http://www.compose-project.eu/ns/web-of-things/security#Proprietary_Format
 
 :Proprietary_Format rdf:type owl:Class ;
                     
@@ -1785,7 +1785,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Proprietary_Network_Authorizations
+###  http://www.compose-project.eu/ns/web-of-things/security#Proprietary_Network_Authorizations
 
 :Proprietary_Network_Authorizations rdf:type owl:Class ;
                                     
@@ -1795,7 +1795,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Queue_Level_Access_Control
+###  http://www.compose-project.eu/ns/web-of-things/security#Queue_Level_Access_Control
 
 :Queue_Level_Access_Control rdf:type owl:Class ;
                             
@@ -1805,7 +1805,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#QuoVadisGlobal
+###  http://www.compose-project.eu/ns/web-of-things/security#QuoVadisGlobal
 
 :QuoVadisGlobal rdf:type owl:Class ;
                 
@@ -1815,7 +1815,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA
+###  http://www.compose-project.eu/ns/web-of-things/security#RSA
 
 :RSA rdf:type owl:Class ;
      
@@ -1823,7 +1823,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA-MD5
+###  http://www.compose-project.eu/ns/web-of-things/security#RSA-MD5
 
 :RSA-MD5 rdf:type owl:Class ;
          
@@ -1831,7 +1831,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA-SHA1
+###  http://www.compose-project.eu/ns/web-of-things/security#RSA-SHA1
 
 :RSA-SHA1 rdf:type owl:Class ;
           
@@ -1839,7 +1839,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Rapid
+###  http://www.compose-project.eu/ns/web-of-things/security#Rapid
 
 :Rapid rdf:type owl:Class ;
        
@@ -1849,7 +1849,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RegisterDotCom
+###  http://www.compose-project.eu/ns/web-of-things/security#RegisterDotCom
 
 :RegisterDotCom rdf:type owl:Class ;
                 
@@ -1859,7 +1859,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Role_Based_Access_Control
+###  http://www.compose-project.eu/ns/web-of-things/security#Role_Based_Access_Control
 
 :Role_Based_Access_Control rdf:type owl:Class ;
                            
@@ -1869,7 +1869,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML
+###  http://www.compose-project.eu/ns/web-of-things/security#SAML
 
 :SAML rdf:type owl:Class ;
       
@@ -1877,7 +1877,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SE
+###  http://www.compose-project.eu/ns/web-of-things/security#SE
 
 :SE rdf:type owl:Class ;
     
@@ -1885,7 +1885,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSL
+###  http://www.compose-project.eu/ns/web-of-things/security#SSL
 
 :SSL rdf:type owl:Class ;
      
@@ -1893,7 +1893,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSLdotCom
+###  http://www.compose-project.eu/ns/web-of-things/security#SSLdotCom
 
 :SSLdotCom rdf:type owl:Class ;
            
@@ -1903,7 +1903,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSLv3
+###  http://www.compose-project.eu/ns/web-of-things/security#SSLv3
 
 :SSLv3 rdf:type owl:Class ;
        
@@ -1911,7 +1911,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Saml
+###  http://www.compose-project.eu/ns/web-of-things/security#Saml
 
 :Saml rdf:type owl:Class ;
       
@@ -1921,7 +1921,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Sandbox
+###  http://www.compose-project.eu/ns/web-of-things/security#Sandbox
 
 :Sandbox rdf:type owl:Class ;
          
@@ -1931,7 +1931,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Secret_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Secret_Key
 
 :Secret_Key rdf:type owl:Class ;
             
@@ -1941,7 +1941,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Secure_Asp_Script
+###  http://www.compose-project.eu/ns/web-of-things/security#Secure_Asp_Script
 
 :Secure_Asp_Script rdf:type owl:Class ;
                    
@@ -1951,13 +1951,13 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SecurityTechnology
+###  http://www.compose-project.eu/ns/web-of-things/security#SecurityTechnology
 
 :SecurityTechnology rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Security_Code
+###  http://www.compose-project.eu/ns/web-of-things/security#Security_Code
 
 :Security_Code rdf:type owl:Class ;
                
@@ -1967,7 +1967,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Security_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Security_Key
 
 :Security_Key rdf:type owl:Class ;
               
@@ -1977,7 +1977,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#See_Windows_Live_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#See_Windows_Live_Id
 
 :See_Windows_Live_Id rdf:type owl:Class ;
                      
@@ -1987,7 +1987,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Serial_Number
+###  http://www.compose-project.eu/ns/web-of-things/security#Serial_Number
 
 :Serial_Number rdf:type owl:Class ;
                
@@ -1997,7 +1997,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session
+###  http://www.compose-project.eu/ns/web-of-things/security#Session
 
 :Session rdf:type owl:Class ;
          
@@ -2007,7 +2007,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SessionID
+###  http://www.compose-project.eu/ns/web-of-things/security#SessionID
 
 :SessionID rdf:type owl:Class ;
            
@@ -2015,7 +2015,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Authentication
+###  http://www.compose-project.eu/ns/web-of-things/security#Session_Authentication
 
 :Session_Authentication rdf:type owl:Class ;
                         
@@ -2025,7 +2025,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Session_Id
 
 :Session_Id rdf:type owl:Class ;
             
@@ -2035,7 +2035,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Key_Over_Ssl
+###  http://www.compose-project.eu/ns/web-of-things/security#Session_Key_Over_Ssl
 
 :Session_Key_Over_Ssl rdf:type owl:Class ;
                       
@@ -2045,7 +2045,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Session_Sharing
+###  http://www.compose-project.eu/ns/web-of-things/security#Session_Sharing
 
 :Session_Sharing rdf:type owl:Class ;
                  
@@ -2055,7 +2055,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Signature
+###  http://www.compose-project.eu/ns/web-of-things/security#Signature
 
 :Signature rdf:type owl:Class ;
            
@@ -2065,7 +2065,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Site_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Site_Id
 
 :Site_Id rdf:type owl:Class ;
          
@@ -2075,7 +2075,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Site_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Site_Key
 
 :Site_Key rdf:type owl:Class ;
           
@@ -2085,7 +2085,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Soap_Login_Method
+###  http://www.compose-project.eu/ns/web-of-things/security#Soap_Login_Method
 
 :Soap_Login_Method rdf:type owl:Class ;
                    
@@ -2095,7 +2095,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Some_Authenticated
+###  http://www.compose-project.eu/ns/web-of-things/security#Some_Authenticated
 
 :Some_Authenticated rdf:type owl:Class ;
                     
@@ -2105,7 +2105,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Some_Proprietary_Authorization
+###  http://www.compose-project.eu/ns/web-of-things/security#Some_Proprietary_Authorization
 
 :Some_Proprietary_Authorization rdf:type owl:Class ;
                                 
@@ -2115,7 +2115,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Space_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Space_Id
 
 :Space_Id rdf:type owl:Class ;
           
@@ -2125,7 +2125,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssh
+###  http://www.compose-project.eu/ns/web-of-things/security#Ssh
 
 :Ssh rdf:type owl:Class ;
      
@@ -2135,7 +2135,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssh_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Ssh_Key
 
 :Ssh_Key rdf:type owl:Class ;
          
@@ -2145,7 +2145,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssl
+###  http://www.compose-project.eu/ns/web-of-things/security#Ssl
 
 :Ssl rdf:type owl:Class ;
      
@@ -2155,7 +2155,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssl_Based
+###  http://www.compose-project.eu/ns/web-of-things/security#Ssl_Based
 
 :Ssl_Based rdf:type owl:Class ;
            
@@ -2165,7 +2165,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ssl_Client_Certificates
+###  http://www.compose-project.eu/ns/web-of-things/security#Ssl_Client_Certificates
 
 :Ssl_Client_Certificates rdf:type owl:Class ;
                          
@@ -2175,7 +2175,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Sso
+###  http://www.compose-project.eu/ns/web-of-things/security#Sso
 
 :Sso rdf:type owl:Class ;
      
@@ -2185,7 +2185,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Starfield
+###  http://www.compose-project.eu/ns/web-of-things/security#Starfield
 
 :Starfield rdf:type owl:Class ;
            
@@ -2195,7 +2195,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Static_Ip
+###  http://www.compose-project.eu/ns/web-of-things/security#Static_Ip
 
 :Static_Ip rdf:type owl:Class ;
            
@@ -2205,7 +2205,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Symantec
+###  http://www.compose-project.eu/ns/web-of-things/security#Symantec
 
 :Symantec rdf:type owl:Class ;
           
@@ -2215,7 +2215,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TBS
+###  http://www.compose-project.eu/ns/web-of-things/security#TBS
 
 :TBS rdf:type owl:Class ;
      
@@ -2225,7 +2225,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TITrustTechnologies
+###  http://www.compose-project.eu/ns/web-of-things/security#TITrustTechnologies
 
 :TITrustTechnologies rdf:type owl:Class ;
                      
@@ -2235,7 +2235,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSL
+###  http://www.compose-project.eu/ns/web-of-things/security#TSL
 
 :TSL rdf:type owl:Class ;
      
@@ -2243,15 +2243,15 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSLv3
+###  http://www.compose-project.eu/ns/web-of-things/security#TLSv3
 
-:TSLv3 rdf:type owl:Class ;
+:TLSv3 rdf:type owl:Class ;
        
        rdfs:subClassOf :TSL .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TWCA
+###  http://www.compose-project.eu/ns/web-of-things/security#TWCA
 
 :TWCA rdf:type owl:Class ;
       
@@ -2261,7 +2261,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Terena
+###  http://www.compose-project.eu/ns/web-of-things/security#Terena
 
 :Terena rdf:type owl:Class ;
         
@@ -2271,7 +2271,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Thawte
+###  http://www.compose-project.eu/ns/web-of-things/security#Thawte
 
 :Thawte rdf:type owl:Class ;
         
@@ -2281,7 +2281,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ticket_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Ticket_Id
 
 :Ticket_Id rdf:type owl:Class ;
            
@@ -2291,7 +2291,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Timestamp
+###  http://www.compose-project.eu/ns/web-of-things/security#Timestamp
 
 :Timestamp rdf:type owl:Class ;
            
@@ -2301,7 +2301,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Token
+###  http://www.compose-project.eu/ns/web-of-things/security#Token
 
 :Token rdf:type owl:Class ;
        
@@ -2311,7 +2311,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Transaction_Key
+###  http://www.compose-project.eu/ns/web-of-things/security#Transaction_Key
 
 :Transaction_Key rdf:type owl:Class ;
                  
@@ -2321,7 +2321,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TrendMicro
+###  http://www.compose-project.eu/ns/web-of-things/security#TrendMicro
 
 :TrendMicro rdf:type owl:Class ;
             
@@ -2331,7 +2331,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TrustSign
+###  http://www.compose-project.eu/ns/web-of-things/security#TrustSign
 
 :TrustSign rdf:type owl:Class ;
            
@@ -2341,7 +2341,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TrustedSecure
+###  http://www.compose-project.eu/ns/web-of-things/security#TrustedSecure
 
 :TrustedSecure rdf:type owl:Class ;
                
@@ -2351,7 +2351,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Twitter_Account
+###  http://www.compose-project.eu/ns/web-of-things/security#Twitter_Account
 
 :Twitter_Account rdf:type owl:Class ;
                  
@@ -2361,7 +2361,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Twitter_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Twitter_Id
 
 :Twitter_Id rdf:type owl:Class ;
             
@@ -2371,7 +2371,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#UK
+###  http://www.compose-project.eu/ns/web-of-things/security#UK
 
 :UK rdf:type owl:Class ;
     
@@ -2379,7 +2379,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#US
+###  http://www.compose-project.eu/ns/web-of-things/security#US
 
 :US rdf:type owl:Class ;
     
@@ -2387,7 +2387,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#USERTrust
+###  http://www.compose-project.eu/ns/web-of-things/security#USERTrust
 
 :USERTrust rdf:type owl:Class ;
            
@@ -2397,7 +2397,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#UT
+###  http://www.compose-project.eu/ns/web-of-things/security#UT
 
 :UT rdf:type owl:Class ;
     
@@ -2405,7 +2405,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#UTNUSERFirstHardware
+###  http://www.compose-project.eu/ns/web-of-things/security#UTNUSERFirstHardware
 
 :UTNUSERFirstHardware rdf:type owl:Class ;
                       
@@ -2415,7 +2415,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Uri
+###  http://www.compose-project.eu/ns/web-of-things/security#Uri
 
 :Uri rdf:type owl:Class ;
      
@@ -2425,7 +2425,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Username_password
+###  http://www.compose-project.eu/ns/web-of-things/security#Username_password
 
 :Username_password rdf:type owl:Class ;
                    
@@ -2435,7 +2435,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Varies_By_Pricing_Option_Selected
+###  http://www.compose-project.eu/ns/web-of-things/security#Varies_By_Pricing_Option_Selected
 
 :Varies_By_Pricing_Option_Selected rdf:type owl:Class ;
                                    
@@ -2445,7 +2445,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#VeriSign
+###  http://www.compose-project.eu/ns/web-of-things/security#VeriSign
 
 :VeriSign rdf:type owl:Class ;
           
@@ -2455,7 +2455,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Vodafone
+###  http://www.compose-project.eu/ns/web-of-things/security#Vodafone
 
 :Vodafone rdf:type owl:Class ;
           
@@ -2465,7 +2465,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Waf
+###  http://www.compose-project.eu/ns/web-of-things/security#Waf
 
 :Waf rdf:type owl:Class ;
      
@@ -2475,7 +2475,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Washington
+###  http://www.compose-project.eu/ns/web-of-things/security#Washington
 
 :Washington rdf:type owl:Class ;
             
@@ -2483,9 +2483,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Web_Service_Security_(wss)
+###  http://www.compose-project.eu/ns/web-of-things/security#Web_Service_Security_(wss)
 
-<http://www.compose-project.eu/ns/web-of-things/security/profiles#Web_Service_Security_(wss)> rdf:type owl:Class ;
+<http://www.compose-project.eu/ns/web-of-things/security#Web_Service_Security_(wss)> rdf:type owl:Class ;
                                                                                               
                                                                                               rdfs:label "Web Service Security (wss)"@en ;
                                                                                               
@@ -2493,7 +2493,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Windows_Live_Id
+###  http://www.compose-project.eu/ns/web-of-things/security#Windows_Live_Id
 
 :Windows_Live_Id rdf:type owl:Class ;
                  
@@ -2503,7 +2503,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ws_addressing
+###  http://www.compose-project.eu/ns/web-of-things/security#Ws_addressing
 
 :Ws_addressing rdf:type owl:Class ;
                
@@ -2513,7 +2513,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#Ws_security
+###  http://www.compose-project.eu/ns/web-of-things/security#Ws_security
 
 :Ws_security rdf:type owl:Class ;
              
@@ -2523,7 +2523,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#X509
+###  http://www.compose-project.eu/ns/web-of-things/security#X509
 
 :X509 rdf:type owl:Class ;
       
@@ -2531,7 +2531,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#XACML
+###  http://www.compose-project.eu/ns/web-of-things/security#XACML
 
 :XACML rdf:type owl:Class ;
        
@@ -2539,7 +2539,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#X_509
+###  http://www.compose-project.eu/ns/web-of-things/security#X_509
 
 :X_509 rdf:type owl:Class ;
        
@@ -2549,7 +2549,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#X_wsse
+###  http://www.compose-project.eu/ns/web-of-things/security#X_wsse
 
 :X_wsse rdf:type owl:Class ;
         
@@ -2592,85 +2592,85 @@ usdl-sec:Token rdf:type owl:Class .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES
+###  http://www.compose-project.eu/ns/web-of-things/security#AES
 
 :AES rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#AES128Bit
+###  http://www.compose-project.eu/ns/web-of-things/security#AES128Bit
 
 :AES128Bit rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#APIKey
+###  http://www.compose-project.eu/ns/web-of-things/security#APIKey
 
 :APIKey rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#HTTPBasicAuth
 
 :HTTPBasicAuth rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPDigestAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#HTTPDigestAuth
 
 :HTTPDigestAuth rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#OAuth
 
 :OAuth rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth2
+###  http://www.compose-project.eu/ns/web-of-things/security#OAuth2
 
 :OAuth2 rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#OpenID
+###  http://www.compose-project.eu/ns/web-of-things/security#OpenID
 
 :OpenID rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#RSA
+###  http://www.compose-project.eu/ns/web-of-things/security#RSA
 
 :RSA rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SSL
+###  http://www.compose-project.eu/ns/web-of-things/security#SSL
 
 :SSL rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#SessionID
+###  http://www.compose-project.eu/ns/web-of-things/security#SessionID
 
 :SessionID rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#TSL
+###  http://www.compose-project.eu/ns/web-of-things/security#TSL
 
 :TSL rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#XACML
+###  http://www.compose-project.eu/ns/web-of-things/security#XACML
 
 :XACML rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_accesscontrolOAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#_accesscontrolOAuth
 
 :_accesscontrolOAuth rdf:type usdl-sec:Access_Control ,
                               owl:NamedIndividual ;
@@ -2679,7 +2679,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_accesscontrolOAuth2
+###  http://www.compose-project.eu/ns/web-of-things/security#_accesscontrolOAuth2
 
 :_accesscontrolOAuth2 rdf:type usdl-sec:Access_Control ,
                                owl:NamedIndividual ;
@@ -2688,7 +2688,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_accesscontrolXACML
+###  http://www.compose-project.eu/ns/web-of-things/security#_accesscontrolXACML
 
 :_accesscontrolXACML rdf:type usdl-sec:Access_Control ,
                               owl:NamedIndividual ;
@@ -2697,7 +2697,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_password_HTTPBasicAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_password_HTTPBasicAuth
 
 :_authentication_password_HTTPBasicAuth rdf:type owl:NamedIndividual ;
                                         
@@ -2712,7 +2712,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_password_HTTPDigestAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_password_HTTPDigestAuth
 
 :_authentication_password_HTTPDigestAuth rdf:type owl:NamedIndividual ;
                                          
@@ -2727,7 +2727,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_apikey
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_apikey
 
 :_authentication_token_apikey rdf:type owl:NamedIndividual ;
                               
@@ -2742,7 +2742,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_oauth
 
 :_authentication_token_oauth rdf:type owl:NamedIndividual ;
                              
@@ -2757,7 +2757,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_oauth2
 
 :_authentication_token_oauth2 rdf:type owl:NamedIndividual ;
                               
@@ -2772,7 +2772,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_openid
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_openid
 
 :_authentication_token_openid rdf:type owl:NamedIndividual ;
                               
@@ -2787,7 +2787,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_sessionid
+###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_sessionid
 
 :_authentication_token_sessionid rdf:type owl:NamedIndividual ;
                                  
@@ -2802,7 +2802,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_oauth
+###  http://www.compose-project.eu/ns/web-of-things/security#_authorization_accesscontrol_oauth
 
 :_authorization_accesscontrol_oauth rdf:type owl:NamedIndividual ;
                                     
@@ -2816,7 +2816,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_oauth2
+###  http://www.compose-project.eu/ns/web-of-things/security#_authorization_accesscontrol_oauth2
 
 :_authorization_accesscontrol_oauth2 rdf:type owl:NamedIndividual ;
                                      
@@ -2830,7 +2830,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_authorization_accesscontrol_xacml
+###  http://www.compose-project.eu/ns/web-of-things/security#_authorization_accesscontrol_xacml
 
 :_authorization_accesscontrol_xacml rdf:type owl:NamedIndividual ;
                                     
@@ -2844,7 +2844,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionAES
+###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionAES
 
 :_encryptionAES rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2854,13 +2854,13 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionAES128Bit
+###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionAES128Bit
 
 :_encryptionAES128Bit rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionRSA
+###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionRSA
 
 :_encryptionRSA rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2869,7 +2869,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionSSL
+###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionSSL
 
 :_encryptionSSL rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2878,7 +2878,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_encryptionTSL
+###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionTSL
 
 :_encryptionTSL rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2887,7 +2887,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_passwordExchangeHTTPBasicAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#_passwordExchangeHTTPBasicAuth
 
 :_passwordExchangeHTTPBasicAuth rdf:type usdl-sec:PasswordExchange ,
                                          owl:NamedIndividual ;
@@ -2896,7 +2896,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_passwordExchangeHTTPDigestAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#_passwordExchangeHTTPDigestAuth
 
 :_passwordExchangeHTTPDigestAuth rdf:type usdl-sec:PasswordExchange ,
                                           owl:NamedIndividual ;
@@ -2905,7 +2905,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_AES
+###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_AES
 
 :_sa_confidentality_encryption_AES rdf:type owl:NamedIndividual ;
                                    
@@ -2919,7 +2919,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_AES128Bit
+###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_AES128Bit
 
 :_sa_confidentality_encryption_AES128Bit rdf:type owl:NamedIndividual ;
                                          
@@ -2933,7 +2933,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_RSA
+###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_RSA
 
 :_sa_confidentality_encryption_RSA rdf:type owl:NamedIndividual ;
                                    
@@ -2947,7 +2947,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentality_encryption_TSL
+###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_TSL
 
 :_sa_confidentality_encryption_TSL rdf:type owl:NamedIndividual ;
                                    
@@ -2961,7 +2961,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_confidentiality_encryption_SSL
+###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentiality_encryption_SSL
 
 :_sa_confidentiality_encryption_SSL rdf:type owl:NamedIndividual ;
                                     
@@ -2975,7 +2975,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_sa_privacy_accesscontrol_xacml
+###  http://www.compose-project.eu/ns/web-of-things/security#_sa_privacy_accesscontrol_xacml
 
 :_sa_privacy_accesscontrol_xacml rdf:type owl:NamedIndividual ;
                                  
@@ -2989,7 +2989,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenAPIKEY
+###  http://www.compose-project.eu/ns/web-of-things/security#_tokenAPIKEY
 
 :_tokenAPIKEY rdf:type usdl-sec:Token ,
                        owl:NamedIndividual ;
@@ -2998,7 +2998,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenOAuth
+###  http://www.compose-project.eu/ns/web-of-things/security#_tokenOAuth
 
 :_tokenOAuth rdf:type usdl-sec:Token ,
                       owl:NamedIndividual ;
@@ -3007,7 +3007,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenOAuth2
+###  http://www.compose-project.eu/ns/web-of-things/security#_tokenOAuth2
 
 :_tokenOAuth2 rdf:type usdl-sec:Token ,
                        owl:NamedIndividual ;
@@ -3016,7 +3016,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenOpenID
+###  http://www.compose-project.eu/ns/web-of-things/security#_tokenOpenID
 
 :_tokenOpenID rdf:type usdl-sec:Token ,
                        owl:NamedIndividual ;
@@ -3025,7 +3025,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security/profiles#_tokenSessionID
+###  http://www.compose-project.eu/ns/web-of-things/security#_tokenSessionID
 
 :_tokenSessionID rdf:type usdl-sec:Token ,
                           owl:NamedIndividual ;

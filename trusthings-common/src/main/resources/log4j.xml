@@ -30,7 +30,10 @@
   </appender> 
  <logger name="slib">
       <level value="OFF" />
- </logger>
+ </logger> 
+ <logger name="de.fuberlin">
+      <level value="OFF" />
+ </logger> 
   <logger name="com.inn">
       <level value="info" />
   </logger>

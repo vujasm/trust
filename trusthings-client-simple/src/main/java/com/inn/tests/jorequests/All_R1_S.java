@@ -45,7 +45,7 @@ public class All_R1_S {
 			
 			TrustManager t = new TrustModuleTest().getTrustManager();
 
-			System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-earth")));
+			System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus")));
 
 			
 		} catch (Exception e) {

@@ -40,7 +40,7 @@ public class LocationMapping {
 		map.put(ModelEnum.SecuritypolicyVocab.getURI(),		Const.repoOntologies+"securitypolicyvocab.ttl");
 		map.put(ModelEnum.UsdlSec.getURI(),					Const.repoOntologies+"usdl-sec.ttl");
 		map.put(ModelEnum.Ssn.getURI(),						Const.repoOntologies+"ssn.owl");
-		map.put(ModelEnum.SecurityProfiles.getURI(), 		Const.repoOntologies+"securityprofiles.ttl");
+		map.put(ModelEnum.SecurityOntology.getURI(), 		Const.repoOntologies+"securityontology.ttl");
 		map.put(ModelEnum.Dul.getURI(), 					"http://www.loa-cnr.it/ontologies/DUL.owl");
 		
         return map;

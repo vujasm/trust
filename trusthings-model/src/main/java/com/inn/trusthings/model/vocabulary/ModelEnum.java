@@ -27,7 +27,7 @@ public enum ModelEnum {
 	UsdlSec("http://www.linked-usdl.org/ns/usdl-sec#"), 
 	Dul("http://www.loa-cnr.it/ontologies/DUL.owl"), 
 	Ssn("http://purl.oclc.org/NET/ssnx/ssn"), 
-	SecurityProfiles("http://www.compose-project.eu/ns/web-of-things/security/profiles"),
+	SecurityOntology("http://www.compose-project.eu/ns/web-of-things/security/profiles"),
 	// MergedTrust("http://www.compose-project.eu/ns/web-of-things/mergedtrust", Const.repoOntologies+"mergedtrust.ttl")
 	;
 
