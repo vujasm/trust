@@ -44,6 +44,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.inn.common.Const;
+import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.Metric;
@@ -113,7 +114,16 @@ public class ToModelParser {
 
 				// FIXME it needs better design, more generic type checking
 				if (attribute == null) {
-					if (isOfType(individual, Trust.SecurityGuarantee.getURI())) {
+					
+					if (isOfType(individual, Trust.SecurityGuarantee.getURI())
+							&& (individual.getProperty(ModelFactory.createDefaultModel()
+									.createProperty(Trust.getURI()+"hasCertificateDetail"))!=null)){
+						continue;
+					}
+	
+					else if (isOfType(individual, Trust.SecurityGuarantee.getURI())
+							&& (individual.getProperty(ModelFactory.createDefaultModel()
+									.createProperty(Trust.getURI()+"hasCertificateDetail"))==null)) {
 						attribute = new SecurityGuarantee(URI.create(individual.getURI()));
 						attribute = parseSecurityAttribute(individual, (SecurityAttribute) attribute);
 					} else if (isOfType(individual, Trust.SecurityRequirment.getURI())) {
@@ -155,28 +165,43 @@ public class ToModelParser {
 		attribute.setValue(value);
 		attribute.setValueDatatype(literal.getDatatype());
 	}
-
+	
+	
 	private TrustAttribute parseSecurityAttribute(Individual individual, SecurityAttribute attribute) {
-		final RDFNode individualValue = individual.getPropertyValue(Trust.hasValue);
-		// Individual individualValueAsIndividual = individualValue.as(Individual.class);
-		final RDFDatatype datype = individualValue.asLiteral().getDatatype();
-		final String lexicalForm = individualValue.asLiteral().getLexicalForm();
 		
-		//TODO needs better design/implementation. Not supported when sec description is not comming from predefined profile, but it in fact an expression
-		if (datype.getURI().equals(USDLSecExpression.TYPE.getURI())  && lexicalForm.startsWith(ModelEnum.SecurityProfiles.getURI())) {
-			SecProfileExpressionToModel parser = (SecProfileExpressionToModel) specificParsers.get(Const.ParserNameSecurityProfileAsUSDLSec);
-			if (parser == null) {
-				log.error("A parser to parse " + individualValue + " into java objects is not registered. Use registerSpecificParser(Object parser, String name)");
-			}
-			parser.parse(lexicalForm, attribute);
-		} else {
-			log.error("A parser to parse " + individualValue + " into java objects not supported / implemented");
-			throw new UnsupportedOperationException();
-		}
-
+		SecGuaranteeToModel parser = (SecGuaranteeToModel) specificParsers.get(Const.parserNameSecurityGuarantee);
+		
+		parser.parse(individual, attribute);
+		
 		attribute.setValueDatatype(USDLSecExpression.TYPE);
 		return attribute;
 	}
+
+	//i'm not using this one any more as model has changed
+	
+//	private TrustAttribute parseSecurityAttributeHasValueUSDL(Individual individual, SecurityAttribute attribute) {
+//		
+//		System.out.println(individual);
+//		
+//		final RDFNode individualValue = individual.getPropertyValue(Trust.hasValue);
+//		final RDFDatatype datype = individualValue.asLiteral().getDatatype();
+//		final String lexicalForm = individualValue.asLiteral().getLexicalForm();
+//		
+//		//TODO needs better design/implementation. Not supported when sec description is not comming from predefined profile, but it in fact an expression
+//		if (datype.getURI().equals(USDLSecExpression.TYPE.getURI())  && lexicalForm.startsWith(ModelEnum.SecurityProfiles.getURI())) {
+//			SecProfileExpressionToModel parser = (SecProfileExpressionToModel) specificParsers.get(Const.parserNameSecurityProfileAsUSDLSecExpression);
+//			if (parser == null) {
+//				log.error("A parser to parse " + individualValue + " into java objects is not registered. Use registerSpecificParser(Object parser, String name)");
+//			}
+//			parser.parse(lexicalForm, attribute);
+//		} else {
+//			log.error("A parser to parse " + individualValue + " into java objects not supported / implemented");
+//			throw new UnsupportedOperationException();
+//		}
+//
+//		attribute.setValueDatatype(USDLSecExpression.TYPE);
+//		return attribute;
+//	}
 
 	/**
 	 * 

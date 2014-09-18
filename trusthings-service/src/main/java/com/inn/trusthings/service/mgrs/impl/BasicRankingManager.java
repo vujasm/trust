@@ -39,6 +39,7 @@ import com.inn.common.OrderType;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.model.io.ToModelParser;
+import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TResource;
@@ -239,8 +240,10 @@ public class BasicRankingManager implements RankingManager {
 			parser = new ToModelParser();
 			String uri = ModelEnum.SecurityProfiles.getURI();
 			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri, RDFModelsHandler.getGlobalInstance());
-			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
-			parser.registerSpecificParser(secProfileExpressionToModel, Const.ParserNameSecurityProfileAsUSDLSec);
+//			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
+//			parser.registerSpecificParser(secProfileExpressionToModel, Const.parserNameSecurityProfileAsUSDLSecExpression);
+			SecGuaranteeToModel secGuaranteeToModel = new SecGuaranteeToModel();
+			parser.registerSpecificParser(secGuaranteeToModel, Const.parserNameSecurityGuarantee);
 		}
 		return parser;
 	}

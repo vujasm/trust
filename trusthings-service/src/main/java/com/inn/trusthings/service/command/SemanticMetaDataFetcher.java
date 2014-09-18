@@ -32,6 +32,7 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.inn.trusthings.db.d2r.Bridge;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
@@ -43,13 +44,13 @@ import com.inn.trusthings.kb.SparqlGraphStoreManager;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  * 
  */
-public class CommandSemanticMetadataFetch {
+public class SemanticMetaDataFetcher {
 
 	private final SparqlGraphStoreManager graphStoreManager;
 	private final List<SparqlGraphStoreManager> externalGraphStoreMgrs;
-	private static final Logger log = LoggerFactory.getLogger(CommandSemanticMetadataFetch.class);
+	private static final Logger log = LoggerFactory.getLogger(SemanticMetaDataFetcher.class);
 
-	public CommandSemanticMetadataFetch(final SparqlGraphStoreManager graphStoreManager, final List<SparqlGraphStoreManager> externalGraphStoreMgrs) {
+	public SemanticMetaDataFetcher(final SparqlGraphStoreManager graphStoreManager, final List<SparqlGraphStoreManager> externalGraphStoreMgrs) {
 		this.graphStoreManager = graphStoreManager;
 		this.externalGraphStoreMgrs = externalGraphStoreMgrs;
 	}
@@ -100,10 +101,13 @@ public class CommandSemanticMetadataFetch {
 		Model internalModel = null;
 		try {
 			if (fetchFromInternalRegirsty) {
-				Log.info(this, "obtaining model from internal registry using sparqlEndpoint");
-				internalModel = graphStoreManager.getGraph(uri);
+//				Log.info(this, "obtaining model from internal registry using sparqlEndpoint");
+//				internalModel = graphStoreManager.getGraph(uri);
+				Log.info(this, "obtaining model from internal MYSQL using D2RQ Bridge");
+				internalModel = new Bridge().obtainTrustProfile(uri.toASCIIString());
 			}
 		} catch (Exception e) {
+			//FIXME this log below is obsolute. now using mysql.
 			if (e instanceof org.apache.jena.atlas.web.HttpException) {
 				log.info("internal registry using sparqlEndpoint connection refused - sparqendpoint is not running //" + e.getMessage());
 			} else {

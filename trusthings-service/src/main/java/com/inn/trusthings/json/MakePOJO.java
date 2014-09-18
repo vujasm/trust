@@ -129,22 +129,37 @@ public class MakePOJO {
 		if (implementedBy!=null){
 		for (JsonNode implementedByElement : implementedBy) {
 			SecurityMechanism mechanism = factory.createSecurityMechanism();
-			JsonNode types = implementedByElement.get("type");
 			attr.addImplementedBy(mechanism);
+			JsonNode types = implementedByElement.get("type");
 			for (JsonNode t : types) {
 				String sURI = t.get("uri").asText();
 				URI uri = URI.create(sURI);
-//				System.out.println(sURI);
 				mechanism.addType(uri);
 			}
-			JsonNode realizedByTechnology = implementedByElement.get("realizedByTechnology");
-			if (realizedByTechnology!=null){
-				for (JsonNode realizedByTechnologyElement : realizedByTechnology) {
-					String sURI = realizedByTechnologyElement.get("uri").asText();
-					URI uri = URI.create(sURI);
-					mechanism.addRealizedByTechnology(new SecurityTechnology(uri));
-				}
+		}
+		}
+		//	JsonNode realizedByTechnology = implementedByElement.get("realizedByTechnology");
+//			if (realizedByTechnology!=null){
+//				for (JsonNode realizedByTechnologyElement : realizedByTechnology) {
+//					String sURI = realizedByTechnologyElement.get("uri").asText();
+//					URI uri = URI.create(sURI);
+//					mechanism.addRealizedByTechnology(new SecurityTechnology(uri));
+//				}
+//			}
+		JsonNode realizedByTechnology = element.get("realizedByTechnology");
+		if (realizedByTechnology!=null){
+		for (JsonNode realizedByElement : realizedByTechnology) {
+			String sURI = realizedByElement.get("uri").asText();
+			URI uri = URI.create(sURI);
+			SecurityTechnology technology =new SecurityTechnology( uri);
+			JsonNode types = realizedByElement.get("type");
+			for (JsonNode t : types) {
+				String sURIt = t.get("uri").asText();
+				URI urit = URI.create(sURIt);
+				technology.addType(urit);
 			}
+			attr.addRealizedByTechnology(technology);
+
 		}
 		}
 		

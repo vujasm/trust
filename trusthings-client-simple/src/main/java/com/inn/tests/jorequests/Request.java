@@ -106,7 +106,7 @@ public class Request {
 		SecurityMechanism mechanism = factory.createSecurityMechanism();
 		SecurityTechnology securityTechnology = new SecurityTechnology(
 				URI.create("http://www.compose-project.eu/ns/web-of-things/" + "security/profiles#OAuth2"));
-		mechanism.addRealizedByTechnology(securityTechnology);
+		att3.addRealizedByTechnology(securityTechnology);
 		att3.addImplementedBy(mechanism);
 		att3.setImportance(1);
 
@@ -117,7 +117,7 @@ public class Request {
 		SecurityMechanism mechanism2 = factory.createSecurityMechanism();
 		SecurityTechnology securityTechnology2 = new SecurityTechnology(
 				URI.create("http://www.compose-project.eu/ns/web-of-things/" + "security/profiles#HTTPBasicAuth"));
-		mechanism2.addRealizedByTechnology(securityTechnology2);
+		att4.addRealizedByTechnology(securityTechnology2);
 		att4.addImplementedBy(mechanism2);
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(1);
@@ -156,7 +156,7 @@ public class Request {
 		SecurityMechanism mechanism = factory.createSecurityMechanism();
 		SecurityTechnology securityTechnology = new SecurityTechnology(
 				URI.create("http://www.compose-project.eu/ns/web-of-things/" + "security/profiles#OAuth"));
-		mechanism.addRealizedByTechnology(securityTechnology);
+		att3.addRealizedByTechnology(securityTechnology);
 		att3.addImplementedBy(mechanism);
 		att3.setImportance(importance[0]);
 
@@ -167,7 +167,7 @@ public class Request {
 		SecurityMechanism mechanism2 = factory.createSecurityMechanism();
 		SecurityTechnology securityTechnology2 = new SecurityTechnology(
 				URI.create("http://www.compose-project.eu/ns/web-of-things/" + "security/profiles#HTTPBasicAuth"));
-		mechanism2.addRealizedByTechnology(securityTechnology2);
+		att4.addRealizedByTechnology(securityTechnology2);
 		att4.addImplementedBy(mechanism2);
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(importance[1]);

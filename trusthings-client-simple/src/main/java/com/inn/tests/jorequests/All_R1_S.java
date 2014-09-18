@@ -44,40 +44,30 @@ public class All_R1_S {
 		try {
 			
 			TrustManager t = new TrustModuleTest().getTrustManager();
-//			test(1, t);
-//			test(10, t);
-//			test(50, t);
-//		    test(100, t);
-//		    test(200, t);
-//		    test(500, t);
-//		    test(1000, t);
-//		    test(2000, t);
-//		    test(5000, t);
-//		    test(10000, t);
-//		    test(20000, t);
-//		    test(50000, t);
-		    test(100000, t);
+
+			System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-earth")));
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-		private static void test(int size, TrustManager t) throws Exception {
-
-			TrustManager tt = new TrustModuleTest().getTrustManager();
-			List<URI> services = Lists.newArrayList();
-			for (int i = 0; i < size; i++) {
-				services.add(URI.create(DescriptionsEnum.TSA.getURI()));
-				services.add(URI.create(DescriptionsEnum.TSB.getURI()));
-				services.add(URI.create(DescriptionsEnum.TSC.getURI()));
-			}
-		    Stopwatch timer = new Stopwatch().start();
-			t.rankResources(services, t.getGlobalTrustCriteria(), EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
-//			tt.obtainTrustIndexes(services);
-			timer.stop();
-		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.MILLISECONDS));
-		}
+//		private static void test(int size, TrustManager t) throws Exception {
+//
+//			TrustManager tt = new TrustModuleTest().getTrustManager();
+//			List<URI> services = Lists.newArrayList();
+//			for (int i = 0; i < size; i++) {
+//				services.add(URI.create(DescriptionsEnum.TSA.getURI()));
+//				services.add(URI.create(DescriptionsEnum.TSB.getURI()));
+//				services.add(URI.create(DescriptionsEnum.TSC.getURI()));
+//			}
+//		    Stopwatch timer = new Stopwatch().start();
+//			t.rankResources(services, t.getGlobalTrustCriteria(), EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
+////			tt.obtainTrustIndexes(services);
+//			timer.stop();
+//		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.MILLISECONDS));
+//		}
 
 }
 

@@ -112,8 +112,7 @@ public class SecSemanticMatchOp {
 			return -1;
 		}
 
-		for (SecurityMechanism mechanism : mechanismsR) {
-			List<SecurityTechnology> securityTechnologies = mechanism.getRealizedByTechnology();
+		List<SecurityTechnology> securityTechnologies = reqAttribute.getRealizedByTechnology();
 			if (securityTechnologies.isEmpty()) {
 				log.info("Security technology matching: no requested so return -1");
 				return -1;
@@ -122,9 +121,7 @@ public class SecSemanticMatchOp {
 				// find the the best possible match (i.e. with most high semsim value)
 				for (TrustAttribute a : attributes) {
 					final SecurityAttribute securityAttribute = (SecurityAttribute) a;
-					List<SecurityMechanism> mechanisms2 = securityAttribute.getImplementedBy();
-					for (SecurityMechanism mechanism2 : mechanisms2) {
-						List<SecurityTechnology> technologies = mechanism2.getRealizedByTechnology();
+						List<SecurityTechnology> technologies = securityAttribute.getRealizedByTechnology();
 						for (SecurityTechnology securityTechnology : technologies) {
 							double result = invokeSemSim(securityTechnologyR.getUri(), securityTechnology.getUri());
 							if (result > semsim) {
@@ -133,12 +130,11 @@ public class SecSemanticMatchOp {
 								}
 							}
 						}
-					}
 
 				}
 
 			}
-		}
+
 
 		log.info("Security technology matching: requested and returns " + semsim);
 		return semsim;

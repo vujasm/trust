@@ -32,6 +32,8 @@ public class Const {
 	public static String repoModels = "modelrepo/";
 	public static String repoOntologies = "ontologies/";
 		
-	public static String ParserNameSecurityProfileAsUSDLSec = "usdlsec";
+	public static String parserNameSecurityProfileAsUSDLSecExpression = "usdlsec";
+	
+	public static String parserNameSecurityGuarantee = "parserNameSecurityGuarantee";
 
 }

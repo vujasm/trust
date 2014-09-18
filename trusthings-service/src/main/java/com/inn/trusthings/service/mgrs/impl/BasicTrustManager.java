@@ -60,7 +60,7 @@ import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.Value;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.collectors.Collector;
-import com.inn.trusthings.service.command.CommandSemanticMetadataFetch;
+import com.inn.trusthings.service.command.SemanticMetaDataFetcher;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
@@ -146,7 +146,7 @@ public class BasicTrustManager implements TrustManager {
 	 * @return ontModel as a Jena model that contains statements about the resource
 	 */
 	private OntModel loadSemanticMetadata(URI uri, boolean fetchFromExternalRegistries, boolean useMappedLocations, boolean fetchFromInternalRegirsty) {
-		return new CommandSemanticMetadataFetch(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
+		return new SemanticMetaDataFetcher(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
 	}
 
 	@Override
@@ -281,7 +281,10 @@ public class BasicTrustManager implements TrustManager {
 	private List<Tuple2<URI, Model>> obtainModels(List<URI> resources) {
 		List<Tuple2<URI, Model>> listModels = Lists.newArrayList();
 		for (URI uri : resources) {
-			OntModel model = loadSemanticMetadata(uri, false, true, false);
+			boolean fetchFromExternalRegistries = false;
+			boolean useMappedLocations = false;
+			boolean  fetchFromInternalRegirsty = true; 
+			OntModel model = loadSemanticMetadata(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
 			model = fillTrustProfilForResource(model, uri);
 			listModels.add(new Tuple2<URI, Model>(uri, model));
 		}

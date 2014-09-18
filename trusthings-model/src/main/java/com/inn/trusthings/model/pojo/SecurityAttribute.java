@@ -59,6 +59,20 @@ public class SecurityAttribute extends TrustAttribute {
 	public void removeSecurityGoal(SecurityGoal securityGoal) {
 		this.securityGoals.remove(securityGoal);
 	}
+	
+	public List<SecurityTechnology> getRealizedByTechnology() {
+		return realizedByTechnology;
+	}
+
+	public void addRealizedByTechnology(SecurityTechnology realizedByTechnology) {
+		this.realizedByTechnology.add(realizedByTechnology);
+	}
+	
+	public void removeRealizedByTechnology(SecurityTechnology realizedByTechnology) {
+		this.realizedByTechnology.remove(realizedByTechnology);
+	}
+
+	private List<SecurityTechnology> realizedByTechnology =  Lists.newArrayList();
 
 	@Override
 	public String toString() {
@@ -70,10 +84,10 @@ public class SecurityAttribute extends TrustAttribute {
 		List<SecurityMechanism> ll = getImplementedBy();
 		for (SecurityMechanism m : ll) {
 			s = s + " mechanism " + m.getUri();
-			List<SecurityTechnology> lll = m.getRealizedByTechnology();
-			for (SecurityTechnology t : lll) {
-				s = s + " technology " + t.getUri();
-			}
+		}
+		List<SecurityTechnology> lll = getRealizedByTechnology();
+		for (SecurityTechnology t : lll) {
+			s = s + " technology " + t.getUri();
 		}
 		return getUri().toASCIIString() + " " + s;
 	}

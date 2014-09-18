@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.io.ToGraphParser;
@@ -66,7 +68,17 @@ public class CreateUpdateTrustProfile {
 	 * @return model having trust profile data
 	 */
 	public OntModel apply(OntModel model, URI uri, List<Collector> collectors){
-		if (model.contains(new Agent(uri).asJenaResource(), Trust.hasProfile)) {
+		//TODO remove this
+//		
+//		StmtIterator iterator = model.listStatements();
+//		while (iterator.hasNext()) {
+//			Statement statement = (Statement) iterator.next();
+//			System.out.println(statement);
+//			
+//		}
+//		
+		
+		if (model.contains(null, Trust.hasProfile)) {
 			log.info("Profile for " + uri.toASCIIString() + " exists and has been found");
 		} else {
 			log.info("No profile exists for " + uri.toASCIIString() + ". Creating the profile.");
@@ -85,5 +97,4 @@ public class CreateUpdateTrustProfile {
 		}
 		return model;
 	}
-
 }
