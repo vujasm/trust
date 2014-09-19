@@ -30,7 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
-import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -47,6 +46,7 @@ import com.inn.common.Const;
 import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
 import com.inn.trusthings.model.pojo.Agent;
+import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.Metric;
 import com.inn.trusthings.model.pojo.MetricValue;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
@@ -115,23 +115,27 @@ public class ToModelParser {
 				// FIXME it needs better design, more generic type checking
 				if (attribute == null) {
 					
-					if (isOfType(individual, Trust.SecurityGuarantee.getURI())
-							&& (individual.getProperty(ModelFactory.createDefaultModel()
-									.createProperty(Trust.getURI()+"hasCertificateDetail"))!=null)){
-						continue;
+					if (isOfType(individual, Trust.CertificateAuthorityAttribute.getURI())){
+						
+						attribute = new CertificateAuthorityAttribute(URI.create(individual.getURI()));
+						attribute = parseCertificateDetail(individual, (CertificateAuthorityAttribute) attribute);
+						
 					}
-	
-					else if (isOfType(individual, Trust.SecurityGuarantee.getURI())
-							&& (individual.getProperty(ModelFactory.createDefaultModel()
-									.createProperty(Trust.getURI()+"hasCertificateDetail"))==null)) {
+					else if (isOfType(individual, Trust.SecurityGuarantee.getURI())) {
+						
 						attribute = new SecurityGuarantee(URI.create(individual.getURI()));
 						attribute = parseSecurityAttribute(individual, (SecurityAttribute) attribute);
+						
 					} else if (isOfType(individual, Trust.SecurityRequirment.getURI())) {
+						
 						attribute = new SecurityRequirment(URI.create(individual.getURI()));
 						attribute = parseSecurityAttribute(individual, (SecurityAttribute) attribute);
+						
 					} else {
+						
 						attribute = new TrustAttribute(URI.create(individual.getURI()));
 						parseAttributeValue(attribute, individual);
+						
 					}
 				}
 
@@ -145,6 +149,22 @@ public class ToModelParser {
 			}
 		}
 
+	}
+
+	private TrustAttribute parseCertificateDetail(Individual individual,
+			CertificateAuthorityAttribute attribute) {
+		RDFNode node = individual.getProperty(ModelFactory.createDefaultModel()
+				.createProperty(Trust.getURI()+"hasCertificateDetail")).getObject();
+		RDFNode nodeCA = node.as(Individual.class).getPropertyValue(ModelFactory.createDefaultModel()
+				.createProperty(ModelEnum.SecurityOntology.getURI()+"#hasCertificateAuthority"));
+		RDFNode nodeCountry = node.as(Individual.class).getPropertyValue(ModelFactory.createDefaultModel()
+				.createProperty(ModelEnum.SecurityOntology.getURI()+"#hasCountry"));
+		if (nodeCA != null) 
+			attribute.setCertificateAuthority(nodeCA.asNode().getURI());
+		if (nodeCountry != null) 
+			attribute.setCountry(nodeCountry.asNode().getURI());
+			
+		return attribute;
 	}
 
 	private boolean isOfType(Individual individual, String typeURI) {

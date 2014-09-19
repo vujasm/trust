@@ -30,14 +30,13 @@ import org.slf4j.LoggerFactory;
 
 import com.inn.trusthings.kb.config.LocationMapping;
 
-import slib.sglib.algo.graph.utils.GAction;
-import slib.sglib.algo.graph.utils.GActionType;
-import slib.sglib.algo.graph.utils.GraphActionExecutor;
-import slib.sglib.io.loader.rdf.RDFLoader;
-import slib.sglib.model.graph.G;
-import slib.sglib.model.impl.graph.memory.GraphMemory;
-import slib.sglib.model.impl.repo.URIFactoryMemory;
-import slib.sglib.model.repo.URIFactory;
+import slib.graph.algo.utils.GAction;
+import slib.graph.algo.utils.GActionType;
+import slib.graph.algo.utils.GraphActionExecutor;
+import slib.graph.model.graph.G;
+import slib.graph.model.impl.graph.memory.GraphMemory;
+import slib.graph.model.impl.repo.URIFactoryMemory;
+import slib.graph.model.repo.URIFactory;
 import slib.sml.sm.core.engine.SM_Engine;
 import slib.sml.sm.core.metrics.ic.utils.IC_Conf_Topo;
 import slib.sml.sm.core.metrics.ic.utils.ICconf;
@@ -71,13 +70,13 @@ public class SemSim {
 		
 		URIFactory factory = URIFactoryMemory.getSingleton();
 		URI graphURI = factory.getURI("http://graph/");
-		g = new GraphMemory(graphURI);
+		this.g = new GraphMemory(graphURI);
 		//REROOTING to root the vertices, typed as class without outgoing rdfs:subclassOf relationship
 		// Those vertices are linked to owl:Thing by an eddge x rdfs:subClassOf owl:Thing
 		GAction actionRerootConf = new GAction(GActionType.REROOTING);
 		try {
 			 InputStream is = getClass().getClassLoader().getResourceAsStream(uriOntology);
-		     RDFLoader loader = new RDFLoader(RDFFormat.TURTLE);
+		     slib.graph.io.loader.rdf.RDFLoader loader = new slib.graph.io.loader.rdf.RDFLoader(RDFFormat.TURTLE);
 		     loader.load(g, is);
 		     is.close(); 
 		     GraphActionExecutor.applyAction(factory, actionRerootConf, g);
@@ -109,7 +108,7 @@ public class SemSim {
 		SM_Engine engine = new SM_Engine(g);
 		URI uri1 = ValueFactoryImpl.getInstance().createURI(concept1URI);
 		URI uri2 = ValueFactoryImpl.getInstance().createURI(concept2URI);
-		double sim = engine.computePairwiseSim(smConf, uri1 , uri2);
+		double sim = engine.compare(smConf, uri1 , uri2);
 		log.info("SemSim.java - > Similarity " + sim+" "+uri1+" -- "+uri2);
 		t.stop();
 		t.elapsedTime();

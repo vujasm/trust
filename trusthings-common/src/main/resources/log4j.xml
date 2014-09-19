@@ -31,6 +31,10 @@
  <logger name="slib">
       <level value="OFF" />
  </logger> 
+
+ <logger name=" slib.sml.sm.core.engine">
+      <level value="OFF" />
+ </logger> 
  <logger name="de.fuberlin">
       <level value="OFF" />
  </logger> 

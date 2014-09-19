@@ -40,6 +40,7 @@ package com.inn.trusthings.op.match;
 import java.util.List;
 
 import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.trusthings.model.vocabulary.Trust;
@@ -73,6 +74,12 @@ public class GeneralMatchOp {
 		if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
 					Trust.UnmeasurableTrustAttribute.getURI())) {//if descriptive then sem match
 			if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
+					Trust.CertificateAuthorityAttribute.getURI())
+					&& reqAttribute instanceof CertificateAuthorityAttribute) {
+				//FIXME - do something here; return new SecSemanticMatchOp(kbManager).apply(reqAttribute, attributes);
+				return 0;
+			}
+			else if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
 					Trust.SecurityAttribute.getURI())) {
 				return new SecSemanticMatchOp(kbManager).apply(reqAttribute, attributes);
 			}else{

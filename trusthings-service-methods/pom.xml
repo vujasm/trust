@@ -28,12 +28,17 @@
 			<artifactId>trusthings-model</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		
 		<dependency>
-		<groupId>org.slib.sglib</groupId>
-		<artifactId>slib-dist</artifactId>
-		<version>0.8-all-jar</version>
-<!-- 		<scope>system</scope> -->
-<!-- 		<systemPath>${basedir}/lib/slib-dist-0.6-all-jar.jar</systemPath> -->
+	<groupId>com.github.sharispe</groupId>
+	<artifactId>slib-dist</artifactId>
+	<version>0.9-all-jar</version>
 </dependency>
+
+<!-- 		<dependency> -->
+<!-- 		<groupId>org.slib.sglib</groupId> -->
+<!-- 		<artifactId>slib-dist</artifactId> -->
+<!-- 		<version>0.8-all-jar</version> -->
+<!-- 	</dependency> -->
   </dependencies>
 </project>
