@@ -30,6 +30,7 @@ import com.google.common.collect.Lists;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.OrderType;
 import com.inn.testtemp.DescriptionsEnum;
+import com.inn.trusthings.db.d2r.Bridge;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
@@ -42,10 +43,19 @@ public class All_R1_S {
 //		services.add(URI.create(Const.Ts5));
 //		TrustCriteria trustRequest = Request.request_Example_1();
 		try {
-			
-			TrustManager t = new TrustModuleTest().getTrustManager();
-
-			System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus")));
+			 Stopwatch timer = new Stopwatch().start();
+			 int size = 1;
+			 TrustManager t = new TrustModuleTest().getTrustManager();
+			for (int i = 0; i < size; i++) {
+//				Bridge b = new Bridge();
+//				b.obtainTrustProfile("http://www.programmableweb.com/api/google-plus");
+//				t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus"));
+				System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus")));
+			}
+			timer.stop();
+		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.SECONDS)+" "+timer.elapsed(TimeUnit.MINUTES));
+//		}
+		
 
 			
 		} catch (Exception e) {

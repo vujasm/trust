@@ -32,7 +32,7 @@ import com.hp.hpl.jena.datatypes.RDFDatatype;
  */
 public class TrustAttribute extends TResource{
 	
-	private double importance;
+	private double importance = 1;
 	
 	private Object value;
 	

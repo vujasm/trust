@@ -131,4 +131,17 @@ public class SemSim {
 
 	}
 
+	public double compute(java.net.URI uri1, java.net.URI uri2)  throws Exception {
+			/*
+			 * TODO consider: before calling semsim, it should be checked for
+			 * disjointness and if disjoint return 0. The check for disjointness is
+			 * slow with Jena but DL reasoners (e.g. Fact++) could be of better
+			 * value. For the moment, we set disjointness threshold on a semsim
+			 * result
+			 */
+			double threshold = 0.45;
+			double result = apply(uri1.toString(), uri2.toString());
+			return (result >= threshold) ? result : 0;
+		}
+
 }

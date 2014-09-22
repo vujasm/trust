@@ -20,7 +20,7 @@ package com.inn.trusthings.op.match;
  * #L%
  */
 
-import java.net.URI;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -132,7 +132,7 @@ public class SecSemanticMatchOp {
 				List<SecurityTechnology> technologies = securityAttribute
 						.getRealizedByTechnology();
 				for (SecurityTechnology securityTechnology : technologies) {
-					double result = invokeSemSim(securityTechnologyR.getUri(),
+					double result = semSim.compute(securityTechnologyR.getUri(),
 							securityTechnology.getUri());
 					if (result > semsim) {
 						{
@@ -218,17 +218,5 @@ public class SecSemanticMatchOp {
 		return (found) ? 1 : 0;
 	}
 
-	private double invokeSemSim(URI uri1, URI uri2) throws Exception {
-		/*
-		 * TODO consider: before calling semsim, it should be checked for
-		 * disjointness and if disjoint return 0. The check for disjointness is
-		 * slow with Jena but DL reasoners (e.g. Fact++) could be of better
-		 * value. For the moment, we set disjointness threshold on a semsim
-		 * result
-		 */
-		double threshold = 0.45;
-		double result = semSim.apply(uri1.toString(), uri2.toString());
-		return (result >= threshold) ? result : 0;
-	}
 
 }

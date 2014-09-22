@@ -10,16 +10,16 @@
 @base <http://www.compose-project.eu/ns/web-of-things/security> .
 
 <http://www.compose-project.eu/ns/web-of-things/security> rdf:type owl:Ontology ;
-                                                                   
-                                                                   dc:rights "Copyright...COMPOSE project.."^^xsd:string ;
-                                                                   
-                                                                   dc:creator "INNOVA S.p.A. ICT Group, Italy, Rome"^^xsd:string ;
-                                                                   
-                                                                   dct:created "2013-10-22" ;
-                                                                   
-                                                                   dct:modified "2013-10-22" ;
-                                                                   
-                                                                   owl:imports usdl-sec: .
+                                                          
+                                                          dc:rights "Copyright...COMPOSE project.."^^xsd:string ;
+                                                          
+                                                          dc:creator "INNOVA S.p.A. ICT Group, Italy, Rome"^^xsd:string ;
+                                                          
+                                                          dct:modified "2013-10-22" ;
+                                                          
+                                                          dct:created "2013-10-22" ;
+                                                          
+                                                          owl:imports usdl-sec: .
 
 
 #################################################################
@@ -90,38 +90,38 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 ###  http://www.compose-project.eu/ns/web-of-things/security#000_Times_Per_Day
 
 <http://www.compose-project.eu/ns/web-of-things/security#000_Times_Per_Day> rdf:type owl:Class ;
-                                                                                     
-                                                                                     rdfs:label "000 Times Per Day"@en ;
-                                                                                     
-                                                                                     rdfs:subClassOf :AuthenticationTechnology .
+                                                                            
+                                                                            rdfs:label "000 Times Per Day"@en ;
+                                                                            
+                                                                            rdfs:subClassOf :AuthenticationTechnology .
 
 
 
 ###  http://www.compose-project.eu/ns/web-of-things/security#128bit_Random_Uuid_Account_Key
 
 <http://www.compose-project.eu/ns/web-of-things/security#128bit_Random_Uuid_Account_Key> rdf:type owl:Class ;
-                                                                                                  
-                                                                                                  rdfs:label "128bit Random Uuid Account Key"@en ;
-                                                                                                  
-                                                                                                  rdfs:subClassOf :AuthenticationTechnology .
+                                                                                         
+                                                                                         rdfs:label "128bit Random Uuid Account Key"@en ;
+                                                                                         
+                                                                                         rdfs:subClassOf :AuthenticationTechnology .
 
 
 
 ###  http://www.compose-project.eu/ns/web-of-things/security#2_legged_OAuth
 
 <http://www.compose-project.eu/ns/web-of-things/security#2_legged_OAuth> rdf:type owl:Class ;
-                                                                                  
-                                                                                  rdfs:label "2-legged OAuth"@en ;
-                                                                                  
-                                                                                  rdfs:subClassOf :AuthenticationTechnology .
+                                                                         
+                                                                         rdfs:label "2-legged OAuth"@en ;
+                                                                         
+                                                                         rdfs:subClassOf :AuthenticationTechnology .
 
 
 
 ###  http://www.compose-project.eu/ns/web-of-things/security#3DES
 
 <http://www.compose-project.eu/ns/web-of-things/security#3DES> rdf:type owl:Class ;
-                                                                        
-                                                                        rdfs:subClassOf :DES .
+                                                               
+                                                               rdfs:subClassOf :DES .
 
 
 
@@ -545,7 +545,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
         
         rdfs:label "Certum"@en ;
         
-        rdfs:subClassOf :CertificateAuthority .
+        rdfs:subClassOf :CertificateAuthority ,
+                        :EU-Based .
 
 
 
@@ -817,7 +818,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
           
           rdfs:label "Digi-Sign"@en ;
           
-          rdfs:subClassOf :CertificateAuthority .
+          rdfs:subClassOf :CertificateAuthority ,
+                          :EU-Based .
 
 
 
@@ -836,6 +838,14 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 :Dublin rdf:type owl:Class ;
         
         rdfs:subClassOf :IE .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security#EU-Based
+
+:EU-Based rdf:type owl:Class ;
+          
+          rdfs:subClassOf :CertificateAuthority .
 
 
 
@@ -1001,7 +1011,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
             
             rdfs:label "GlobalSign"@en ;
             
-            rdfs:subClassOf :CertificateAuthority .
+            rdfs:subClassOf :CertificateAuthority ,
+                            :EU-Based .
 
 
 
@@ -1031,7 +1042,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
         
         rdfs:label "Google"@en ;
         
-        rdfs:subClassOf :CertificateAuthority .
+        rdfs:subClassOf :CertificateAuthority ,
+                        :US-Based .
 
 
 
@@ -1525,7 +1537,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
            
            rdfs:label "Microsoft"@en ;
            
-           rdfs:subClassOf :CertificateAuthority .
+           rdfs:subClassOf :CertificateAuthority ,
+                           :US-Based .
 
 
 
@@ -2235,19 +2248,19 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TSL
-
-:TSL rdf:type owl:Class ;
-     
-     rdfs:subClassOf :CryptographicProtocol .
-
-
-
 ###  http://www.compose-project.eu/ns/web-of-things/security#TLSv3
 
 :TLSv3 rdf:type owl:Class ;
        
        rdfs:subClassOf :TSL .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security#TSL
+
+:TSL rdf:type owl:Class ;
+     
+     rdfs:subClassOf :CryptographicProtocol .
 
 
 
@@ -2387,6 +2400,14 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security#US-Based
+
+:US-Based rdf:type owl:Class ;
+          
+          rdfs:subClassOf :CertificateAuthority .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security#USERTrust
 
 :USERTrust rdf:type owl:Class ;
@@ -2486,10 +2507,10 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 ###  http://www.compose-project.eu/ns/web-of-things/security#Web_Service_Security_(wss)
 
 <http://www.compose-project.eu/ns/web-of-things/security#Web_Service_Security_(wss)> rdf:type owl:Class ;
-                                                                                              
-                                                                                              rdfs:label "Web Service Security (wss)"@en ;
-                                                                                              
-                                                                                              rdfs:subClassOf :AuthenticationTechnology .
+                                                                                     
+                                                                                     rdfs:label "Web Service Security (wss)"@en ;
+                                                                                     
+                                                                                     rdfs:subClassOf :AuthenticationTechnology .
 
 
 

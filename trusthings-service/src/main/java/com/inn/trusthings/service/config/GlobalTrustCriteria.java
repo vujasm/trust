@@ -26,6 +26,7 @@ import java.net.URI;
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
 import com.inn.trusthings.model.factory.TrustModelFactory;
+import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityGoal;
 import com.inn.trusthings.model.pojo.SecurityTechnology;
@@ -98,6 +99,15 @@ public class GlobalTrustCriteria {
 		att5.addSecurityGoal(goal);
 		att5.setImportance(1);
 		trustRequest.addAttribute(att5);
+		}
+		
+		{
+			//security certificate
+			CertificateAuthorityAttribute certficate = factory.createCertificteAuthorityAttribute();
+			certficate.addType(URI.create(Trust.CertificateAuthorityAttribute.getURI()));
+			certficate.setCertificateAuthority("http://www.compose-project.eu/ns/web-of-things/security#US-Based");
+//			certficate.setCountry("http://www.compose-project.eu/ns/web-of-things/security#US");
+			trustRequest.addAttribute(certficate);
 		}
 
 		

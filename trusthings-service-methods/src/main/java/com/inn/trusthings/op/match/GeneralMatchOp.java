@@ -73,11 +73,9 @@ public class GeneralMatchOp {
 		}
 		if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
 					Trust.UnmeasurableTrustAttribute.getURI())) {//if descriptive then sem match
-			if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
-					Trust.CertificateAuthorityAttribute.getURI())
-					&& reqAttribute instanceof CertificateAuthorityAttribute) {
-				//FIXME - do something here; return new SecSemanticMatchOp(kbManager).apply(reqAttribute, attributes);
-				return 0;
+			
+			if (reqAttribute instanceof CertificateAuthorityAttribute) {
+				return new CertSemanticMatchOp().apply(reqAttribute, attributes);
 			}
 			else if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
 					Trust.SecurityAttribute.getURI())) {

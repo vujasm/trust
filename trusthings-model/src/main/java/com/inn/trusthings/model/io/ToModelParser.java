@@ -44,7 +44,6 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.inn.common.Const;
 import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
-import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.Metric;
@@ -151,16 +150,21 @@ public class ToModelParser {
 
 	}
 
-	private TrustAttribute parseCertificateDetail(Individual individual,
-			CertificateAuthorityAttribute attribute) {
+	
+	private TrustAttribute parseCertificateDetail(Individual individual, CertificateAuthorityAttribute attribute) {
+	
 		RDFNode node = individual.getProperty(ModelFactory.createDefaultModel()
 				.createProperty(Trust.getURI()+"hasCertificateDetail")).getObject();
+		
 		RDFNode nodeCA = node.as(Individual.class).getPropertyValue(ModelFactory.createDefaultModel()
 				.createProperty(ModelEnum.SecurityOntology.getURI()+"#hasCertificateAuthority"));
+		
 		RDFNode nodeCountry = node.as(Individual.class).getPropertyValue(ModelFactory.createDefaultModel()
 				.createProperty(ModelEnum.SecurityOntology.getURI()+"#hasCountry"));
+		
 		if (nodeCA != null) 
 			attribute.setCertificateAuthority(nodeCA.asNode().getURI());
+		
 		if (nodeCountry != null) 
 			attribute.setCountry(nodeCountry.asNode().getURI());
 			
@@ -197,7 +201,7 @@ public class ToModelParser {
 		return attribute;
 	}
 
-	//i'm not using this one any more as model has changed
+	//i'm not using this one any more - as trust model has changed
 	
 //	private TrustAttribute parseSecurityAttributeHasValueUSDL(Individual individual, SecurityAttribute attribute) {
 //		

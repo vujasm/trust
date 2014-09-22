@@ -80,7 +80,7 @@ public class Bridge {
 				+ "     OPTIONAL {?attribute compose-trust:hasSecurityDescription ?security}"
 				+ "    OPTIONAL {?attribute compose-trust:hasCertificateDetail ?certificate}"
 				+ " }";
-		// System.err.println(sparql);
+		log.info(sparql);
 		com.hp.hpl.jena.query.Query query = QueryFactory.create(sparql);
 		// Model modelo = QueryExecutionFactory.create(q, m).execDescribe();
 
