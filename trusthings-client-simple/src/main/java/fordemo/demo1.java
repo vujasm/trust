@@ -26,7 +26,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.inn.common.OrderType;
-import com.inn.trusthings.json.MakePOJO;
+import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -52,7 +52,7 @@ public class demo1 {
 			URI service_c = URI.create("http://localhost/services/Weather_API_C");
 
 
-			TrustCriteria criteriapojo = new MakePOJO().ofTrustCriteria(criteria);
+			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
 			List<URI> list = Lists.newArrayList();
 			list.add(service_a);
 			list.add(service_b);

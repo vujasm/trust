@@ -24,6 +24,7 @@ package com.inn.trusthings.model.factory;
 import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityMechanism;
+import com.inn.trusthings.model.pojo.SecurityTechnology;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustProfile;
 import com.inn.trusthings.model.pojo.TrustCriteria;
@@ -53,12 +54,20 @@ public class TrustModelFactory {
 		return  new SecurityAttribute(uidGenerator.create(SecurityAttribute.class));
 	}
 	
+	public CertificateAuthorityAttribute createCertificateAuthorityAttribute() {
+		return  new CertificateAuthorityAttribute(uidGenerator.create(CertificateAuthorityAttribute.class));
+	}
+	
 	public CertificateAuthorityAttribute createCertificteAuthorityAttribute() {
 		return  new CertificateAuthorityAttribute(uidGenerator.create(CertificateAuthorityAttribute.class));
 	}
 	
 	public SecurityMechanism createSecurityMechanism() {
 		return  new SecurityMechanism(uidGenerator.create(SecurityMechanism.class));
+	}
+	
+	public SecurityTechnology createSecurityTechnology() {
+		return  new SecurityTechnology(uidGenerator.create(SecurityTechnology.class));
 	}
 
 }

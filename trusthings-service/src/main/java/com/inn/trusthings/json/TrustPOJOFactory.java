@@ -21,25 +21,23 @@ package com.inn.trusthings.json;
  */
 
 
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.io.InputStreamReader;
-//import com.google.common.io.CharStreams;
-//import org.apache.xerces.util.SecurityManager;
-//import com.hp.hpl.jena.ontology.OntModel;
-//import com.hp.hpl.jena.rdf.model.Model;
-//import com.hp.hpl.jena.rdf.model.ModelFactory;
-//import com.inn.trusthings.kb.RDFModelsHandler;
-//import com.inn.trusthings.kb.SharedOntModelSpec;
-//import com.inn.trusthings.model.vocabulary.ModelEnum;
-//import com.inn.util.json.IAFJSONParser;
-
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
+
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.CharStreams;
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.inn.trusthings.kb.RDFModelsHandler;
+import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.model.factory.TrustModelFactory;
+import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityGoal;
 import com.inn.trusthings.model.pojo.SecurityMechanism;
@@ -48,10 +46,11 @@ import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.types.USDLSecExpression;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
+import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.util.uri.UIDGenerator;
 
-public class MakePOJO {
+public class TrustPOJOFactory {
 	
 	final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
 
@@ -62,8 +61,8 @@ public class MakePOJO {
 			
 			JsonNode rootNode = m.readTree(json);
 			JsonNode attributesNode = rootNode.get("attributes");
-			for (JsonNode element : attributesNode) {
-				TrustAttribute attribute = createTrustAttribute(element);
+			for (JsonNode attributeNode : attributesNode) {
+				TrustAttribute attribute = createTrustAttribute(attributeNode);
 				criteria.addAttribute(attribute);
 			}
 		} catch (Exception e) {
@@ -86,15 +85,21 @@ public class MakePOJO {
 		Object o_value = obtainValue(value);
 		Object o_valueMin = obtainValueMin(minvalue);
 		Object o_valueMax = obtainValueMax(maxvalue);
-		for (JsonNode t : type) {
-			String sURI = t.get("uri").asText();
+			String sURI =type.asText();
 			URI uri = URI.create(sURI);
+			
 			boolean isSecurity = TrustOntologyUtil.instance().isSubtype(sURI, Trust.SecurityAttribute.getURI());
-			if (isSecurity){
+			boolean isCertificate = sURI.equals(Trust.CertificateAuthorityAttribute.getURI());
+			
+			if (isSecurity  && isCertificate == false){
 				attr = createPopulateSecurityAttribute(element);
 				attr.setValueDatatype(USDLSecExpression.TYPE);
 			}
-			else{
+			else if (isCertificate) {
+				attr = createAndPopulateCertificateAuthorityAttribute(element);
+			}
+			
+			else {
 				attr = factory.createTrustAttibute();
 				if (isNumeric(o_value)){
 					attr.setValueDatatype(XSDDouble.XSDdouble);
@@ -117,61 +122,65 @@ public class MakePOJO {
 			attr.setValue(o_value);
 			attr.setMinValue(o_valueMin);
 			attr.setMaxValue(o_valueMax);
-		}
 		//System.out.println(attr);
 		return attr;
 	}
 
 	
-	private TrustAttribute createPopulateSecurityAttribute(JsonNode element) {
-		SecurityAttribute attr = factory.createSecurityAttribute();
-		JsonNode implementedBy = element.get("implementedBy");
-		if (implementedBy!=null){
-		for (JsonNode implementedByElement : implementedBy) {
-			SecurityMechanism mechanism = factory.createSecurityMechanism();
-			attr.addImplementedBy(mechanism);
-			JsonNode types = implementedByElement.get("type");
-			for (JsonNode t : types) {
-				String sURI = t.get("uri").asText();
-				URI uri = URI.create(sURI);
-				mechanism.addType(uri);
+	private TrustAttribute createAndPopulateCertificateAuthorityAttribute(JsonNode element) {
+		CertificateAuthorityAttribute attr = factory.createCertificateAuthorityAttribute();
+		
+		JsonNode node = element.path("value").path("certificateauthority");
+		if (node != null){
+			for (JsonNode subnode : node) {
+				attr.setCertificateAuthority(obtainType(subnode).toASCIIString());
 			}
-		}
-		}
-		//	JsonNode realizedByTechnology = implementedByElement.get("realizedByTechnology");
-//			if (realizedByTechnology!=null){
-//				for (JsonNode realizedByTechnologyElement : realizedByTechnology) {
-//					String sURI = realizedByTechnologyElement.get("uri").asText();
-//					URI uri = URI.create(sURI);
-//					mechanism.addRealizedByTechnology(new SecurityTechnology(uri));
-//				}
-//			}
-		JsonNode realizedByTechnology = element.get("realizedByTechnology");
-		if (realizedByTechnology!=null){
-		for (JsonNode realizedByElement : realizedByTechnology) {
-			String sURI = realizedByElement.get("uri").asText();
-			URI uri = URI.create(sURI);
-			SecurityTechnology technology =new SecurityTechnology( uri);
-			JsonNode types = realizedByElement.get("type");
-			for (JsonNode t : types) {
-				String sURIt = t.get("uri").asText();
-				URI urit = URI.create(sURIt);
-				technology.addType(urit);
-			}
-			attr.addRealizedByTechnology(technology);
-
-		}
 		}
 		
-		JsonNode securityGoals = element.get("securityGoals");
-		if (securityGoals!=null){
-			for (JsonNode goalnode : securityGoals) {
-				String uri = goalnode.get("uri").textValue();
-				attr.addSecurityGoal(new SecurityGoal(URI.create(uri)));
+		node = element.path("value").path("country");
+		if (node != null){
+			for (JsonNode subnode : node) {
+				attr.setCountry(obtainType(subnode).toASCIIString());
 			}
 		}
 		
 		return attr;
+	}
+
+	private TrustAttribute createPopulateSecurityAttribute(JsonNode element) {
+		SecurityAttribute attr = factory.createSecurityAttribute();
+		
+		JsonNode securityGoals = element.path("value").path("securitygoal");
+		if (securityGoals!=null){
+			for (JsonNode goalnode : securityGoals) {
+				attr.addSecurityGoal(new SecurityGoal(obtainType(goalnode)));
+			}
+		}
+		
+		JsonNode implementedBy = element.path("value").get("securitymechanism");
+		if (implementedBy != null) {
+			for (JsonNode implementedByElement : implementedBy) {
+				SecurityMechanism mechanism = factory.createSecurityMechanism();
+				mechanism.addType(obtainType(implementedByElement));
+				attr.addImplementedBy(mechanism);
+			}
+		}
+
+		JsonNode realizedByTechnology = element.path("value").path("securitytechnology");
+		if (realizedByTechnology!=null){
+			for (JsonNode realizedByElement : realizedByTechnology) {
+				SecurityTechnology technology = new SecurityTechnology(obtainType(realizedByElement));
+				technology.addType(obtainType(realizedByElement));
+				attr.addRealizedByTechnology(technology);
+			}
+		}
+		
+		return attr;
+	}
+
+	private URI obtainType(JsonNode node) {
+		String sURI = node.path("type").asText();
+		return URI.create(sURI);
 	}
 
 	private boolean isNumeric(Object o_value) {
@@ -214,18 +223,18 @@ public class MakePOJO {
 		return i;
 	}
 
-//	public static void main(String[] args) {
-//		Model model = RDFModelsHandler.getGlobalInstance().fetch(ModelEnum.Trust.getURI(), "TURTLE",SharedOntModelSpec.getModelSpecShared());
-//    	OntModel oModel = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model);
-//		TrustOntologyUtil.init(oModel);
-//		InputStream is = MakePOJO.class.getResourceAsStream("/criteria/criteria2.json");
-//		String s;
-//		try {
-//			s = CharStreams.toString(new InputStreamReader(is));
-//			TrustCriteria c = new MakePOJO().ofTrustCriteria(s);
+	public static void main(String[] args) {
+		Model model = RDFModelsHandler.getGlobalInstance().fetch(ModelEnum.Trust.getURI(), "TURTLE",SharedOntModelSpec.getModelSpecShared());
+    	OntModel oModel = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model);
+		TrustOntologyUtil.init(oModel);
+		InputStream is = TrustPOJOFactory.class.getResourceAsStream("/criteria/demo/criteria_sc_c.json");
+		String s;
+		try {
+			s = CharStreams.toString(new InputStreamReader(is));
+			TrustCriteria c = new TrustPOJOFactory().ofTrustCriteria(s);
 //			System.out.println( IAFJSONParser.toJson(c));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

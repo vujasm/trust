@@ -48,7 +48,7 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
 import com.inn.trusthings.Configuration;
-import com.inn.trusthings.json.MakePOJO;
+import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.SharedOntModelSpec;
@@ -341,7 +341,7 @@ public class BasicTrustManager implements TrustManager {
 	
 	@Override
 	public void setGlobalTrustCriteria(String criteriaAsJson) {
-		TrustCriteria criteria = new MakePOJO().ofTrustCriteria(criteriaAsJson);
+		TrustCriteria criteria = new TrustPOJOFactory().ofTrustCriteria(criteriaAsJson);
 		this.globalTrustCriteria = criteria;
 	}
 

@@ -1,6 +1,42 @@
 {
-"attributes": [ 
-{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#Reputation"}],"importance":1.0,"value":"http://www.compose-project.eu/ns/web-of-things/trust#high","minValue":null,"maxValue":null},
-{"type":[{"uri":"http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee"}],"importance":1.0,"implementedBy":[{"realizedByTechnology":[{"uri":"http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth2"}],"type":[{"uri":"http://www.linked-usdl.org/ns/usdl-sec#Token"}]}],"securityGoals":[{"uri":"http://www.linked-usdl.org/ns/usdl-sec#Authentication"}]}
-]
+    "attributes": [
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
+            "importance": 1,
+            "value": "http://www.compose-project.eu/ns/web-of-things/trust#high"
+        },
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "importance": 1,
+            "value": 
+                {
+                    "securitytechnology": [
+                        {
+                            "type": "http://www.compose-project.eu/ns/web-of-things/security#OAuth_2_0"
+                        }
+                    ],
+                    "securitymechanism": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Token"
+                        }
+                    ],
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Authentication"
+                        }
+                    ]
+                }
+        },
+                {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "importance": 1,
+             "value": {
+              "certificateauthority": [
+                {
+                  "type": "http://www.compose-project.eu/ns/web-of-things/security#US-Based"
+                }
+                ]
+             }
+        }
+    ]
 }

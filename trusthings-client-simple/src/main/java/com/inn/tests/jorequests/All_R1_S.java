@@ -21,18 +21,25 @@ package com.inn.tests.jorequests;
  */
 
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
+import com.google.common.io.CharStreams;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.OrderType;
 import com.inn.testtemp.DescriptionsEnum;
 import com.inn.trusthings.db.d2r.Bridge;
+import com.inn.trusthings.json.TrustPOJOFactory;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.interfaces.TrustManager;
+
+import fordemo.demo1;
 
 public class All_R1_S {
 	
@@ -45,11 +52,13 @@ public class All_R1_S {
 		try {
 			 Stopwatch timer = new Stopwatch().start();
 			 int size = 1;
-			 TrustManager t = new TrustModuleTest().getTrustManager();
+			//load (from json file) and set trust criteria 
+			InputStream is = demo1.class.getResourceAsStream("/criteria/demo/criteria_sc_c.json");
+			String	criteria = CharStreams.toString(new InputStreamReader(is));
+			TrustManager t = new TrustModuleTest().getTrustManager();
+			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
+			t.setGlobalTrustCriteria(criteriapojo);
 			for (int i = 0; i < size; i++) {
-//				Bridge b = new Bridge();
-//				b.obtainTrustProfile("http://www.programmableweb.com/api/google-plus");
-//				t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus"));
 				System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus")));
 			}
 			timer.stop();

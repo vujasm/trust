@@ -29,7 +29,7 @@ import java.net.URI;
 import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustScorer;
-import com.inn.trusthings.json.MakePOJO;
+import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -46,7 +46,7 @@ public class JustTest {
 //				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
 //				trustManager.addResourceDescription(youtube, is);
 				
-				InputStream is = MakePOJO.class.getResourceAsStream("/criteria/criteria1.json");
+				InputStream is = TrustPOJOFactory.class.getResourceAsStream("/criteria/criteria1.json");
 				String	string = CharStreams.toString(new InputStreamReader(is));
 				trustManager.setGlobalTrustCriteria(string);
 				TrustFilterByExclusion s = new TrustFilterByExclusion(trustManager);

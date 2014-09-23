@@ -26,7 +26,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.inn.common.OrderType;
-import com.inn.trusthings.json.MakePOJO;
+import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -56,7 +56,7 @@ public class demo3 {
 			list.add(service_b);
 			list.add(service_c);
 
-			TrustCriteria criteriapojo = new MakePOJO().ofTrustCriteria(criteria);
+			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
 			
 			if (what ==1){
 			List<Tuple2<URI, Double>> result = trustManager.rankResources(list, criteriapojo, OrderType.DESC);
