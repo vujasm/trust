@@ -1,9 +1,9 @@
 {
     "attributes": [
         {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
             "importance": 1,
-            "value": "http://www.compose-project.eu/ns/web-of-things/trust#high"
+            "value": "0"
         },
         {
             "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",

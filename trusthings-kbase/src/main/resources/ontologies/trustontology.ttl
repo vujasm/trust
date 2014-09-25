@@ -249,12 +249,12 @@
                     <http://www.compose-project.eu/ns/web-of-things/trust> ;
          
          rdfs:subClassOf [ rdf:type owl:Restriction ;
-                           owl:onProperty :recommendedCriteria ;
-                           owl:someValuesFrom :TrustCriteria
-                         ] ,
-                         [ rdf:type owl:Restriction ;
                            owl:onProperty :hasName ;
                            owl:someValuesFrom xsd:string
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :recommendedCriteria ;
+                           owl:someValuesFrom :TrustCriteria
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :suggestedMatcher ;
@@ -303,7 +303,7 @@
                           
                           rdfs:subClassOf :TrustAttribute ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasMaxValue ;
+                                            owl:onProperty :hasMinValue ;
                                             owl:someValuesFrom rdf:PlainLiteral
                                           ] ,
                                           [ rdf:type owl:Restriction ;
@@ -311,11 +311,11 @@
                                             owl:someValuesFrom :Metric
                                           ] ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasMinValue ;
+                                            owl:onProperty :hasValue ;
                                             owl:someValuesFrom rdf:PlainLiteral
                                           ] ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasValue ;
+                                            owl:onProperty :hasMaxValue ;
                                             owl:someValuesFrom rdf:PlainLiteral
                                           ] .
 
@@ -345,12 +345,12 @@
              rdfs:label "MetricValue"@en ;
              
              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                               owl:onProperty :next ;
-                               owl:someValuesFrom :MetricValue
-                             ] ,
-                             [ rdf:type owl:Restriction ;
                                owl:onProperty :rank ;
                                owl:someValuesFrom xsd:int
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :next ;
+                               owl:someValuesFrom :MetricValue
                              ] ;
              
              rdfs:comment "A list of values of metric, if applicable."@en ;
@@ -541,8 +541,8 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                    rdfs:label "TrustRelationship"@en ;
                    
                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasTimestamp ;
-                                     owl:someValuesFrom xsd:dateTimeStamp
+                                     owl:onProperty :trustedParticipant ;
+                                     owl:someValuesFrom :Agent
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasCriteria ;
@@ -561,8 +561,8 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                                      owl:someValuesFrom :Context
                                    ] ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :trustedParticipant ;
-                                     owl:someValuesFrom :Agent
+                                     owl:onProperty :hasTimestamp ;
+                                     owl:someValuesFrom xsd:dateTimeStamp
                                    ] ;
                    
                    rdfs:comment "TrustRelationship represents trust relationship as a 6-tuple <Trusted Agent, Trusting Agent, Context, TrustCriteria, Score, Timestamp>. Each trust relationship is established between two agents who wants to engange in some form of communication or cooperation within a certian context (e.g. buying or seeling goods, geting some information, etc). An trusting agent trusts that trusted agent has certian characteristics (or features), which are defined as a trust criteria by the trusting agent. TrustRelationship has a level of trust, which can be numerical value within a range e.g. [0..1]."@en ;
@@ -602,6 +602,13 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                              :oneStar ,
                              :threeStar ,
                              :twoStar .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#RelativeToMaxScale
+
+:RelativeToMaxScale rdf:type :Metric ,
+                             owl:NamedIndividual .
 
 
 
