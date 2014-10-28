@@ -153,12 +153,13 @@ public class ToModelParser {
 	
 	private TrustAttribute parseCertificateDetail(Individual individual, CertificateAuthorityAttribute attribute) {
 	
-		RDFNode node = individual.getProperty(ModelFactory.createDefaultModel()
-				.createProperty(Trust.getURI()+"hasCertificateDetail")).getObject();
+		RDFNode node = individual.getProperty(Trust.hasCertificateDetail).getObject();
 		
+		//FIXME - hasCertificateAuthority hard-coded
 		RDFNode nodeCA = node.as(Individual.class).getPropertyValue(ModelFactory.createDefaultModel()
 				.createProperty(ModelEnum.SecurityOntology.getURI()+"#hasCertificateAuthority"));
 		
+		//FIXME - hasCountry hard-coded
 		RDFNode nodeCountry = node.as(Individual.class).getPropertyValue(ModelFactory.createDefaultModel()
 				.createProperty(ModelEnum.SecurityOntology.getURI()+"#hasCountry"));
 		

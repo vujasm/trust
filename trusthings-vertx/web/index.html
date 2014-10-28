@@ -13,12 +13,12 @@
         </td>
       </tr>
     </table>
-    <p>This is the home page for the prototype of a Web service for evaluating trust index of Internet of Things Services and their ranking. </p>
-    <p>To do simple tests, with this <a href="/web/request.json">request</a>, you can execute either of the following links:
+    <p>Just a very simple page to illustrate a prototype service for trust-based evaluation of Internet of Things Services and their ranking. </p>
+    <p>To do a simple test, with this <a href="/web/criteria_sc_c.json">trust expectation (criteria)</a>, click on the following links:
     <ul>
-      <li>Compute Service <a href="/web/city_traffic_service_A.txt">'A'</a>  <a href="trusthings?srvcid=http%3A%2F%2Flocalhost%2Fservices%2FCITY_TRAFFIC_SERVICE_A"> trust index</a>.
-  	  <li>Compute Service <a href="/web/city_traffic_service_B.txt">'B'</a>  <a href="trusthings?srvcid=http%3A%2F%2Flocalhost%2Fservices%2FCITY_TRAFFIC_SERVICE_B"> trust index</a>.
-  	  <li>Services 'A', 'B'  <a href="trusthingsrank?srvcid=http%3A%2F%2Flocalhost%2Fservices%2FCITY_TRAFFIC_SERVICE_A&srvcid=http%3A%2F%2Flocalhost%2Fservices%2FCITY_TRAFFIC_SERVICE_B"">click here to rank A and B</a>.
+      <li>Compute <a href="http://localhost:2020/page/agent/9967">'Twitter service'</a>  <a href="trusthings?srvcid=http%3A%2F%2Fwww.programmableweb.com%2Fapi%2Ftwitter"> trust index</a>.
+  	  <li>Compute <a href="http://localhost:2020/page/agent/9971">'Facebook service'</a>   <a href="trusthings?srvcid=http%3A%2F%2Fwww.programmableweb.com%2Fapi%2Ffacebook"> trust index</a>.
+  	  <li>Services 'Twitter', 'FB'  <a href="trusthingsrank?srvcid=http%3A%2F%2Fwww.programmableweb.com%2Fapi%2Ftwitter&srvcid=http%3A%2F%2Fwww.programmableweb.com%2Fapi%2Ffacebook">click here to rank</a>.
     </ul>
   </body>
 </html>

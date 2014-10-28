@@ -41,12 +41,58 @@ import com.inn.trusthings.model.vocabulary.Trust;
 public class ComparisonMatchOp {
 
 	 private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
+	 
+	 
+	 private static int MAX_NumUsers = 632;
+	 private static int MAX_NumCompositions = 2451;
 	
 	public double apply(final TrustAttribute reqAttribute, final TrustAttribute attribute) throws Exception {
 
 			RDFDatatype datatype = reqAttribute.getValueDatatype();
 			
-			System.out.println(datatype);
+//			System.out.println(datatype);
+			
+
+//			ProviderWebReputationBy3rdParty
+			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
+					equals((Trust.ProviderWebReputationBy3rdParty.getURI()))){
+				if (attribute.getValue()!=null){
+					attribute.setValue(Double.valueOf((String) attribute.getValue()) / 100);	
+				}
+			}
+			
+			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
+					equals((Trust.NumberOfDevelopers.getURI()))){
+				
+				if (attribute.getValue()!=null){
+					System.err.println(reqAttribute.getValue());
+					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
+						attribute.setValue(Double.valueOf((String) attribute.getValue()) / MAX_NumUsers);
+					}
+					else{
+						double v = Double.valueOf(attribute.getValue().toString()).doubleValue();
+						double reqv = Double.valueOf(reqAttribute.getValue().toString()).doubleValue();
+						return (v >= reqv)? 1:0;
+					}
+				}
+			}
+			
+			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
+					equals((Trust.NumberOfCompositions.getURI()))){
+				
+				if (attribute.getValue()!=null){
+					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
+						attribute.setValue(Double.valueOf((String) attribute.getValue()) / MAX_NumCompositions);
+					}
+					else{
+						double v = Double.valueOf(attribute.getValue().toString()).doubleValue();
+						double reqv = Double.valueOf(reqAttribute.getValue().toString()).doubleValue();
+						return (v >= reqv)? 1:0;
+					}
+				}
+			}
+
+			
 			
 			if (isNumericDataType(datatype)) {
 				  return compareNumeric(attribute, reqAttribute);

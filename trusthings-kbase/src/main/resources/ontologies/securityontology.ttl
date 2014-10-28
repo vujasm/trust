@@ -78,6 +78,30 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security#hasCertificateAuthority
+
+:hasCertificateAuthority rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:range :CertificateAuthority ;
+                         
+                         rdfs:domain :CertificateDetail ;
+                         
+                         rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://www.compose-project.eu/ns/web-of-things/security#issuedInLocation 
+
+:issuedInLocation  rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain :CertificateDetail ;
+            
+            rdfs:range :Place ;
+            
+            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
 
 
 #################################################################
@@ -539,6 +563,12 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
+###  http://www.compose-project.eu/ns/web-of-things/security#CertificateDetail
+
+:CertificateDetail rdf:type owl:Class .
+
+
+
 ###  http://www.compose-project.eu/ns/web-of-things/security#Certum
 
 :Certum rdf:type owl:Class ;
@@ -808,7 +838,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
           
           rdfs:label "DigiCert"@en ;
           
-          rdfs:subClassOf :CertificateAuthority .
+          rdfs:subClassOf :CertificateAuthority,
+		   :US-Based .
 
 
 
@@ -2472,7 +2503,8 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
           
           rdfs:label "VeriSign"@en ;
           
-          rdfs:subClassOf :CertificateAuthority .
+          rdfs:subClassOf :CertificateAuthority,  
+			:US-Based  .
 
 
 

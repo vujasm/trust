@@ -35,9 +35,11 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.sparql.core.QueryHashCode;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import de.fuberlin.wiwiss.d2rq.jena.ModelD2RQ;
+import de.fuberlin.wiwiss.d2rq.map.Mapping;
 
 public class Bridge {
 
@@ -45,8 +47,12 @@ public class Bridge {
 
 	public Model obtainTrustProfile(String serviceId) {
 
+		
+		
+//		Model mapModel = FileManager.get().loadModel("doc/example/mapping-iswc.ttl");
+		
 		// Set up the ModelD2RQ using a mapping file
-		Model m = new ModelD2RQ("file:C://P-Programs//d2rq-0.8.1/mapping.ttl");
+//		Model m = new ModelD2RQ("file:C://P-Programs//d2rq-0.8.1/mapping.ttl");
 
 		String sparql =
 
@@ -84,8 +90,11 @@ public class Bridge {
 		com.hp.hpl.jena.query.Query query = QueryFactory.create(sparql);
 		// Model modelo = QueryExecutionFactory.create(q, m).execDescribe();
 
-		Model modelo = QueryExecutionFactory.sparqlService(
-				"http://localhost:2020/sparql", query).execDescribe();
+		Model modelo = QueryExecutionFactory.sparqlService("http://localhost:8080/d2rq/sparql", query).execDescribe();
+		
+		
+//		Model modelo = QueryExecutionFactory.sparqlService("http://d2rq.cfapps.io/sparql", query).execDescribe();
+		
 		// ResultSet rs = QueryExecutionFactory.create(q, m).execSelect();
 		// int i = 0;
 		// while (rs.hasNext()) {
@@ -93,7 +102,7 @@ public class Bridge {
 		// System.out.println(row);
 		// i++;
 		// };
-		m.close();
+//		m.close();
 		log.info("Model loaded sucessfully");
 		return modelo;
 	}

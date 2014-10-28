@@ -109,7 +109,7 @@ public class TrustPOJOFactory {
 					if (uri.toASCIIString().equals(Trust.Reputation.getURI())){
 						attr.setValueDatatype(new BaseDatatype(Trust.ReputationScale.getURI()));
 					}
-					else if (uri.toASCIIString().equals(Trust.Rating.getURI())){
+					else if (uri.toASCIIString().equals(Trust.UserRating.getURI())){
 						attr.setValueDatatype(new BaseDatatype(Trust.RatingScale.getURI()));
 					}
 					else {

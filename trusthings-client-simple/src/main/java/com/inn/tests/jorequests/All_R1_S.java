@@ -59,7 +59,7 @@ public class All_R1_S {
 			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
 			t.setGlobalTrustCriteria(criteriapojo);
 			for (int i = 0; i < size; i++) {
-				System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/google-plus")));
+				System.out.println(t.isTrusted(new URI("http://www.programmableweb.com/api/twitter")));
 			}
 			timer.stop();
 		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.SECONDS)+" "+timer.elapsed(TimeUnit.MINUTES));
