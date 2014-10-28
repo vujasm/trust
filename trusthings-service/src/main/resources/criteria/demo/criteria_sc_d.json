@@ -1,0 +1,69 @@
+{
+    "attributes": [
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+            "importance": 1,
+            "value": "0"
+        },
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfDevelopers",
+            "importance": 1,
+            "minvalue": "50"
+        },
+         {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
+            "importance": 1,
+            "value": "0"
+        },
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "importance": 1,
+            "value": 
+                {
+                    "securitytechnology": [
+                        {
+                            "type": "http://www.compose-project.eu/ns/web-of-things/security#OAuth"
+                        }
+                    ],
+                    "securitymechanism": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Token"
+                        }
+                    ],
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Authentication"
+                        }
+                    ]
+                }
+        },
+         {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "importance": 1,
+            "value": 
+                {
+                    "securitytechnology": [
+                        {
+                            "type": "http://www.compose-project.eu/ns/web-of-things/security#TLS"
+                        }
+                    ],
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Confidentiality"
+                        }
+                    ]
+                }
+        },
+                {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "importance": 1,
+             "value": {
+              "certificateauthority": [
+                {
+                  "type": "http://www.compose-project.eu/ns/web-of-things/security#US-Based"
+                }
+                ]
+             }
+        }
+    ]
+}

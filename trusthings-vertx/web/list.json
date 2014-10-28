@@ -1,0 +1,6 @@
+{
+    "things": [
+       {"id":"http://www.programmableweb.com/api/twitter"},
+       {"id":"http://www.programmableweb.com/api/facebook"}
+    ]
+}
