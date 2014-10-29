@@ -19,7 +19,7 @@ package com.inn.trusthings.op.match;
 
 /*
  * #%L
- * trusthings-service
+ * trusthings-services
  * %%
  * Copyright (C) 2014 INNOVA S.p.A
  * %%
