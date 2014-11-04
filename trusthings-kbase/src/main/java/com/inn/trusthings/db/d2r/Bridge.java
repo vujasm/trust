@@ -44,15 +44,19 @@ import de.fuberlin.wiwiss.d2rq.map.Mapping;
 public class Bridge {
 
 	private static final Logger log = LoggerFactory.getLogger(Bridge.class);
+	
+	private static String sparqlEndpoint_in_CF = "http://d2rq.147.83.30.133.xip.io/sparql";
+	
+	private static String sparqlEndpoint_local = "http://localhost:8080/d2rq/sparql";
 
 	public Model obtainTrustProfile(String serviceId) {
 
-		
-		
-//		Model mapModel = FileManager.get().loadModel("doc/example/mapping-iswc.ttl");
-		
+		// Model mapModel =
+		// FileManager.get().loadModel("doc/example/mapping-iswc.ttl");
+
 		// Set up the ModelD2RQ using a mapping file
-//		Model m = new ModelD2RQ("file:C://P-Programs//d2rq-0.8.1/mapping.ttl");
+		// Model m = new
+		// ModelD2RQ("file:C://P-Programs//d2rq-0.8.1/mapping.ttl");
 
 		String sparql =
 
@@ -75,26 +79,23 @@ public class Bridge {
 				// "				    ?attribute rdf:type ?attributeType ;" +
 				// "				       compose-trust:hasValue ?value ." +
 				// "				  }";
-				" WHERE "
-				+ " { ?agent compose-trust:hasProfile ?profile ;"
-				+ "  compose-trust:agent_url '"
-				+ serviceId
-				+ "' ."
+//	OLD version			" WHERE " + " { ?agent compose-trust:hasProfile ?profile ;" + "  compose-trust:agent_url '" + serviceId 
+				" WHERE " + " { ?agent compose-trust:hasProfile ?profile ;" + "  compose-trust:composeUID <" + serviceId+ "> ." 
 				+ "    ?profile compose-trust:hasAttribute ?attribute ."
 				+ "    ?attribute rdf:type ?attributeType ."
 				+ "      OPTIONAL {?attribute compose-trust:hasValue ?value}"
 				+ "     OPTIONAL {?attribute compose-trust:hasSecurityDescription ?security}"
-				+ "    OPTIONAL {?attribute compose-trust:hasCertificateDetail ?certificate}"
-				+ " }";
-		log.info(sparql);
+				+ "    OPTIONAL {?attribute compose-trust:hasCertificateDetail ?certificate}" + " }";
+//		log.info(sparql);
 		com.hp.hpl.jena.query.Query query = QueryFactory.create(sparql);
 		// Model modelo = QueryExecutionFactory.create(q, m).execDescribe();
 
-		Model modelo = QueryExecutionFactory.sparqlService("http://localhost:8080/d2rq/sparql", query).execDescribe();
-		
-		
-//		Model modelo = QueryExecutionFactory.sparqlService("http://d2rq.cfapps.io/sparql", query).execDescribe();
-		
+		Model modelo = QueryExecutionFactory.sparqlService(sparqlEndpoint_in_CF, query).execDescribe();
+
+		// Model modelo =
+		// QueryExecutionFactory.sparqlService("http://d2rq.cfapps.io/sparql",
+		// query).execDescribe();
+
 		// ResultSet rs = QueryExecutionFactory.create(q, m).execSelect();
 		// int i = 0;
 		// while (rs.hasNext()) {
@@ -102,14 +103,37 @@ public class Bridge {
 		// System.out.println(row);
 		// i++;
 		// };
-//		m.close();
+		// m.close();
 		log.info("Model loaded sucessfully");
 		return modelo;
 	}
 
+	public String obtainIDFromiServe(String param) {
+
+		String sparql =
+
+		" PREFIX msm: <http://iserve.kmi.open.ac.uk/ns/msm#> "
+				+ " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+				+ " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " + " SELECT DISTINCT ?item " + " WHERE {"
+				+ " ?item rdf:type msm:Service ."
+				+ " ?item rdfs:seeAlso <"+param+"> ." + " }";
+//		log.info(sparql);
+		com.hp.hpl.jena.query.Query query = QueryFactory.create(sparql);
+
+		ResultSet rs = QueryExecutionFactory.sparqlService("http://iserve.kmi.open.ac.uk/iserve/sparql", query)
+				.execSelect();
+
+		while (rs.hasNext()) {
+			QuerySolution row = rs.nextSolution();
+			String s = row.get("item").toString();
+			return s;
+		}
+		return null;
+	}
+
 	public static void main(String[] args) {
-		System.out
-				.println(new Bridge()
-						.obtainTrustProfile("http://www.programmableweb.com/api/google-earth"));
+		System.out.println(new Bridge().obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/16007ad3-5e6a-440b-9f73-6cf59d2d30bc/flickr"));
+		
+//		new Bridge().obtainIDFromiServe("http://www.programmableweb.com/api/google-earth");
 	}
 }
