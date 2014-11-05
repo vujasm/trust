@@ -46,6 +46,7 @@ import com.inn.common.OrderType;
 import com.inn.trusthings.json.MakeJson;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustAttribute;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -130,24 +131,22 @@ public class Server extends Verticle {
 					public void handle(Buffer buff) {
 						QueryStringDecoder qsd = new QueryStringDecoder(buff.toString(), false);
 		                Map<String, List<String>> params = qsd.parameters();
-		                String things = params.get("things").get(0);
-		                String tc = params.get("tc").get(0);
+		                String listOfURIs = params.get("things").get(0);
+		                String criteriaJSON = params.get("tc").get(0);
 		                boolean isTopsis = false;
 		                if (params.get("topsis")!=null){
 		                	isTopsis = true;
 		                }
 		                final TrustManager trustManager = Factory.createInstance(TrustManager.class);
-		                trustManager.setGlobalTrustCriteria( new TrustPOJOFactory().ofTrustCriteria(tc));
+		                TrustCriteria criteria = new TrustPOJOFactory().ofTrustCriteria(criteriaJSON);
 						try {
-							List<URI> list = parseJsonAgents(things);
-							
+							List<URI> list = parseJsonAgents(listOfURIs);
 							List<Tuple2<URI, Double>> result = null; 
 							if (isTopsis == false){
 								result = trustManager.obtainTrustIndexes(list);	
 							}
 							else{
-								result = trustManager.rankResources(list, trustManager.getGlobalTrustCriteria(), 
-										EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
+								result = trustManager.rankResources(list, criteria, EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
 							}
 							
 							String stringJson = new MakeJson().ofRankingResult(result);

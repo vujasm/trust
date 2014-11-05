@@ -37,11 +37,13 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.inn.common.Const;
 import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
 import com.inn.trusthings.model.pojo.Agent;
@@ -82,13 +84,22 @@ public class ToModelParser {
 			if (tp == null) {
 				tp = new TrustProfile(URI.create(individual.getURI()));
 				Resource r = findAgentURI(oModel);
-				tp.setAgent(new Agent(URI.create(r.getURI())));
+				Agent agent = new Agent(URI.create(r.getURI()));
+				populateCOMPOSE_ID(agent, r);
+				tp.setAgent(agent);
 			}
 			parseAttributes(tp, individual);
 			log.debug(individual.toString());
 		}
 
 		return tp;
+	}
+
+	private void populateCOMPOSE_ID(Agent agent, Resource r) {
+		Resource v = r.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")));
+//		System.err.println(v);
+		if (v!=null)
+			agent.setCompose_ID(URI.create(v.getURI()));
 	}
 
 	private Resource findAgentURI(OntModel oModel) throws Exception {

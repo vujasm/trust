@@ -8,7 +8,8 @@
         {
             "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfDevelopers",
             "importance": 1,
-            "minvalue": "50"
+            "minvalue": "50",
+            "value": "0"
         },
          {
             "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",

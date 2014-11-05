@@ -89,7 +89,7 @@ public class BasicRankingManager implements RankingManager {
 		timer.stop();
 		log.info("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		timer.reset().start();
-			List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);
+		    List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustProfileRequired.getAttributes(), strategy);
 		timer.stop();
 		log.info("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
 		timer.reset().start();

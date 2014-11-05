@@ -36,8 +36,22 @@ public class Agent extends TResource {
 	public void setHasTrustProfile(TrustProfile hasTrustProfile) {
 		this.hasTrustProfile = hasTrustProfile;
 	}
+	
+	@Override
+	public URI getUri() {
+		return super.getUri();
+	}
 
 	private TrustProfile hasTrustProfile;
+	private URI compose_ID;
+	
+	public void setCompose_ID(URI compose_ID) {
+		this.compose_ID = compose_ID;
+	}
+
+	public URI getCompose_ID() {
+		return compose_ID;
+	}
 	
 	
 	

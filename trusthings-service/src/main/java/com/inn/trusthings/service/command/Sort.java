@@ -61,10 +61,11 @@ public class Sort {
 		};
 		list = o.sortedCopy(list);
 		for (Tuple2<Agent, Double> t : list) {
-			sort.add(new Tuple2<URI, Double>(t.getT1().getUri(), t.getT2()));
+			sort.add(new Tuple2<URI, Double>(t.getT1().getCompose_ID(), t.getT2()));
 		}
 		return sort;
 	}
+	
 	
 	private List<Tuple2<URI, Double>> asc(List<Tuple2<Agent, Double>> list) {
 		List<Tuple2<URI, Double>> sort = Lists.newArrayList();
@@ -76,7 +77,7 @@ public class Sort {
 		};
 		list = o.sortedCopy(list);
 		for (Tuple2<Agent, Double> t : list) {
-			sort.add(new Tuple2<URI, Double>(t.getT1().getUri(), t.getT2()));
+			sort.add(new Tuple2<URI, Double>(t.getT1().getCompose_ID(), t.getT2()));
 		}
 		return sort;
 	}
