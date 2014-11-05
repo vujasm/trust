@@ -32,7 +32,8 @@ public class InternalCollector extends AbstractCollector {
 
 	@Override
 	public Model collectInformation(String resourceIdentifier) {
-		return new Bridge().obtainTrustProfile(resourceIdentifier);
+		Bridge b = new Bridge();
+		return b.obtainTrustProfile(resourceIdentifier);
 	}
 
 	@Override

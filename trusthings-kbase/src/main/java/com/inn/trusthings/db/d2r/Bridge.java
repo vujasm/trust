@@ -45,9 +45,19 @@ public class Bridge {
 
 	private static final Logger log = LoggerFactory.getLogger(Bridge.class);
 	
-	private static String sparqlEndpoint_in_CF = "http://d2rq.147.83.30.133.xip.io/sparql";
+	private String defaultD2rqHost = "d2rq.147.83.30.133.xip.io";
+	private String defaultD2rqPort = "";
 	
-	private static String sparqlEndpoint_local = "http://localhost:8080/d2rq/sparql";
+	private  String sparqlEndpoint_in_CF ;
+	
+//	private  String sparqlEndpoint_local = "http://localhost:8080/d2rq/sparql";
+	
+	public Bridge(){
+		String host  = System.getProperty("iserve.filter.trust.host", this.defaultD2rqHost);
+		String port = System.getProperty("iserve.filter.trust.port", this.defaultD2rqPort);
+		sparqlEndpoint_in_CF = "http://"+host+(port.equals("")? "":":"+port)+"/sparql";
+		System.out.println(sparqlEndpoint_in_CF);
+	}
 
 	public Model obtainTrustProfile(String serviceId) {
 
@@ -108,6 +118,7 @@ public class Bridge {
 		return modelo;
 	}
 
+
 	public String obtainIDFromiServe(String param) {
 
 		String sparql =
@@ -130,10 +141,11 @@ public class Bridge {
 		}
 		return null;
 	}
+	
 
-	public static void main(String[] args) {
-		System.out.println(new Bridge().obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/16007ad3-5e6a-440b-9f73-6cf59d2d30bc/flickr"));
-		
-//		new Bridge().obtainIDFromiServe("http://www.programmableweb.com/api/google-earth");
-	}
+//	public static void main(String[] args) {
+//		Bridge b = new Bridge();
+//		System.out.println(b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/16007ad3-5e6a-440b-9f73-6cf59d2d30bc/flickr"));
+//	}
 }
+
