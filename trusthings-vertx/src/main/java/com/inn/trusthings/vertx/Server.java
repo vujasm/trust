@@ -143,6 +143,7 @@ public class Server extends Verticle {
 							List<URI> list = parseJsonAgents(listOfURIs);
 							List<Tuple2<URI, Double>> result = null; 
 							if (isTopsis == false){
+								trustManager.setGlobalTrustCriteria(criteria);
 								result = trustManager.obtainTrustIndexes(list);	
 							}
 							else{

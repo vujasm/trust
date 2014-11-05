@@ -58,9 +58,14 @@ public class All_R1_S {
 			TrustManager t = new TrustModuleTest().getTrustManager();
 			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
 			t.setGlobalTrustCriteria(criteriapojo);
-			for (int i = 0; i < size; i++) {
-				System.out.println(t.isTrusted(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter")));
-			}
+//			for (int i = 0; i < size; i++) {
+//				System.out.println(t.isTrusted(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook")));
+//				System.out.println(t.isTrusted(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter")));
+//			}
+			List<URI> l = Lists.newArrayList();
+			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook"));
+			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter"));
+			t.obtainTrustIndexes(l);
 			timer.stop();
 		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.SECONDS)+" "+timer.elapsed(TimeUnit.MINUTES));
 //		}
