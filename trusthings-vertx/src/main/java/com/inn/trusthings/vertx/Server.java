@@ -184,7 +184,13 @@ public class Server extends Verticle {
 		Integer port = (portConfig!=null)? portConfig:DEFAULT_PORT;
 		String host = (hostConfig!=null)? hostConfig:DEFAULT_HOST;
 		
+		if (System.getProperty("VCAP_APP_PORT") != null)
+			port = new Integer(System.getProperty("VCAP_APP_PORT"));
+		if (System.getProperty("VCAP_APP_HOST") != null)
+			host = System.getProperty("VCAP_APP_HOST");
+		
 		server.listen(port, host);
+		
 		container.logger().info("Webserver started on host: "+host+" port "+port);
 		container.logger().info("Web root is "+obtainWebRoot());
 		
