@@ -59,8 +59,7 @@ public class TrustScorerTest {
 			
 			
 			//obtain and print trust indexes for resources
-			System.out.println(service_a.toASCIIString()+" has trust index value:"+s.apply(services));
-			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(services));
+			System.out.println(s.apply(services));
 			
 			/*
 			 * FILTERING
@@ -68,8 +67,7 @@ public class TrustScorerTest {
 			//create trust filer to filter out those not trusted
 			TrustFilterByExclusion f = new TrustFilterByExclusion(trustManager);
 			//obtain trust indexes for resources
-			System.out.println(service_a.toASCIIString()+" is trusted = "+f.apply(services));
-			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(services));
+			System.out.println(f.apply(services));
 			
 			
 		} catch (IOException e) {
