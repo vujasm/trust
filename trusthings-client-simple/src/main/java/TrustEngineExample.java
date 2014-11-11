@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.TrustFilterByExclusion;
@@ -46,6 +48,13 @@ public class TrustEngineExample {
 			URI service_a = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_A");			
 			URI service_b = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_B");
 			URI service_d = URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_D");
+			
+			Set<URI> services = new HashSet<URI>();
+			services.add(service_a);
+			services.add(service_b);
+			services.add(service_d);
+			
+			
 			InputStream r1is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_A.ttl");
 			trustManager.addResourceDescription(service_a,r1is);
 			InputStream r2is = TrustEngineExample.class.getResourceAsStream("/modelrepo/city_traffic_service_B.ttl");
@@ -60,9 +69,9 @@ public class TrustEngineExample {
 			//create trust scorer and pass trustManager
 			TrustScorer s = new TrustScorer(trustManager);
 			//obtain and print trust indexes for resources
-			System.out.println(service_a.toASCIIString()+" has trust index value:"+s.apply(service_a));
-			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(service_b));
-			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(service_d));
+			System.out.println(service_a.toASCIIString()+" has trust index value:"+s.apply(services));
+			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(services));
+			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(services));
 			
 			/*
 			 * FILTERING
@@ -70,9 +79,9 @@ public class TrustEngineExample {
 			//create trust filer to filter out those not trusted
 			TrustFilterByExclusion f = new TrustFilterByExclusion(trustManager);
 			//obtain trust indexes for resources
-			System.out.println(service_a.toASCIIString()+" is trusted = "+f.apply(service_a));
-			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(service_b));
-			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(service_d));
+			System.out.println(service_a.toASCIIString()+" is trusted = "+f.apply(services));
+			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(services));
+			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(services));
 			
 			
 		} catch (IOException e) {

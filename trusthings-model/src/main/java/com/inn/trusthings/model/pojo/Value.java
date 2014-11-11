@@ -36,6 +36,8 @@ public class Value {
 	public static final double NoTrustworthy = 0;
 
 	public static final double Uknown = -1;
+	
+	public static final double treshold = 0.5;
 
 	public Value(double val) {
 		this.numericalValue = val;
@@ -54,7 +56,7 @@ public class Value {
 	}
 
 	public boolean isTrustworthy() {
-		return (numericalValue >= 0.5);
+		return (numericalValue >= treshold);
 	}
 
 }

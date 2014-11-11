@@ -22,20 +22,25 @@ package com.inn.trusthings.integration;
 
 
 import java.net.URI;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import uk.ac.open.kmi.sense.evaluation.Scorer;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.inject.Guice;
 import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.util.tuple.Tuple2;
 
 /**
- * TrustScorer implements uk.ac.open.kmi.sense.evaluation.Scorer interface 
- * to obtain trust score for COMPOSE service recommendation
+ * TrustScorer implements  uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer interface 
+ * to support trust scoring for COMPOSE service recommendation
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustScorer implements Scorer{
+public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer{
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager;
 	
@@ -46,18 +51,42 @@ public class TrustScorer implements Scorer{
 	public TrustScorer(TrustManager trustManager) {
 		this.trustManager = trustManager;
 	}
-
-	/**
-	 * returns trust index of the resource identified with serviceId URI
-	 */
+	
+	
 	@Override
-	public Double apply(URI serviceId) {
+	public Map<URI, Double> apply(Set<URI> arg0) {
+		List<URI> resources = Lists.newArrayList(arg0);
+		Map<URI, Double> map = Maps.newHashMap();
 		try {
-			return trustManager.obtainTrustIndex(serviceId);
+			List<Tuple2<URI, Double>>  list = trustManager.obtainTrustIndexes(resources);
+			for (Tuple2<URI, Double> t : list) {
+				map.put(t.getT1(), t.getT2());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 0D;
 		}
+		
+		return null;
 	}
+	
+	
+	@Override
+	public Map<URI, Double> apply(Set<URI> arg0, String arg1) {
+		trustManager.setGlobalTrustCriteria(arg1);
+		return apply(arg0);
+	}
+
+//	/**
+//	 * returns trust index of the resource identified with serviceId URI
+//	 */
+//	@Override
+//	public Double apply(URI serviceId) {
+//		try {
+//			return trustManager.obtainTrustIndex(serviceId);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return 0D;
+//		}
+//	}
 
 }

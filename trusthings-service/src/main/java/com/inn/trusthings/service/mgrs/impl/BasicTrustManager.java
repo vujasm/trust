@@ -331,6 +331,17 @@ public class BasicTrustManager implements TrustManager {
 		final Double index = obtainTrustIndex(resourceURI);
 		return new Value(index).isTrustworthy();
 	}
+	
+	
+	@Override
+	public List<URI> filterTrustedByThreshold(List<URI> resources) throws Exception {
+		return filterResources(resources, getGlobalTrustCriteria(), OrderType.DESC, Value.treshold);
+	}
+	
+	@Override
+	public List<URI> filterTrustedByThreshold(List<URI> resources, TrustCriteria criteria) throws Exception {
+		return filterResources(resources, criteria, OrderType.DESC, Value.treshold);
+	}
 
 	@Override
 	public boolean match(URI resource1uri, URI resource2uri) throws Exception {

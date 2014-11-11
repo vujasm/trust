@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 import com.inn.common.OrderType;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
@@ -178,6 +179,25 @@ public interface TrustManager{
 	 * @throws Exception
 	 */
 	boolean isTrusted(URI resourceURI) throws Exception;
+	
+	
+	/**
+	 * 
+	 * @param resources
+	 * @return
+	 * @throws Exception
+	 */
+	List<URI> filterTrustedByThreshold(List<URI> resources) throws Exception;
+	
+	
+	/**
+	 * 
+	 * @param resources
+	 * @param criteria
+	 * @return
+	 * @throws Exception
+	 */
+	List<URI> filterTrustedByThreshold(List<URI> resources, TrustCriteria criteria) throws Exception;
 	
 
 	

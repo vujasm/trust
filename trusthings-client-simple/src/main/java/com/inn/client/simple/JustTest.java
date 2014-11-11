@@ -51,13 +51,13 @@ public class JustTest {
 				trustManager.setGlobalTrustCriteria(string);
 				TrustFilterByExclusion s = new TrustFilterByExclusion(trustManager);
 //				System.out.println(s.apply(URI.create("http://localhost/services/CITY_TRAFFIC_SERVICE_A")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/twitter")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/lowreputation")));
-				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/nosecurity")));
 				
-//				boolean b = new TrustFilterByExclusion().apply(URI.create("http://www.programmableweb.com/api/youtube"));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/youtube")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/twitter")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/flickr")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/lowreputation")));
+//				System.err.println(s.apply(URI.create("http://www.programmableweb.com/api/nosecurity")));
+//				
 				
 //				
 			} catch (Exception e) {

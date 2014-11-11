@@ -21,7 +21,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.google.common.collect.Sets;
 import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustScorer;
@@ -45,14 +48,19 @@ public class TrustScorerTest {
 			//add some descriptions (trust profiles)
 			URI service_a = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook");			
 			URI service_b = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
+			Set<URI> services = new HashSet<URI>();
+			services.add(service_a);
+			services.add(service_b);
 			/*
 			 * SCORING
 			 */
 			//create trust scorer and pass trustManager
 			TrustScorer s = new TrustScorer(trustManager);
+			
+			
 			//obtain and print trust indexes for resources
-			System.out.println(service_a.toASCIIString()+" has trust index value:"+s.apply(service_a));
-			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(service_b));
+			System.out.println(service_a.toASCIIString()+" has trust index value:"+s.apply(services));
+			System.out.println(service_b.toASCIIString()+" has trust index value:"+s.apply(services));
 			
 			/*
 			 * FILTERING
@@ -60,8 +68,8 @@ public class TrustScorerTest {
 			//create trust filer to filter out those not trusted
 			TrustFilterByExclusion f = new TrustFilterByExclusion(trustManager);
 			//obtain trust indexes for resources
-			System.out.println(service_a.toASCIIString()+" is trusted = "+f.apply(service_a));
-			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(service_b));
+			System.out.println(service_a.toASCIIString()+" is trusted = "+f.apply(services));
+			System.out.println(service_b.toASCIIString()+" is trusted = "+f.apply(services));
 			
 			
 		} catch (IOException e) {
