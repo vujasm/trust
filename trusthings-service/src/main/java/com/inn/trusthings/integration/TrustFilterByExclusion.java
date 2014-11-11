@@ -23,8 +23,10 @@ package com.inn.trusthings.integration;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -32,8 +34,7 @@ import com.inn.trusthings.service.interfaces.TrustManager;
 import uk.ac.open.kmi.sense.evaluation.Filter;
 
 /**
- * TrustFilterByExclusion implements uk.ac.open.kmi.sense.evaluation.Filter interface 
- * for Guava-based filtering of services in COMPOSE Service Recommender
+ * TrustFilterByExclusion implements iServe Recommender Filter interface 
  * 
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
@@ -49,11 +50,31 @@ public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.a
 		this.trustManager = trustManager;
 	}
 
-	
-	/**
-	 * returns true if resource identified with serviceId URI is evaluated as respecting minimum of trust criteria
-	 */
 	@Override
+	public Set<URI> apply(Set<URI> arg0) {
+		List<URI> resources = Lists.newArrayList();
+		resources.addAll(arg0);
+		TrustCriteria criteria = trustManager.getGlobalTrustCriteria();
+		List<URI> filtered ;
+		try {
+			filtered = trustManager.filterByCriteriaNotMeet(resources, criteria);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		}
+		Set<URI> set = Sets.newHashSet();
+		set.addAll(filtered);
+		return set;
+	}
+	
+
+	@Override
+	public Set<URI> apply(Set<URI> arg0, String criteria) {
+		
+		return null;
+	}
+	
+	
 	public boolean apply(URI serviceId) {
 		boolean inList = false;
 		try {

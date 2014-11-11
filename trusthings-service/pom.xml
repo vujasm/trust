@@ -15,12 +15,12 @@
 
 
 	<artifactId>trusthings-service</artifactId>
-	
+
 	<name>trusthings-service</name>
 	<description>This is descr</description>
 	<developers>
 		<developer>
-			
+
 			<name>Marko Vujasinovic</name>
 			<email>m.vujasinovic-{AT}-innova-eu.net</email>
 			<organization>INNOVA S.p.A</organization>
@@ -36,42 +36,42 @@
 		<plugins>
 
 			<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-            <archive>
-                <manifest>
-                    <mainClass>org.apache.camel.spring.Main</mainClass>
-                    <classpathPrefix>lib/</classpathPrefix>
-                    <addClasspath>true</addClasspath>
-                </manifest>
-            </archive>
-        </configuration>
-    </plugin>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-            <descriptors>
-                <descriptor>src/assembly/assembly.xml</descriptor>
-            </descriptors>
-            <descriptorRefs>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>org.apache.camel.spring.Main</mainClass>
+							<classpathPrefix>lib/</classpathPrefix>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/assembly.xml</descriptor>
+					</descriptors>
+					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
-        </configuration>
-        <executions>
-            <execution>
-                <id>make-assembly</id>
-                <phase>package</phase>
-                <goals>
-                    <goal>single</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
-			
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
@@ -107,13 +107,13 @@
 			<artifactId>guice-assistedinject</artifactId>
 			<version>3.0</version>
 		</dependency>
-		
+
 		<dependency>
-    <groupId>uk.ac.open.kmi.iserve</groupId>
-    <artifactId>iserve-discovery-api</artifactId>
-    <version>2.0.0-RC2-SNAPSHOT</version>
-</dependency>
-		
+			<groupId>uk.ac.open.kmi.iserve</groupId>
+			<artifactId>iserve-discovery-api</artifactId>
+			<version>2.0.0-RC2-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
