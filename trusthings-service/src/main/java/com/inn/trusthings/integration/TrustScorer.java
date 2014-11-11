@@ -66,7 +66,7 @@ public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.
 			e.printStackTrace();
 		}
 		
-		return null;
+		return map;
 	}
 	
 	

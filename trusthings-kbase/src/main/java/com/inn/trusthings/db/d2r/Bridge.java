@@ -56,11 +56,10 @@ public class Bridge {
 		String host  = System.getProperty("iserve.filter.trust.host", this.defaultD2rqHost);
 		String port = System.getProperty("iserve.filter.trust.port", this.defaultD2rqPort);
 		sparqlEndpoint_in_CF = "http://"+host+(port.equals("")? "":":"+port)+"/sparql";
-		System.out.println(sparqlEndpoint_in_CF);
+		log.info(sparqlEndpoint_in_CF);
 	}
 
 	public Model obtainTrustProfile(String serviceId) {
-
 		// Model mapModel =
 		// FileManager.get().loadModel("doc/example/mapping-iswc.ttl");
 

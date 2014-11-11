@@ -22,14 +22,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
 import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustScorer;
-import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
 
 
 public class TrustScorerTest {
@@ -37,15 +34,11 @@ public class TrustScorerTest {
 	public void runExample(){
 		
 		try {
-			//create trust manager
-			TrustManager trustManager =  Factory.createInstance(TrustManager.class);
 			//load (from json file) and set trust criteria 
 			InputStream is = TrustScorerTest.class.getResourceAsStream("/criteria/demo/criteria_sc_c.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
-			trustManager.setGlobalTrustCriteria(criteria);
 			is.close();
 			
-			//add some descriptions (trust profiles)
 			URI service_a = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook");			
 			URI service_b = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
 			Set<URI> services = new HashSet<URI>();
@@ -54,20 +47,26 @@ public class TrustScorerTest {
 			/*
 			 * SCORING
 			 */
-			//create trust scorer and pass trustManager
-			TrustScorer s = new TrustScorer(trustManager);
-			
-			
+			TrustScorer s = new TrustScorer();
 			//obtain and print trust indexes for resources
-			System.out.println(s.apply(services));
+			Map<URI, Double> scores = s.apply(services, criteria);
+			for (URI uri : services) {
+				System.out.println(uri +" has trust score "+scores.get(uri));
+			}
 			
 			/*
 			 * FILTERING
 			 */
-			//create trust filer to filter out those not trusted
-			TrustFilterByExclusion f = new TrustFilterByExclusion(trustManager);
-			//obtain trust indexes for resources
-			System.out.println(f.apply(services));
+			TrustFilterByExclusion f = new TrustFilterByExclusion();
+			Set<URI> result = f.apply(services, criteria);
+			for (URI uri : services) {
+				if (result.contains(uri)){
+					System.out.println(uri+ " is trusted");
+				}
+				else{
+					System.out.println(uri+ " is not trusted");
+				}
+			}
 			
 			
 		} catch (IOException e) {

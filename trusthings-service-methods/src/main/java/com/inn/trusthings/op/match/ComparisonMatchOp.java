@@ -65,7 +65,7 @@ public class ComparisonMatchOp {
 					equals((Trust.NumberOfDevelopers.getURI()))){
 				
 				if (attribute.getValue()!=null){
-					System.err.println(reqAttribute.getValue());
+//					System.err.println(reqAttribute.getValue());
 					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
 						attribute.setValue(Double.valueOf((String) attribute.getValue()) / MAX_NumUsers);
 					}

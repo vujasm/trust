@@ -80,6 +80,7 @@ public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.a
 	}
 	
 	
+	
 //	public boolean apply(URI serviceId) {
 //		boolean inList = false;
 //		try {
