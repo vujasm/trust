@@ -38,7 +38,7 @@ import uk.ac.open.kmi.sense.evaluation.Filter;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustFilterByExclusion implements Filter {
+public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
 	public TrustFilterByExclusion() {
