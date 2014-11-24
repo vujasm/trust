@@ -71,6 +71,24 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+              <groupId>eu.somatik.serviceloader-maven-plugin</groupId>
+                <artifactId>serviceloader-maven-plugin</artifactId>
+                <version>1.0.2</version>
+                <configuration>
+                    <services>
+                        <param>uk.ac.open.kmi.iserve.discovery.api.ranking.RecommendationPluginModule</param>
+                    </services>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> 
 
 		</plugins>
 	</build>
@@ -107,6 +125,13 @@
 			<artifactId>guice-assistedinject</artifactId>
 			<version>3.0</version>
 		</dependency>
+		
+		<dependency>
+	<groupId>com.google.inject.extensions</groupId>
+	<artifactId>guice-multibindings</artifactId>
+	<version>3.0</version>
+</dependency>
+		
 
 		<dependency>
 			<groupId>uk.ac.open.kmi.iserve</groupId>
