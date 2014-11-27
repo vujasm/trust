@@ -36,6 +36,6 @@ public class TrustPluginModule extends AbstractModule implements RecommendationP
         filterBinder.addBinding().to(TrustFilterByExclusion.class);
         Multibinder<Scorer> scorerBinder = Multibinder.newSetBinder(binder(), Scorer.class);
         scorerBinder.addBinding().to(TrustScorer.class);
-
     }
+    
 }

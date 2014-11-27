@@ -32,10 +32,11 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.trusthings.db.d2r.Bridge;
+import com.inn.trusthings.d2r.Bridge;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
+import com.inn.trusthings.service.config.CollectorEnum;
 
 /**
  * Metadata fetch command responsible for obtaining resource annotations either from local file system / online / triple
@@ -103,8 +104,8 @@ public class SemanticMetaDataFetcher {
 			if (fetchFromInternalRegirsty) {
 //				Log.info(this, "obtaining model from internal registry using sparqlEndpoint");
 //				internalModel = graphStoreManager.getGraph(uri);
-				Log.info(this, "obtaining model from internal MYSQL using D2RQ Bridge");
-				internalModel = new Bridge().obtainTrustProfile(uri.toASCIIString());
+				Log.info(this, "obtaining model from internal MYSQL using D2RQ Bridge or CustomBridge");
+				internalModel = CollectorEnum.InternalCollector.getCollector().collectInformation(uri.toASCIIString());
 			}
 		} catch (Exception e) {
 			//FIXME this log below is obsolute. now using mysql.

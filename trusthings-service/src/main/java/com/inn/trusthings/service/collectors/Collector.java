@@ -43,5 +43,7 @@ public interface Collector {
 	Model collectInformation(String resourceIdentifier);
 	
 	abstract String getName();
+	
+	void shutDown();
 
 }

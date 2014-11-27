@@ -38,5 +38,10 @@ public class FeedbackCollector extends AbstractCollector{
 	public String getName() {
 		return "feedback.rating";
 	}
+	
+	@Override
+	public void shutDown() {
+
+	}
 
 }

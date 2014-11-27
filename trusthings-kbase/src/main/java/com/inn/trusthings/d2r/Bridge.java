@@ -1,4 +1,4 @@
-package com.inn.trusthings.db.d2r;
+package com.inn.trusthings.d2r;
 
 /*
  * #%L
@@ -20,6 +20,8 @@ package com.inn.trusthings.db.d2r;
  * #L%
  */
 
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,14 +36,22 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.RDFWriterFImpl;
 import com.hp.hpl.jena.sparql.core.QueryHashCode;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.inn.trusthings.IBridge;
 
 import de.fuberlin.wiwiss.d2rq.jena.ModelD2RQ;
 import de.fuberlin.wiwiss.d2rq.map.Mapping;
 
-public class Bridge {
+/**
+ * Obtainer of trust profile via D2RQ mapping
+ * 
+ * @author marko
+ *
+ */
+public class Bridge implements IBridge {
 
 	private static final Logger log = LoggerFactory.getLogger(Bridge.class);
 	
@@ -62,10 +72,10 @@ public class Bridge {
 	public Model obtainTrustProfile(String serviceId) {
 		// Model mapModel =
 		// FileManager.get().loadModel("doc/example/mapping-iswc.ttl");
-
 		// Set up the ModelD2RQ using a mapping file
 		// Model m = new
 		// ModelD2RQ("file:C://P-Programs//d2rq-0.8.1/mapping.ttl");
+		
 
 		String sparql =
 
@@ -76,7 +86,7 @@ public class Bridge {
 				+ "	PREFIX owl: <http://www.w3.org/2002/07/owl#>"
 				+ "	PREFIX map: <http://localhost:2020/resource/#>"
 				+ "	PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-				+ "	PREFIX compose-sec: <http://www.compose-project.eu/ns/web-of-things/security/profiles#>"
+				+ "	PREFIX compose-sec: <http://www.compose-project.eu/ns/web-of-things/security#>"
 				+ "	PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
 				+ "	PREFIX vocab: <http://localhost:2020/resource/vocab/>"
 				+ "		describe ?agent ?profile ?attribute ?security ?certificate"
@@ -95,7 +105,7 @@ public class Bridge {
 				+ "      OPTIONAL {?attribute compose-trust:hasValue ?value}"
 				+ "     OPTIONAL {?attribute compose-trust:hasSecurityDescription ?security}"
 				+ "    OPTIONAL {?attribute compose-trust:hasCertificateDetail ?certificate}" + " }";
-//		log.info(sparql);
+		log.info(sparql);
 		com.hp.hpl.jena.query.Query query = QueryFactory.create(sparql);
 		// Model modelo = QueryExecutionFactory.create(q, m).execDescribe();
 
@@ -141,10 +151,16 @@ public class Bridge {
 		return null;
 	}
 	
+	@Override
+	public void stop() {
+		//nothing to stop
+	}
+	
 
-//	public static void main(String[] args) {
-//		Bridge b = new Bridge();
-//		System.out.println(b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/16007ad3-5e6a-440b-9f73-6cf59d2d30bc/flickr"));
-//	}
+	public static void main(String[] args) {
+		Bridge b = new Bridge();
+		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
+		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
+	}
 }
 

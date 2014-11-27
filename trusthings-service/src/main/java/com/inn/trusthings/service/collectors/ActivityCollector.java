@@ -38,4 +38,8 @@ public class ActivityCollector extends AbstractCollector{
 	public String getName() {
 		return "activityMonitoring";
 	}
+	@Override
+	public void shutDown() {
+		
+	}
 }

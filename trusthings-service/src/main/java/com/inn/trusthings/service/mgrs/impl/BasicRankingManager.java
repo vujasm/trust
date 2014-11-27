@@ -205,8 +205,8 @@ public class BasicRankingManager implements RankingManager {
 			for (TrustAttribute reqAttribute : reqAttributes) {
 				TResource type = reqAttribute.obtainType();
 				log.info("evaluting " + type.getUri() + " for " + trustProfile.getAgent().getUri());
-				final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(
-						trustProfile.getAttributes(), type.getUri());
+				final List<TrustAttribute> attributes = TrustOntologyUtil.instance()
+							.filterByTypeDirect(trustProfile.getAttributes(), type.getUri());
 				log.info("they will be evaluated w.r.t " + attributes);
 				final double value = match(reqAttribute, attributes);
 				if (filterIfMissingAttribute && value == 0) {

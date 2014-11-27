@@ -38,5 +38,10 @@ public class QoSCollector extends AbstractCollector{
 	public String getName() {
 		return "qos";
 	}
+	
+	@Override
+	public void shutDown() {
+
+	}
 
 }

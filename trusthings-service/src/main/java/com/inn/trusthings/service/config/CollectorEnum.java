@@ -34,7 +34,8 @@ public enum CollectorEnum {
 	Reputation( new ReputationCollector("http://localhost//")),
 	Activity( new ActivityCollector("http://localhost//")),
 	Feedback( new FeedbackCollector("http://localhost//")),
-	QoS( new QoSCollector("http://localhost//"));
+	QoS( new QoSCollector("http://localhost//")),
+	InternalCollector( new InternalCollector(""));
 	
 	private  final Collector collector;
 	

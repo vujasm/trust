@@ -60,9 +60,11 @@ import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.Value;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.collectors.Collector;
+import com.inn.trusthings.service.collectors.InternalCollector;
 import com.inn.trusthings.service.command.SemanticMetaDataFetcher;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
+import com.inn.trusthings.service.config.CollectorEnum;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustManager;
@@ -288,6 +290,8 @@ public class BasicTrustManager implements TrustManager {
 			model = fillTrustProfilForResource(model, uri);
 			listModels.add(new Tuple2<URI, Model>(uri, model));
 		}
+		//FIXME  - is this the best place for shuting down
+//		CollectorEnum.InternalCollector.getCollector().shutDown();
 		return listModels;
 	}
 

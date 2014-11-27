@@ -33,7 +33,7 @@ import com.google.common.io.CharStreams;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.OrderType;
 import com.inn.testtemp.DescriptionsEnum;
-import com.inn.trusthings.db.d2r.Bridge;
+import com.inn.trusthings.d2r.Bridge;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
@@ -65,6 +65,10 @@ public class All_R1_S {
 			List<URI> l = Lists.newArrayList();
 			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook"));
 			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter"));
+			for (int i = 0; i < size; i++) {
+				l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook"));
+				l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter"));
+			}
 			t.obtainTrustIndexes(l);
 			timer.stop();
 		    System.out.println("For size of "+size+" "+timer.elapsed(TimeUnit.SECONDS)+" "+timer.elapsed(TimeUnit.MINUTES));

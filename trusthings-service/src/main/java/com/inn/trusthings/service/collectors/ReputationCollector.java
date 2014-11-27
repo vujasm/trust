@@ -75,4 +75,8 @@ public class ReputationCollector extends AbstractCollector{
 		return "reputation";
 	}
 	
+	@Override
+	public void shutDown() {
+	}
+	
 }
