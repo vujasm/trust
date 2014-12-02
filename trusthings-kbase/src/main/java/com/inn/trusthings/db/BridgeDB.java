@@ -101,9 +101,11 @@ public class BridgeDB implements IBridge{
 
 	
 	
-	public BridgeDB(){
+	public BridgeDB(String pjdbc){
 		String host  = System.getProperty("iserve.filter.trust.dbhost", this.defaultDBHost);
 		String port = System.getProperty("iserve.filter.trust.dbport", this.defaultDBPort);
+		if (pjdbc !=null)
+			jdbc_url = pjdbc;
 		log.info(jdbc_url);
 	}
 
@@ -268,7 +270,7 @@ public class BridgeDB implements IBridge{
 	}
 	
 	public static void main(String[] args) {
-		IBridge b = new BridgeDB();
+		IBridge b = new BridgeDB(null);
 		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
 		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
 	}
