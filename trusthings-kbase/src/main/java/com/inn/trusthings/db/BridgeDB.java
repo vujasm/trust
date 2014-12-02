@@ -21,6 +21,7 @@ package com.inn.trusthings.db;
  */
 
 
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -94,7 +95,9 @@ public class BridgeDB implements IBridge{
 			" 	left join securityconcept sectech on sec.technology = sectech.id "+
 			" 	left join certificatedetail cert on attr.CERTIFICATEDETAIL_ID = cert.id "+
 			" 	left join authority auth on cert.AUTHORITY_ID = auth.id "+
-			" where a.altid = ? ";
+//			" where a.altid = ? ";
+			" where a.url = ? ";
+	
 
 	
 	
@@ -107,6 +110,10 @@ public class BridgeDB implements IBridge{
 	
 	@Override
 	public Model obtainTrustProfile(String serviceId)   {
+		
+		//FIXME - this is temporary fix because of the discrepancies of IDs
+		serviceId = fixServiceID(serviceId);
+		
 		ResultSet rs;
 		try {
 			rs = executeSelect(serviceId);
@@ -114,12 +121,19 @@ public class BridgeDB implements IBridge{
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
-		Model m = toJenaModel(rs);
+		Model m = toJenaModel(rs, serviceId);
 		return m;
 	}
 
 
-	private Model toJenaModel(ResultSet rs) {
+	private String fixServiceID(String serviceId) {
+//		http://www.programmableweb.com/api/twitter
+		String lastPart = serviceId.substring(serviceId.lastIndexOf('/') + 1);
+		return "http://www.programmableweb.com/api/"+lastPart;
+	}
+
+
+	private Model toJenaModel(ResultSet rs, String serviceId) {
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefixes(NSPrefixes.map);
 		
@@ -132,7 +146,7 @@ public class BridgeDB implements IBridge{
 					String agentName = rs.getString(3);
 					Integer profileId = rs.getInt(4);
 					if (profile == null){
-						profile = addAgentAndProfile(model, agentId, agentName, agentComposeUID, profileId);
+						profile = addAgentAndProfile(model, agentId, agentName, agentComposeUID, profileId, serviceId);
 					}
 					Integer attributeId = rs.getInt(5);
 					String attributeType = rs.getString(6);
@@ -209,12 +223,13 @@ public class BridgeDB implements IBridge{
 	}
 
 
-	private Resource addAgentAndProfile(Model model, Integer agentId, String agentName, URL agentComposeUID, Integer profileId) {
+	private Resource addAgentAndProfile(Model model, Integer agentId, String agentName, URL agentComposeUID, Integer profileId, String serviceId) {
 		Resource agent = createJenaResource(NSPrefixes.map.get("db"),"agent",agentId);
 		Resource profile = createJenaResource(NSPrefixes.map.get("db"),"profile",profileId);
 		model.add(agent, RDF.type, Trust.Agent);
 		model.add(agent, Trust.hasName, agentName);
 		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")), ResourceFactory.createResource(agentComposeUID.toString()));
+		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")), ResourceFactory.createResource(serviceId));
 		model.add(agent, Trust.hasProfile, profile);
 		model.add(profile, RDF.type, Trust.TrustProfile);
 		return profile;

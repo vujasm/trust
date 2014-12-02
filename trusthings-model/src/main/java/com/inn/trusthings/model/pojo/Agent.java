@@ -45,12 +45,23 @@ public class Agent extends TResource {
 	private TrustProfile hasTrustProfile;
 	private URI compose_ID;
 	
+	private URI inputUID;
+	
 	public void setCompose_ID(URI compose_ID) {
 		this.compose_ID = compose_ID;
 	}
 
 	public URI getCompose_ID() {
 		return compose_ID;
+	}
+
+	public void setInputUID(URI uid) {
+		this.inputUID = uid;
+		
+	}
+	
+	public URI getInputUID() {
+		return inputUID;
 	}
 	
 	

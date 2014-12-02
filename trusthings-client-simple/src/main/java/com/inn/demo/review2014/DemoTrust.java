@@ -56,7 +56,7 @@ public class DemoTrust {
 		System.out.println(filtered.size());
 		
 		TrustScorer scorer = new TrustScorer();
-		Map<URI, Double> result = scorer.apply(filtered, criteria);
+		Map<URI, Double> result = scorer.apply(set, criteria);
 		List<Entry<URI, Double>>  list = sort_map_by_values(result);
 		for (Entry<URI, Double> entry : list) {
 			System.out.println(entry.getKey() +"  "+entry.getValue());

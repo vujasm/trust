@@ -95,11 +95,17 @@ public class ToModelParser {
 		return tp;
 	}
 
-	private void populateCOMPOSE_ID(Agent agent, Resource r) {
-		Resource v = r.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")));
+	private void populateCOMPOSE_ID(Agent agent, Resource resource) {
+		Resource r1 = resource.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")));
 //		System.err.println(v);
-		if (v!=null)
-			agent.setCompose_ID(URI.create(v.getURI()));
+		if (r1!=null){
+			agent.setCompose_ID(URI.create(r1.getURI()));
+		}
+		Resource r2 = resource.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")));
+		
+		if (r2!=null){
+			agent.setInputUID(URI.create(r2.getURI()));
+		}
 	}
 
 	private Resource findAgentURI(OntModel oModel) throws Exception {
