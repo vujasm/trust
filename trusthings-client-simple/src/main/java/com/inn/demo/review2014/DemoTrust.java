@@ -14,7 +14,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.google.common.io.CharStreams;
-import com.inn.trusthings.integration.TrustFilterByExclusion;
 import com.inn.trusthings.integration.TrustFilterByThreshold;
 import com.inn.trusthings.integration.TrustScorer;
 
@@ -25,7 +24,7 @@ public class DemoTrust {
 	    Comparator<Map.Entry<URI, Double>> byMapValues = new Comparator<Map.Entry<URI, Double>>() {
 	        @Override
 	        public int compare(Map.Entry<URI, Double> left, Map.Entry<URI, Double> right) {
-	            return left.getValue().compareTo(right.getValue());
+	            return right.getValue().compareTo(left.getValue());
 	        }
 	    };
 	    
@@ -42,7 +41,7 @@ public class DemoTrust {
 	
 	public static void main(String[] args) {
 		
-		InputStream is = DemoTrust.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
+		InputStream is = DemoTrust.class.getResourceAsStream("/criteria/demo/trust_demo_2.json");
 		String	criteria = null;
 		try {
 			criteria = CharStreams.toString(new InputStreamReader(is));
@@ -52,13 +51,15 @@ public class DemoTrust {
 		}
 		Set<URI> set = iServeFreeTextSearch.search("maps");
 		TrustFilterByThreshold filter = new TrustFilterByThreshold();
-//		Set<URI> filtered = filter.apply(set, criteria);
+		Set<URI> filtered = filter.apply(set, criteria);
+		
+		System.out.println(filtered.size());
 		
 		TrustScorer scorer = new TrustScorer();
-		Map<URI, Double> result = scorer.apply(set, criteria);
+		Map<URI, Double> result = scorer.apply(filtered, criteria);
 		List<Entry<URI, Double>>  list = sort_map_by_values(result);
 		for (Entry<URI, Double> entry : list) {
-			System.out.println(entry.getKey() +" has trust score "+entry.getValue());
+			System.out.println(entry.getKey() +"  "+entry.getValue());
 		}
 		
 //		for (URI uri : result.keySet()) {

@@ -53,7 +53,7 @@ public class All_R1_S {
 			 Stopwatch timer = new Stopwatch().start();
 			 int size = 1;
 			//load (from json file) and set trust criteria 
-			InputStream is = demo1.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
+			InputStream is = demo1.class.getResourceAsStream("/criteria/demo/trust_demo_2.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
 			TrustManager t = new TrustModuleTest().getTrustManager();
 			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
@@ -66,6 +66,8 @@ public class All_R1_S {
 //			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook"));
 //			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter"));
 			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/google-maps"));
+//			l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c5a98129-8aa5-4b97-b53a-b0a5239b6372/microsoft-bing-maps"));
+			
 //			for (int i = 0; i < size; i++) {
 //				l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook"));
 //				l.add(new URI("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter"));
