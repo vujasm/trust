@@ -73,7 +73,14 @@
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-assistedinject</artifactId>
 			<version>3.0</version>
-		</dependency>            
+		</dependency>
+
+	<dependency>
+		<groupId>rome</groupId>
+		<artifactId>rome</artifactId>
+		<version>1.0</version>
+	</dependency>
+  
 
 		<!-- <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-rt-frontend-jaxws</artifactId> 
 			<version>2.4.0</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId> 

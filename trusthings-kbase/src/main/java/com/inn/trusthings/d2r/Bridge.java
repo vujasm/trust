@@ -158,9 +158,11 @@ public class Bridge implements IBridge {
 	
 
 	public static void main(String[] args) {
-		Bridge b = new Bridge();
-		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
-		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
+//		Bridge b = new Bridge();
+//		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
+//		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
+		Bridge bridge = new Bridge();
+		System.out.println(bridge.obtainIDFromiServe("http://www.programmableweb.com/api/yahoo-map-image"));
 	}
 }
 

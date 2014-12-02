@@ -42,17 +42,15 @@ public class ComparisonMatchOp {
 
 	 private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
 	 
-	 
-	 private static int MAX_NumUsers = 632;
-	 private static int MAX_NumCompositions = 2451;
-	
+	 //FIXME
+	 private static int MAX_NumUsers = 623;
+	 private static int MAX_NumCompositions = 2541;
+
 	public double apply(final TrustAttribute reqAttribute, final TrustAttribute attribute) throws Exception {
 
 			RDFDatatype datatype = reqAttribute.getValueDatatype();
 			
 //			System.out.println(datatype);
-			
-
 //			ProviderWebReputationBy3rdParty
 			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
 					equals((Trust.ProviderWebReputationBy3rdParty.getURI()))){
