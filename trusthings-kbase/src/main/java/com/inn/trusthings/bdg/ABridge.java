@@ -26,11 +26,11 @@ import com.hp.hpl.jena.rdf.model.Model;
 public abstract class ABridge {
 
 	
-	public abstract Model obtainTrustProfile(String serviceId) ;
-	
-	public synchronized Model obtainTrustProfileFixID(String serviceId){
-		return obtainTrustProfile(fixServiceID(serviceId));
+	public synchronized Model obtainTrustProfile(String serviceId) {
+		return getTrustProfile(fixServiceID(serviceId));
 	}
+
+	protected abstract Model getTrustProfile(String fixServiceID) ;
 	
 	private String fixServiceID(String serviceId) {
 		String lastPart = serviceId.substring(serviceId.lastIndexOf('/') + 1);

@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.inject.Guice;
@@ -64,6 +63,7 @@ public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
 		}
 		
 		return map;

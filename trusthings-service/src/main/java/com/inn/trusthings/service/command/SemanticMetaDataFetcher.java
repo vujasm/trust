@@ -111,10 +111,14 @@ public class SemanticMetaDataFetcher {
 			//FIXME this log below is obsolute. now using mysql.
 			if (e instanceof org.apache.jena.atlas.web.HttpException) {
 				log.info("internal registry using sparqlEndpoint connection refused - sparqendpoint is not running //" + e.getMessage());
-			} else {
+			} else if (e.getMessage()!=null && e.getMessage().contains("HTTP error code")) {
+				throw new RuntimeException(e);
+			}
+				else {
 				e.printStackTrace();
 			}
 		}
+		
 		Model modelUnion;
 		if (internalModel != null) {
 			modelUnion = internalModel;

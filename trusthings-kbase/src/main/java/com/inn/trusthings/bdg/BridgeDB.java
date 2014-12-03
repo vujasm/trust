@@ -56,8 +56,6 @@ public class BridgeDB extends ABridge{
 	
 	private static final Logger log = LoggerFactory.getLogger(BridgeDB.class);
 	
-	private String defaultDBHost = "d2rq.147.83.30.133.xip.io";
-	private String defaultDBPort = "";
 	private  String jdbc_url = "jdbc:mysql://localhost/composetrust?user=root&password=";
 	
 	private Connection conn = null;
@@ -100,16 +98,15 @@ public class BridgeDB extends ABridge{
 	
 	
 	public BridgeDB(String pjdbc){
-		String host  = System.getProperty("iserve.filter.trust.dbhost", this.defaultDBHost);
-		String port = System.getProperty("iserve.filter.trust.dbport", this.defaultDBPort);
 		if (pjdbc !=null)
 			jdbc_url = pjdbc;
+//		System.out.println("Marko "+jdbc_url);
 		log.info(jdbc_url);
 	}
 
 	
 	@Override
-	public synchronized Model obtainTrustProfile(String serviceId)   {
+	public synchronized Model getTrustProfile(String serviceId)   {
 		
 		ResultSet rs;
 		try {
@@ -233,7 +230,9 @@ public class BridgeDB extends ABridge{
 
 
 	private ResultSet executeSelect(String serviceId) throws Exception{
-		if (ps == null) ps = getConnection().prepareStatement(sqlString);
+		if (ps == null || ps.isClosed()){ 
+			ps = getConnection().prepareStatement(sqlString);
+		}
 		ps.setString(1, serviceId);
 		return ps.executeQuery();
 	}
@@ -260,7 +259,7 @@ public class BridgeDB extends ABridge{
 	
 	public static void main(String[] args) {
 		ABridge b = new BridgeDB(null);
-		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/google-maps");
+		Model m = b.obtainTrustProfile("http://abiell.pc.ac.upc.edu:9081/iserve/id/services/17933a84-7418-4376-8630-c6f0b4580c1e/stormpulse-maps");
 		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
 	}
 

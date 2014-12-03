@@ -68,7 +68,7 @@ public class Bridge extends ABridge {
 		log.info(sparqlEndpoint_in_CF);
 	}
 
-	public Model obtainTrustProfile(String serviceId) {
+	public Model getTrustProfile(String serviceId) {
 		
 		System.out.println(serviceId);
 		// Model mapModel =

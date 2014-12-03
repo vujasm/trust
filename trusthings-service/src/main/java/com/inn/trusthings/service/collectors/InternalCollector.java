@@ -35,7 +35,7 @@ public class InternalCollector extends AbstractCollector {
 
 	@Override
 	public Model collectInformation(String resourceIdentifier) {
-		return b.obtainTrustProfileFixID((resourceIdentifier));
+		return b.obtainTrustProfile((resourceIdentifier));
 	}
 
 	@Override
