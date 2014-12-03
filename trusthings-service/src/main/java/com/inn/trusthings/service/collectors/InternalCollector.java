@@ -22,12 +22,12 @@ package com.inn.trusthings.service.collectors;
 
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.inn.trusthings.IBridge;
-import com.inn.trusthings.db.BridgeDB;
+import com.inn.trusthings.db.ABridge;
+
 
 public class InternalCollector extends AbstractCollector {
 	
-	IBridge b = new BridgeDB(null);
+	ABridge b = new com.inn.trusthings.db.BridgeWS();
 
 	public InternalCollector(String sourceUri) {
 		super(sourceUri);
@@ -35,7 +35,7 @@ public class InternalCollector extends AbstractCollector {
 
 	@Override
 	public Model collectInformation(String resourceIdentifier) {
-		return b.obtainTrustProfile(resourceIdentifier);
+		return b.obtainTrustProfileFixID((resourceIdentifier));
 	}
 
 	@Override

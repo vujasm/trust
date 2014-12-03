@@ -69,5 +69,24 @@ public class Client {
 		String output = response.getEntity(String.class);
 		return output;
 	}
+	
+	/**
+	 * 
+	 * @param uri
+	 * @return
+	 */
+	public String getRDFReponse(String uri) {
+
+		//FIXME pass username/password as parameters
+		com.sun.jersey.api.client.Client client = com.sun.jersey.api.client.Client.create();
+//		client.addFilter(new HTTPBasicAuthFilter("username", "password"));
+		WebResource webResource = client.resource(uri);
+		ClientResponse response = webResource.header("Content-Type", "application/x-turtle;charset=UTF-8").get(ClientResponse.class);
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+		}
+		String output = response.getEntity(String.class);
+		return output;
+	}
 
 }

@@ -1,4 +1,4 @@
-package com.inn.trusthings;
+package com.inn.trusthings.db;
 
 /*
  * #%L
@@ -23,10 +23,20 @@ package com.inn.trusthings;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-public interface IBridge {
+public abstract class ABridge {
 
-	Model obtainTrustProfile(String serviceId) ;
+	
+	public abstract Model obtainTrustProfile(String serviceId) ;
+	
+	public synchronized Model obtainTrustProfileFixID(String serviceId){
+		return obtainTrustProfile(fixServiceID(serviceId));
+	}
+	
+	private String fixServiceID(String serviceId) {
+		String lastPart = serviceId.substring(serviceId.lastIndexOf('/') + 1);
+		return "http://www.programmableweb.com/api/"+lastPart;
+	}
 
-	void stop();
+	public abstract  void stop();
 	
 }

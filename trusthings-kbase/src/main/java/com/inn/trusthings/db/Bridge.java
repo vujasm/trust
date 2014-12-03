@@ -1,4 +1,4 @@
-package com.inn.trusthings.d2r;
+package com.inn.trusthings.db;
 
 /*
  * #%L
@@ -40,7 +40,6 @@ import com.hp.hpl.jena.rdf.model.impl.RDFWriterFImpl;
 import com.hp.hpl.jena.sparql.core.QueryHashCode;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.inn.trusthings.IBridge;
 
 import de.fuberlin.wiwiss.d2rq.jena.ModelD2RQ;
 import de.fuberlin.wiwiss.d2rq.map.Mapping;
@@ -51,7 +50,7 @@ import de.fuberlin.wiwiss.d2rq.map.Mapping;
  * @author marko
  *
  */
-public class Bridge implements IBridge {
+public class Bridge extends ABridge {
 
 	private static final Logger log = LoggerFactory.getLogger(Bridge.class);
 	
@@ -70,6 +69,8 @@ public class Bridge implements IBridge {
 	}
 
 	public Model obtainTrustProfile(String serviceId) {
+		
+		System.out.println(serviceId);
 		// Model mapModel =
 		// FileManager.get().loadModel("doc/example/mapping-iswc.ttl");
 		// Set up the ModelD2RQ using a mapping file

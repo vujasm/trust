@@ -35,8 +35,13 @@ public class iServeFreeTextSearch {
 		
 		Set<URI> set = Sets.newHashSet();
 		
+//		http://iserve.kmi.open.ac.uk/iserve/discovery/svc/search?q=
+//		String iserveEP = "http://abiell.pc.ac.upc.edu:9081/iserve/discovery/svc/search?q=";
+		String iserveEP = "http://iserve.kmi.open.ac.uk/iserve/discovery/svc/search?q=";
+		
 		try {
-			SyndFeed feed = FeedUtil.getSyndFeedForUrl("http://iserve.kmi.open.ac.uk/iserve/discovery/svc/search?q="+text);
+			SyndFeed feed = FeedUtil.getSyndFeedForUrl(iserveEP+text);
+			@SuppressWarnings("unchecked")
 			List<SyndEntry> list = feed.getEntries();
 			System.out.println("iserve returned "+list.size());
 			for (SyndEntry entry : list) {

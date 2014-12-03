@@ -33,7 +33,7 @@ import com.google.common.io.CharStreams;
 import com.inn.client.simple.TrustModuleTest;
 import com.inn.common.OrderType;
 import com.inn.testtemp.DescriptionsEnum;
-import com.inn.trusthings.d2r.Bridge;
+import com.inn.trusthings.db.Bridge;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;

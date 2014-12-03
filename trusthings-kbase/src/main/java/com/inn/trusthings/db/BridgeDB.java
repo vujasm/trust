@@ -40,8 +40,6 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.inn.trusthings.IBridge;
-import com.inn.trusthings.d2r.Bridge;
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.model.vocabulary.NSPrefixes;
 import com.inn.trusthings.model.vocabulary.Trust;
@@ -53,7 +51,7 @@ import com.mysql.jdbc.PreparedStatement;
  * @author marko
  *
  */
-public class BridgeDB implements IBridge{
+public class BridgeDB extends ABridge{
 	
 	
 	private static final Logger log = LoggerFactory.getLogger(BridgeDB.class);
@@ -111,10 +109,7 @@ public class BridgeDB implements IBridge{
 
 	
 	@Override
-	public Model obtainTrustProfile(String serviceId)   {
-		
-		//FIXME - this is temporary fix because of the discrepancies of IDs
-		serviceId = fixServiceID(serviceId);
+	public synchronized Model obtainTrustProfile(String serviceId)   {
 		
 		ResultSet rs;
 		try {
@@ -127,12 +122,6 @@ public class BridgeDB implements IBridge{
 		return m;
 	}
 
-
-	private String fixServiceID(String serviceId) {
-//		http://www.programmableweb.com/api/twitter
-		String lastPart = serviceId.substring(serviceId.lastIndexOf('/') + 1);
-		return "http://www.programmableweb.com/api/"+lastPart;
-	}
 
 
 	private Model toJenaModel(ResultSet rs, String serviceId) {
@@ -251,7 +240,7 @@ public class BridgeDB implements IBridge{
 	
 	
 	private Connection  getConnection() throws Exception{
-		if (conn == null || conn.isClosed()){
+		if (conn == null || conn.isClosed() == true || conn.isValid(0) == false){
 			 Class.forName("com.mysql.jdbc.Driver").newInstance();
 			 conn = DriverManager.getConnection(jdbc_url);
 		}
@@ -270,9 +259,12 @@ public class BridgeDB implements IBridge{
 	}
 	
 	public static void main(String[] args) {
-		IBridge b = new BridgeDB(null);
-		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
+		ABridge b = new BridgeDB(null);
+		Model m = b.obtainTrustProfile("http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/google-maps");
 		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
 	}
 
 }
+
+
+//http://localhost:8080/apidbt/apidbt?find=http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/google-maps
