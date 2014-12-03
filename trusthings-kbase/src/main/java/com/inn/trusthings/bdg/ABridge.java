@@ -1,4 +1,4 @@
-package com.inn.trusthings.db;
+package com.inn.trusthings.bdg;
 
 /*
  * #%L

@@ -32,7 +32,7 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.trusthings.db.Bridge;
+import com.inn.trusthings.bdg.Bridge;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;

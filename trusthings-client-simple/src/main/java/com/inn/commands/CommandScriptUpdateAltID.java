@@ -26,7 +26,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.inn.trusthings.db.Bridge;
+import com.inn.trusthings.bdg.Bridge;
 
 
 public class CommandScriptUpdateAltID {

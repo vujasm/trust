@@ -22,12 +22,12 @@ package com.inn.trusthings.service.collectors;
 
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.inn.trusthings.db.ABridge;
+import com.inn.trusthings.bdg.ABridge;
 
 
 public class InternalCollector extends AbstractCollector {
 	
-	ABridge b = new com.inn.trusthings.db.BridgeWS();
+	ABridge b = new com.inn.trusthings.bdg.BridgeWS();
 
 	public InternalCollector(String sourceUri) {
 		super(sourceUri);
