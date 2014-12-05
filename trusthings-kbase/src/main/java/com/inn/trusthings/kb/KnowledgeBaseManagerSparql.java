@@ -141,27 +141,27 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
 
     
     public boolean fetchAndStoreImportedModels(Model model, boolean isOntology) {
-        Set<URI> modelUris = null;
-        if (isOntology == false) {
-        	modelUris = obtainReferencedModelUris(model);
-        }
-        else{
-        	 OntModelSpec spec = SharedOntModelSpec.getModelSpecShared();
-             OntModel om = ModelFactory.createOntologyModel(spec, model);
-             Set<String> uriLiteral = om.listImportedOntologyURIs();
-             modelUris = Sets.newHashSet();
-             for (String uriString : uriLiteral) {
-            	 modelUris.add(URI.create(uriString));
-     		}
-        }
-        
-        for (URI modelUri : modelUris) {
-            // Only fetch those that are not there
-            if (!this.graphStoreManager.containsGraph(modelUri)) {
-            	   Model m = RDFModelsHandler.getGlobalInstance().fetch(modelUri.toASCIIString(), Syntax.RDFXML.getName(), SharedOntModelSpec.getModelSpecShared());
-                   this.graphStoreManager.putGraph(m);
-            }
-        }
+//        Set<URI> modelUris = null;
+//        if (isOntology == false) {
+//        	modelUris = obtainReferencedModelUris(model);
+//        }
+//        else{
+//        	 OntModelSpec spec = SharedOntModelSpec.getModelSpecShared();
+//             OntModel om = ModelFactory.createOntologyModel(spec, model);
+//             Set<String> uriLiteral = om.listImportedOntologyURIs();
+//             modelUris = Sets.newHashSet();
+//             for (String uriString : uriLiteral) {
+//            	 modelUris.add(URI.create(uriString));
+//     		}
+//        }
+//        
+//        for (URI modelUri : modelUris) {
+//            // Only fetch those that are not there
+//            if (!this.graphStoreManager.containsGraph(modelUri)) {
+//            	   Model m = RDFModelsHandler.getGlobalInstance().fetch(modelUri.toASCIIString(), Syntax.RDFXML.getName(), SharedOntModelSpec.getModelSpecShared());
+//                   this.graphStoreManager.putGraph(m);
+//            }
+//        }
         return true;
     }
     
@@ -195,13 +195,13 @@ public class KnowledgeBaseManagerSparql implements KnowledgeBaseManager {
      * 
      */
     @Override
-    public OntModel getModel(String modelUri, RDFModelsHandler modelHandler) {
-    	return getModel(modelUri, SharedOntModelSpec.getModelSpecShared(), null);
+    public OntModel getModel(String modelUri) {
+    	return getModel(modelUri, SharedOntModelSpec.getModelSpecShared());
     }
     
     
     @Override
-    public OntModel getModel(String modelUri, OntModelSpec spec, RDFModelsHandler modelHandler) {
+    public OntModel getModel(String modelUri, OntModelSpec spec) {
     	spec.setDocumentManager(SharedOntModelSpec.getDocumentManagerShared());
     	Model model =  RDFModelsHandler.getGlobalInstance().fetch(URI.create(modelUri),"TURTLE", spec);
     	OntModel oModel = ModelFactory.createOntologyModel(spec, model);

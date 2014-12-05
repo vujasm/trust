@@ -74,13 +74,14 @@ public class RDFModelsHandler {
 	 * @param modelSpec
 	 * @return
 	 */
-	public synchronized OntModel fetch(String filenameOrURI, String syntax, OntModelSpec modelSpec) {
+	private synchronized OntModel fetch(String filenameOrURI, String syntax, OntModelSpec modelSpec) {
 		
 		if (hasCachedModel(filenameOrURI))
 			return getFromCache(filenameOrURI);
 		
 		StreamManager streamManager = StreamManager.makeDefaultStreamManager();
 		streamManager.setLocationMapper(LocationMapping.obtainLocationMapper());
+		
 		Model m = new AdapterFileManager(streamManager).loadModel(filenameOrURI);
 		OntModel model = ModelFactory.createOntologyModel(modelSpec, m);
 		
@@ -100,6 +101,17 @@ public class RDFModelsHandler {
 			return getFromCache(uri);
 		else{
 			InputStream is = getClass().getResourceAsStream("/"+node.textValue());
+			return fetch(uri, is, modelSpec);
+		}
+		
+	}
+	
+	public synchronized OntModel fetchOntologyFromLocalLocation(String uri, String syntax, OntModelSpec modelSpec) {
+		modelSpec.setDocumentManager(SharedOntModelSpec.getDocumentManagerShared());
+		if (hasCachedModel(uri))
+			return getFromCache(uri);
+		else{
+			InputStream is = getClass().getResourceAsStream("/"+LocationMapping.obtainLocationMapper().altMapping(uri));
 			return fetch(uri, is, modelSpec);
 		}
 		

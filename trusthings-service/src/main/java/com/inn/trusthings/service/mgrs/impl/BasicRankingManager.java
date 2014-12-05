@@ -28,16 +28,21 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import uk.ac.open.kmi.iserve.commons.io.Syntax;
+
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.RDFModelsHandler;
+import com.inn.trusthings.kb.SharedOntModelSpec;
+import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.io.ToModelParser;
 import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
@@ -72,7 +77,10 @@ public class BasicRankingManager implements RankingManager {
 	@Inject
 	protected BasicRankingManager(EventBus eventBus, KnowledgeBaseManager kbManager) throws Exception {
 		this.knowledgeBaseManager = kbManager;
-		OntModel model = kbManager.getModel(ModelEnum.Trust.getURI(), RDFModelsHandler.getGlobalInstance());
+		
+//		OntModel model = kbManager.getModel(ModelEnum.Trust.getURI(), OntModelSpec.OWL_MEM_TRANS_INF);
+		OntModel model = RDFModelsHandler.getGlobalInstance().fetchOntologyFromLocalLocation(ModelEnum.Trust.getURI(), 
+				Syntax.TTL.getName(), OntModelSpec.OWL_MEM_TRANS_INF);
 		TrustOntologyUtil.init(model);
 	}
 
@@ -238,8 +246,8 @@ public class BasicRankingManager implements RankingManager {
 	private ToModelParser getOrCreateToModelParser() {
 		if (parser == null) {
 			parser = new ToModelParser();
-			String uri = ModelEnum.SecurityOntology.getURI();
-			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri, RDFModelsHandler.getGlobalInstance());
+//			String uri = ModelEnum.SecurityOntology.getURI();
+//			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri, RDFModelsHandler.getGlobalInstance());
 //			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
 //			parser.registerSpecificParser(secProfileExpressionToModel, Const.parserNameSecurityProfileAsUSDLSecExpression);
 			SecGuaranteeToModel secGuaranteeToModel = new SecGuaranteeToModel();

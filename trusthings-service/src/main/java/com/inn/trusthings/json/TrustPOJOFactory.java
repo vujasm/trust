@@ -21,21 +21,12 @@ package com.inn.trusthings.json;
  */
 
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URI;
-
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.CharStreams;
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.inn.trusthings.kb.RDFModelsHandler;
-import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
@@ -46,7 +37,6 @@ import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.types.USDLSecExpression;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
-import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.util.uri.UIDGenerator;
 
@@ -221,20 +211,5 @@ public class TrustPOJOFactory {
 			 i = importance.asDouble();
 		}
 		return i;
-	}
-
-	public static void main(String[] args) {
-		Model model = RDFModelsHandler.getGlobalInstance().fetch(ModelEnum.Trust.getURI(), "TURTLE",SharedOntModelSpec.getModelSpecShared());
-    	OntModel oModel = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model);
-		TrustOntologyUtil.init(oModel);
-		InputStream is = TrustPOJOFactory.class.getResourceAsStream("/criteria/demo/criteria_sc_c.json");
-		String s;
-		try {
-			s = CharStreams.toString(new InputStreamReader(is));
-			TrustCriteria c = new TrustPOJOFactory().ofTrustCriteria(s);
-//			System.out.println( IAFJSONParser.toJson(c));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

@@ -62,7 +62,7 @@ public class DemoTrust {
 	
 	public static void main(String[] args) {
 		
-		InputStream is = DemoTrust.class.getResourceAsStream("/criteria/demo/trust_demo_2.json");
+		InputStream is = DemoTrust.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
 		String	criteria = null;
 		try {
 			criteria = CharStreams.toString(new InputStreamReader(is));
@@ -73,9 +73,7 @@ public class DemoTrust {
 		Set<URI> set = iServeFreeTextSearch.search("maps");
 		TrustFilterByThreshold filter = new TrustFilterByThreshold();
 		Set<URI> filtered = filter.apply(set, criteria);
-		
 		System.out.println(filtered.size());
-		
 		TrustScorer scorer = new TrustScorer();
 		Map<URI, Double> result = scorer.apply(filtered, criteria);
 		List<Entry<URI, Double>>  list = sort_map_by_values(result);

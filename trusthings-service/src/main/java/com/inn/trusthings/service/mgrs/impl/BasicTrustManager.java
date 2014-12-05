@@ -34,6 +34,8 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import uk.ac.open.kmi.iserve.commons.io.Syntax;
+
 import com.google.common.base.Predicate;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.ImmutableMap;
@@ -116,7 +118,7 @@ public class BasicTrustManager implements TrustManager {
 	@Override
 	public Tree obtainTaxonomy(String graphName, String rootConcept) {
 		Tree tree = new Tree();
-		OntModel model = kbManager.getModel(graphName,  OntModelSpec.OWL_MEM_TRANS_INF, RDFModelsHandler.getGlobalInstance());//graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
+		OntModel model = kbManager.getModel(graphName,  OntModelSpec.OWL_MEM_TRANS_INF);//graphStoreManager.getGraph(URI.create(graphName), OntModelSpec.OWL_MEM_TRANS_INF);
 		OntClass ontClass = model.getOntClass(rootConcept);
 		Node root = new Node(ontClass.getLocalName());
 		tree.setRoot(root);
