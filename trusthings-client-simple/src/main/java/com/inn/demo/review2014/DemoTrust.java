@@ -60,6 +60,12 @@ public class DemoTrust {
 	    return list;
 	}
 	
+	 private static final long MEGABYTE = 1024L * 1024L;
+
+	  public static long bytesToMegabytes(long bytes) {
+	    return bytes / MEGABYTE;
+	  }
+	
 	public static void main(String[] args) {
 		
 		InputStream is = DemoTrust.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
@@ -80,7 +86,16 @@ public class DemoTrust {
 		for (Entry<URI, Double> entry : list) {
 			System.out.println(entry.getKey() +"  "+entry.getValue());
 		}
-		
+
+		 Runtime runtime = Runtime.getRuntime();
+		    // Run the garbage collector
+		 runtime.gc();
+		    // Calculate the used memory
+		 long memory = runtime.totalMemory() - runtime.freeMemory();
+		    System.out.println("Used memory is bytes: " + memory);
+		    System.out.println("Used memory is megabytes: "
+		        + bytesToMegabytes(memory));
+		    
 //		for (URI uri : result.keySet()) {
 //			System.out.println(uri +" has trust score "+result.get(uri));
 //		}

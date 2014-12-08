@@ -1,0 +1,6 @@
+{
+    "discovery": {
+        "query": ?keyword,
+        "type": "svc"
+    }
+}

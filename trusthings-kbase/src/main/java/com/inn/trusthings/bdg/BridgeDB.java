@@ -217,7 +217,8 @@ public class BridgeDB extends ABridge{
 		model.add(agent, RDF.type, Trust.Agent);
 		model.add(agent, Trust.hasName, agentName);
 		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")), ResourceFactory.createResource(agentComposeUID.toString()));
-		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")), ResourceFactory.createResource(serviceId));
+		System.out.println(inputServiceID);
+		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")), ResourceFactory.createResource(inputServiceID));
 		model.add(agent, Trust.hasProfile, profile);
 		model.add(profile, RDF.type, Trust.TrustProfile);
 		return profile;

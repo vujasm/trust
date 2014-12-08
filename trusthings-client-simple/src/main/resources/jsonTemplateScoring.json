@@ -1,0 +1,13 @@
+{
+    "discovery": {
+        "query": ?keyword,
+        "type": "svc"
+    },
+    "scoring": [
+        {
+            "scorerClass": "com.inn.trusthings.integration.TrustScorer",
+             "parameters": ?params
+        }
+    ],
+    "ranking": ?ranking
+}

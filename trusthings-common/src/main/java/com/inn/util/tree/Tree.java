@@ -21,6 +21,7 @@ package com.inn.util.tree;
  */
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.inn.common.Const;
@@ -51,6 +52,22 @@ public class Tree {
 		List<Node> nodes = node.getSubNodes();
 		for (Node subNode : nodes) {
 			append(subNode, b, pos);
+		}
+	}
+	
+	
+	public Object[] toArray() {
+		ArrayList<String> list  = new ArrayList<String>();
+		append(root, list);
+		list.add("");
+		return list.toArray();
+	}
+
+	private void append(Node node, ArrayList<String> list) {
+		list.add(node.toString());
+		List<Node> nodes = node.getSubNodes();
+		for (Node subNode : nodes) {
+			append(subNode, list);
 		}
 	}
 	

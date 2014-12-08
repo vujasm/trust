@@ -244,8 +244,8 @@ public class Applet extends JApplet{
 	}	
 	
 	protected void showAgentDescr(String descr) {
-		dialog.setContent("");
-		dialog.setContent(descr);
+		dialog.setContent("", true);
+		dialog.setContent(descr, true);
 		dialog.setVisible(true);
 	}
 

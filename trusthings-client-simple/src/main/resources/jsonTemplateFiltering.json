@@ -1,0 +1,12 @@
+{
+    "discovery": {
+        "query": ?keyword,
+        "type": "svc"
+    },
+    "filtering": [
+        {
+            "filterClass": "com.inn.trusthings.integration.TrustFilterByThreshold",
+            "parameters": ?params
+        }
+    ]
+}
