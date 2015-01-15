@@ -49,6 +49,7 @@
 		<module>/trusthings-client-simple</module>
 		<module>/trusthings-client-web</module>
 		<module>/trusthings-vertx</module>
+		<module>/trusthings-webservice</module>
 	</modules>
 
 
