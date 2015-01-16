@@ -30,12 +30,15 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import com.google.common.io.CharStreams;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import com.sun.syndication.feed.synd.SyndContentImpl;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
@@ -111,15 +114,26 @@ public class FeedUtil {
 
 		try {
 
-		    com.sun.jersey.api.client.Client client = com.sun.jersey.api.client.Client.create();
-		    WebResource webResource = client.resource(url);
-		    String body = requestBody;
-		    ClientResponse response = webResource.accept("application/atom+xml").type("application/json").post(ClientResponse.class, body);
+//		    com.sun.jersey.api.client.Client client = com.sun.jersey.api.client.Client.create();
+//		    WebResource webResource = client.resource(url);
+//		    String body = requestBody;
+//		    ClientResponse response = webResource.accept("application/atom+xml").type("application/json")
+//		    		.post(ClientResponse.class, body);
+//			if (response.getStatus() != 200) {
+//				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+//			}
+//			String output = response.getEntity(String.class);
+			
+			
+			javax.ws.rs.client.Client client = ClientBuilder.newClient();
+//			WebTarget webTarget = 
+			Response response = client.target(url).request().accept(MediaType.APPLICATION_ATOM_XML_TYPE)
+					.post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
 			if (response.getStatus() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
-			// display response
-			String output = response.getEntity(String.class);
+			String output = response.readEntity(String.class);
+			
 			InputSource source = new InputSource(new StringReader(output));
 			SyndFeedInput input = new SyndFeedInput();
 			feed = input.build(source);
@@ -153,10 +167,12 @@ public class FeedUtil {
 			String	requestBody = null;
 			try {
 				requestBody = CharStreams.toString(new InputStreamReader(is));
+				System.out.println(requestBody);
 				is.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+//			SyndFeed feed = FeedUtil.syndFeedForUrlPOST("http://iserve.kmi.open.ac.uk:80/iserve/discovery/", requestBody);
 			SyndFeed feed = FeedUtil.syndFeedForUrlPOST("http://abiell.pc.ac.upc.edu:9081/iserve/discovery/", requestBody);
 			List<SyndEntry> list = feed.getEntries();
 			System.out.println(list.size());

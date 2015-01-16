@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<artifactId>trusthings-vertx</artifactId>
+	<artifactId>trusthings-webservice</artifactId>
    		
-	<name>trusthings-vertx</name>
+	<name>trusthings-webservice</name>
 	<packaging>jar</packaging>
 
 	<parent>
@@ -41,7 +41,6 @@
     <!--Plugin versions-->
     <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
     <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
-    <maven.vertx.plugin.version>2.0.1-final</maven.vertx.plugin.version>
     <maven.surefire.plugin.version>2.14</maven.surefire.plugin.version>
     <maven.failsafe.plugin.version>2.14</maven.failsafe.plugin.version>
     <maven.surefire.report.plugin.version>2.14</maven.surefire.report.plugin.version>
@@ -56,11 +55,6 @@
 		<dependency>
 			<groupId>com.innova.compose</groupId>
 			<artifactId>trusthings-service</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.innova.compose</groupId>
-			<artifactId>trusthings-model</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		 <dependency>
@@ -86,40 +80,6 @@
             <artifactId>guice-assistedinject</artifactId>
             <version>3.0</version>
         </dependency>
-
- <!--Vertx provided dependencies-->
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-core</artifactId>
-      <version>${vertx.version}</version>
-   
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-platform</artifactId>
-      <version>${vertx.version}</version>
-
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>hazelcast</artifactId>
-      <version>2.6</version>
-
-    </dependency>
-    <!--Test dependencies-->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>testtools</artifactId>
-      <version>${vertx.testtools.version}</version>
-      <scope>test</scope>
-    </dependency>
-
 
 <dependency>
 	<groupId>mysql</groupId>
@@ -152,6 +112,12 @@
 </dependency>
 
 <dependency>
+	<groupId>org.glassfish.jersey.core</groupId>
+	<artifactId>jersey-server</artifactId>
+	<version>2.15</version>
+</dependency>
+
+<dependency>
     <groupId>d2rq-all</groupId>
     <artifactId>jena-iri</artifactId>
     <version>0.9.0-incubating</version>
@@ -161,22 +127,6 @@
 	
 	  <build>
     <plugins>
-
-      <!-- The vert.x Maven plugin -->
-      <plugin>
-        <groupId>io.vertx</groupId>
-        <artifactId>vertx-maven-plugin</artifactId>
-        <version>${maven.vertx.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>PullInDeps</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>pullInDeps</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
 
       <!-- Other plugins required by the build -->
       <plugin>
