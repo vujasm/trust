@@ -80,9 +80,9 @@ public class BridgeWS extends ABridge {
 
 	public static void main(String[] args) {
 		//
-		Model m = new BridgeWS()
-				.obtainTrustProfile("http://abiell.pc.ac.upc.edu:9081/iserve/id/services/17933a84-7418-4376-8630-c6f0b4580c1e/stormpulse-maps");
-		System.out.println(m);
+//		Model m = new BridgeWS()
+//				.obtainTrustProfile("http://abiell.pc.ac.upc.edu:9081/iserve/id/services/17933a84-7418-4376-8630-c6f0b4580c1e/stormpulse-maps");
+//		System.out.println(m);
 	}
 
 }
