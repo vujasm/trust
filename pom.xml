@@ -50,6 +50,7 @@
 		<module>/trusthings-client-web</module>
 		<module>/trusthings-vertx</module>
 		<module>/trusthings-webservice</module>
+		<module>/plugin-recommender</module>
 	</modules>
 
 
