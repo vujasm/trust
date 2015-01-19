@@ -24,20 +24,22 @@
 
   <display-name>TrustRESTService</display-name>
 
-  <!-- SERVLETS -->
+  <!-- SERVLETS http://localhost:8080/trusthings-webservice-0.4.2/trust/hello -->
 
-  <servlet>
-    <servlet-name>TrustRESTService</servlet-name>
-    <servlet-class>ccom.inn.trusthings.rest.TrustRESTService</servlet-class>
+<servlet>
+    <servlet-name>Trust REST Service</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+     <!-- Register resources and providers under com.vogella.jersey.first package. -->
+    <init-param>
+        <param-name>jersey.config.server.provider.packages</param-name>
+        <param-value>com.inn.trusthings.rest.service</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
-
-  <!-- MAPPINGS 
   <servlet-mapping>
-    <servlet-name>TrustRESTService</servlet-name>
-    <url-pattern>/apidbt</url-pattern>
+    <servlet-name>Trust REST Service</servlet-name>
+    <url-pattern>/*</url-pattern>
   </servlet-mapping>
-  -->
-
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
