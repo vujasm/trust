@@ -26,9 +26,9 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.common.io.CharStreams;
-import com.inn.trusthings.integration.TrustFilterByExclusion;
-import com.inn.trusthings.integration.TrustFilterByThreshold;
-import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.integration.fat.TrustFilterByExclusion;
+import com.inn.trusthings.integration.fat.TrustFilterByThreshold;
+import com.inn.trusthings.integration.fat.TrustScorer;
 
 
 public class TrustScorerTest {

@@ -21,17 +21,14 @@ package com.inn.client.simple;
  */
 
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 
 import com.google.common.io.CharStreams;
-import com.inn.trusthings.integration.TrustFilterByExclusion;
-import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.integration.fat.TrustFilterByExclusion;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.module.TrustModule;
 import com.inn.trusthings.service.interfaces.TrustManager;
 
 public class JustTest {

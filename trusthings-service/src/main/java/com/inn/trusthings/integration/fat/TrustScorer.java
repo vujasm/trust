@@ -1,4 +1,4 @@
-package com.inn.trusthings.integration;
+package com.inn.trusthings.integration.fat;
 
 /*
  * #%L

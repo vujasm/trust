@@ -45,7 +45,7 @@ public class TrustRESTService {
 	
 
 	@GET
-	@Path("/")
+	@Path("/hello")
 	@Produces("text/plain")
 	public String getHello() {
 		return "This is COMPOSE Trust Score/Filter API";

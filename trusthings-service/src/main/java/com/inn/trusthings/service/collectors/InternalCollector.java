@@ -27,7 +27,7 @@ import com.inn.trusthings.bdg.ABridge;
 
 public class InternalCollector extends AbstractCollector {
 	
-	ABridge b = new com.inn.trusthings.bdg.BridgeWS();
+	ABridge b = new com.inn.trusthings.bdg.BridgeDB(null);
 
 	public InternalCollector(String sourceUri) {
 		super(sourceUri);

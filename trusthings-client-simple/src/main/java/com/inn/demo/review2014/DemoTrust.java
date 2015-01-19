@@ -32,8 +32,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.Set;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.TrustFilterByThreshold;
 import com.inn.trusthings.integration.TrustScorer;
@@ -68,6 +70,7 @@ public class DemoTrust {
 	
 	public static void main(String[] args) {
 		
+		
 		InputStream is = DemoTrust.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
 		String	criteria = null;
 		try {
@@ -77,11 +80,14 @@ public class DemoTrust {
 			e.printStackTrace();
 		}
 		Set<URI> set = iServeFreeTextSearch.search("maps");
+		
+		Stopwatch timer = new Stopwatch().start();
+		
 		TrustFilterByThreshold filter = new TrustFilterByThreshold();
 		Set<URI> filtered = filter.apply(set, criteria);
 		System.out.println(filtered.size());
 		TrustScorer scorer = new TrustScorer();
-		Map<URI, Double> result = scorer.apply(filtered, criteria);
+		Map<URI, Double> result = scorer.apply(set, criteria);
 		List<Entry<URI, Double>>  list = sort_map_by_values(result);
 		for (Entry<URI, Double> entry : list) {
 			System.out.println(entry.getKey() +"  "+entry.getValue());
@@ -95,6 +101,9 @@ public class DemoTrust {
 		    System.out.println("Used memory is bytes: " + memory);
 		    System.out.println("Used memory is megabytes: "
 		        + bytesToMegabytes(memory));
+		    
+			timer.stop();
+		    System.out.println("Time passed :"+timer.elapsed(TimeUnit.MILLISECONDS)+" "+timer.elapsed(TimeUnit.MINUTES));
 		    
 //		for (URI uri : result.keySet()) {
 //			System.out.println(uri +" has trust score "+result.get(uri));

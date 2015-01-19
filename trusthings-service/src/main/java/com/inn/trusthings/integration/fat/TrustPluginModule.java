@@ -1,4 +1,4 @@
-package com.inn.trusthings.integration;
+package com.inn.trusthings.integration.fat;
 /*
  * #%L
  * trusthings-service
@@ -21,9 +21,10 @@ package com.inn.trusthings.integration;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
-import com.inn.trusthings.integration.TrustFilterByExclusion;
-import com.inn.trusthings.integration.TrustFilterByThreshold;
-import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.integration.fat.TrustFilterByExclusion;
+import com.inn.trusthings.integration.fat.TrustFilterByThreshold;
+import com.inn.trusthings.integration.fat.TrustScorer;
+
 import uk.ac.open.kmi.iserve.discovery.api.ranking.Filter;
 import uk.ac.open.kmi.iserve.discovery.api.ranking.RecommendationPluginModule;
 import uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer;

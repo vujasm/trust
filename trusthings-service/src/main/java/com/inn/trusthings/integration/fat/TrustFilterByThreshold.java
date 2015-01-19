@@ -1,4 +1,4 @@
-package com.inn.trusthings.integration;
+package com.inn.trusthings.integration.fat;
 
 /*
  * #%L
@@ -34,70 +34,49 @@ import com.inn.trusthings.service.interfaces.TrustManager;
 
 
 /**
- * TrustFilterByExclusion implements iServe Recommender Filter interface 
+ * TrustFilterByThreshold implements implements iServe Recommender Filter interface 
  * 
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
+public class TrustFilterByThreshold implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
 	
 	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
-	public TrustFilterByExclusion() {
+	
+	
+	public TrustFilterByThreshold() {
 		trustManager = Factory.createInstance(TrustManager.class);
 	}
 	
-	public TrustFilterByExclusion(TrustManager trustManager) {
+	public TrustFilterByThreshold(TrustManager trustManager) {
 		this.trustManager = trustManager;
 	}
 
+	
+	/**
+	 * returns true if resource identified with serviceId URI is evaluated as trusted in respect to the trust threshold value
+	 */
 	@Override
 	public Set<URI> apply(Set<URI> arg0) {
 		List<URI> resources = Lists.newArrayList(arg0);
-		TrustCriteria criteria = trustManager.getGlobalTrustCriteria();
-		List<URI> filtered ;
 		try {
-			filtered = trustManager.filterByCriteriaNotMeet(resources, criteria);
+			return Sets.newHashSet(trustManager.filterTrustedByThreshold(resources));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
-		return Sets.newHashSet(filtered);
 	}
 	
-
 	@Override
 	public Set<URI> apply(Set<URI> arg0, String arg1) {
 		List<URI> resources = Lists.newArrayList(arg0);
-		TrustCriteria criteria = new TrustPOJOFactory().ofTrustCriteria(arg1);
-		List<URI> filtered ;
 		try {
-			filtered = trustManager.filterByCriteriaNotMeet(resources, criteria);
+			TrustCriteria criteria = new TrustPOJOFactory().ofTrustCriteria(arg1);
+			return Sets.newHashSet(trustManager.filterTrustedByThreshold(resources, criteria));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
-		return Sets.newHashSet(filtered);
 	}
-	
-	
-	
-//	public boolean apply(URI serviceId) {
-//		boolean inList = false;
-//		try {
-//			List<URI> resources = Lists.newArrayList();
-//			resources.add(serviceId);
-//			TrustCriteria criteria = trustManager.getGlobalTrustCriteria();
-//			List<URI> filtered = trustManager.filterByCriteriaNotMeet(resources, criteria);
-//			for (URI uri : filtered) {
-//				if (uri.compareTo(serviceId)==0){
-//					inList = true;
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//		return inList;
-//	}
 
 }
