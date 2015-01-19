@@ -1,0 +1,46 @@
+{
+        "attributes": [
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+                "value": "0",
+                "importance": 0.55
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
+                "value": "0",
+                "importance": 0.51
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+                "importance": 1,
+                "value": {
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Confidentiality"
+                        }
+                    ],
+                    "securitymechanism": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Cryptography"
+                        }
+                    ],
+                    "securitytechnology": [
+                        {
+                            "type": "http://www.compose-project.eu/ns/web-of-things/security#TSL"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+                "importance": 1,
+                "value": {
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Authentication"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
