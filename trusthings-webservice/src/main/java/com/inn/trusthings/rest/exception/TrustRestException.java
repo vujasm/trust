@@ -4,7 +4,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class RestException extends WebApplicationException {
+public class TrustRestException extends WebApplicationException {
 	 
 	 
 	  /**
@@ -16,12 +16,12 @@ public class RestException extends WebApplicationException {
 	  * Create a HTTP 400 (BAD_REQUEST) exception.
 	  * @param message the String that is the entity of the 400 response.
 	  */
-	  public RestException(String message) {
+	  public TrustRestException(String message) {
 	    super(Response.status(Response.Status.BAD_REQUEST).
 	    entity(message).type("text/plain").build());
 	  }
 	  
-	  public RestException(Throwable t) {
+	  public TrustRestException(Throwable t) {
 		    super(Response.status(Response.Status.BAD_REQUEST).
 		    entity(t.getMessage()).type("text/plain").build());
 		  }

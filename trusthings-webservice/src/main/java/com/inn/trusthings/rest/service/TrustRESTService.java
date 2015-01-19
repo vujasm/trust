@@ -35,7 +35,7 @@ import com.inn.trusthings.json.ProduceJSON;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
-import com.inn.trusthings.rest.exception.RestException;
+import com.inn.trusthings.rest.exception.TrustRestException;
 import com.inn.trusthings.rest.util.RequestJSONUtil;
 import com.inn.trusthings.service.interfaces.TrustManager;
 import com.inn.util.tuple.Tuple2;
@@ -73,7 +73,7 @@ public class TrustRESTService {
 			return new ProduceJSON().ofRankingResult(result);
 		} catch (Exception e) {
 			 e.printStackTrace();
-			 throw new RestException(new ProduceJSON().ofError(e));
+			 throw new TrustRestException(new ProduceJSON().ofError(e));
 		}
 	}
 
@@ -92,7 +92,7 @@ public class TrustRESTService {
 			return new ProduceJSON().ofFilteringResult(filtered);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RestException(new ProduceJSON().ofError(e));
+			throw new TrustRestException(new ProduceJSON().ofError(e));
 		}
 	}
 	
@@ -111,7 +111,7 @@ public class TrustRESTService {
 			return new ProduceJSON().ofFilteringResult(filtered);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RestException(new ProduceJSON().ofError(e));
+			throw new TrustRestException(new ProduceJSON().ofError(e));
 		}
 	}
 }
