@@ -30,21 +30,34 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.inn.util.tuple.Tuple2;
 
-public class MakeJson {
+public class ProduceJSON {
 
 	public String ofRankingResult(List<Tuple2<URI, Double>> list) {
-			
 		ObjectMapper jacksonMapper = new ObjectMapper();
 		jacksonMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 		ObjectNode rootNode = jacksonMapper.createObjectNode();
 		rootNode.put("success", "true");
-		ArrayNode arrayNode = rootNode.putArray("indexes");
+		ArrayNode arrayNode = rootNode.putArray("result");
 		int i = 1;
 		for (Tuple2<URI, Double> t : list) {
 			ObjectNode node = jacksonMapper.createObjectNode();
-			node.put("serviceUri", t.getT1().toASCIIString());
+			node.put("resourceURI", t.getT1().toASCIIString());
 			node.put("index", t.getT2());
 			node.put("rank", i++);
+			arrayNode.add(node);
+		}
+		return rootNode.toString();
+	}
+	
+	public String ofFilteringResult(List<URI> list) {
+		ObjectMapper jacksonMapper = new ObjectMapper();
+		jacksonMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		ObjectNode rootNode = jacksonMapper.createObjectNode();
+		rootNode.put("success", "true");
+		ArrayNode arrayNode = rootNode.putArray("result");
+		for (URI t : list) {
+			ObjectNode node = jacksonMapper.createObjectNode();
+			node.put("resourceURI", t.toASCIIString());
 			arrayNode.add(node);
 		}
 		return rootNode.toString();

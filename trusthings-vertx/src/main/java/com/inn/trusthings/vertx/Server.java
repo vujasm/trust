@@ -43,7 +43,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.inn.common.OrderType;
-import com.inn.trusthings.json.MakeJson;
+import com.inn.trusthings.json.ProduceJSON;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
@@ -73,10 +73,10 @@ public class Server extends Verticle {
 					trustManager.setGlobalTrustCriteria( new TrustPOJOFactory().ofTrustCriteria(obtainCriteriaDemo()));
 					List<URI> list = castToListUris(ids); 
 					List<Tuple2<URI, Double>> result = trustManager.obtainTrustIndexes(list);
-					String stringJson = new MakeJson().ofRankingResult(result);
+					String stringJson = new ProduceJSON().ofRankingResult(result);
 					respondJsonMsgToClient(stringJson, req.response());
 				} catch (Exception e) {
-					String stringJson = new MakeJson().ofError(e);
+					String stringJson = new ProduceJSON().ofError(e);
 					respondJsonErrorMsgToClient(stringJson, req.response());
 				}
 			}
@@ -92,10 +92,10 @@ public class Server extends Verticle {
 					trustManager.setGlobalTrustCriteria( new TrustPOJOFactory().ofTrustCriteria(obtainCriteriaDemo()));
 					List<Tuple2<URI, Double>> result = trustManager.rankResources(list, trustManager.getGlobalTrustCriteria(), 
 							EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
-					String stringJson = new MakeJson().ofRankingResult(result);
+					String stringJson = new ProduceJSON().ofRankingResult(result);
 					respondJsonMsgToClient(stringJson, req.response());
 				} catch (Exception e) {
-					String stringJson = new MakeJson().ofError(e);
+					String stringJson = new ProduceJSON().ofError(e);
 					respondJsonErrorMsgToClient(stringJson, req.response());
 				}
 			}
@@ -150,11 +150,11 @@ public class Server extends Verticle {
 								result = trustManager.rankResources(list, criteria, EnumScoreStrategy.TOPSIS, false, OrderType.DESC);
 							}
 							
-							String stringJson = new MakeJson().ofRankingResult(result);
+							String stringJson = new ProduceJSON().ofRankingResult(result);
 							respondJsonMsgToClient(stringJson, req.response());
 						} catch (Exception e) {
 							e.printStackTrace();
-							String stringJson = new MakeJson().ofError(e);
+							String stringJson = new ProduceJSON().ofError(e);
 							respondJsonErrorMsgToClient(stringJson, req.response());
 						}
 
@@ -168,7 +168,7 @@ public class Server extends Verticle {
 		matcher.noMatch(new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(HttpServerRequest req) {
-				String stringJson = new MakeJson().ofErrorSimpleMessage("bad request. the url you requested not found.");
+				String stringJson = new ProduceJSON().ofErrorSimpleMessage("bad request. the url you requested not found.");
 				req.response().headers().add("Content-Type", "text/json; charset=UTF-8");
 				req.response().setStatusCode(404);
 				req.response().end(new JsonObject(stringJson).encodePrettily());

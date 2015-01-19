@@ -1,0 +1,57 @@
+{
+    "strategy": "standard",
+    "resources": [
+        {
+            "resourceURI": "http://abiell.pc.ac.upc.edu:9081/iserve/id/services/d905ea82-ae6d-4eb1-9719-0b801e5c758b/google-maps"
+        },
+        {
+            "resourceURI": "http://abiell.pc.ac.upc.edu:9081/iserve/id/services/bfef4357-0da5-47d7-9beb-54dd95919179/microsoft-bing-maps"
+        }
+    ],
+    "parameters": {
+        "attributes": [
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+                "value": "0",
+                "importance": 0.55
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
+                "value": "0",
+                "importance": 0.51
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+                "importance": 1,
+                "value": {
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Confidentiality"
+                        }
+                    ],
+                    "securitymechanism": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Cryptography"
+                        }
+                    ],
+                    "securitytechnology": [
+                        {
+                            "type": "http://www.compose-project.eu/ns/web-of-things/security#TSL"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+                "importance": 1,
+                "value": {
+                    "securitygoal": [
+                        {
+                            "type": "http://www.linked-usdl.org/ns/usdl-sec#Authentication"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
