@@ -80,7 +80,7 @@ public class TrustRESTService {
 	@POST
 	@Path("/filter/threshold")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String filteringTreshold(final String request) {
+	public String filteringThreshold(final String request) {
 		try {
 			List<URI> filtered ;
 			final TrustManager trustManager = Factory.createInstance(TrustManager.class);

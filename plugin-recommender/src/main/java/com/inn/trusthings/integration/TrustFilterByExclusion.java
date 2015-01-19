@@ -21,20 +21,17 @@ package com.inn.trusthings.integration;
  */
 
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.google.common.io.CharStreams;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.client.ClientProperties;
+
+import com.inn.trusthings.integration.util.ConvertTo;
 import com.inn.trusthings.integration.util.RequestBody;
 
 
@@ -44,7 +41,7 @@ import com.inn.trusthings.integration.util.RequestBody;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
+public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter, TrustClientHTTPLite {
 	
  
 	public TrustFilterByExclusion() {
@@ -58,18 +55,21 @@ public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.a
 
 	@Override
 	public Set<URI> apply(Set<URI> arg0, String arg1) {
-		
-		List<URI> filtered ;
 		try {
 			String requestBody = new RequestBody().createNew(arg0, arg1);
-			System.out.println(requestBody);
-			filtered = null;
-			
+			javax.ws.rs.client.Client client = ClientBuilder.newClient();
+			client.property(ClientProperties.CONNECT_TIMEOUT, 0);
+			Response response = client.target("http://"+restServiceHostName+":"+restServicePort+"/trust/filter/exclusion")
+					 .request().accept(MediaType.APPLICATION_JSON)
+					 .post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
+			if (response.getStatus() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+			}
+			String output = response.readEntity(String.class);
+			return new ConvertTo().toSet(output);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
-		return Sets.newHashSet(filtered);
 	}
-	
 }

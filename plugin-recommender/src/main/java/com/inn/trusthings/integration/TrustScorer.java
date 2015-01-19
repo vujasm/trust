@@ -22,12 +22,17 @@ package com.inn.trusthings.integration;
 
 
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.client.ClientProperties;
+
+import com.inn.trusthings.integration.util.ConvertTo;
 import com.inn.trusthings.integration.util.RequestBody;
 /**
  * TrustScorer implements  uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer interface 
@@ -35,15 +40,12 @@ import com.inn.trusthings.integration.util.RequestBody;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer{
+public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer, TrustClientHTTPLite{
 	
 
-	
 	public TrustScorer() {
 	}
-	
-	
-	
+		
 	@Override
 	public Map<URI, Double> apply(Set<URI> arg0) {
 		return apply(arg0, null);
@@ -52,23 +54,22 @@ public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.
 	
 	@Override
 	public Map<URI, Double> apply(Set<URI> arg0, String arg1) {
-		List<URI> resources = Lists.newArrayList(arg0);
-		Map<URI, Double> map = Maps.newHashMap();
+		
 		try {
-			String requestBody = new RequestBody().createNew(arg0, null);
-			System.out.println(requestBody);
-			String jsonResponse = null;
-//			parse it
-//			for (Tuple2<URI, Double> t : list) {
-//				map.put(t.getT1(), t.getT2());
-//			}
+			String requestBody = new RequestBody().createNew(arg0, arg1);
+			javax.ws.rs.client.Client client = ClientBuilder.newClient();
+			client.property(ClientProperties.CONNECT_TIMEOUT, 0);
+			Response response = client.target("http://"+restServiceHostName+":"+restServicePort+"/trust/score")
+					 .request().accept(MediaType.APPLICATION_JSON)
+					 .post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
+			if (response.getStatus() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+			}
+			String output = response.readEntity(String.class);
+			return new ConvertTo().toMap(output);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
-		
-		return map;
 	}
-
-
 }
