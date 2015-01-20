@@ -41,7 +41,7 @@ import com.inn.trusthings.integration.util.RequestBody;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter, TrustClientHTTPLite {
+public class TrustFilterByExclusion extends TrustClientHTTPLite implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
 	
  
 	public TrustFilterByExclusion() {
@@ -59,7 +59,8 @@ public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.a
 			String requestBody = new RequestBody().createNew(arg0, arg1);
 			javax.ws.rs.client.Client client = ClientBuilder.newClient();
 			client.property(ClientProperties.CONNECT_TIMEOUT, 0);
-			Response response = client.target("http://"+restServiceHostName+":"+restServicePort+"/trust/filter/exclusion")
+			String url = obtainEndpointBase()+"/trust/filter/exclusion";
+			Response response = client.target(url)
 					 .request().accept(MediaType.APPLICATION_JSON)
 					 .post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
 			if (response.getStatus() != 200) {

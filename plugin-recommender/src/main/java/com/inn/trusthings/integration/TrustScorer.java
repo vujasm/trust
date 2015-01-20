@@ -40,7 +40,7 @@ import com.inn.trusthings.integration.util.RequestBody;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer, TrustClientHTTPLite{
+public class TrustScorer extends TrustClientHTTPLite implements uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer{
 	
 
 	public TrustScorer() {
@@ -59,7 +59,8 @@ public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.
 			String requestBody = new RequestBody().createNew(arg0, arg1);
 			javax.ws.rs.client.Client client = ClientBuilder.newClient();
 			client.property(ClientProperties.CONNECT_TIMEOUT, 0);
-			Response response = client.target("http://"+restServiceHostName+":"+restServicePort+"/trust/score")
+			String url = obtainEndpointBase()+"/trust/score";
+			Response response = client.target(url)
 					 .request().accept(MediaType.APPLICATION_JSON)
 					 .post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
 			if (response.getStatus() != 200) {

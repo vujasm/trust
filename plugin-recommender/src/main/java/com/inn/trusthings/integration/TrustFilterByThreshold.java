@@ -42,7 +42,7 @@ import com.inn.trusthings.integration.util.RequestBody;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  *
  */
-public class TrustFilterByThreshold implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter, TrustClientHTTPLite {
+public class TrustFilterByThreshold extends TrustClientHTTPLite implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
 	
 	
 	public TrustFilterByThreshold() {
@@ -64,7 +64,8 @@ public class TrustFilterByThreshold implements uk.ac.open.kmi.iserve.discovery.a
 			String requestBody = new RequestBody().createNew(arg0, arg1);
 			javax.ws.rs.client.Client client = ClientBuilder.newClient();
 			client.property(ClientProperties.CONNECT_TIMEOUT, 0);
-			Response response = client.target("http://"+restServiceHostName+":"+restServicePort+"/trust/filter/threshold")
+			String url = obtainEndpointBase()+"/trust/filter/threshold";
+			Response response = client.target(url)
 					 .request().accept(MediaType.APPLICATION_JSON)
 					 .post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
 			if (response.getStatus() != 200) {
