@@ -4,7 +4,7 @@
   <parent>
         <artifactId>trusthings</artifactId>
         <groupId>com.innova.compose</groupId>
-        <version>0.4.2</version>
+        <version>1.0.1.v20012015</version>
        <relativePath>..</relativePath>
     </parent>
 
