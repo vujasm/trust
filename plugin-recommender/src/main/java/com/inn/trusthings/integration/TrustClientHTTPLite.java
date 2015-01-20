@@ -27,7 +27,8 @@ public abstract class TrustClientHTTPLite {
 	public static int restServicePort =9998;
 	
 	protected String obtainEndpointBase(){
-		return "http://"+restServiceHostName+":"+restServicePort+"/trusthings-webservice-1.0.1.v20012015";
+//		return "http://"+restServiceHostName+":"+restServicePort+"/trusthings-webservice-1.0.1.v20012015";
+		return "http://"+restServiceHostName+":"+restServicePort;
 	}
 
 }
