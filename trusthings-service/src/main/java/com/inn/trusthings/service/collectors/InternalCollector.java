@@ -23,14 +23,32 @@ package com.inn.trusthings.service.collectors;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.trusthings.bdg.ABridge;
+import com.inn.trusthings.bdg.BridgeDB;
+import com.mv.util.vcap.VCAPParser;
 
 
 public class InternalCollector extends AbstractCollector {
 	
-	ABridge b = new com.inn.trusthings.bdg.BridgeDB(null);
+	private ABridge b ;
 
 	public InternalCollector(String sourceUri) {
 		super(sourceUri);
+		initBridge();
+	}
+
+	private void initBridge() {
+		String databaseUrl = null;
+		try {
+			if (VCAPParser.parseVcap_Services()!=null){
+				 String username = VCAPParser.obtainDBServiceUsername(VCAPParser.parseVcap_Services());
+				 String password = VCAPParser.obtainDBServicePassword(VCAPParser.parseVcap_Services());
+				 databaseUrl = VCAPParser.obtainDBServiceJDBCURI(VCAPParser.parseVcap_Services())
+						  + "?user="+username+"&password="+password;
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		b = new BridgeDB(databaseUrl);
 	}
 
 	@Override

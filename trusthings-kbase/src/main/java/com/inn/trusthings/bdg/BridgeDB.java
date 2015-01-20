@@ -100,8 +100,7 @@ public class BridgeDB extends ABridge{
 	public BridgeDB(String pjdbc){
 		if (pjdbc !=null)
 			jdbc_url = pjdbc;
-//		System.out.println("Marko "+jdbc_url);
-		log.info(jdbc_url);
+		log.info("trust jdbc url "+jdbc_url);
 	}
 
 	
