@@ -29,6 +29,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import jersey.repackaged.com.google.common.collect.Maps;
+import jersey.repackaged.com.google.common.collect.Sets;
+
 import org.glassfish.jersey.client.ClientProperties;
 
 import com.inn.trusthings.integration.util.ConvertTo;
@@ -55,6 +58,8 @@ public class TrustFilterByExclusion extends TrustClientHTTPLite implements uk.ac
 
 	@Override
 	public Set<URI> apply(Set<URI> arg0, String arg1) {
+		if (arg0 == null || arg0.isEmpty())
+			return Sets.newHashSet();
 		try {
 			String requestBody = new RequestBody().createNew(arg0, arg1);
 			javax.ws.rs.client.Client client = ClientBuilder.newClient();

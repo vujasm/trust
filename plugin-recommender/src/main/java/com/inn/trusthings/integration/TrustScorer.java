@@ -30,6 +30,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import jersey.repackaged.com.google.common.collect.Maps;
+
 import org.glassfish.jersey.client.ClientProperties;
 
 import com.inn.trusthings.integration.util.ConvertTo;
@@ -54,6 +56,8 @@ public class TrustScorer extends TrustClientHTTPLite implements uk.ac.open.kmi.i
 	
 	@Override
 	public Map<URI, Double> apply(Set<URI> arg0, String arg1) {
+		if (arg0 == null || arg0.isEmpty())
+			return Maps.newHashMap();
 		
 		try {
 			String requestBody = new RequestBody().createNew(arg0, arg1);

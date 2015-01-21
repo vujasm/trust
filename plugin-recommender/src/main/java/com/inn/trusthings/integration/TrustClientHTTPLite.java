@@ -23,12 +23,20 @@ package com.inn.trusthings.integration;
 
 public abstract class TrustClientHTTPLite {
 	
-	public static String restServiceHostName ="localhost";
-	public static int restServicePort =9998;
+//	private static String restServiceHostName ="localhost";
+//	private static String restServicePort ="9998";
+	
+	private static String restServiceHostName ="trusthings.147.83.30.133.xip.io";
+	private static String restServicePort ="80";
 	
 	protected String obtainEndpointBase(){
+		
+		String host  = System.getProperty("iserve.filter.trust.host", restServiceHostName);
+		String port = System.getProperty("iserve.filter.trust.port", restServicePort);
+		return "http://"+host+":"+port;
+		
 //		return "http://"+restServiceHostName+":"+restServicePort+"/trusthings-webservice-1.0.1.v20012015";
-		return "http://"+restServiceHostName+":"+restServicePort;
+
 	}
 
 }

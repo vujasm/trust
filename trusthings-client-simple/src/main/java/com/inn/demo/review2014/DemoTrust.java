@@ -79,7 +79,7 @@ public class DemoTrust {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Set<URI> set = iServeFreeTextSearch.search("maps");
+		Set<URI> set = iServeFreeTextSearch.search("weather");
 		
 		Stopwatch timer = new Stopwatch().start();
 		
@@ -87,7 +87,7 @@ public class DemoTrust {
 		Set<URI> filtered = filter.apply(set, criteria);
 		System.out.println(filtered.size());
 		TrustScorer scorer = new TrustScorer();
-		Map<URI, Double> result = scorer.apply(set, criteria);
+		Map<URI, Double> result = scorer.apply(filtered, criteria);
 		List<Entry<URI, Double>>  list = sort_map_by_values(result);
 		for (Entry<URI, Double> entry : list) {
 			System.out.println(entry.getKey() +"  "+entry.getValue());
