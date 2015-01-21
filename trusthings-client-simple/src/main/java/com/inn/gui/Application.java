@@ -35,6 +35,7 @@ import java.awt.event.MouseEvent;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -64,6 +65,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.inn.demo.review2014.FeedUtil;
 import com.inn.gui.action.Controller;
@@ -242,8 +244,11 @@ public class Application {
 						return;
 					}
 					showProgressBar();
+					Stopwatch timer = new Stopwatch().start();
 					String ep ="http://"+Application.this.iServeHost+":"+Application.this.iServePort+"/iserve/discovery/";
 					SyndFeed feeds = FeedUtil.syndFeedForUrlPOST(ep, requestBody);
+					timer.stop();
+					System.out.println("Time passed :"+timer.elapsed(TimeUnit.MILLISECONDS)+" "+timer.elapsed(TimeUnit.MINUTES));
 				    hideProgressBar();
 					showViewText(FeedUtil.toHTMLString(feeds),"Result", false);
 				} catch (Exception ex) {
