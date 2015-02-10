@@ -77,7 +77,6 @@ public class ReputationCollector extends AbstractCollector{
 		}
 	}
 	
-	
 	@Override
 	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
 		
