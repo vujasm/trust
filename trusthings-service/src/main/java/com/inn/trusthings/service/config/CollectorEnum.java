@@ -31,7 +31,8 @@ import com.inn.trusthings.service.collectors.ReputationCollector;
 public enum CollectorEnum {
 	
 
-	Reputation( new ReputationCollector("http://localhost//")),
+	Reputation( new ReputationCollector("http://132.231.11.217:8080/popularioty-api")),
+	
 	Activity( new ActivityCollector("http://localhost//")),
 	Feedback( new FeedbackCollector("http://localhost//")),
 	QoS( new QoSCollector("http://localhost//")),

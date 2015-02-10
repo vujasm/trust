@@ -21,7 +21,13 @@ package com.inn.trusthings.service.collectors;
  */
 
 
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.collect.Multimap;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.inn.util.tuple.Tuple2;
 
 
 /**
@@ -36,14 +42,16 @@ public interface Collector {
 	 * FIXME maybe collectors should be asynchr services, which run periodically.
 	 * However, in this case there should be runtime monitors, because after collector returns its value,
 	 * the value may influence the trust assessment.
-	 * @param resourceIdentifier resource uri
+	 * @param list resource uri
 	 * @return Model
 	 * 
 	 */
-	Model collectInformation(String resourceIdentifier);
+	public Model collectInformation(String resourceIdentifier);
 	
 	abstract String getName();
 	
 	void shutDown();
+
+	void collectInformation(List<URI> resources, Map<URI, Model> map);
 
 }

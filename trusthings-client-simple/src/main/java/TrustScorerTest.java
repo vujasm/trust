@@ -21,10 +21,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.fat.TrustFilterByExclusion;
 import com.inn.trusthings.integration.fat.TrustFilterByThreshold;
@@ -37,18 +40,26 @@ public class TrustScorerTest {
 		
 		try {
 			//load (from json file) and set trust criteria 
-			InputStream is = TrustScorerTest.class.getResourceAsStream("/criteria/demo/trust_demo_2.json");
+			InputStream is = TrustScorerTest.class.getResourceAsStream("/integration/trustcriteria1.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
 			is.close();
 			
-			URI service_a = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook");			
-			URI service_b = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
-			URI service_c = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/google-maps");
+//			URI service_a = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook");			
+//			URI service_b = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/610b64a2-6cc0-4b5c-9d6e-a619bdf0c18f/twitter");
+//			URI service_c = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/service_instance1");
 			
-			Set<URI> services = new HashSet<URI>();
+			List<URI> list = Lists.newArrayList();
+			try {
+				list.add(new URI("http:/localhost/service_instance/aaa/service_instance1"));
+//				list.add(new URI("http:/localhost/service_instance/aaa/service_instance2"));
+//				list.add(new URI("http:/localhost/service_object/aaa/service_object1"));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+			
+			Set<URI> services = new HashSet<URI>(list);
 //			services.add(service_a);
 //			services.add(service_b);
-			services.add(service_c);
 			/*
 			 * SCORING
 			 */

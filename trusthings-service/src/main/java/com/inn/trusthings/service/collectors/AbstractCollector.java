@@ -1,5 +1,13 @@
 package com.inn.trusthings.service.collectors;
 
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.hp.hpl.jena.rdf.model.Model;
+
 /*
  * #%L
  * trusthings-service
@@ -36,5 +44,14 @@ public abstract class AbstractCollector implements Collector{
 	
 	public AbstractCollector(String sourceUri) {
 		this.sourceUri = sourceUri;
+	}
+	
+
+	@Override
+	/**
+	 * default implementation
+	 */
+	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
+		//
 	}
 }

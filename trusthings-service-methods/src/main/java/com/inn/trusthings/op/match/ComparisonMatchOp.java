@@ -52,16 +52,20 @@ public class ComparisonMatchOp {
 			
 //			System.out.println(datatype);
 //			ProviderWebReputationBy3rdParty
-			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
-					equals((Trust.ProviderWebReputationBy3rdParty.getURI()))){
+			String s = attribute.getTypesAll().get(0).getUri().toASCIIString();
+			if (s.equals(Trust.ProviderWebReputationBy3rdParty.getURI())){
 				if (attribute.getValue()!=null){
 					attribute.setValue(Double.valueOf((String) attribute.getValue()) / 100);	
 				}
 			}
-			
-			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
-					equals((Trust.NumberOfDevelopers.getURI()))){
-				
+			else if (s.equals(Trust.Reputation.getURI())
+					|| s.equals(Trust.ContractCompliance.getURI())
+					|| s.equals(Trust.UserRating.getURI())){
+				if (attribute.getValue()!=null){
+					attribute.setValue(Double.valueOf((String) attribute.getValue()) / 10);	
+				}
+			}
+			else if (s.equals(Trust.NumberOfDevelopers.getURI())){
 				if (attribute.getValue()!=null){
 //					System.err.println(reqAttribute.getValue());
 					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
@@ -74,10 +78,7 @@ public class ComparisonMatchOp {
 					}
 				}
 			}
-			
-			if (attribute.getTypesAll().get(0).getUri().toASCIIString().
-					equals((Trust.NumberOfCompositions.getURI()))){
-				
+			else if (s.equals(Trust.NumberOfCompositions.getURI())){
 				if (attribute.getValue()!=null){
 					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
 						attribute.setValue(Double.valueOf((String) attribute.getValue()) / MAX_NumCompositions);
@@ -90,8 +91,6 @@ public class ComparisonMatchOp {
 				}
 			}
 
-			
-			
 			if (isNumericDataType(datatype)) {
 				  return compareNumeric(attribute, reqAttribute);
 			} else if (isMetricScale(datatype)) {

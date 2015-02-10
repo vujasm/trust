@@ -47,7 +47,6 @@ public class UIDGenerator {
 		UUID uid = getUUID(clazz); 
 		
 		String str = baseURI 
-				//+ Const.underScore
 				+
 				clazz.getSimpleName()+Const.underScore+uid.toString();
 		try {
@@ -59,11 +58,6 @@ public class UIDGenerator {
 	}
 
 	private static UUID getUUID(Class<?> clazz) {
-//		Long id = 0L;
-//		if (map.containsKey(clazz)) {
-//			id = map.get(clazz) + 1;
-//		}
-//		map.put(clazz, id);
 		return UUID.randomUUID();
 	}
 

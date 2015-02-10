@@ -67,16 +67,7 @@ public class CreateUpdateTrustProfile {
 	 * @param collectors a list of trust information collectors
 	 * @return model having trust profile data
 	 */
-	public OntModel apply(OntModel model, URI uri, List<Collector> collectors){
-		//TODO remove this
-//		
-//		StmtIterator iterator = model.listStatements();
-//		while (iterator.hasNext()) {
-//			Statement statement = (Statement) iterator.next();
-//			System.out.println(statement);
-//			
-//		}
-//		
+	public OntModel apply(OntModel model, URI uri, List<Model> collectedDataList){
 		
 		if (model.contains(null, Trust.hasProfile)) {
 			log.info("Profile for " + uri.toASCIIString() + " exists and has been found");
@@ -88,9 +79,7 @@ public class CreateUpdateTrustProfile {
 			OntModel m = new ToGraphParser().parse(service);
 			model = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model.union(m));
 		}
-		//TODO filter collector to obtain only data needed by a user
-		for (Collector collector : collectors) {
-			Model collectedData = collector.collectInformation(uri.toASCIIString());
+		for (Model collectedData : collectedDataList) {
 			if (collectedData != null) {
 				model = (OntModel) model.union(collectedData);
 			}

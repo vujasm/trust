@@ -22,8 +22,20 @@ package com.inn.trusthings.service.collectors;
 
 
 import java.net.URI;
+import java.util.List;
+import java.util.Map;
+
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.client.ClientProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Maps;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -33,10 +45,14 @@ import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.vocabulary.Trust;
+import com.inn.trusthings.service.mgrs.impl.BasicTrustManager;
 import com.inn.util.httpclient.Client;
+import com.inn.util.tuple.Tuple2;
 import com.inn.util.uri.UIDGenerator;
 
 public class ReputationCollector extends AbstractCollector{
+	
+	private static final Logger log = LoggerFactory.getLogger(BasicTrustManager.class);
 
 	public ReputationCollector(String sourceUri) {
 		super(sourceUri);
@@ -60,13 +76,65 @@ public class ReputationCollector extends AbstractCollector{
 			return null;	
 		}
 	}
+	
+	
+	@Override
+	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
+		
+		System.err.println(resources.size());
+		
+		final Map<URI, Tuple2<String, String>> mapIds = getIDMap(resources);
+		String requestBody = new ReputationAPIRequestBodyBuilder().build(mapIds.values());
+		log.debug(" requestBody "+requestBody);
+		javax.ws.rs.client.Client client = ClientBuilder.newClient();
+		client.property(ClientProperties.CONNECT_TIMEOUT, 0);
+		String url = sourceUri+"/class_reputation/batch/";
+		Response response = client.target(url).request().accept(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
+		System.out.println("end");
+		if (response.getStatus() != 200) {
+			log.warn("Failed Reputation Collector: HTTP error code : " + response.getStatus() +" on "+url);
+//			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+			return;
+		}
+		String responseBody = response.readEntity(String.class);
+		log.debug(" responseBody "+responseBody);
+		try {
+			new ReputationResponseBodyResolver().reslove(mapIds,responseBody, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error while processing Popularioty response: " + e.getMessage());
+		}
+	}
+
+	private Map<URI, Tuple2<String, String>> getIDMap(List<URI> resources) {
+		Map<URI, Tuple2<String, String>> map = Maps.newHashMap();
+		for (URI uri : resources) {
+				Tuple2<String, String>  t = new Tuple2<String, String>(null, null);
+				String path = uri.getPath();
+				int i=path.lastIndexOf("/");
+				t.setT1(path.substring(i+1, path.length()));
+				path = path.substring(0, i);
+				i=path.lastIndexOf("/");
+				path = path.substring(0, i);
+				i=path.lastIndexOf("/");
+				//FIXME 
+				if (path.substring(i+1, path.length()).equals("services")){
+					t.setT2("service_instance");
+				}
+				else{
+					t.setT2(path.substring(i+1, path.length()));
+				}
+				map.put(uri, t);
+		}
+		return map;
+	}
+
 
 	private double obtainReputationIndex(URI uri) {
-		
 		Client client =  new Client();
 		JsonNode node = client.getJsonAsJsonNode(getSourceUri()+"/srvcid"+uri.toASCIIString());
 		System.out.println(node);
-		//TODO process obtained reputation bundle
 		return 0;
 	}
 
@@ -78,5 +146,6 @@ public class ReputationCollector extends AbstractCollector{
 	@Override
 	public void shutDown() {
 	}
+
 	
 }

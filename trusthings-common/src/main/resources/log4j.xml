@@ -39,7 +39,7 @@
       <level value="OFF" />
  </logger> 
   <logger name="com.inn">
-      <level value="OFF" />
+      <level value="warn, debug" />
   </logger>
   <root> 
     <priority value ="info" /> 

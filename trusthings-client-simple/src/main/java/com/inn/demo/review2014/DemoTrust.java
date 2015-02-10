@@ -37,8 +37,8 @@ import java.util.Set;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.io.CharStreams;
-import com.inn.trusthings.integration.TrustFilterByThreshold;
-import com.inn.trusthings.integration.TrustScorer;
+import com.inn.trusthings.integration.fat.TrustFilterByThreshold;
+import com.inn.trusthings.integration.fat.TrustScorer;
 
 public class DemoTrust {
 	
@@ -79,7 +79,7 @@ public class DemoTrust {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Set<URI> set = iServeFreeTextSearch.search("weather");
+		Set<URI> set = iServeFreeTextSearch.search("maps");
 		
 		Stopwatch timer = new Stopwatch().start();
 		

@@ -25,7 +25,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -38,10 +40,13 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Stopwatch;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -60,6 +65,7 @@ import com.inn.trusthings.kb.config.IgnoredModels;
 import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.Value;
+import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.collectors.Collector;
 import com.inn.trusthings.service.collectors.InternalCollector;
@@ -134,8 +140,8 @@ public class BasicTrustManager implements TrustManager {
 	 * @param model
 	 * @param uri
 	 */
-	private OntModel fillTrustProfilForResource(OntModel model, URI uri) {
-		return new CreateUpdateTrustProfile().apply(model, uri, collectors);
+	private OntModel fillTrustProfilForResource(OntModel model, URI uri, List<Model> collectedDataList) {
+		return new CreateUpdateTrustProfile().apply(model, uri, collectedDataList);
 	}
 
 	/**
@@ -245,8 +251,8 @@ public class BasicTrustManager implements TrustManager {
 	private void registerCollectors() {
 		//TODO enable collectors
 //		collectors.add(CollectorEnum.Activity.getCollector());
-//		collectors.add(CollectorEnum.QoS.getCollector());
-//		collectors.add(CollectorEnum.Reputation.getCollector());
+		collectors.add(CollectorEnum.QoS.getCollector());
+		collectors.add(CollectorEnum.Reputation.getCollector());
 //		collectors.add(CollectorEnum.Feedback.getCollector());
 	}
 
@@ -283,15 +289,29 @@ public class BasicTrustManager implements TrustManager {
 	 * @return
 	 */
 	private List<Tuple2<URI, Model>> obtainModels(List<URI> resources) {
+		
 		List<Tuple2<URI, Model>> listModels = Lists.newArrayList();
+			
+		Map<URI, Model> map = Maps.newHashMap();
 		for (URI uri : resources) {
 			boolean fetchFromExternalRegistries = false;
 			boolean useMappedLocations = false;
 			boolean  fetchFromInternalRegirsty = true; 
 			OntModel model = loadSemanticMetadata(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
-			model = fillTrustProfilForResource(model, uri);
+			map.put(uri, model);
 			listModels.add(new Tuple2<URI, Model>(uri, model));
 		}
+		
+		for (Collector collector : collectors) {
+			collector.collectInformation(resources, map);	 
+		}
+		
+//		for (URI uri : resources) {
+//			fillTrustProfilForResource(model, uri, (List<Model>) list.get(uri));
+//			listModels.add(new Tuple2<URI, Model>(uri, model));
+//		}
+		
+		
 		//FIXME  - is this the best place for shuting down
 //		CollectorEnum.InternalCollector.getCollector().shutDown();
 		return listModels;

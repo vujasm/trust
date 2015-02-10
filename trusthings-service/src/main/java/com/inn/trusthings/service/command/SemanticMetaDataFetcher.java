@@ -36,7 +36,13 @@ import com.inn.trusthings.bdg.Bridge;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
+import com.inn.trusthings.model.factory.TrustModelFactory;
+import com.inn.trusthings.model.io.ToGraphParser;
+import com.inn.trusthings.model.pojo.Agent;
+import com.inn.trusthings.model.vocabulary.NSPrefixes;
+import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.service.config.CollectorEnum;
+import com.inn.util.uri.UIDGenerator;
 
 /**
  * Metadata fetch command responsible for obtaining resource annotations either from local file system / online / triple
@@ -81,7 +87,6 @@ public class SemanticMetaDataFetcher {
 			log.info("obtaining model using com.inn.RDFModelHandler for loading / retrieving {cached} models. "
 					+ "	Caching is "+RDFModelsHandler.getGlobalInstance().isCachingModels());
 			try {
-			
 			   externalModel = RDFModelsHandler.getGlobalInstance().
 							fetchDescriptionFromFileSystem(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
 
@@ -129,6 +134,14 @@ public class SemanticMetaDataFetcher {
 		}
 		OntModel model = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), modelUnion);
 
+		if (model.contains(null, Trust.hasProfile) == false) {
+			model.setNsPrefixes(NSPrefixes.map);
+			Agent service = new Agent(uri);
+			TrustModelFactory trm = new TrustModelFactory(UIDGenerator.instanceTrust);
+			service.setHasTrustProfile(trm.createTrustProfile());
+			OntModel m = new ToGraphParser().parse(service);
+			model = ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared(), model.union(m));
+		}
 		return model;
 	}
 
