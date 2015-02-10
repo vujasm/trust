@@ -80,8 +80,6 @@ public class ReputationCollector extends AbstractCollector{
 	@Override
 	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
 		
-		System.err.println(resources.size());
-		
 		final Map<URI, Tuple2<String, String>> mapIds = getIDMap(resources);
 		String requestBody = new ReputationAPIRequestBodyBuilder().build(mapIds.values());
 		log.debug(" requestBody "+requestBody);
