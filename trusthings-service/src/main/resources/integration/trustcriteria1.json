@@ -1,0 +1,14 @@
+{
+    "attributes": [
+               {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
+            "importance": 1,
+            "value": "0"
+        },
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#UserRating",
+            "importance": 1,
+            "value": "0"
+        }
+    ]
+}

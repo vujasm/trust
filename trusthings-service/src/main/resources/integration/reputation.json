@@ -1,0 +1,121 @@
+{
+    "entities": [
+        {
+            "entity_type": "service_instance",
+            "entity_id": "service_instance_1"
+        },
+        {
+            "entity_type": "service_instance",
+            "entity_id": "service_instance_2"
+        },
+        {
+            "entity_type": "service_object",
+            "entity_id": "service_object1"
+        },
+        {
+            "entity_type": "service_object",
+            "entity_id": "service_object2"
+        }
+    ],
+    "attributes": [
+        {
+            "attribute_name": "reputation"
+        },
+        {
+            "attribute_name": "usage"
+        },
+        {
+            "attribute_name": "rating"
+        },
+        {
+            "attribute_name": "activity"
+        }
+    ]
+}
+
+
+{
+    "entities": [
+        {
+            "entity_type": "service_instance",
+            "entity_id": "service_instance_1",
+            "attributes": [
+                {
+                    "reputation": {
+                    	"aggregated value":"79"
+                    }
+                },
+                {
+                    "usage": 
+                    	{
+                    	"total count":"256"
+                    }
+                },
+                {
+                    "rating": 
+
+                },
+                {
+                    "activity": "0.9"
+                }
+            ]
+        },
+        {
+            "entity_type": "service_instance",
+            "entity_id": "service_instance_2",
+            "attributes": [
+                {
+                    "reputation": "7"
+                },
+                {
+                    "usage": "256"
+                },
+                {
+                    "rating": "4.6"
+                },
+                {
+                    "activity": "0.9"
+                }
+            ]
+        },
+        {
+            "entity_type": "service_object",
+            "entity_id": "service_object1",
+            "attributes": [
+                {
+                    "reputation": "7"
+                },
+                {
+                    "usage": "256"
+                },
+                {
+                    "rating": "4.6"
+                },
+                {
+                    "activity": "0.9"
+                }
+            ]
+        },
+        {
+            "entity_type": "service_object",
+            "entity_id": "service_object2",
+            "attributes": [
+                {
+                    "reputation": "7"
+                },
+                {
+                    "usage": "256"
+                },
+                {
+                    "rating": "4.6"
+                },
+                {
+                    "activity": "0.9"
+                }
+            ]
+        }
+    ]
+}
+	
+	
+--entities/etity_type is optional	

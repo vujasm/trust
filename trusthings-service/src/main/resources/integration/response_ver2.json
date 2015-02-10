@@ -1,0 +1,84 @@
+
+[
+    {
+        "service_instance1": [
+            {
+                "final": {
+                    "reputation": 8
+                }
+            },
+            {
+                "feedback": {
+                    "value": 5,
+                    "total_count": 9
+                }
+            },
+            {
+                "popularity": {
+                    "value": 3,
+                    "total_count": 13
+                }
+            },
+            {
+                "activity": {
+                    "value": 5,
+                    "total_count": 22
+                }
+            }
+        ]
+    },
+    {
+        "service_instance2": [
+            {
+                "final": {
+                    "reputation": 9
+                }
+            },
+            {
+                "feedback": {
+                    "value": 9,
+                    "total_count": 36
+                }
+            },
+            {
+                "popularity": {
+                    "value": 2,
+                    "total_count": 24
+                }
+            },
+            {
+                "activity": {
+                    "value": 5,
+                    "total_count": 36
+                }
+            }
+        ]
+    },
+    {
+        "service_object1": [
+            {
+                "final": {
+                    "reputation": 4
+                }
+            },
+            {
+                "feedback": {
+                    "value": 5,
+                    "total_count": 81
+                }
+            },
+            {
+                "popularity": {
+                    "value": 2,
+                    "total_count": 79
+                }
+            },
+            {
+                "activity": {
+                    "value": 1,
+                    "total_count": 59
+                }
+            }
+        ]
+    }
+]

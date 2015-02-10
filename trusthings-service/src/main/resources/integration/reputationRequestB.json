@@ -1,0 +1,37 @@
+{"entities": [
+        {
+            "entity_id": "service_instance1",
+            "entity_type": "service_instance"
+        },
+        {
+            "entity_id": "service_instance2",
+            "entity_type": "service_instance"
+        }
+    ],
+    "attributes": [
+        {
+            "reputation_type": "final",
+            "values": [
+                "reputation"
+            ]
+        },
+        {
+            "reputation_type": "feedback",
+            "values": [
+                "value","total_count"
+            ]
+        },
+        {
+            "reputation_type": "popularity",
+            "values": [
+                "value","total_count"
+            ]
+        },
+        {
+            "reputation_type": "activity",
+            "values": [
+                "value","total_count"
+            ]
+        }
+    ]
+    }
