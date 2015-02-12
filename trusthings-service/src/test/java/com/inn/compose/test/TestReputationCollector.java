@@ -25,6 +25,8 @@ import java.util.Map;
 
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -35,18 +37,21 @@ import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.io.ToGraphParser;
 import com.inn.trusthings.model.pojo.Agent;
+import com.inn.trusthings.op.match.MetricMatchOp;
 import com.inn.trusthings.service.config.CollectorEnum;
 import com.inn.util.uri.UIDGenerator;
 
 
 public class TestReputationCollector {
 	
+	
 	public void call(){
+		
 		List<URI> list = Lists.newArrayList();
 		try {
 			list.add(new URI("http:/localhost/service_instance/aaa/service_instance1"));
-			list.add(new URI("http:/localhost/service_instance/aaa/service_instance2"));
-			list.add(new URI("http:/localhost/service_object/aaa/service_object1"));
+			list.add(new URI("http:/localhost/service_instance/aaa/service_instanceX"));
+//			list.add(new URI("http:/localhost/service_object/aaa/service_object1"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -61,6 +66,9 @@ public class TestReputationCollector {
 		}
 		CollectorEnum.Reputation.getCollector().collectInformation(list, maps);
 		
+		for (URI uri : list) {
+			RDFDataMgr.write(System.out, maps.get(uri), Lang.TURTLE) ;
+		}
 	}
 	
 	

@@ -45,6 +45,8 @@ import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.util.tuple.Tuple2;
 
 public class ReputationResponseBodyResolver {
+	
+	private static String noValueIndicator = "-1";
 
 	public void reslove(Map<URI, Tuple2<String, String>> mapIds, String responseBody, Map<URI, Model> mapModel)
 			throws JsonProcessingException, IOException {
@@ -52,8 +54,11 @@ public class ReputationResponseBodyResolver {
 		JsonNode rootNode = mapper.readTree(responseBody);
 		for (JsonNode node : rootNode) {
 			String id = node.get("entity_id").textValue();
-			URI uri = findURI(mapIds, id);
-			populateModel((ArrayNode) node.get("attributes"), mapModel.get(uri), uri);
+			String type = node.get("entity_type").textValue();
+			if (type !=null && type.equals("") == false){
+				URI uri = findURI(mapIds, id);
+				populateModel((ArrayNode) node.get("attributes"), mapModel.get(uri), uri);
+			}
 		}
 	}
 
@@ -105,6 +110,9 @@ public class ReputationResponseBodyResolver {
 	}
 	
 	private Resource addAttributeToProfile(Resource profile, Model model, String attributeId, String attributeType, Object value) {
+		if (value == null || value.toString().equalsIgnoreCase(noValueIndicator))
+			 return null;
+		
 		Resource attribute = createJenaResource(NSPrefixes.map.get("db"),"attribute",attributeId);
 		model.add(attribute, RDF.type, ResourceFactory.createResource(Trust.NS+attributeType));
 		if (value!=null){

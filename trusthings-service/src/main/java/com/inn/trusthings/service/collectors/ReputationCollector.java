@@ -52,7 +52,7 @@ import com.inn.util.uri.UIDGenerator;
 
 public class ReputationCollector extends AbstractCollector{
 	
-	private static final Logger log = LoggerFactory.getLogger(BasicTrustManager.class);
+	private static final Logger log = LoggerFactory.getLogger(ReputationCollector.class);
 
 	public ReputationCollector(String sourceUri) {
 		super(sourceUri);
@@ -82,7 +82,7 @@ public class ReputationCollector extends AbstractCollector{
 		
 		final Map<URI, Tuple2<String, String>> mapIds = getIDMap(resources);
 		String requestBody = new ReputationAPIRequestBodyBuilder().build(mapIds.values());
-		log.debug(" requestBody "+requestBody);
+		log.info(" requestBody "+requestBody);
 		javax.ws.rs.client.Client client = ClientBuilder.newClient();
 		client.property(ClientProperties.CONNECT_TIMEOUT, 0);
 		String url = sourceUri+"/class_reputation/batch/";
@@ -95,7 +95,7 @@ public class ReputationCollector extends AbstractCollector{
 			return;
 		}
 		String responseBody = response.readEntity(String.class);
-		log.debug(" responseBody "+responseBody);
+		log.info(" responseBody "+responseBody);
 		try {
 			new ReputationResponseBodyResolver().reslove(mapIds,responseBody, map);
 		} catch (Exception e) {

@@ -41,6 +41,9 @@
   <logger name="com.inn">
       <level value="warn, debug" />
   </logger>
+   <logger name="com.inn.compose.test">
+      <level value="warn, debug" />
+  </logger>
   <root> 
     <priority value ="info" /> 
     <appender-ref ref="console" /> 
