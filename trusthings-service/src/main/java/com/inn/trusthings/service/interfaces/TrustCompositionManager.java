@@ -1,4 +1,12 @@
-package com.inn.trusthings.op.composition;
+package com.inn.trusthings.service.interfaces;
+
+import java.net.URI;
+import java.util.List;
+
+import com.inn.trusthings.model.pojo.TrustCriteria;
+import com.inn.util.tuple.Tuple2;
+import com.inn.util.uri.CompositeServiceWrapper;
+import com.inn.util.uri.CompositionIdentifier;
 
 /*
  * #%L
@@ -22,9 +30,13 @@ package com.inn.trusthings.op.composition;
 
 
 
-public interface TrustCompositionManager {
+public interface TrustCompositionManager extends TrustManager {
+	
+	
+	List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria);
 
 	
-	
+	List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList,
+			TrustCriteria criteria);
 	
 }

@@ -23,12 +23,12 @@ package com.inn.gui.util;
 
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tree.Tree;
 
 public class ToStringArray {
 	
-	static TrustManager trustManager =  Factory.createInstance(TrustManager.class);
+	static TrustSimpleManager trustManager =  Factory.createInstance(TrustSimpleManager.class);
 	
 	
 	public static Object[] getSecurityTechnologies(){

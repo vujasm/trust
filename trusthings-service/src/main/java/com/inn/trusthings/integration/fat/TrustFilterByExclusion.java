@@ -30,7 +30,7 @@ import com.google.common.collect.Sets;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 
 
 /**
@@ -41,12 +41,12 @@ import com.inn.trusthings.service.interfaces.TrustManager;
  */
 public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
 	
-	private com.inn.trusthings.service.interfaces.TrustManager trustManager; 
+	private com.inn.trusthings.service.interfaces.TrustSimpleManager trustManager; 
 	public TrustFilterByExclusion() {
-		trustManager = Factory.createInstance(TrustManager.class);
+		trustManager = Factory.createInstance(TrustSimpleManager.class);
 	}
 	
-	public TrustFilterByExclusion(TrustManager trustManager) {
+	public TrustFilterByExclusion(TrustSimpleManager trustManager) {
 		this.trustManager = trustManager;
 	}
 

@@ -29,13 +29,13 @@ import com.inn.common.OrderType;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tuple.Tuple2;
 
 
 public class demo1 {
 	
-	public String runExample(TrustManager trustManager, int what){
+	public String runExample(TrustSimpleManager trustManager, int what){
 		String  output = "";
 		
 		try {
@@ -83,7 +83,7 @@ public class demo1 {
 	
 	public static void main(String[] args) {
 		//create trust manager
-		TrustManager trustManager =  Factory.createInstance(TrustManager.class);
+		TrustSimpleManager trustManager =  Factory.createInstance(TrustSimpleManager.class);
 		String s = new demo1().runExample(trustManager, 1);
 		System.out.println(s);
 	}

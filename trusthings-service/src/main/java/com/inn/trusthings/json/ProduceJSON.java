@@ -29,6 +29,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.inn.util.tuple.Tuple2;
+import com.inn.util.uri.CompositionIdentifier;
 
 public class ProduceJSON {
 
@@ -98,6 +99,19 @@ public class ProduceJSON {
 //		l.add(new Tuple2<URI, Double>(URI.create("http://localhost"), 1D));
 //	
 //		System.out.println(new MakeJson().ofError(new Exception("tes")));
+	}
+
+	
+	//FIXME  - implementiraj JSON return result za composite services
+	public String ofFilteringCompositionsResult(List<CompositionIdentifier> filtered) {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	//FIXME  - implementiraj JSON return result za composite services
+	public String ofRankingCompositionsResult(List<Tuple2<CompositionIdentifier, Double>> scored) {
+		// TODO Auto-generated method stub
+		return "";
 	}
 
 }

@@ -27,7 +27,7 @@ import com.inn.gui.tree.Builder;
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tree.Tree;
 
 import fordemo.demo1;
@@ -37,7 +37,7 @@ import fordemo.demo3;
 public class Controller {
 	
 	
-	static TrustManager trustManager =  Factory.createInstance(TrustManager.class);
+	static TrustSimpleManager trustManager =  Factory.createInstance(TrustSimpleManager.class);
 	
 	public static TreeModel getTreeModel(){
 		Tree t = trustManager.obtainTaxonomy(ModelEnum.Trust.getURI(), Trust.TrustAttribute.getURI());

@@ -37,7 +37,7 @@ import com.inn.trusthings.bdg.Bridge;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 
 import fordemo.demo1;
 
@@ -55,7 +55,7 @@ public class All_R1_S {
 			//load (from json file) and set trust criteria 
 			InputStream is = demo1.class.getResourceAsStream("/criteria/demo/trust_demo_2.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
-			TrustManager t = new TrustModuleTest().getTrustManager();
+			TrustSimpleManager t = new TrustModuleTest().getTrustManager();
 			TrustCriteria criteriapojo = new TrustPOJOFactory().ofTrustCriteria(criteria);
 			t.setGlobalTrustCriteria(criteriapojo);
 //			for (int i = 0; i < size; i++) {

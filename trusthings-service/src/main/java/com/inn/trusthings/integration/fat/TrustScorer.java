@@ -30,7 +30,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.inject.Guice;
 import com.inn.trusthings.module.TrustModule;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tuple.Tuple2;
 
 /**
@@ -41,13 +41,13 @@ import com.inn.util.tuple.Tuple2;
  */
 public class TrustScorer implements uk.ac.open.kmi.iserve.discovery.api.ranking.Scorer{
 	
-	private com.inn.trusthings.service.interfaces.TrustManager trustManager;
+	private com.inn.trusthings.service.interfaces.TrustSimpleManager trustManager;
 	
 	public TrustScorer() {
-		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustManager.class);
+		trustManager =  Guice.createInjector(new TrustModule()).getInstance(TrustSimpleManager.class);
 	}
 	
-	public TrustScorer(TrustManager trustManager) {
+	public TrustScorer(TrustSimpleManager trustManager) {
 		this.trustManager = trustManager;
 	}
 	

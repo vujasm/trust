@@ -28,7 +28,7 @@ import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.fat.TrustFilterByExclusion;
 import com.inn.trusthings.integration.fat.TrustScorer;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 
 
 public class TrustEngineExample {

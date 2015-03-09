@@ -37,8 +37,11 @@ import com.inn.trusthings.module.Factory;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.rest.exception.TrustRestException;
 import com.inn.trusthings.rest.util.RequestJSONUtil;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustCompositionManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tuple.Tuple2;
+import com.inn.util.uri.CompositeServiceWrapper;
+import com.inn.util.uri.CompositionIdentifier;
 
 @Path("/trust")
 public class TrustRESTService {
@@ -57,7 +60,7 @@ public class TrustRESTService {
 	public String scoring(final String request) {
 		try {
 					
-			final TrustManager trustManager = Factory.createInstance(TrustManager.class);
+			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
@@ -83,7 +86,7 @@ public class TrustRESTService {
 	public String filteringThreshold(final String request) {
 		try {
 			List<URI> filtered ;
-			final TrustManager trustManager = Factory.createInstance(TrustManager.class);
+			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
@@ -102,7 +105,7 @@ public class TrustRESTService {
 	public String filteringExclusion(final String request) {
 		try {
 			List<URI> filtered ;
-			final TrustManager trustManager = Factory.createInstance(TrustManager.class);
+			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
@@ -112,6 +115,45 @@ public class TrustRESTService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new TrustRestException(new ProduceJSON().ofError(e));
+		}
+	}
+	
+	@POST
+	@Path("/filter/composite/threshold")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String filteringCompositionThreshold(final String request) {
+		try {
+			final TrustCompositionManager trustManager = Factory.createInstance(TrustCompositionManager.class);
+			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
+			if (criteria == null) 
+				criteria = trustManager.getGlobalTrustCriteria();
+			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
+			List<CompositionIdentifier> filtered = trustManager.filterTrustedByThreshold(compositeServiceList, criteria);
+			return new ProduceJSON().ofFilteringCompositionsResult(filtered);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new TrustRestException(new ProduceJSON().ofError(e));
+		}
+	}
+	
+	@POST
+	@Path("/scoring/composite")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String scoringCompositions(final String request) {
+		try {
+			TrustCompositionManager trustManager = Factory.createInstance(TrustCompositionManager.class);
+			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
+			if (criteria == null) 
+				criteria = trustManager.getGlobalTrustCriteria();
+			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
+			
+			trustManager.setGlobalTrustCriteria(criteria);
+			
+			List<Tuple2<CompositionIdentifier, Double>> scored = trustManager.obtainTrustIndexes(compositeServiceList, criteria);
+			return new ProduceJSON().ofRankingCompositionsResult(scored);
+		} catch (Exception e) {
+			 e.printStackTrace();
+			 throw new TrustRestException(new ProduceJSON().ofError(e));
 		}
 	}
 }

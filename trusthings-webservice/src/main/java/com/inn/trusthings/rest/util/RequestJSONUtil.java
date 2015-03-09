@@ -33,6 +33,7 @@ import com.google.common.io.CharStreams;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
+import com.inn.util.uri.CompositeServiceWrapper;
 
 public class RequestJSONUtil {
 
@@ -86,6 +87,13 @@ public class RequestJSONUtil {
 			e.printStackTrace();
 		}
 		
+	}
+
+	//FIXME  - implementiraj me
+	public static List<CompositeServiceWrapper> getCompositeServiceWrapperList(String request) {
+		List<CompositeServiceWrapper> list = Lists.newArrayList();
+		
+		return list;
 	}
 
 	

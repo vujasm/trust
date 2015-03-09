@@ -38,7 +38,7 @@ import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.module.TrustModule;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tree.Tree;
 
 public class TrustModuleTest {
@@ -48,7 +48,7 @@ public class TrustModuleTest {
 
 
 	private Injector injector;
-	private TrustManager trustManager;
+	private TrustSimpleManager trustManager;
 
 	public TrustModuleTest() {
 		init();
@@ -56,7 +56,7 @@ public class TrustModuleTest {
 
 	private void init() {
 		injector = Guice.createInjector(new TrustModule());
-		trustManager = injector.getInstance(TrustManager.class);
+		trustManager = injector.getInstance(TrustSimpleManager.class);
 	}
 
 	public Tree computeTaxonomy() {
@@ -85,7 +85,7 @@ public class TrustModuleTest {
 		}
 	}
 
-	public TrustManager getTrustManager() {
+	public TrustSimpleManager getTrustManager() {
 		return trustManager;
 	}
 

@@ -29,7 +29,7 @@ import com.google.common.io.CharStreams;
 import com.inn.trusthings.integration.fat.TrustFilterByExclusion;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.module.Factory;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 
 public class JustTest {
 	
@@ -39,7 +39,7 @@ public class JustTest {
 				
 				URI youtube = URI.create("http://www.programmableweb.com/api/youtube");
 				String loc = "C://D-Data//Git//itrust//trusthings-kbase//src//main//resources//modelrepo//";
-				TrustManager trustManager =  Factory.createInstance(TrustManager.class);
+				TrustSimpleManager trustManager =  Factory.createInstance(TrustSimpleManager.class);
 //				FileInputStream is = new FileInputStream(loc+"api_youtube.ttl");
 //				trustManager.addResourceDescription(youtube, is);
 				

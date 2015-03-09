@@ -75,7 +75,7 @@ import com.inn.trusthings.service.command.FillTaxonomy;
 import com.inn.trusthings.service.config.CollectorEnum;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.RankingManager;
-import com.inn.trusthings.service.interfaces.TrustManager;
+import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tree.Node;
 import com.inn.util.tree.Tree;
 import com.inn.util.tuple.ListTuple;
@@ -89,7 +89,7 @@ import com.inn.util.tuple.Tuple2;
  * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
  * 
  */
-public class BasicTrustManager implements TrustManager {
+public class BasicTrustManager implements TrustSimpleManager {
 
 	private static final Logger log = LoggerFactory.getLogger(BasicTrustManager.class);
 	private final List<Collector> collectors = Lists.newArrayList();
