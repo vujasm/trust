@@ -28,6 +28,8 @@ public class Const {
 	public static final String NEW_LINE = "\n";
 	
 	public static final String underScore = "_";
+
+	public static final String MAX = "MAX_";
 	
 	public static String repoModels = "modelrepo/";
 	public static String repoOntologies = "ontologies/";

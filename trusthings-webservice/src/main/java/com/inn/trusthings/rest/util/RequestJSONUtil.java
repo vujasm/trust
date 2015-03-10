@@ -30,10 +30,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
+import com.inn.common.CompositeServiceWrapper;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
-import com.inn.util.uri.CompositeServiceWrapper;
 
 public class RequestJSONUtil {
 

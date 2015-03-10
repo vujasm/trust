@@ -28,8 +28,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.inn.common.CompositionIdentifier;
 import com.inn.util.tuple.Tuple2;
-import com.inn.util.uri.CompositionIdentifier;
 
 public class ProduceJSON {
 

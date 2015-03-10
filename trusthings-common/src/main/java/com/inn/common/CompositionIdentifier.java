@@ -1,4 +1,4 @@
-package com.inn.util.uri;
+package com.inn.common;
 
 
 //FIXME 

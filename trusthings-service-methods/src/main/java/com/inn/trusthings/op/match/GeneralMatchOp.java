@@ -39,6 +39,7 @@ package com.inn.trusthings.op.match;
 
 import java.util.List;
 
+import com.inn.common.ValuesHolder;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.TrustAttribute;
@@ -59,8 +60,11 @@ public class GeneralMatchOp {
 	
 	private KnowledgeBaseManager kbManager; 
 	
-	public GeneralMatchOp(KnowledgeBaseManager kbManager){
+	private ValuesHolder valuesHolder;
+	
+	public GeneralMatchOp(KnowledgeBaseManager kbManager, ValuesHolder valuesHolder){
 		this.kbManager = kbManager;
+		this.valuesHolder = valuesHolder;
 	}
 	
 	public double apply(TrustAttribute reqAttribute, List<TrustAttribute> attributes) throws Exception {
@@ -86,7 +90,7 @@ public class GeneralMatchOp {
 			}
 			
 		} else { // if numeric and measurable then comparison
-			final ComparisonMatchOp op = new ComparisonMatchOp();
+			final ComparisonMatchOp op = new ComparisonMatchOp(valuesHolder);
 			// at this point, it is assumed that only and only one exists
 			TrustAttribute attribute = attributes.get(0);
 			return op.apply(reqAttribute, attribute);

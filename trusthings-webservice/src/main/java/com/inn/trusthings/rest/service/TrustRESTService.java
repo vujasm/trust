@@ -30,6 +30,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.inn.common.CompositeServiceWrapper;
+import com.inn.common.CompositionIdentifier;
 import com.inn.common.OrderType;
 import com.inn.trusthings.json.ProduceJSON;
 import com.inn.trusthings.model.pojo.TrustCriteria;
@@ -40,8 +42,6 @@ import com.inn.trusthings.rest.util.RequestJSONUtil;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
 import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tuple.Tuple2;
-import com.inn.util.uri.CompositeServiceWrapper;
-import com.inn.util.uri.CompositionIdentifier;
 
 @Path("/trust")
 public class TrustRESTService {

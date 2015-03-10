@@ -2,13 +2,13 @@ package com.inn.trusthings.service.mgrs.impl;
 
 import java.util.List;
 
+import com.inn.common.CompositeServiceWrapper;
+import com.inn.common.CompositionIdentifier;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
 import com.inn.util.tuple.Tuple2;
-import com.inn.util.uri.CompositeServiceWrapper;
-import com.inn.util.uri.CompositionIdentifier;
 
 
 /*

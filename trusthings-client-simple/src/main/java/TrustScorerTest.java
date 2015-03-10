@@ -40,7 +40,8 @@ public class TrustScorerTest {
 		
 		try {
 			//load (from json file) and set trust criteria 
-			InputStream is = TrustScorerTest.class.getResourceAsStream("/integration/trustcriteria1.json");
+//			InputStream is = TrustScorerTest.class.getResourceAsStream("/integration/trustcriteria1.json");
+			InputStream is = TrustScorerTest.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
 			is.close();
 			
@@ -50,10 +51,12 @@ public class TrustScorerTest {
 			
 			List<URI> list = Lists.newArrayList();
 			try {
-				list.add(new URI("http:/localhost/service_instance/aaa/service_instance1"));
+				URI service_a = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook");
+				list.add(service_a);
+//				list.add(new URI("http:/localhost/service_instance/aaa/service_instance1"));
 //				list.add(new URI("http:/localhost/service_instance/aaa/service_instance2"));
 //				list.add(new URI("http:/localhost/service_object/aaa/service_object1"));
-			} catch (URISyntaxException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
@@ -69,20 +72,20 @@ public class TrustScorerTest {
 			for (URI uri : services) {
 				System.out.println(uri +" has trust score "+scores.get(uri));
 			}
-			
-			/*
-			 * FILTERING
-			 */
-			TrustFilterByThreshold f = new TrustFilterByThreshold();
-			Set<URI> result = f.apply(services, criteria);
-			for (URI uri : services) {
-				if (result.contains(uri)){
-					System.out.println(uri+ " is trusted");
-				}
-				else{
-					System.out.println(uri+ " is not trusted");
-				}
-			}
+//			
+//			/*
+//			 * FILTERING
+//			 */
+//			TrustFilterByThreshold f = new TrustFilterByThreshold();
+//			Set<URI> result = f.apply(services, criteria);
+//			for (URI uri : services) {
+//				if (result.contains(uri)){
+//					System.out.println(uri+ " is trusted");
+//				}
+//				else{
+//					System.out.println(uri+ " is not trusted");
+//				}
+//			}
 			
 			
 		} catch (IOException e) {

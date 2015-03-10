@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
+import com.inn.common.Const;
+import com.inn.common.ValuesHolder;
 import com.inn.common.WarnException;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
@@ -42,16 +44,32 @@ public class ComparisonMatchOp {
 
 	 private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
 	 
-	 //FIXME
-	 private static int MAX_NumUsers = 623;
-	 private static int MAX_NumCompositions = 2541;
+//	 //FIXME
+//	 private static int MAX_NumUsers = 623;
+//	 private static int MAX_NumCompositions = 2541;
+	 
+	 private ValuesHolder valuesHolder ;
+
+	public ComparisonMatchOp(ValuesHolder valuesHolder) {
+		this.valuesHolder = valuesHolder;
+	}
 
 	public double apply(final TrustAttribute reqAttribute, final TrustAttribute attribute) throws Exception {
+		
+		
+		   Integer max_NumUsers = (Integer)valuesHolder.getValue(Const.MAX+Trust.NumberOfDevelopers.getLocalName());
+		   Integer max_NumCompositions = (Integer)valuesHolder.getValue(Const.MAX+Trust.NumberOfCompositions.getLocalName());
+		   
+		   if (max_NumUsers == null){
+			   max_NumUsers = 1;
+		   }
+		   
+		   if (max_NumCompositions == null){
+			   max_NumCompositions = 1;
+		   }
 
 			RDFDatatype datatype = reqAttribute.getValueDatatype();
 			
-//			System.out.println(datatype);
-//			ProviderWebReputationBy3rdParty
 			String s = attribute.getTypesAll().get(0).getUri().toASCIIString();
 			if (s.equals(Trust.ProviderWebReputationBy3rdParty.getURI())){
 				if (attribute.getValue()!=null){
@@ -69,7 +87,7 @@ public class ComparisonMatchOp {
 				if (attribute.getValue()!=null){
 //					System.err.println(reqAttribute.getValue());
 					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
-						attribute.setValue(Double.valueOf((String) attribute.getValue()) / MAX_NumUsers);
+						attribute.setValue(Double.valueOf((String) attribute.getValue()) / max_NumUsers);
 					}
 					else{
 						double v = Double.valueOf(attribute.getValue().toString()).doubleValue();
@@ -81,7 +99,7 @@ public class ComparisonMatchOp {
 			else if (s.equals(Trust.NumberOfCompositions.getURI())){
 				if (attribute.getValue()!=null){
 					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
-						attribute.setValue(Double.valueOf((String) attribute.getValue()) / MAX_NumCompositions);
+						attribute.setValue(Double.valueOf((String) attribute.getValue()) / max_NumCompositions);
 					}
 					else{
 						double v = Double.valueOf(attribute.getValue().toString()).doubleValue();

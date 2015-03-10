@@ -39,6 +39,7 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.Const;
 import com.inn.common.OrderType;
+import com.inn.common.ValuesHolder;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
@@ -56,6 +57,7 @@ import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.op.match.GeneralMatchOp;
 import com.inn.trusthings.op.score.AbstractScoreStrategy;
 import com.inn.trusthings.op.score.ScoreStrategyFactory;
+import com.inn.trusthings.service.collectors.ValuesHolderManager;
 import com.inn.trusthings.service.command.Sort;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.util.tuple.Tuple2;
@@ -237,7 +239,8 @@ public class BasicRankingManager implements RankingManager {
 	 * @return
 	 */
 	private double match(final TrustAttribute reqAttribute, final List<TrustAttribute> attributes) throws Exception{
-		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager);
+		ValuesHolder valuesHolder = new ValuesHolderManager().getValues(); 
+		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager, valuesHolder);
 		double result = operator.apply(reqAttribute, attributes);
 		return result;
 	}

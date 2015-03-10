@@ -1,4 +1,4 @@
-package com.inn.util.uri;
+package com.inn.common;
 
 
 //FIXME implementiraj ovu klasu koja ce node-red json izeti iz requesta i wrapovati

@@ -3,10 +3,10 @@ package com.inn.trusthings.service.interfaces;
 import java.net.URI;
 import java.util.List;
 
+import com.inn.common.CompositeServiceWrapper;
+import com.inn.common.CompositionIdentifier;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.util.tuple.Tuple2;
-import com.inn.util.uri.CompositeServiceWrapper;
-import com.inn.util.uri.CompositionIdentifier;
 
 /*
  * #%L

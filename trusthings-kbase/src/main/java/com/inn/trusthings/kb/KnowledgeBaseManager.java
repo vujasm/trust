@@ -42,6 +42,7 @@ import java.util.Set;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.inn.common.ValuesHolder;
 
 /**
  * 
@@ -69,5 +70,4 @@ public interface KnowledgeBaseManager {
 	void uploadModel(URI modelUri, Model model, boolean forceUpdate, boolean isOntology);
 
 	void uploadOntology(String modelName, Model model, boolean forceUpdate);
-
 }
