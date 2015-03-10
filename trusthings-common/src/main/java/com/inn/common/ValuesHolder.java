@@ -12,8 +12,12 @@ public class ValuesHolder {
 		hashMap.put(key, value);
 	}
 	
-	public Object getValue(String key){
-		return hashMap.get(key);
+	public Object getValue(String key, Object ifnullValue){
+		Object val = hashMap.get(key);
+		if (val == null)
+			return ifnullValue;
+		else
+			return val;
 	}
 	
 

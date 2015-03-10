@@ -20,7 +20,6 @@ package com.inn.trusthings.op.match;
  * #L%
  */
 
-
 import java.net.URI;
 
 import org.slf4j.Logger;
@@ -42,77 +41,27 @@ import com.inn.trusthings.model.vocabulary.Trust;
  */
 public class ComparisonMatchOp {
 
-	 private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
-	 
-//	 //FIXME
-//	 private static int MAX_NumUsers = 623;
-//	 private static int MAX_NumCompositions = 2541;
-	 
-	 private ValuesHolder valuesHolder ;
+	private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
+
+	// //FIXME
+	// private static int MAX_NumUsers = 623;
+	// private static int MAX_NumCompositions = 2541;
+
+	private ValuesHolder valuesHolder;
 
 	public ComparisonMatchOp(ValuesHolder valuesHolder) {
 		this.valuesHolder = valuesHolder;
 	}
 
-	public double apply(final TrustAttribute reqAttribute, final TrustAttribute attribute) throws Exception {
-		
-		
-		   Integer max_NumUsers = (Integer)valuesHolder.getValue(Const.MAX+Trust.NumberOfDevelopers.getLocalName());
-		   Integer max_NumCompositions = (Integer)valuesHolder.getValue(Const.MAX+Trust.NumberOfCompositions.getLocalName());
-		   
-		   if (max_NumUsers == null){
-			   max_NumUsers = 1;
-		   }
-		   
-		   if (max_NumCompositions == null){
-			   max_NumCompositions = 1;
-		   }
+	public double apply(final TrustAttribute requested, final TrustAttribute attribute) throws Exception {
 
-			RDFDatatype datatype = reqAttribute.getValueDatatype();
-			
-			String s = attribute.getTypesAll().get(0).getUri().toASCIIString();
-			if (s.equals(Trust.ProviderWebReputationBy3rdParty.getURI())){
-				if (attribute.getValue()!=null){
-					attribute.setValue(Double.valueOf((String) attribute.getValue()) / 100);	
-				}
-			}
-			else if (s.equals(Trust.Reputation.getURI())
-					|| s.equals(Trust.ContractCompliance.getURI())
-					|| s.equals(Trust.UserRating.getURI())){
-				if (attribute.getValue()!=null){
-					attribute.setValue(Double.valueOf((String) attribute.getValue()) / 10);	
-				}
-			}
-			else if (s.equals(Trust.NumberOfDevelopers.getURI())){
-				if (attribute.getValue()!=null){
-//					System.err.println(reqAttribute.getValue());
-					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
-						attribute.setValue(Double.valueOf((String) attribute.getValue()) / max_NumUsers);
-					}
-					else{
-						double v = Double.valueOf(attribute.getValue().toString()).doubleValue();
-						double reqv = Double.valueOf(reqAttribute.getValue().toString()).doubleValue();
-						return (v >= reqv)? 1:0;
-					}
-				}
-			}
-			else if (s.equals(Trust.NumberOfCompositions.getURI())){
-				if (attribute.getValue()!=null){
-					if (reqAttribute.getValue() == null || reqAttribute.getValue().equals("0")){
-						attribute.setValue(Double.valueOf((String) attribute.getValue()) / max_NumCompositions);
-					}
-					else{
-						double v = Double.valueOf(attribute.getValue().toString()).doubleValue();
-						double reqv = Double.valueOf(reqAttribute.getValue().toString()).doubleValue();
-						return (v >= reqv)? 1:0;
-					}
-				}
-			}
-
+			RDFDatatype datatype = requested.getValueDatatype();
+			String type = attribute.getTypesAll().get(0).getUri().toASCIIString();
 			if (isNumericDataType(datatype)) {
-				  return compareNumeric(attribute, reqAttribute);
+					return compareNumeric(attribute, requested, type);
+				//not numeric
 			} else if (isMetricScale(datatype)) {
-				String metricValueReqURI = (String) reqAttribute.getValue();
+				String metricValueReqURI = (String) requested.getValue();
 				String metricValuePresentURI = (String) attribute.getValue();
 				String metricURI = datatype.getURI();
 				return new MetricMatchOp().apply( URI.create(metricURI), URI.create(metricValueReqURI), URI.create(metricValuePresentURI));
@@ -124,33 +73,109 @@ public class ComparisonMatchOp {
 	/**
 	 * 
 	 * @param attribute
+	 * @param type
 	 * @param reqAttribute
 	 * @return
 	 */
-	private double compareNumeric(TrustAttribute attribute, TrustAttribute reqAttribute) {
-		Object reqValo = reqAttribute.getValue();
-		Object valo = attribute.getValue();
-		log.info("comparing numeric values: requested <= value "+reqValo+" "+valo);
+	private double compareNumeric(TrustAttribute attribute, TrustAttribute requested, String type) {
+		log.info("comparing numeric values: requested <= value " + requested.getValue() + " " + attribute.getValue());
+
 		double returnValue = 0;
-		if (reqValo != null) {
-			double v = Double.valueOf(valo.toString()).doubleValue();
-			double reqv = Double.valueOf(reqValo.toString()).doubleValue();
-			if (reqv <= v) {
-				returnValue = v;
+
+		if (requested.getValue() == null){
+				requested.setValue(0) ;
+		}
+		// should be greater than expected, and if so, return attribute value
+		// normalized.
+		if (requested.getValue().equals(0) == false && isNotByMinMax(requested)) {
+			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
+			double reqestedValue = Double.valueOf(requested.getValue().toString()).doubleValue();
+			if (reqestedValue <= value) {
+				return cast(normalize(attribute, type).getValue());
 			}
 		}
-		log.info("comparing numeric values returns "+returnValue);
+
+		// should be greater than expected, and if so, return 1;
+		if (isComparisonByMin(requested)) {
+			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
+			double requestedMinValue = Double.valueOf(requested.getMinValue().toString()).doubleValue();
+			return (value >= requestedMinValue) ? 1 : 0;
+		}
+		// should be less than expected, and if so, return 1;
+		else if (isComparisonByMax(requested)) {
+			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
+			double requestedMaxValue = Double.valueOf(requested.getMaxValue().toString()).doubleValue();
+			return (value <= requestedMaxValue) ? 1 : 0;
+		}
+		// should be greater in a range, and if so, return 1;
+		else if (isComparisonWithinRange(requested)) {
+			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
+			double requestedMaxValue = Double.valueOf(requested.getMaxValue().toString()).doubleValue();
+			double requestedMinValue = Double.valueOf(requested.getMinValue().toString()).doubleValue();
+			return (value >= requestedMinValue && value <= requestedMaxValue) ? 1 : 0;
+		}
+
+		log.info("comparing numeric values returns " + returnValue);
 		return returnValue;
+	}
+
+	private boolean isNotByMinMax(TrustAttribute requested) {
+		return (isComparisonWithinRange(requested) == false && isComparisonByMax(requested) == false
+			&& isComparisonByMin(requested) == false);
+	}
+
+	private boolean isComparisonWithinRange(TrustAttribute requested) {
+		return (requested.getMaxValue() != null && requested.getMinValue() != null);
+	}
+
+	private boolean isComparisonByMax(TrustAttribute requested) {
+		return (requested.getMaxValue() != null && requested.getMaxValue().equals(0) == false)
+				&& (requested.getMinValue() == null || requested.getMinValue().equals(0));
+	}
+
+	private boolean isComparisonByMin(TrustAttribute requested) {
+		return (requested.getMinValue() != null && requested.getMinValue().equals(0) == false)
+				&& (requested.getMaxValue() == null || requested.getMaxValue().equals(0));
+	}
+
+	private TrustAttribute normalize(TrustAttribute attribute, String type) {
+		if (attribute.getValue() != null) {
+			attribute.setValue(cast(attribute.getValue()) / getScaleMaxValue(type));
+		}
+		return attribute;
+
+	}
+
+	private Double cast(Object value) {
+		return Double.valueOf(value.toString());
+	}
+
+	private Integer getScaleMaxValue(String type) {
+
+		if (type.equals(Trust.ProviderWebReputationBy3rdParty.getURI())) {
+			return 100;
+		} else if (type.equals(Trust.Reputation.getURI()) || type.equals(Trust.ContractCompliance.getURI())
+				|| type.equals(Trust.UserRating.getURI())) {
+			return 10;
+		} else if (type.equals(Trust.NumberOfDevelopers.getURI())) {
+			return (Integer) valuesHolder.getValue(Const.MAX + Trust.NumberOfDevelopers.getLocalName(), 1);
+		} else if (type.equals(Trust.NumberOfCompositions.getURI())) {
+			return (Integer) valuesHolder.getValue(Const.MAX + Trust.NumberOfCompositions.getLocalName(), 1);
+		} else
+			return null;
 	}
 
 	/**
 	 * Answers is typedliteral datatype is of Trust Metric type.
-	 * @param datatype typedliteral datatype
+	 * 
+	 * @param datatype
+	 *            typedliteral datatype
 	 * @return true if typedliteral datatype is of Trust Metric type.
 	 */
 	private boolean isMetricScale(RDFDatatype datatype) {
-	  String datatypeURI = datatype.getURI();
-	  return TrustOntologyUtil.instance().isIndividualOfTypeIgnoreSuper(URI.create(datatypeURI),Trust.Metric.getURI());
+		String datatypeURI = datatype.getURI();
+		return TrustOntologyUtil.instance().isIndividualOfTypeIgnoreSuper(URI.create(datatypeURI),
+				Trust.Metric.getURI());
 	}
 
 	/**
@@ -159,7 +184,7 @@ public class ComparisonMatchOp {
 	 * @return
 	 */
 	private boolean isNumericDataType(RDFDatatype datatype) {
-		if (datatype instanceof XSDDouble){
+		if (datatype instanceof XSDDouble) {
 			return true;
 		}
 		return false;

@@ -8,7 +8,9 @@
         {
             "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
             "importance": 1,
-            "value": "0"
+            "value": "0",
+            "minValue":"100",
+            "maxValue":"200"
         }
     ]
 }
