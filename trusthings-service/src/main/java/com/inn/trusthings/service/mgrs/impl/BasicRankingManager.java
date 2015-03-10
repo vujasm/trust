@@ -57,7 +57,7 @@ import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.op.match.GeneralMatchOp;
 import com.inn.trusthings.op.score.AbstractScoreStrategy;
 import com.inn.trusthings.op.score.ScoreStrategyFactory;
-import com.inn.trusthings.service.collectors.ValuesHolderManager;
+import com.inn.trusthings.service.collectors.ValuesHolderLoader;
 import com.inn.trusthings.service.command.Sort;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.util.tuple.Tuple2;
@@ -239,7 +239,7 @@ public class BasicRankingManager implements RankingManager {
 	 * @return
 	 */
 	private double match(final TrustAttribute reqAttribute, final List<TrustAttribute> attributes) throws Exception{
-		ValuesHolder valuesHolder = new ValuesHolderManager().getValues(); 
+		ValuesHolder valuesHolder = new ValuesHolderLoader().loadValues(); 
 		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager, valuesHolder);
 		double result = operator.apply(reqAttribute, attributes);
 		return result;

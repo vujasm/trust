@@ -10,12 +10,11 @@ import org.slf4j.LoggerFactory;
 
 import com.inn.common.Const;
 import com.inn.common.ValuesHolder;
-import com.inn.trusthings.bdg.BridgeDB;
 import com.mv.util.vcap.VCAPParser;
 
-public class ValuesHolderManager {
+public class ValuesHolderLoader {
 
-	private static final Logger log = LoggerFactory.getLogger(ValuesHolderManager.class);
+	private static final Logger log = LoggerFactory.getLogger(ValuesHolderLoader.class);
 	
 	private  String jdbc_url = "jdbc:mysql://localhost/composetrust?user=root&password=";
 	
@@ -27,7 +26,7 @@ public class ValuesHolderManager {
 			+ " where t.id = a.typeid"
 			+ " group by t.name";
 	
-	public ValuesHolderManager() {
+	public ValuesHolderLoader() {
 		try {
 			if (VCAPParser.parseVcap_Services() != null) {
 				System.out.println("trust service - vcap service env exists");
@@ -42,7 +41,7 @@ public class ValuesHolderManager {
 		log.info("trust service aims to connect to: " + jdbc_url);
 	}
 	
-	public  ValuesHolder getValues() {
+	public  ValuesHolder loadValues() {
 		ValuesHolder v = new ValuesHolder();
 		ResultSet rs = null;
 		try {
@@ -59,7 +58,8 @@ public class ValuesHolderManager {
 			try {
 				rs.close();
 				ps.close();
-			} catch (SQLException e) {
+				getConnection().close();
+			} catch (Exception e) {
 				//
 			}
 		}
@@ -81,7 +81,5 @@ public class ValuesHolderManager {
 		}
 		return ps.executeQuery();
 	}
-	
-	
 
 }
