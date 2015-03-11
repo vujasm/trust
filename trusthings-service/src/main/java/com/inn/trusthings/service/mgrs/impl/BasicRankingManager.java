@@ -95,22 +95,25 @@ public class BasicRankingManager implements RankingManager {
 	 * 
 	 */
 	@Override
-	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustCriteria trustCriteria, EnumScoreStrategy strategy, 
-					boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception {
-		Stopwatch timer = new Stopwatch().start();
+	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustCriteria trustCriteria, EnumScoreStrategy strategy,  boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception {
+		
+//		Stopwatch timer = new Stopwatch().start();
 		//FIXME !!!! filterByCriteriaNotMet
 		boolean rigorous = filterByCriteriaNotMet;
-		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models, trustCriteria, filterByAttributeMissing, rigorous);
-		timer.stop();
-		log.info("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
-		timer.reset().start();
-		    List<Tuple2<Agent, Double>> scores = obtainScores(dataSet, trustCriteria, strategy);
-		timer.stop();
-		log.info("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
-		timer.reset().start();
-			final List<Tuple2<URI, Double>> sortedList = new Sort().sort(scores, order);
-		timer.stop();
-		log.info("sorted  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
+		
+		List<Element> listCriteria = trustCriteria.getListOperandByAnd();
+		
+		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models,listCriteria, filterByAttributeMissing, rigorous);
+//		timer.stop();
+//		log.info("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+//		timer.reset().start();
+		List<Tuple2<Agent, Double>> scores = obtainScores(listCriteria, dataSet, strategy);
+//		timer.stop();
+//		log.info("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
+//		timer.reset().start();
+		final List<Tuple2<URI, Double>> sortedList = new Sort().sort(scores, order);
+//		timer.stop();
+//		log.info("sorted  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
 		printRank(sortedList);
 		return sortedList;
 	}
@@ -127,10 +130,9 @@ public class BasicRankingManager implements RankingManager {
 		return list;
 	}
 
-	private List<Tuple2<Agent, Double>> obtainScores(List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,
-																TrustCriteria trustCriteria, EnumScoreStrategy strategy) {
+	private List<Tuple2<Agent, Double>> obtainScores(List<Element> listCriteria, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,EnumScoreStrategy strategy) {
 		
-		final AbstractScoreStrategy scoreStrategy = ScoreStrategyFactory.createScoreStrategy(trustCriteria, dataSet, strategy);
+		final AbstractScoreStrategy scoreStrategy = ScoreStrategyFactory.createScoreStrategy(listCriteria, dataSet, strategy);
 		
 		List<Tuple2<Agent, Double>> listAgentScore = Lists.newArrayList();
 		
@@ -161,7 +163,7 @@ public class BasicRankingManager implements RankingManager {
 	 * @param rigorous
 	 * @return
 	 */
-	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, TrustCriteria trustCriteria, boolean filterByAttributeMissing, boolean rigorous) {
+	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, List<Element> listCriteria, boolean filterByAttributeMissing, boolean rigorous) {
 		
 		rigorousEval = rigorous;
 		
@@ -171,7 +173,7 @@ public class BasicRankingManager implements RankingManager {
 				ToModelParser parser = getOrCreateToModelParser();
 				TrustProfile trustProfile = parser.parse(model);
 				if (trustProfile!=null){
-					final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, trustCriteria, filterByAttributeMissing);
+					final List<Tuple2<TrustAttribute, Double>> listEA = evaluateAttributes(trustProfile, listCriteria, filterByAttributeMissing);
 					if (listEA != null){ //listEA is null in a case when filterIfMissingAttribute=true and Agent has no some requested attribute
 						final Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> t = new Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>(
 							trustProfile.getAgent(), listEA);
@@ -214,14 +216,13 @@ public class BasicRankingManager implements RankingManager {
 	 * @param filterIfMissingAttribute 
 	 * @return
 	 */
-	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile profile, TrustCriteria trustCriteria, boolean filterIfMissingAttribute) throws Exception{
+	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile profile, List<Element> listCriteria, boolean filterIfMissingAttribute) throws Exception{
 		
 		List<Tuple2<TrustAttribute, Double>> list = Lists.newArrayList();
-		List<SingleElement> elements = trustCriteria.getListOperandByAnd();
 		
 		if (profile.getAttributes().isEmpty() == false) {
-			for (SingleElement element : elements) {
-				TrustAttribute requestedAttr = element.getAttribute();
+			for (Element element : listCriteria) {
+				TrustAttribute requestedAttr = ((SingleElement)element).getAttribute();
 				TResource type = requestedAttr.obtainType();
 				log.info("evaluting " + type.getUri() + " for " + profile.getAgent().getUri());
 				final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(profile.getAttributes(), type.getUri());

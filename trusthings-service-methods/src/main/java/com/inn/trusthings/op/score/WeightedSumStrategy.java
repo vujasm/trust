@@ -26,6 +26,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.inn.trusthings.model.expression.Element;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
@@ -45,9 +46,9 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 	protected EnumNormalizationType enumNormalizationType;
 	
 
-	protected WeightedSumStrategy(final TrustCriteria trustCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,
+	protected WeightedSumStrategy(final List<Element> listCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,
 			final EnumNormalizationType enumNormalizationType) {
-		super(trustCriteria, dataSet);
+		super(listCriteria, dataSet);
 		this.enumNormalizationType = enumNormalizationType;
 	}
 	

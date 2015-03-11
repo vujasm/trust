@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.inn.trusthings.model.expression.Element;
 import com.inn.trusthings.model.expression.SingleElement;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
@@ -44,10 +45,11 @@ public abstract class AbstractScoreStrategy {
 	
 	protected double weightsSum =  0;
 	
-	public AbstractScoreStrategy(TrustCriteria trustCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
-		List<SingleElement> elements = trustCriteria.getListOperandByAnd();
-		for (SingleElement singleElement : elements) {
-			this.attributeList.add(singleElement.getAttribute());
+	public AbstractScoreStrategy(List<Element> listCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
+
+		List<Element> elements = listCriteria;
+		for (Element element : elements) {
+			this.attributeList.add(((SingleElement)element).getAttribute());
 		}
 		this.dataSet = Lists.newArrayList(dataSet);
 		sumAllWeights(attributeList);

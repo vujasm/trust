@@ -11,8 +11,8 @@ public class ExpressionBuilder {
 	static TrustCriteria criteria;
 	private static ExpressionBuilder instance = new ExpressionBuilder();
 	
-	private List<SingleElement> listOperandByAnd = Lists.newArrayList();
-	private List<OrElement> listOperandByOrGroup = Lists.newArrayList();
+	private List<Element> listOperandByAnd = Lists.newArrayList();
+	private List<Element> listOperandByOrGroup = Lists.newArrayList();
 	
 	private SingleElement current;
 	private OrElement currentOrgroup;

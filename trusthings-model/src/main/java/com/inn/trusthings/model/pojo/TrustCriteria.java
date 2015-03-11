@@ -24,28 +24,29 @@ package com.inn.trusthings.model.pojo;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.inn.trusthings.model.expression.Element;
 import com.inn.trusthings.model.expression.Expression;
 import com.inn.trusthings.model.expression.OrElement;
 import com.inn.trusthings.model.expression.SingleElement;
 
 public class TrustCriteria extends Expression {
 	
-	private List<SingleElement> listOperandByAnd = Lists.newArrayList();
-	private List<OrElement> listOperandByOrGroup = Lists.newArrayList();
+	private List<Element> listOperandByAnd = Lists.newArrayList();
+	private List<Element> listOperandByOrGroup = Lists.newArrayList();
 
-	public void setSingleAttributeList(List<SingleElement> list) {
+	public void setSingleAttributeList(List<Element> list) {
 		listOperandByAnd = list;
 	}
 
-	public void setOrGroupAttributeList(List<OrElement> list) {
+	public void setOrGroupAttributeList(List<Element> list) {
 		listOperandByOrGroup = list;
 	}
 	
-	public List<SingleElement> getListOperandByAnd() {
+	public List<Element> getListOperandByAnd() {
 		return listOperandByAnd;
 	}
 	
-	public List<OrElement> getListOperandByOrGroup() {
+	public List<Element> getListOperandByOrGroup() {
 		return listOperandByOrGroup;
 	}
 
