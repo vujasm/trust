@@ -21,12 +21,32 @@ package com.inn.trusthings.model.pojo;
  */
 
 
-import java.net.URI;
+import java.util.List;
 
-public class TrustCriteria extends TrustProfile {
+import com.google.common.collect.Lists;
+import com.inn.trusthings.model.expression.Expression;
+import com.inn.trusthings.model.expression.OrElement;
+import com.inn.trusthings.model.expression.SingleElement;
 
-	public TrustCriteria(URI uri) {
-		super(uri);
+public class TrustCriteria extends Expression {
+	
+	private List<SingleElement> listOperandByAnd = Lists.newArrayList();
+	private List<OrElement> listOperandByOrGroup = Lists.newArrayList();
+
+	public void setSingleAttributeList(List<SingleElement> list) {
+		listOperandByAnd = list;
+	}
+
+	public void setOrGroupAttributeList(List<OrElement> list) {
+		listOperandByOrGroup = list;
+	}
+	
+	public List<SingleElement> getListOperandByAnd() {
+		return listOperandByAnd;
+	}
+	
+	public List<OrElement> getListOperandByOrGroup() {
+		return listOperandByOrGroup;
 	}
 
 }

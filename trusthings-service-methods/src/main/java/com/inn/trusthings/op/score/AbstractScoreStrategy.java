@@ -28,22 +28,27 @@ import org.slf4j.Logger;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.inn.trusthings.model.expression.SingleElement;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.util.tuple.Tuple2;
 
 public abstract class AbstractScoreStrategy {
 	
-	protected List<TrustAttribute> attributeList;
+	protected List<TrustAttribute> attributeList = Lists.newArrayList();
 	protected List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet;
 	protected Map<TrustAttribute, Double> maxValues = Maps.newHashMap();
 	protected Map<TrustAttribute, Double> minValues =  Maps.newHashMap();
 	
 	protected double weightsSum =  0;
 	
-	public AbstractScoreStrategy(final List<TrustAttribute> attributeList, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
-		this.attributeList = Lists.newArrayList(attributeList);
+	public AbstractScoreStrategy(TrustCriteria trustCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
+		List<SingleElement> elements = trustCriteria.getListOperandByAnd();
+		for (SingleElement singleElement : elements) {
+			this.attributeList.add(singleElement.getAttribute());
+		}
 		this.dataSet = Lists.newArrayList(dataSet);
 		sumAllWeights(attributeList);
 		init();

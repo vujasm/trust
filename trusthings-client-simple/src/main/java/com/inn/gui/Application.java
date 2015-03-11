@@ -195,7 +195,7 @@ public class Application {
 		frmComposeServiceRecommender.getContentPane().add(splitPane);
 		
 		
-		JPanel leftPanel = new JPanel();s
+		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(null);
 		leftPanel.setBounds(100, 100, 1000, 400);
 		

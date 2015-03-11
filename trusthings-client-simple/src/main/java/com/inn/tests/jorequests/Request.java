@@ -24,6 +24,7 @@ import java.net.URI;
 
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
+import com.inn.trusthings.model.expression.ExpressionBuilder;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
 import com.inn.trusthings.model.pojo.SecurityGoal;
@@ -45,7 +46,7 @@ public class Request {
 	 */
 	protected static TrustCriteria request_Example_1() {
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustCriteria trustRequest = factory.createTrustRequest();
+		
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -72,9 +73,10 @@ public class Request {
 		SecurityGoal goal2 = new SecurityGoal(URI.create(UsdlSec.Confidentiality.getURI()));
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(1);
-		trustRequest.addAttribute(att1, att2, att3, att4);
+		
+		return ExpressionBuilder.startNewTrustCriteria()
+			.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 
-		return trustRequest;
 	}
 
 	/**
@@ -84,7 +86,6 @@ public class Request {
 	protected static TrustCriteria request_Example_2() {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -122,9 +123,9 @@ public class Request {
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(1);
 
-		trustRequest.addAttribute(att1, att2, att3, att4);
+		return ExpressionBuilder.startNewTrustCriteria()
+				.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 
-		return trustRequest;
 	}
 
 	/**
@@ -134,7 +135,6 @@ public class Request {
 	protected static TrustCriteria request_Example_3(double... importance) {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -172,15 +172,14 @@ public class Request {
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(importance[1]);
 
-		trustRequest.addAttribute(att1, att2, att3, att4);
+		return ExpressionBuilder.startNewTrustCriteria()
+				.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 
-		return trustRequest;
 	}
 
 	protected static TrustCriteria request_Example_4(double... importance) {
 
 		final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
-		final TrustCriteria trustRequest = factory.createTrustRequest();
 
 		TrustAttribute att1 = factory.createTrustAttibute();
 		att1.addType(URI.create(Trust.Reputation.getURI()));
@@ -215,9 +214,8 @@ public class Request {
 		att5.addSecurityGoal(goal2);
 		att5.setImportance(importance[1]);
 
-		trustRequest.addAttribute(att1, att2, att3, att4, att5);
-
-		return trustRequest;
+		return ExpressionBuilder.startNewTrustCriteria()
+				.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 	}
 	
 	public static void main(String[] args) {

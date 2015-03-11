@@ -25,6 +25,7 @@ import java.util.List;
 
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumNormalizationType;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.util.tuple.Tuple2;
@@ -37,20 +38,19 @@ import com.inn.util.tuple.Tuple2;
 public class ScoreStrategyFactory {
 	
 	
-	public static synchronized AbstractScoreStrategy createScoreStrategy(List<TrustAttribute> attributeList, 
-			List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,  EnumScoreStrategy scoreStrategy){
+	public static synchronized AbstractScoreStrategy createScoreStrategy(TrustCriteria trustCriteria,  List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,  EnumScoreStrategy scoreStrategy){
 		
 		if (scoreStrategy == EnumScoreStrategy.TOPSIS){
-			return new TopsisScoreStrategy(attributeList, dataSet);
+			return new TopsisScoreStrategy(trustCriteria, dataSet);
 		}
 		if (scoreStrategy == EnumScoreStrategy.Weighted_sum_model){
-			return new WeightedSumStrategy(attributeList, dataSet, EnumNormalizationType.Zero_One);
+			return new WeightedSumStrategy(trustCriteria, dataSet, EnumNormalizationType.Zero_One);
 		}
 		if (scoreStrategy == EnumScoreStrategy.Weighted_sum_model_to01scale_divMaxInSet){
-			return new WeightedSumStrategy(attributeList, dataSet, EnumNormalizationType.Zero_One_by_divMax);
+			return new WeightedSumStrategy(trustCriteria, dataSet, EnumNormalizationType.Zero_One_by_divMax);
 		}
 		//default strategy is a Weighted Sum Strategy with 0..1 scaling and all feature having 1 as max value and 0 as min value.
-		return new WeightedSumStrategy(attributeList, dataSet, EnumNormalizationType.Zero_One);
+		return new WeightedSumStrategy(trustCriteria, dataSet, EnumNormalizationType.Zero_One);
 	}
 
 }

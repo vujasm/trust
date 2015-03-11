@@ -4,8 +4,8 @@ public class Operator {
 	
 	private Operator next;
 	private Operator before;
-	private Operand operandLeft;
-	private Operand operandRight;
+	private SingleElement operandLeft;
+	private SingleElement operandRight;
 
 	
 	public Operator getBefore() {
@@ -24,19 +24,19 @@ public class Operator {
 		this.next = next;
 	}
 
-	public Operand getOperandLeft() {
+	public SingleElement getOperandLeft() {
 		return operandLeft;
 	}
 
-	public void setOperandLeft(Operand operandLeft) {
+	public void setOperandLeft(SingleElement operandLeft) {
 		this.operandLeft = operandLeft;
 	}
 
-	public Operand getOperandRight() {
+	public SingleElement getOperandRight() {
 		return operandRight;
 	}
 
-	public void setOperandRight(Operand operandRight) {
+	public void setOperandRight(SingleElement operandRight) {
 		this.operandRight = operandRight;
 	}
 

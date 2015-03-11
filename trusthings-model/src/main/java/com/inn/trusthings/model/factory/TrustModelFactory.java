@@ -42,9 +42,9 @@ public class TrustModelFactory {
 		return new TrustProfile(uidGenerator.create(TrustProfile.class));
 	}
 	
-	public TrustCriteria createTrustRequest() {
-		return new TrustCriteria(uidGenerator.create(TrustCriteria.class));
-	}
+//	public TrustCriteria createTrustRequest() {
+//		return new TrustCriteria(uidGenerator.create(TrustCriteria.class));
+//	}
 
 	public TrustAttribute createTrustAttibute() {
 		return new TrustAttribute(uidGenerator.create(TrustProfile.class));

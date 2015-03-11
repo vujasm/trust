@@ -26,6 +26,7 @@ import java.util.List;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.TrustProfile;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.util.tuple.Tuple2;
@@ -49,7 +50,7 @@ public interface RankingManager {
 	 * @return
 	 */	
 	
-	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustProfile trustProfileRequired, EnumScoreStrategy strategy,
+	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustCriteria trustProfileRequired, EnumScoreStrategy strategy,
 			 boolean excludeIfAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception ;
 	
 //	/**

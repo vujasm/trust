@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.util.tuple.Tuple2;
 
@@ -43,8 +44,8 @@ public class TopsisScoreStrategy extends AbstractScoreStrategy {
 
 	private static final Logger log = LoggerFactory.getLogger(TopsisScoreStrategy.class);
 
-	protected TopsisScoreStrategy(List<TrustAttribute> attributeList, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
-		super(attributeList, dataSet);
+	protected TopsisScoreStrategy(TrustCriteria trustCriteria, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
+		super(trustCriteria, dataSet);
 	}
 
 	protected void init() {

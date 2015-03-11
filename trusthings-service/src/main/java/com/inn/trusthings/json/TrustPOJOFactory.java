@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hp.hpl.jena.datatypes.BaseDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDDouble;
+import com.inn.trusthings.model.expression.ExpressionBuilder;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
 import com.inn.trusthings.model.pojo.SecurityAttribute;
@@ -40,26 +41,28 @@ import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.util.uri.UIDGenerator;
 
+import de.fuberlin.wiwiss.d2rq.expr.Expression;
+
 public class TrustPOJOFactory {
 	
 	final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
 
 	public TrustCriteria ofTrustCriteria(String json) {
 		ObjectMapper m = new ObjectMapper();
-		final TrustCriteria criteria = factory.createTrustRequest();
+		ExpressionBuilder builder = ExpressionBuilder.startNewTrustCriteria();
 		try {
 			
 			JsonNode rootNode = m.readTree(json);
 			JsonNode attributesNode = rootNode.get("attributes");
 			for (JsonNode attributeNode : attributesNode) {
 				TrustAttribute attribute = createTrustAttribute(attributeNode);
-				criteria.addAttribute(attribute);
+				builder = builder.attribute(attribute).and();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
-		return criteria;
+		return builder.build();
 	}
 
 	private TrustAttribute createTrustAttribute(JsonNode element) {
