@@ -24,13 +24,14 @@ package com.inn.trusthings.model.pojo;
 import java.net.URI;
 
 import com.hp.hpl.jena.datatypes.RDFDatatype;
+import com.inn.trusthings.model.expression.Operand;
 
 /**
  * TrustAttribute For COMPOSE, it is any trust-relevant functional / non-functional property
  * @author marko
  *
  */
-public class TrustAttribute extends TResource{
+public class TrustAttribute extends TResource implements Operand{
 	
 	private double importance = 1;
 	

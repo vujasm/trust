@@ -1,0 +1,26 @@
+{
+    "attributes": [
+                {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "importance": 0.5,
+             "value": {
+              "certificateauthority": [
+                {
+                  "type": "http://www.compose-project.eu/ns/web-of-things/security#US-Based"
+                }
+                ]
+             }
+        },
+        {
+            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "importance": 0.5,
+             "value": {
+              "certificateauthority": [
+                {
+                  "type": "http://www.compose-project.eu/ns/web-of-things/security#EU-Based"
+                }
+                ]
+             }
+        }
+    ]
+}

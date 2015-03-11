@@ -41,7 +41,7 @@ public class TrustScorerTest {
 		try {
 			//load (from json file) and set trust criteria 
 //			InputStream is = TrustScorerTest.class.getResourceAsStream("/integration/trustcriteria1.json");
-			InputStream is = TrustScorerTest.class.getResourceAsStream("/criteria/demo/trust_demo_1.json");
+			InputStream is = TrustScorerTest.class.getResourceAsStream("/criteria/demo/test2ca.json");
 			String	criteria = CharStreams.toString(new InputStreamReader(is));
 			is.close();
 			

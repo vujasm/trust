@@ -44,6 +44,7 @@ import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.config.LocationMapping;
+import com.inn.trusthings.model.expression.Expression;
 import com.inn.trusthings.model.io.ToModelParser;
 import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
 import com.inn.trusthings.model.io.ext.SecProfileExpressionToModel;
@@ -57,6 +58,7 @@ import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.op.match.GeneralMatchOp;
 import com.inn.trusthings.op.score.AbstractScoreStrategy;
 import com.inn.trusthings.op.score.ScoreStrategyFactory;
+import com.inn.trusthings.service.ExpressionBuilder;
 import com.inn.trusthings.service.collectors.ValuesHolderLoader;
 import com.inn.trusthings.service.command.Sort;
 import com.inn.trusthings.service.interfaces.RankingManager;
@@ -201,31 +203,32 @@ public class BasicRankingManager implements RankingManager {
 	/**
 	 * Evaluates attributes by calling for each attribute match(), either returns numerical value for measurable attributes
 	 * or return estimated similarity in case of semantic descriptions (non measurable attributes)
-	 * @param trustProfile
-	 * @param reqTrustProfile
+	 * @param profile
+	 * @param requestedProfile
 	 * @param filterIfMissingAttribute 
 	 * @return
 	 */
-	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile trustProfile, TrustProfile reqTrustProfile, boolean filterIfMissingAttribute) throws Exception{
+	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile profile, TrustProfile requestedProfile, boolean filterIfMissingAttribute) throws Exception{
 		
-		final List<Tuple2<TrustAttribute, Double>> list = Lists.newArrayList();
-		final List<TrustAttribute> reqAttributes = reqTrustProfile.getAttributes();
-
-		if (trustProfile.getAttributes().isEmpty() == false) {
-			for (TrustAttribute reqAttribute : reqAttributes) {
-				TResource type = reqAttribute.obtainType();
-				log.info("evaluting " + type.getUri() + " for " + trustProfile.getAgent().getUri());
-				final List<TrustAttribute> attributes = TrustOntologyUtil.instance()
-							.filterByTypeDirect(trustProfile.getAttributes(), type.getUri());
+		List<Tuple2<TrustAttribute, Double>> list = Lists.newArrayList();
+		List<TrustAttribute> requestedAttrList = requestedProfile.getAttributes();
+		
+		Expression expression  = ExpressionBuilder.build(requestedProfile);
+		
+		if (profile.getAttributes().isEmpty() == false) {
+			for (TrustAttribute requestedAttr : requestedAttrList) {
+				TResource type = requestedAttr.obtainType();
+				log.info("evaluting " + type.getUri() + " for " + profile.getAgent().getUri());
+				final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(profile.getAttributes(), type.getUri());
 				log.info("they will be evaluated w.r.t " + attributes);
-				final double value = match(reqAttribute, attributes);
+				final double value = match(requestedAttr, attributes);
 				if (filterIfMissingAttribute && value == 0) {
 					return null;
 				} else if (rigorousEval && value==0){
 					return null;
 				} else
 				{
-					list.add(new Tuple2<TrustAttribute, Double>(reqAttribute, Double.valueOf(value)));
+					list.add(new Tuple2<TrustAttribute, Double>(requestedAttr, Double.valueOf(value)));
 				}
 			}
 		}
@@ -234,14 +237,14 @@ public class BasicRankingManager implements RankingManager {
 
 	/**
 	 * 
-	 * @param reqAttribute required attributes with required value and importance
+	 * @param requested required attributes with required value and importance
 	 * @param attributes list of attributes of a resource
 	 * @return
 	 */
-	private double match(final TrustAttribute reqAttribute, final List<TrustAttribute> attributes) throws Exception{
+	private double match(final TrustAttribute requested, final List<TrustAttribute> attributes) throws Exception{
 		ValuesHolder valuesHolder = new ValuesHolderLoader().loadValues(); 
 		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager, valuesHolder);
-		double result = operator.apply(reqAttribute, attributes);
+		double result = operator.apply(requested, attributes);
 		return result;
 	}
 

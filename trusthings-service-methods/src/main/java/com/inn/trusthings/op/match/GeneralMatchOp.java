@@ -39,6 +39,7 @@ package com.inn.trusthings.op.match;
 
 import java.util.List;
 
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.inn.common.ValuesHolder;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.model.pojo.CertificateAuthorityAttribute;
@@ -67,7 +68,14 @@ public class GeneralMatchOp {
 		this.valuesHolder = valuesHolder;
 	}
 	
-	public double apply(TrustAttribute reqAttribute, List<TrustAttribute> attributes) throws Exception {
+	/**
+	 * 
+	 * @param requested Requested attribute
+	 * @param attributes List of attributes contained in a trust profile
+	 * @return Double value as a matching/evaluation score on the requested attribute
+	 * @throws Exception
+	 */
+	public double apply(TrustAttribute requested, List<TrustAttribute> attributes) throws Exception {
 		if (attributes.isEmpty()){
 			// If there is no attribute matching requested attribute,then value is
 			// 0. this is pessimistic approach.
@@ -75,25 +83,26 @@ public class GeneralMatchOp {
 			// consideration/
 			return 0;
 		}
-		if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
-					Trust.UnmeasurableTrustAttribute.getURI())) {//if descriptive then sem match
-			
-			if (reqAttribute instanceof CertificateAuthorityAttribute) {
-				return new CertSemanticMatchOp().apply(reqAttribute, attributes);
-			}
-			else if (TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), 
-					Trust.SecurityAttribute.getURI())) {
-				return new SecSemanticMatchOp(kbManager).apply(reqAttribute, attributes);
-			}else{
-				final SemanticMatchOutput result = new SemanticMatchOp(kbManager).apply(reqAttribute, attributes);
+		if (isSubtype(requested, Trust.UnmeasurableTrustAttribute)) {
+			//it is descriptive so then apply specific semantic match depending on the attribute's type
+			if (requested instanceof CertificateAuthorityAttribute) {
+				return new CertSemanticMatchOp().apply(requested, attributes);
+			} else if (isSubtype(requested, Trust.SecurityAttribute)) {
+				return new SecSemanticMatchOp(kbManager).apply(requested, attributes);
+			} else {
+				final SemanticMatchOutput result = new SemanticMatchOp(kbManager).apply(requested, attributes);
 				return result.asNumeric();
 			}
-			
-		} else { // if numeric and measurable then comparison
+
+		} else { // if numeric and measurable then do numeric comparisons
 			final ComparisonMatchOp op = new ComparisonMatchOp(valuesHolder);
 			// at this point, it is assumed that only and only one exists
 			TrustAttribute attribute = attributes.get(0);
-			return op.apply(reqAttribute, attribute);
+			return op.apply(requested, attribute);
 		}
+	}
+
+	private boolean isSubtype(TrustAttribute reqAttribute, Resource resource) {
+		return TrustOntologyUtil.instance().isSubtype(reqAttribute.obtainType().getUri().toString(), resource.getURI());
 	}
 }
