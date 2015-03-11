@@ -199,7 +199,7 @@ public class Application {
 		leftPanel.setLayout(null);
 		leftPanel.setBounds(100, 100, 1000, 400);
 		
-		tree = new JTree();
+		tree = new JTree();//
 		tree.setBounds(10, 31, 149, 368);
 		tree.setModel(Controller.getTreeModel());
 		TreeCellRenderer renderer = new DefaultTreeCellRenderer() {
