@@ -233,7 +233,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Availability
+###  http://www.compose-project.eu/ns/web-of-things/trust#Liveness
 
 :Availability rdf:type owl:Class ;
               
@@ -464,6 +464,20 @@
 ###  http://www.compose-project.eu/ns/web-of-things/trust#ResponseTime
 
 :ResponseTime rdf:type owl:Class ;
+              
+              rdfs:subClassOf :QoSAttribute .
+
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Accuracy
+
+:Accuracy rdf:type owl:Class ;
+              
+              rdfs:subClassOf :QoSAttribute .
+              
+
+###  http://www.compose-project.eu/ns/web-of-things/trust#Frequency
+
+:Frequency rdf:type owl:Class ;
               
               rdfs:subClassOf :QoSAttribute .
 
