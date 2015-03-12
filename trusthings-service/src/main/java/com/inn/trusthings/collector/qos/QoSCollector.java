@@ -1,12 +1,4 @@
-package com.inn.trusthings.service.collectors;
-
-import java.net.URI;
-import java.util.List;
-import java.util.Map;
-
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
-import com.hp.hpl.jena.rdf.model.Model;
+package com.inn.trusthings.collector.qos;
 
 /*
  * #%L
@@ -29,29 +21,28 @@ import com.hp.hpl.jena.rdf.model.Model;
  */
 
 
-public abstract class AbstractCollector implements Collector{
-	
-	String sourceUri = null;
-	
-	public void setSourceUri(String sourceUri) {
-		this.sourceUri = sourceUri;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.inn.trusthings.collector.AbstractCollector;
+
+public class QoSCollector extends AbstractCollector{
+
+	public QoSCollector(String sourceUri) {
+		super(sourceUri);
 	}
-	
-	public String getSourceUri() {
-		return sourceUri;
-	}
-	
-	
-	public AbstractCollector(String sourceUri) {
-		this.sourceUri = sourceUri;
-	}
-	
 
 	@Override
-	/**
-	 * default implementation
-	 */
-	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
-		//
+	public Model collectInformation(String resourceIdentifier) {
+		return null;
 	}
+
+	@Override
+	public String getName() {
+		return "qos";
+	}
+	
+	@Override
+	public void shutDown() {
+
+	}
+
 }

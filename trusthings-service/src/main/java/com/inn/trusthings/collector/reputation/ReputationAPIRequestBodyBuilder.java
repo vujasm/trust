@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.collectors;
+package com.inn.trusthings.collector.reputation;
 
 /*
  * #%L

@@ -19,22 +19,15 @@ package com.inn.trusthings.service.config;
  * limitations under the License.
  * #L%
  */
-
-
-import com.inn.trusthings.service.collectors.ActivityCollector;
-import com.inn.trusthings.service.collectors.Collector;
-import com.inn.trusthings.service.collectors.FeedbackCollector;
-import com.inn.trusthings.service.collectors.InternalCollector;
-import com.inn.trusthings.service.collectors.QoSCollector;
-import com.inn.trusthings.service.collectors.ReputationCollector;
+import com.inn.trusthings.collector.Collector;
+import com.inn.trusthings.collector.qos.QoSCollector;
+import com.inn.trusthings.collector.reputation.ReputationCollector;
+import com.inn.trusthings.collector.trustdb.InternalCollector;
 
 public enum CollectorEnum {
 	
 
 	Reputation( new ReputationCollector("http://132.231.11.217:8080/popularioty-api")),
-	
-	Activity( new ActivityCollector("http://localhost//")),
-	Feedback( new FeedbackCollector("http://localhost//")),
 	QoS( new QoSCollector("http://localhost//")),
 	InternalCollector( new InternalCollector(""));
 	

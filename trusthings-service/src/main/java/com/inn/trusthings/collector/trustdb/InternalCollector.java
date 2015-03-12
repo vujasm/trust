@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.collectors;
+package com.inn.trusthings.collector.trustdb;
 
 /*
  * #%L
@@ -24,6 +24,7 @@ package com.inn.trusthings.service.collectors;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.trusthings.bdg.ABridge;
 import com.inn.trusthings.bdg.BridgeDB;
+import com.inn.trusthings.collector.AbstractCollector;
 import com.mv.util.vcap.VCAPParser;
 
 

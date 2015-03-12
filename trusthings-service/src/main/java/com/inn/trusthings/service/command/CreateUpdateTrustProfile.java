@@ -32,12 +32,12 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.inn.trusthings.collector.Collector;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.io.ToGraphParser;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.vocabulary.Trust;
-import com.inn.trusthings.service.collectors.Collector;
 import com.inn.util.uri.UIDGenerator;
 
 

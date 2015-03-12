@@ -1,4 +1,4 @@
-package com.inn.trusthings.service.collectors;
+package com.inn.trusthings.collector.reputation;
 
 /*
  * #%L
@@ -41,6 +41,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.inn.trusthings.collector.AbstractCollector;
 import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;

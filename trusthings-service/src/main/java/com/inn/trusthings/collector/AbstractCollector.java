@@ -1,4 +1,12 @@
-package com.inn.trusthings.service.collectors;
+package com.inn.trusthings.collector;
+
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.hp.hpl.jena.rdf.model.Model;
 
 /*
  * #%L
@@ -21,25 +29,29 @@ package com.inn.trusthings.service.collectors;
  */
 
 
-import com.hp.hpl.jena.rdf.model.Model;
-
-public class ActivityCollector extends AbstractCollector{
-
-	public ActivityCollector(String sourceUri) {
-		super(sourceUri);
+public abstract class AbstractCollector implements Collector{
+	
+	protected String sourceUri = null;
+	
+	public void setSourceUri(String sourceUri) {
+		this.sourceUri = sourceUri;
 	}
+	
+	public String getSourceUri() {
+		return sourceUri;
+	}
+	
+	
+	public AbstractCollector(String sourceUri) {
+		this.sourceUri = sourceUri;
+	}
+	
 
 	@Override
-	public Model collectInformation(String resourceIdentifier) {
-		return null;
-	}
-
-	@Override
-	public String getName() {
-		return "activityMonitoring";
-	}
-	@Override
-	public void shutDown() {
-		
+	/**
+	 * default implementation
+	 */
+	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
+		//
 	}
 }
