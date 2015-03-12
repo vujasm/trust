@@ -24,6 +24,7 @@ package com.inn.trusthings.op.score;
 import java.util.List;
 
 import com.inn.trusthings.model.expression.Element;
+import com.inn.trusthings.model.expression.SingleElement;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
@@ -39,7 +40,7 @@ import com.inn.util.tuple.Tuple2;
 public class ScoreStrategyFactory {
 	
 	
-	public static synchronized AbstractScoreStrategy createScoreStrategy(List<Element> listCriteria,  List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,  EnumScoreStrategy scoreStrategy){
+	public static synchronized AbstractScoreStrategy createScoreStrategy(List<SingleElement> listCriteria,  List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,  EnumScoreStrategy scoreStrategy){
 		
 		if (scoreStrategy == EnumScoreStrategy.TOPSIS){
 			return new TopsisScoreStrategy(listCriteria, dataSet);

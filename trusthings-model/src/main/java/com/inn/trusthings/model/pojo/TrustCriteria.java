@@ -31,22 +31,22 @@ import com.inn.trusthings.model.expression.SingleElement;
 
 public class TrustCriteria extends Expression {
 	
-	private List<Element> listOperandByAnd = Lists.newArrayList();
-	private List<Element> listOperandByOrGroup = Lists.newArrayList();
+	private List<SingleElement> listOperandByAnd = Lists.newArrayList();
+	private List<OrElement> listOperandByOrGroup = Lists.newArrayList();
 
-	public void setSingleAttributeList(List<Element> list) {
+	public void setSingleAttributeList(List<SingleElement> list) {
 		listOperandByAnd = list;
 	}
 
-	public void setOrGroupAttributeList(List<Element> list) {
+	public void setOrGroupAttributeList(List<OrElement> list) {
 		listOperandByOrGroup = list;
 	}
 	
-	public List<Element> getListOperandByAnd() {
+	public List<SingleElement> getListOperandByAnd() {
 		return listOperandByAnd;
 	}
 	
-	public List<Element> getListOperandByOrGroup() {
+	public List<OrElement> getListOperandByOrGroup() {
 		return listOperandByOrGroup;
 	}
 

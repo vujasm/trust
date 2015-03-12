@@ -8,11 +8,9 @@ import com.inn.trusthings.model.pojo.TrustCriteria;
 
 public class ExpressionBuilder {
 	
-	static TrustCriteria criteria;
-	private static ExpressionBuilder instance = new ExpressionBuilder();
-	
-	private List<Element> listOperandByAnd = Lists.newArrayList();
-	private List<Element> listOperandByOrGroup = Lists.newArrayList();
+	private TrustCriteria criteria;	
+	private List<SingleElement> listOperandByAnd = Lists.newArrayList();
+	private List<OrElement> listOperandByOrGroup = Lists.newArrayList();
 	
 	private SingleElement current;
 	private OrElement currentOrgroup;
@@ -24,37 +22,41 @@ public class ExpressionBuilder {
 		return expression;
 	}
 
-	public static ExpressionBuilder startNewTrustCriteria() {
+	public  ExpressionBuilder startNewTrustCriteria() {
 		criteria = new TrustCriteria();	
-		return instance;
-
-}
+		return this;
+	}
 
 	public ExpressionBuilder attribute(TrustAttribute att1) {
 		SingleElement operand = new SingleElement(att1);
 		current = operand;
-		return instance;
+		return this;
 	}
 	
 	public ExpressionBuilder and() {
 //		And and =  new And();
 		listOperandByAnd.add(current);
-		return instance;
+		return this;
 	}
 
 	public ExpressionBuilder openOrBracket() {
 		currentOrgroup = new OrElement();
-		return instance;
+		return this;
 	}
 
 	public ExpressionBuilder or() {
 		currentOrgroup.getElements().add(current);
-		return instance;
+		return this;
 	}
 
 	public ExpressionBuilder closeOrBracket() {
 		listOperandByOrGroup.add(currentOrgroup);
 		currentOrgroup = null;
-		return instance;
+		return this;
+	}
+
+	public ExpressionBuilder openOrBracket(Double weight) {
+		currentOrgroup = new OrElement(weight);
+		return this;
 	}
 }

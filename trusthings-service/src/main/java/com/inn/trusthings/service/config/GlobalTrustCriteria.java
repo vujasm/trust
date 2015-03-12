@@ -101,7 +101,7 @@ public class GlobalTrustCriteria {
 		certficate.setCertificateAuthority("http://www.compose-project.eu/ns/web-of-things/security#US-Based");
 		// certficate.setCountry("http://www.compose-project.eu/ns/web-of-things/security#US");
 
-		return ExpressionBuilder.startNewTrustCriteria().attribute(att1).and().attribute(att2).and().attribute(att4)
+		return new ExpressionBuilder().startNewTrustCriteria().attribute(att1).and().attribute(att2).and().attribute(att4)
 				.and().attribute(att5).and().attribute(certficate).build();
 
 	}

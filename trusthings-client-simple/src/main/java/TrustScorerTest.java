@@ -52,7 +52,9 @@ public class TrustScorerTest {
 			List<URI> list = Lists.newArrayList();
 			try {
 				URI service_a = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/facebook");
+				URI service_b = URI.create("http://iserve.kmi.open.ac.uk/iserve/id/services/c006937c-2777-44d2-bd0a-7586c00a86ce/yandex-podpiski");
 				list.add(service_a);
+				list.add(service_b);
 //				list.add(new URI("http:/localhost/service_instance/aaa/service_instance1"));
 //				list.add(new URI("http:/localhost/service_instance/aaa/service_instance2"));
 //				list.add(new URI("http:/localhost/service_object/aaa/service_object1"));

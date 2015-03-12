@@ -41,7 +41,6 @@ import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.util.uri.UIDGenerator;
 
-import de.fuberlin.wiwiss.d2rq.expr.Expression;
 
 public class TrustPOJOFactory {
 	
@@ -49,20 +48,37 @@ public class TrustPOJOFactory {
 
 	public TrustCriteria ofTrustCriteria(String json) {
 		ObjectMapper m = new ObjectMapper();
-		ExpressionBuilder builder = ExpressionBuilder.startNewTrustCriteria();
+		ExpressionBuilder builder = new ExpressionBuilder().startNewTrustCriteria();
 		try {
 			
 			JsonNode rootNode = m.readTree(json);
 			JsonNode attributesNode = rootNode.get("attributes");
 			for (JsonNode attributeNode : attributesNode) {
-				TrustAttribute attribute = createTrustAttribute(attributeNode);
-				builder = builder.attribute(attribute).and();
+				if (attributeNode.has("or") == false){
+					TrustAttribute attribute = createTrustAttribute(attributeNode);
+					builder = builder.attribute(attribute).and();
+				}
+				else{
+					JsonNode disjuncted = attributeNode.get("or").get("attributes");
+					JsonNode importance = attributeNode.get("or").get("importance");
+					Double importanceOr = obtainImportance(importance);
+					processDisjuncted(disjuncted,importanceOr, builder);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
 		return builder.build();
+	}
+
+	private void processDisjuncted(JsonNode disjuncted, Double importanceOr, ExpressionBuilder builder) {
+		builder = builder.openOrBracket(importanceOr);
+		for (JsonNode attributeNode : disjuncted) {
+			TrustAttribute attribute = createTrustAttribute(attributeNode);
+			builder = builder.attribute(attribute).or();
+		}
+		builder = builder.closeOrBracket();
 	}
 
 	private TrustAttribute createTrustAttribute(JsonNode element) {

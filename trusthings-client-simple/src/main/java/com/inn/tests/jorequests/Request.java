@@ -74,7 +74,7 @@ public class Request {
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(1);
 		
-		return ExpressionBuilder.startNewTrustCriteria()
+		return new ExpressionBuilder().startNewTrustCriteria()
 			.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 
 	}
@@ -123,7 +123,7 @@ public class Request {
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(1);
 
-		return ExpressionBuilder.startNewTrustCriteria()
+		return new ExpressionBuilder().startNewTrustCriteria()
 				.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 
 	}
@@ -172,7 +172,7 @@ public class Request {
 		att4.addSecurityGoal(goal2);
 		att4.setImportance(importance[1]);
 
-		return ExpressionBuilder.startNewTrustCriteria()
+		return new ExpressionBuilder().startNewTrustCriteria()
 				.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 
 	}
@@ -214,7 +214,7 @@ public class Request {
 		att5.addSecurityGoal(goal2);
 		att5.setImportance(importance[1]);
 
-		return ExpressionBuilder.startNewTrustCriteria()
+		return new ExpressionBuilder().startNewTrustCriteria()
 				.attribute(att1).and().attribute(att2).and().attribute(att3).and().attribute(att4).build();
 	}
 	

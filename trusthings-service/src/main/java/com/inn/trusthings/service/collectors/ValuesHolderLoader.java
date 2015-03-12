@@ -58,7 +58,7 @@ public class ValuesHolderLoader {
 			try {
 				rs.close();
 				ps.close();
-				getConnection().close();
+//				getConnection().close();
 			} catch (Exception e) {
 				//
 			}

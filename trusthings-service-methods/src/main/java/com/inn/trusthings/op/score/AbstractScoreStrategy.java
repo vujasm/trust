@@ -45,9 +45,9 @@ public abstract class AbstractScoreStrategy {
 	
 	protected double weightsSum =  0;
 	
-	public AbstractScoreStrategy(List<Element> listCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
+	public AbstractScoreStrategy(List<SingleElement> listCriteria, final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet) {
 
-		List<Element> elements = listCriteria;
+		List<SingleElement> elements = listCriteria;
 		for (Element element : elements) {
 			this.attributeList.add(((SingleElement)element).getAttribute());
 		}

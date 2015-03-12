@@ -22,6 +22,7 @@ package com.inn.trusthings.service.mgrs.impl;
 
 
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -47,6 +48,7 @@ import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.expression.Element;
 import com.inn.trusthings.model.expression.Expression;
 import com.inn.trusthings.model.expression.ExpressionBuilder;
+import com.inn.trusthings.model.expression.OrElement;
 import com.inn.trusthings.model.expression.SingleElement;
 import com.inn.trusthings.model.io.ToModelParser;
 import com.inn.trusthings.model.io.ext.SecGuaranteeToModel;
@@ -101,13 +103,26 @@ public class BasicRankingManager implements RankingManager {
 		//FIXME !!!! filterByCriteriaNotMet
 		boolean rigorous = filterByCriteriaNotMet;
 		
-		List<Element> listCriteria = trustCriteria.getListOperandByAnd();
+		List<SingleElement> listCriteria = trustCriteria.getListOperandByAnd();
 		
-		final List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet = prepareDataset(models,listCriteria, filterByAttributeMissing, rigorous);
+		List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetMain = prepareDataset(models,listCriteria, filterByAttributeMissing, rigorous);
 //		timer.stop();
 //		log.info("preparedDataset total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 //		timer.reset().start();
-		List<Tuple2<Agent, Double>> scores = obtainScores(listCriteria, dataSet, strategy);
+		
+		List<OrElement> listORs = trustCriteria.getListOperandByOrGroup();
+		for (OrElement or : listORs) {
+			Double weightOr = or.getWeight();
+			List<SingleElement> elements= or.getElements();
+			List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetOr = prepareDataset(models,elements, filterByAttributeMissing, rigorous);
+			updateMainDataSet(dataSetMain, dataSetOr, listCriteria, weightOr);
+//			for (Tuple2<Agent, Double> t : scores) {
+//				updateScores(dataSet, strategy, t);
+//			}
+		}
+		
+		List<Tuple2<Agent, Double>> scores = obtainScores(listCriteria, dataSetMain, strategy);
+		
 //		timer.stop();
 //		log.info("obtainedScores  total time:"+timer.elapsed(TimeUnit.MILLISECONDS));
 //		timer.reset().start();
@@ -118,19 +133,68 @@ public class BasicRankingManager implements RankingManager {
 		return sortedList;
 	}
 	
-	//TODO to remove?
-	protected List<TrustProfile> modelsToTrustPOJO(List<Model> models) throws Exception{
-		List<TrustProfile> list = Lists.newArrayList();
-		for (Model model : models) {
-			ToModelParser parser = getOrCreateToModelParser();
-			TrustProfile trustProfile = parser.parse(model);
-			if (trustProfile!=null)
-				list.add(trustProfile);
+	private void updateMainDataSet(List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetMain,
+			List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetOr, List<SingleElement> listCriteria, Double weightOr) {
+		
+		TrustAttribute criteriaAttribute = null;
+		for (Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> tor : dataSetOr) {
+			Agent agent = tor.getT1();
+			for (Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> tmain : dataSetMain) {
+				if (agent.getUri().equals(tmain.getT1().getUri())){
+					Tuple2<TrustAttribute, Double> best = findBestScoreInOrDS(tor.getT2(), criteriaAttribute);
+					if (best != null){
+						best.getT1().setImportance(weightOr);
+						tmain.getT2().add(best);
+						criteriaAttribute = best.getT1();
+					}
+				}
+			}
 		}
-		return list;
+		if (criteriaAttribute!=null){
+			listCriteria.add(new SingleElement(criteriaAttribute));
+		}
 	}
 
-	private List<Tuple2<Agent, Double>> obtainScores(List<Element> listCriteria, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,EnumScoreStrategy strategy) {
+	
+
+	private Tuple2<TrustAttribute, Double> findBestScoreInOrDS(List<Tuple2<TrustAttribute, Double>> t2, TrustAttribute criteriaAttribute) {
+		Tuple2<TrustAttribute, Double> best = null;
+		for (Tuple2<TrustAttribute, Double> current : t2) {
+			if ( best == null){
+				best = current;
+			}
+			if (current.getT2()!=null) {
+				Double d1 = best.getT2() * best.getT1().getImportance() ;
+				Double d2 =  current.getT2() * current.getT1().getImportance();
+				if (d1 < d2){
+					best = current;
+				}
+			}
+		}
+		if (best!=null){
+			Double scoreWeighted = best.getT2() * best.getT1().getImportance();
+			best.setT2(scoreWeighted);
+		}
+		if (best != null && criteriaAttribute != null){
+			best.setT1(criteriaAttribute);
+		}
+		return best;
+	}
+
+
+//	//TODO to remove?
+//	protected List<TrustProfile> modelsToTrustPOJO(List<Model> models) throws Exception{
+//		List<TrustProfile> list = Lists.newArrayList();
+//		for (Model model : models) {
+//			ToModelParser parser = getOrCreateToModelParser();
+//			TrustProfile trustProfile = parser.parse(model);
+//			if (trustProfile!=null)
+//				list.add(trustProfile);
+//		}
+//		return list;
+//	}
+
+	private List<Tuple2<Agent, Double>> obtainScores(List<SingleElement> listCriteria, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSet,EnumScoreStrategy strategy) {
 		
 		final AbstractScoreStrategy scoreStrategy = ScoreStrategyFactory.createScoreStrategy(listCriteria, dataSet, strategy);
 		
@@ -163,7 +227,7 @@ public class BasicRankingManager implements RankingManager {
 	 * @param rigorous
 	 * @return
 	 */
-	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, List<Element> listCriteria, boolean filterByAttributeMissing, boolean rigorous) {
+	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, List<SingleElement> listCriteria, boolean filterByAttributeMissing, boolean rigorous) {
 		
 		rigorousEval = rigorous;
 		
@@ -216,7 +280,7 @@ public class BasicRankingManager implements RankingManager {
 	 * @param filterIfMissingAttribute 
 	 * @return
 	 */
-	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile profile, List<Element> listCriteria, boolean filterIfMissingAttribute) throws Exception{
+	private List<Tuple2<TrustAttribute, Double>> evaluateAttributes(TrustProfile profile, List<SingleElement> listCriteria, boolean filterIfMissingAttribute) throws Exception{
 		
 		List<Tuple2<TrustAttribute, Double>> list = Lists.newArrayList();
 		
