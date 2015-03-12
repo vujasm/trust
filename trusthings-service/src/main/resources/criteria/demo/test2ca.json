@@ -1,7 +1,7 @@
 {
   "attributes": [
     {
-      "or": {
+       "or": {
         "importance": 1,
         "attributes": [
           {
