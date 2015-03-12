@@ -39,7 +39,7 @@
       <level value="OFF" />
  </logger> 
   <logger name="com.inn">
-      <level value="warn, debug" />
+      <level value="off" />
   </logger>
    <logger name="com.inn.compose.test">
       <level value="warn, debug" />
