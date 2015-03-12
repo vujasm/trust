@@ -44,6 +44,7 @@ import com.inn.util.uri.UIDGenerator;
 
 public class TrustPOJOFactory {
 	
+	
 	final TrustModelFactory factory = new TrustModelFactory(UIDGenerator.instanceRequest);
 
 	public TrustCriteria ofTrustCriteria(String json) {
