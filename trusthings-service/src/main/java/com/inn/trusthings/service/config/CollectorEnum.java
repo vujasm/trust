@@ -20,7 +20,7 @@ package com.inn.trusthings.service.config;
  * #L%
  */
 import com.inn.trusthings.collector.Collector;
-import com.inn.trusthings.collector.qos.QoSCollector;
+import com.inn.trusthings.collector.monitoring.MonitoringCollector;
 import com.inn.trusthings.collector.reputation.ReputationCollector;
 import com.inn.trusthings.collector.trustdb.InternalCollector;
 
@@ -28,7 +28,7 @@ public enum CollectorEnum {
 	
 
 	Reputation( new ReputationCollector("http://132.231.11.217:8080/popularioty-api")),
-	QoS( new QoSCollector("http://localhost//")),
+	QoS( new MonitoringCollector("http://localhost//")),
 	InternalCollector( new InternalCollector(""));
 	
 	private  final Collector collector;

@@ -46,7 +46,6 @@ import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.vocabulary.Trust;
-import com.inn.trusthings.service.mgrs.impl.BasicTrustManager;
 import com.inn.util.httpclient.Client;
 import com.inn.util.tuple.Tuple2;
 import com.inn.util.uri.UIDGenerator;

@@ -24,10 +24,7 @@ package com.inn.trusthings.collector;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.Multimap;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.inn.util.tuple.Tuple2;
 
 
 /**

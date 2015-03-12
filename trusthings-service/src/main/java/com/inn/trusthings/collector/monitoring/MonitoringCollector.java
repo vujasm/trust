@@ -1,4 +1,4 @@
-package com.inn.trusthings.collector.qos;
+package com.inn.trusthings.collector.monitoring;
 
 /*
  * #%L
@@ -24,9 +24,9 @@ package com.inn.trusthings.collector.qos;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.trusthings.collector.AbstractCollector;
 
-public class QoSCollector extends AbstractCollector{
+public class MonitoringCollector extends AbstractCollector{
 
-	public QoSCollector(String sourceUri) {
+	public MonitoringCollector(String sourceUri) {
 		super(sourceUri);
 	}
 
