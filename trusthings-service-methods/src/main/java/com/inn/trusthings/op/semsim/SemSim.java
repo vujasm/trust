@@ -4,7 +4,7 @@ package com.inn.trusthings.op.semsim;
  * #%L
  * trusthings-methods
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ import slib.utils.impl.Timer;
  * SemSim operator that uses a Semantic Measurement Library (SML)0 to compute semantic similarity of concepts from taxonomic Knowledge 
  * For SML @see <a href="http://www.semantic-measures-library.org/sml/">http://www.semantic-measures-library.org/sml/</a>
  * 
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  *
  */
 public class SemSim {

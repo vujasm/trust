@@ -16,19 +16,9 @@
 	<artifactId>trusthings-client-simple</artifactId>
 	
 	<name>trusthings-client-simple</name>
-	<description>This is descr</description>
-	<developers>
-		<developer>
-			
-			<name>Marko Vujasinovic</name>
-			<email>m.vujasinovic-{AT}-innova-eu.net</email>
-			<organization>INNOVA S.p.A</organization>
-			<organizationUrl>www.innova-eu.net</organizationUrl>
-		</developer>
-	</developers>
 	<organization>
-		<name>INNOVA S.p.A</name>
-		<url>www.innova-eu.net</url>
+		<name>COMPOSE project </name>
+		<url>www.compose-eu.net</url>
 	</organization>
 	<dependencies>
 		<dependency>

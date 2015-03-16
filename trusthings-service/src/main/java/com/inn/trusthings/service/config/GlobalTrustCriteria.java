@@ -4,7 +4,7 @@ package com.inn.trusthings.service.config;
  * #%L
  * trusthings-service
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import com.inn.util.uri.UIDGenerator;
  * purpose. It will be refined afterwords..perhaps by conducting a survey among
  * users to identify how they see/perceive trust in their respective domains.
  * 
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  * 
  */
 public class GlobalTrustCriteria {

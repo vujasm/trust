@@ -22,21 +22,11 @@
 		</license>
 	</licenses>
 
-	<inceptionYear>2014</inceptionYear>
-
-	<developers>
-		<developer>
-			
-			<name>Marko Vujasinovic</name>
-			<email>m.vujasinovic-{AT}-innova-eu.net</email>
-			<organization>INNOVA S.p.A</organization>
-			<organizationUrl>www.innova-eu.net</organizationUrl>
-		</developer>
-	</developers>
+	<inceptionYear>2015</inceptionYear>
 
 	<organization>
-		<name>INNOVA S.p.A</name>
-		<url>www.innova-eu.net</url>
+		<name>COMPOSE project </name>
+		<url>www.compose-eu.net</url>
 	</organization>
 
 
@@ -49,8 +39,6 @@
 		<module>/trusthings-webservice</module>
 		<module>/plugin-recommender</module>
 		<module>/trusthings-client-simple</module>
-		<module>/trusthings-client-web</module>
-		<!-- <module>/trusthings-vertx</module>  -->
 	</modules>
 
 

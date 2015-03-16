@@ -21,7 +21,7 @@ package com.inn.trusthings.op.match;
  * #%L
  * trusthings-services
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,11 +49,11 @@ import com.inn.trusthings.model.vocabulary.Trust;
 
 /**
  * General match operator as a entry point for specific matchers
- *@author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ *@author markov
  *
  */
 /**
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  *
  */
 public class GeneralMatchOp {

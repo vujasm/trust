@@ -4,7 +4,7 @@ package com.inn.trusthings.service.command;
  * #%L
  * trusthings-service
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.inn.util.tuple.Tuple2;
 
 /**
  * 
- *@author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ *@author markov
  *
  */
 

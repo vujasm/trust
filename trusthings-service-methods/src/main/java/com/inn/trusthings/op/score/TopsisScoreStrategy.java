@@ -4,7 +4,7 @@ package com.inn.trusthings.op.score;
  * #%L
  * trusthings-methods
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import com.inn.util.tuple.Tuple2;
  * alternative among multiple alternatives. TOPSIS ranks alternative by their distance from ideal solution and worst solution. An
  * alternative closest to the ideal solution and farthest from the worst solution is ranked as a first.
  * 
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  * 
  */
 public class TopsisScoreStrategy extends AbstractScoreStrategy {

@@ -4,7 +4,7 @@ package com.inn.trusthings.model.utils;
  * #%L
  * trusthings-model
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import com.inn.trusthings.model.pojo.TResource;
  * A singleton holding useful methods for trust attribute types checking
  * and simple querying/retrieval under trust ontology
  * 
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  *
  */
 //FIXME rename, perhaps

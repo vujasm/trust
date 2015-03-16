@@ -4,7 +4,7 @@ package com.inn.trusthings.service.command;
  * #%L
  * trusthings-service
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ import com.inn.util.uri.UIDGenerator;
  * Metadata fetch command responsible for obtaining resource annotations either from local file system / online / triple
  * stores
  * 
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  * 
  */
 public class SemanticMetaDataFetcher {

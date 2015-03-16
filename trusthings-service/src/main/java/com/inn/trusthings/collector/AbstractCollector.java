@@ -12,7 +12,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * #%L
  * trusthings-service
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

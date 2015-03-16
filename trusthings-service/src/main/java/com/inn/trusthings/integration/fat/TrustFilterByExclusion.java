@@ -4,7 +4,7 @@ package com.inn.trusthings.integration.fat;
  * #%L
  * trusthings-service
  * %%
- * Copyright (C) 2014 INNOVA S.p.A
+ * Copyright (C) 2015 COMPOSE project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 /**
  * TrustFilterByExclusion implements iServe Recommender Filter interface 
  * 
- * @author Marko Vujasinovic <m.vujasinovic@innova-eu.net>
+ * @author markov
  *
  */
 public class TrustFilterByExclusion implements uk.ac.open.kmi.iserve.discovery.api.ranking.Filter {
