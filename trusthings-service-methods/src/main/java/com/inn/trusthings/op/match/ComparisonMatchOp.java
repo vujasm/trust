@@ -43,10 +43,6 @@ public class ComparisonMatchOp {
 
 	private static final Logger log = LoggerFactory.getLogger(ComparisonMatchOp.class);
 
-	// //FIXME
-	// private static int MAX_NumUsers = 623;
-	// private static int MAX_NumCompositions = 2541;
-
 	private ValuesHolder valuesHolder;
 
 	public ComparisonMatchOp(ValuesHolder valuesHolder) {
