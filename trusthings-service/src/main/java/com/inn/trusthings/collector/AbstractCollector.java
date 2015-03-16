@@ -45,13 +45,4 @@ public abstract class AbstractCollector implements Collector{
 	public AbstractCollector(String sourceUri) {
 		this.sourceUri = sourceUri;
 	}
-	
-
-	@Override
-	/**
-	 * default implementation
-	 */
-	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
-		//
-	}
 }

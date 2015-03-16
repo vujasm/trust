@@ -21,6 +21,12 @@ package com.inn.trusthings.collector.trustdb;
  */
 
 
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
+
+import javax.ws.rs.NotSupportedException;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.trusthings.bdg.ABridge;
 import com.inn.trusthings.bdg.BridgeDB;
@@ -68,6 +74,11 @@ public class InternalCollector extends AbstractCollector {
 	@Override
 	public void shutDown() {
 		b.stop();
+	}
+	
+	@Override
+	public void collectInformation(List<URI> resources, Map<URI, Model> map) {
+		//OK - does nothing.
 	}
 
 }
