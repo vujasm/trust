@@ -1,0 +1,12 @@
+{
+    "collectors": [
+        {
+            "class": "com.inn.trusthings.collector.reputation.ReputationCollector",
+            "endpoint": "http://132.231.11.217:8080/popularioty-api"
+        },
+        {
+            "class": "com.inn.trusthings.collector.monitoring.MonitoringCollector",
+            "endpoint": "http://monitoringapi.com"
+        }
+    ]
+}

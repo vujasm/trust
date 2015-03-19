@@ -54,8 +54,8 @@ public class ReputationCollector extends AbstractCollector{
 	
 	private static final Logger log = LoggerFactory.getLogger(ReputationCollector.class);
 
-	public ReputationCollector(String sourceUri) {
-		super(sourceUri);
+	public ReputationCollector() {
+		
 	}
 
 	@Override

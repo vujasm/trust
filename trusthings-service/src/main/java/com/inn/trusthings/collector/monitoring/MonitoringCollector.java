@@ -30,8 +30,7 @@ import com.inn.trusthings.collector.AbstractCollector;
 
 public class MonitoringCollector extends AbstractCollector{
 
-	public MonitoringCollector(String sourceUri) {
-		super(sourceUri);
+	public MonitoringCollector() {
 	}
 
 	@Override

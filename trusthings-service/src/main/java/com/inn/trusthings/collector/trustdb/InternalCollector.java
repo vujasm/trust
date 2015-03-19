@@ -39,7 +39,7 @@ public class InternalCollector extends AbstractCollector {
 	private ABridge b ;
 
 	public InternalCollector(String sourceUri) {
-		super(sourceUri);
+		setSourceUri(sourceUri);
 		initBridge();
 	}
 

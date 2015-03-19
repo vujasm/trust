@@ -38,7 +38,7 @@ import com.inn.trusthings.model.factory.TrustModelFactory;
 import com.inn.trusthings.model.io.ToGraphParser;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.op.match.MetricMatchOp;
-import com.inn.trusthings.service.config.CollectorEnum;
+import com.inn.trusthings.service.config.CollectorConfig;
 import com.inn.util.uri.UIDGenerator;
 
 
@@ -64,7 +64,7 @@ public class TestReputationCollector {
 			maps.put(uri, m);
 			RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
 		}
-		CollectorEnum.Reputation.getCollector().collectInformation(list, maps);
+		CollectorConfig.getCollectorByType("reputation").collectInformation(list, maps);
 		
 		for (URI uri : list) {
 			RDFDataMgr.write(System.out, maps.get(uri), Lang.TURTLE) ;

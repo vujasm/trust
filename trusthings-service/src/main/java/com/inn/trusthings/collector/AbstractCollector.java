@@ -42,7 +42,6 @@ public abstract class AbstractCollector implements Collector{
 	}
 	
 	
-	public AbstractCollector(String sourceUri) {
-		this.sourceUri = sourceUri;
+	public AbstractCollector() {
 	}
 }

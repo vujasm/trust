@@ -41,7 +41,7 @@ import com.inn.trusthings.model.io.ToGraphParser;
 import com.inn.trusthings.model.pojo.Agent;
 import com.inn.trusthings.model.vocabulary.NSPrefixes;
 import com.inn.trusthings.model.vocabulary.Trust;
-import com.inn.trusthings.service.config.CollectorEnum;
+import com.inn.trusthings.service.config.CollectorConfig;
 import com.inn.util.uri.UIDGenerator;
 
 /**
@@ -110,7 +110,7 @@ public class SemanticMetaDataFetcher {
 //				Log.info(this, "obtaining model from internal registry using sparqlEndpoint");
 //				internalModel = graphStoreManager.getGraph(uri);
 				Log.info(this, "obtaining model from internal MYSQL using D2RQ Bridge or CustomBridge");
-				internalModel = CollectorEnum.InternalCollector.getCollector().collectInformation(uri.toASCIIString());
+				internalModel = CollectorConfig.InternalCollector.getCollector().collectInformation(uri.toASCIIString());
 			}
 		} catch (Exception e) {
 			//FIXME this log below is obsolute. now using mysql.

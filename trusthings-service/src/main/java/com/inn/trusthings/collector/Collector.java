@@ -32,6 +32,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * @author marko
  *
  */
+//FIXME make a collector.json
 public interface Collector {
 	
 	/**

@@ -25,7 +25,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,17 +35,13 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.ac.open.kmi.iserve.commons.io.Syntax;
-
 import com.google.common.base.Predicate;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -56,10 +51,9 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
 import com.inn.trusthings.Configuration;
 import com.inn.trusthings.collector.Collector;
-import com.inn.trusthings.collector.trustdb.InternalCollector;
 import com.inn.trusthings.json.TrustPOJOFactory;
-import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
+import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.kb.SharedOntModelSpec;
 import com.inn.trusthings.kb.SparqlGraphStoreFactory;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
@@ -67,12 +61,11 @@ import com.inn.trusthings.kb.config.IgnoredModels;
 import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.Value;
-import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
-import com.inn.trusthings.service.command.SemanticMetaDataFetcher;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
-import com.inn.trusthings.service.config.CollectorEnum;
+import com.inn.trusthings.service.command.SemanticMetaDataFetcher;
+import com.inn.trusthings.service.config.CollectorConfig;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustSimpleManager;
@@ -249,11 +242,10 @@ public class BasicTrustManager implements TrustSimpleManager {
 	 * data into rdf model.
 	 */
 	private void registerCollectors() {
-		//TODO enable collectors
-//		collectors.add(CollectorEnum.Activity.getCollector());
-		collectors.add(CollectorEnum.QoS.getCollector());
-		collectors.add(CollectorEnum.Reputation.getCollector());
-//		collectors.add(CollectorEnum.Feedback.getCollector());
+		List<Collector> list = CollectorConfig.read();
+		for (Collector c : list) {
+			collectors.add(c);
+		}
 	}
 
 	/**
