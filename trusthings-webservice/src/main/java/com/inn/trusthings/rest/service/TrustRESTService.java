@@ -127,8 +127,10 @@ public class TrustRESTService {
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
+			String level = RequestJSONUtil.getLevelFromJsonComposite(criteria);
+			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(criteria);
 			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
-			List<CompositionIdentifier> filtered = trustManager.filterTrustedByThreshold(compositeServiceList, criteria);
+			List<CompositionIdentifier> filtered = trustManager.filterTrustedByThreshold(compositeServiceList, criteria, level, strategy);
 			return new ProduceJSON().ofFilteringCompositionsResult(filtered);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,10 +148,10 @@ public class TrustRESTService {
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
 			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
-			
 			trustManager.setGlobalTrustCriteria(criteria);
-			
-			List<Tuple2<CompositionIdentifier, Double>> scored = trustManager.obtainTrustIndexes(compositeServiceList, criteria);
+			String level = RequestJSONUtil.getLevelFromJsonComposite(criteria);
+			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(criteria);
+			List<Tuple2<CompositionIdentifier, Double>> scored = trustManager.obtainTrustIndexes(compositeServiceList, criteria, level, strategy);
 			return new ProduceJSON().ofRankingCompositionsResult(scored);
 		} catch (Exception e) {
 			 e.printStackTrace();

@@ -1,6 +1,5 @@
 package com.inn.trusthings.service.interfaces;
 
-import java.net.URI;
 import java.util.List;
 
 import com.inn.common.CompositeServiceWrapper;
@@ -33,10 +32,9 @@ import com.inn.util.tuple.Tuple2;
 public interface TrustCompositionManager extends TrustManager {
 	
 	
-	List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria);
+	List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, String level, String strategy);
 
 	
-	List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList,
-			TrustCriteria criteria);
+	List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, String level, String strategy);
 	
 }

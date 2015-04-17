@@ -96,6 +96,18 @@ public class RequestJSONUtil {
 		return list;
 	}
 
+	//FIXME  - implementiraj me
+	public static String getLevelFromJsonComposite(TrustCriteria criteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//FIXME  - implementiraj me
+	public static String getStrategyFromJsonComposite(TrustCriteria criteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

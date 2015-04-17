@@ -55,14 +55,14 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 
 	@Override
 	public List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList,
-			TrustCriteria criteria) {
+			TrustCriteria criteria, String level, String strategy) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(
-			List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria) {
+			List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, String level, String strategy) { 
 		// TODO Auto-generated method stub
 		return null;
 	}

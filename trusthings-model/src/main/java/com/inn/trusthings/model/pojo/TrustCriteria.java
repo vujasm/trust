@@ -24,7 +24,6 @@ package com.inn.trusthings.model.pojo;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.inn.trusthings.model.expression.Element;
 import com.inn.trusthings.model.expression.Expression;
 import com.inn.trusthings.model.expression.OrElement;
 import com.inn.trusthings.model.expression.SingleElement;
