@@ -6,13 +6,20 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import uk.ac.open.kmi.iserve.commons.io.Syntax;
+
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.inn.common.CompositeServiceWrapper;
 import com.inn.common.CompositionIdentifier;
 import com.inn.trusthings.json.TrustPOJOFactory;
+import com.inn.trusthings.kb.RDFModelsHandler;
 import com.inn.trusthings.model.pojo.TrustCriteria;
+import com.inn.trusthings.model.utils.TrustOntologyUtil;
+import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
@@ -47,6 +54,12 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	private TrustCriteria globalTrustCriteria = GlobalTrustCriteria.instance();
 	
 	private static final Logger log = LoggerFactory.getLogger(TrustCompositionManagerImpl.class);
+	
+	public TrustCompositionManagerImpl() {
+		OntModel model = RDFModelsHandler.getGlobalInstance().fetchOntologyFromLocalLocation(ModelEnum.Trust.getURI(), 
+				Syntax.TTL.getName(), OntModelSpec.OWL_MEM_TRANS_INF);
+		TrustOntologyUtil.init(model);
+	}
 
 	@Override
 	public void setGlobalTrustCriteria(TrustCriteria criteria) {
@@ -81,16 +94,19 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	private void printList(List<Tuple2<CompositionIdentifier, Double>> set, String note) {
 		log.info("******** <" + note + "> ************");
 		for (Tuple2<CompositionIdentifier, Double> t : set) {
-			log.info(t.getT1() + " score " + t.getT2());
+			log.info(t.getT1().getId() + " score " + t.getT2());
 		}
 		log.info("******** </" + note + "> ************");
 	}
 
 	@Override
-	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(
-			List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) { 
-		// TODO Auto-generated method stub
-		return null;
+	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) {
+		List<Tuple2<CompositionIdentifier, Double>> list = Lists.newArrayList();
+		for (CompositeServiceWrapper wrapper : compositeServiceList) {
+			Tuple2<CompositionIdentifier, Double> tuple = new Tuple2<CompositionIdentifier, Double>(wrapper.getCompositionIdentifier(),0.4D);
+			list.add(tuple);
+		}
+		return list;
 	}
 	
 	

@@ -54,7 +54,7 @@ public class RequestJSONUtil {
 		JsonNode rootNode = mapper.readTree(request);
 		JsonNode resources = rootNode.path("resources");
 		if (resources == null || resources.size() == 0){
-			throw new Exception ("No list of resource URIs in a request.");
+			throw new Exception ("No list of resource URIs in a request payload");
 		}
 		List<URI> list = Lists.newArrayList();
 		for (JsonNode node : resources) {
@@ -97,13 +97,13 @@ public class RequestJSONUtil {
 		JsonNode rootNode = mapper.readTree(request);
 		JsonNode resources = rootNode.path("resources");
 		if (resources == null || resources.size() == 0){
-			throw new Exception ("No list of compositions in a request.");
+			throw new Exception ("No list of compositions in a request payload");
 		}
 		for (JsonNode node : resources) {
 			String id = node.get("compositionID").textValue();
 			JsonNode flow = node.get("compositionFlowDescr");
 			if (id == null || flow == null)
-				throw new Exception ("No  id or flow in a composition attribute");
+				throw new Exception ("No  id or flow in a composition attribute of the request payload");
 			CompositionIdentifier compositionIdentifier = new CompositionIdentifier(id);
 			list.add(new CompositeServiceWrapper(compositionIdentifier, flow.toString()));
 		}
@@ -115,13 +115,18 @@ public class RequestJSONUtil {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode rootNode = mapper.readTree(request);
 		JsonNode level = rootNode.path("level");
+		if (level == null ||level.textValue()==null)
+			throw new Exception ("No attribute level specified in a request payload");
 		if (level !=null && level.textValue().equalsIgnoreCase("simple")){
 		  return EnumLevel.SIMPLE;
 		}
-		if (level !=null && level.textValue().equalsIgnoreCase("composite")){
+		else if (level !=null && level.textValue().equalsIgnoreCase("composite")){
 			  return EnumLevel.COMPOSITE;
 		}
-		return EnumLevel.SIMPLE;
+		else {
+			throw new Exception ("Attribute level specified in a request payload should be either 'simple' or 'global'");
+		}
+		
 	}
 
 
