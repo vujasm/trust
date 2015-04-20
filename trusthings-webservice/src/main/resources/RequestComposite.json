@@ -1,0 +1,198 @@
+{
+    "level": "simple",
+    "resources": [
+        {
+            "compositionID": "composition_1",
+            "compositionFlowDescr": [
+  {
+    "type": "tab",
+    "id": "fd0f37d6.02f0c8",
+    "label": "nationalgrid data"
+  },
+  {
+    "id": "d8118164.27ee8",
+    "type": "inject",
+    "name": "Tick",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "*/5 * * * *",
+    "once": false,
+    "x": 145,
+    "y": 150,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      [
+        "c2ec7183.3d139"
+      ]
+    ]
+  },
+  {
+    "id": "c2ec7183.3d139",
+    "type": "http request",
+    "name": "UK Power",
+    "method": "GET",
+    "url": "http://realtimeweb-prod.nationalgrid.com/SystemData.aspx",
+    "x": 285,
+    "y": 150,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      [
+        "84d987b8.7b2678"
+      ]
+    ]
+  },
+  {
+    "id": "84d987b8.7b2678",
+    "type": "function",
+    "name": "UK Power Demand",
+    "func": "// does a simple text extract parse of the http output to provide an\n// object containing the uk power demand, frequency and time\n\nif (~msg.payload.indexOf('<span')) {\n    var dem = msg.payload.split('Demand:')[1].split(\"MW\")[0];\n    var fre = msg.payload.split('Frequency:')[1].split(\"Hz\")[0];\n\n    msg.payload = {};\n    msg.payload.demand = parseInt(dem.split(\">\")[1].split(\"<\")[0]);\n    msg.payload.frequency = parseFloat(fre.split(\">\")[1].split(\"<\")[0]);\n    \n    msg2 = {};\n    msg2.payload = (msg.payload.frequency >= 50) ? true : false;\n\n    return [msg,msg2];\n}\n\nreturn null;",
+    "outputs": "2",
+    "valid": true,
+    "x": 462,
+    "y": 150,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      [
+        "a0de6a80.5f2198"
+      ],
+      [
+        "f7f0fb0f.080f08"
+      ]
+    ]
+  },
+  {
+    "id": "a0de6a80.5f2198",
+    "type": "debug",
+    "name": "",
+    "active": true,
+    "complete": false,
+    "x": 662,
+    "y": 120,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      
+    ]
+  },
+  {
+    "id": "f7f0fb0f.080f08",
+    "type": "debug",
+    "name": "",
+    "active": true,
+    "complete": false,
+    "x": 663,
+    "y": 191,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      
+    ]
+  }
+]
+        },
+        {
+            "compositionID": "composition_2",
+            "compositionFlowDescr": [
+  {
+    "type": "tab",
+    "id": "fd0f37d6.02f0c8",
+    "label": "nationalgrid data"
+  },
+  {
+    "id": "d8118164.27ee8",
+    "type": "inject",
+    "name": "Tick",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "*/5 * * * *",
+    "once": false,
+    "x": 145,
+    "y": 150,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      [
+        "c2ec7183.3d139"
+      ]
+    ]
+  },
+  {
+    "id": "c2ec7183.3d139",
+    "type": "http request",
+    "name": "UK Power",
+    "method": "GET",
+    "url": "http://realtimeweb-prod.nationalgrid.com/SystemData.aspx",
+    "x": 285,
+    "y": 150,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      [
+        "84d987b8.7b2678"
+      ]
+    ]
+  },
+  {
+    "id": "84d987b8.7b2678",
+    "type": "function",
+    "name": "UK Power Demand",
+    "func": "// does a simple text extract parse of the http output to provide an\n// object containing the uk power demand, frequency and time\n\nif (~msg.payload.indexOf('<span')) {\n    var dem = msg.payload.split('Demand:')[1].split(\"MW\")[0];\n    var fre = msg.payload.split('Frequency:')[1].split(\"Hz\")[0];\n\n    msg.payload = {};\n    msg.payload.demand = parseInt(dem.split(\">\")[1].split(\"<\")[0]);\n    msg.payload.frequency = parseFloat(fre.split(\">\")[1].split(\"<\")[0]);\n    \n    msg2 = {};\n    msg2.payload = (msg.payload.frequency >= 50) ? true : false;\n\n    return [msg,msg2];\n}\n\nreturn null;",
+    "outputs": "2",
+    "valid": true,
+    "x": 462,
+    "y": 150,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      [
+        "a0de6a80.5f2198"
+      ],
+      [
+        "f7f0fb0f.080f08"
+      ]
+    ]
+  },
+  {
+    "id": "a0de6a80.5f2198",
+    "type": "debug",
+    "name": "",
+    "active": true,
+    "complete": false,
+    "x": 662,
+    "y": 120,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      
+    ]
+  },
+  {
+    "id": "f7f0fb0f.080f08",
+    "type": "debug",
+    "name": "",
+    "active": true,
+    "complete": false,
+    "x": 663,
+    "y": 191,
+    "z": "fd0f37d6.02f0c8",
+    "wires": [
+      
+    ]
+  }
+]
+            
+        }
+    ],
+    "parameters": {
+        "attributes": [
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+                "value": "0",
+                "importance": 1
+            },
+            {
+                "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
+                "value": "0",
+                "importance": 1
+            }
+        ]
+    }
+}

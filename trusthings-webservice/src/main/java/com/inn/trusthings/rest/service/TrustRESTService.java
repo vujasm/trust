@@ -35,7 +35,9 @@ import com.inn.common.CompositionIdentifier;
 import com.inn.common.OrderType;
 import com.inn.trusthings.json.ProduceJSON;
 import com.inn.trusthings.model.pojo.TrustCriteria;
+import com.inn.trusthings.model.pojo.Value;
 import com.inn.trusthings.module.Factory;
+import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.rest.exception.TrustRestException;
 import com.inn.trusthings.rest.util.RequestJSONUtil;
@@ -125,12 +127,11 @@ public class TrustRESTService {
 		try {
 			final TrustCompositionManager trustManager = Factory.createInstance(TrustCompositionManager.class);
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
-			if (criteria == null) 
-				criteria = trustManager.getGlobalTrustCriteria();
-			String level = RequestJSONUtil.getLevelFromJsonComposite(criteria);
-			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(criteria);
+			if (criteria == null) criteria = trustManager.getGlobalTrustCriteria();
+			EnumLevel level = RequestJSONUtil.getLevelFromJsonComposite(request);
+			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(request);
 			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
-			List<CompositionIdentifier> filtered = trustManager.filterTrustedByThreshold(compositeServiceList, criteria, level, strategy);
+			List<CompositionIdentifier> filtered = trustManager.filterTrustedByThreshold(compositeServiceList, criteria, level, strategy, Value.treshold);
 			return new ProduceJSON().ofFilteringCompositionsResult(filtered);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,18 +140,17 @@ public class TrustRESTService {
 	}
 	
 	@POST
-	@Path("/scoring/composite")
+	@Path("/score/composite")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String scoringCompositions(final String request) {
 		try {
 			TrustCompositionManager trustManager = Factory.createInstance(TrustCompositionManager.class);
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
-			if (criteria == null) 
-				criteria = trustManager.getGlobalTrustCriteria();
+			if (criteria == null) criteria = trustManager.getGlobalTrustCriteria();
 			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
 			trustManager.setGlobalTrustCriteria(criteria);
-			String level = RequestJSONUtil.getLevelFromJsonComposite(criteria);
-			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(criteria);
+			EnumLevel level = RequestJSONUtil.getLevelFromJsonComposite(request);
+			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(request);
 			List<Tuple2<CompositionIdentifier, Double>> scored = trustManager.obtainTrustIndexes(compositeServiceList, criteria, level, strategy);
 			return new ProduceJSON().ofRankingCompositionsResult(scored);
 		} catch (Exception e) {

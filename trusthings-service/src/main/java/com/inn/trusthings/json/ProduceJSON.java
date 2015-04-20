@@ -102,16 +102,35 @@ public class ProduceJSON {
 	}
 
 	
-	//FIXME  - implementiraj JSON return result za composite services
 	public String ofFilteringCompositionsResult(List<CompositionIdentifier> filtered) {
-		// TODO Auto-generated method stub
-		return "";
+		ObjectMapper jacksonMapper = new ObjectMapper();
+		jacksonMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		ObjectNode rootNode = jacksonMapper.createObjectNode();
+		rootNode.put("success", "true");
+		ArrayNode arrayNode = rootNode.putArray("result");
+		for (CompositionIdentifier t : filtered) {
+			ObjectNode node = jacksonMapper.createObjectNode();
+			node.put("compositionID", t.getId());
+			arrayNode.add(node);
+		}
+		return rootNode.toString();
 	}
 
-	//FIXME  - implementiraj JSON return result za composite services
 	public String ofRankingCompositionsResult(List<Tuple2<CompositionIdentifier, Double>> scored) {
-		// TODO Auto-generated method stub
-		return "";
+		ObjectMapper jacksonMapper = new ObjectMapper();
+		jacksonMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		ObjectNode rootNode = jacksonMapper.createObjectNode();
+		rootNode.put("success", "true");
+		ArrayNode arrayNode = rootNode.putArray("result");
+		int i = 1;
+		for (Tuple2<CompositionIdentifier, Double> t : scored) {
+			ObjectNode node = jacksonMapper.createObjectNode();
+			node.put("compositionID", t.getT1().getId());
+			node.put("score", t.getT2());
+			node.put("rank", i++);
+			arrayNode.add(node);
+		}
+		return rootNode.toString();
 	}
 
 }

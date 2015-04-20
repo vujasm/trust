@@ -1,13 +1,22 @@
 package com.inn.trusthings.service.mgrs.impl;
 
+import java.net.URI;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.inn.common.CompositeServiceWrapper;
 import com.inn.common.CompositionIdentifier;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.model.pojo.TrustCriteria;
+import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
+import com.inn.util.tuple.ListTupleConvert;
 import com.inn.util.tuple.Tuple2;
 
 
@@ -36,6 +45,8 @@ import com.inn.util.tuple.Tuple2;
 public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	
 	private TrustCriteria globalTrustCriteria = GlobalTrustCriteria.instance();
+	
+	private static final Logger log = LoggerFactory.getLogger(TrustCompositionManagerImpl.class);
 
 	@Override
 	public void setGlobalTrustCriteria(TrustCriteria criteria) {
@@ -54,15 +65,30 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	}
 
 	@Override
-	public List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList,
-			TrustCriteria criteria, String level, String strategy) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, EnumLevel level, String strategy, final Double thresholdValue) {
+		List<Tuple2<CompositionIdentifier, Double>> scored = obtainTrustIndexes(compositeServiceList, criteria, level, strategy);
+		Iterable<Tuple2<CompositionIdentifier, Double>> filtered = Iterables.filter(scored, new Predicate<Tuple2<CompositionIdentifier, Double>>() {
+			@Override
+			public boolean apply(Tuple2<CompositionIdentifier, Double> t) {
+				return (Double.valueOf(t.getT2()).compareTo(thresholdValue) >= 0);
+			}
+		});
+		printList(Lists.newArrayList(filtered), " filtered with thresholdValue value of " + thresholdValue);
+		final List<CompositionIdentifier> filteredList = ListTupleConvert.toListOfTupleElement(Lists.newArrayList(filtered), 1);
+		return filteredList;
+	}
+	
+	private void printList(List<Tuple2<CompositionIdentifier, Double>> set, String note) {
+		log.info("******** <" + note + "> ************");
+		for (Tuple2<CompositionIdentifier, Double> t : set) {
+			log.info(t.getT1() + " score " + t.getT2());
+		}
+		log.info("******** </" + note + "> ************");
 	}
 
 	@Override
 	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(
-			List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, String level, String strategy) { 
+			List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) { 
 		// TODO Auto-generated method stub
 		return null;
 	}

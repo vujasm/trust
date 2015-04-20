@@ -5,6 +5,7 @@ import java.util.List;
 import com.inn.common.CompositeServiceWrapper;
 import com.inn.common.CompositionIdentifier;
 import com.inn.trusthings.model.pojo.TrustCriteria;
+import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.util.tuple.Tuple2;
 
 /*
@@ -32,9 +33,9 @@ import com.inn.util.tuple.Tuple2;
 public interface TrustCompositionManager extends TrustManager {
 	
 	
-	List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, String level, String strategy);
+	List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy, Double thresholdValue);
 
 	
-	List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, String level, String strategy);
+	List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, EnumLevel level, String strategy);
 	
 }
