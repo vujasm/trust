@@ -76,20 +76,6 @@ public class RequestJSONUtil {
 		}
 		return EnumScoreStrategy.Weighted_sum_model;
 	}	
-	
-	public static void main(String[] args) {
-	
-		String request = "";
-		InputStream is = RequestJSONUtil.class.getResourceAsStream("/requestComposite.json");
-		try {
-			request = CharStreams.toString(new InputStreamReader(is));
-			is.close();
-			System.out.println(RequestJSONUtil.getCompositeServiceWrapperList(request));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 	public static List<CompositeServiceWrapper> getCompositeServiceWrapperList(String request) throws Exception{
 		List<CompositeServiceWrapper> list = Lists.newArrayList();
