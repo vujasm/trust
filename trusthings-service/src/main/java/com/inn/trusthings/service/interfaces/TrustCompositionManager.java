@@ -2,8 +2,12 @@ package com.inn.trusthings.service.interfaces;
 
 import java.util.List;
 
+import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
+
 import com.inn.common.CompositeServiceWrapper;
 import com.inn.common.CompositionIdentifier;
+import com.inn.trusthings.model.graph.Edge;
+import com.inn.trusthings.model.graph.Vertex;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.util.tuple.Tuple2;
@@ -32,10 +36,12 @@ import com.inn.util.tuple.Tuple2;
 
 public interface TrustCompositionManager extends TrustManager {
 	
-	
 	List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy, Double thresholdValue) throws Exception;
-
 	
 	List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, EnumLevel level, String strategy) throws Exception;
+
+	Tuple2<CompositionIdentifier, Double> obtainTrustIndex(CompositeServiceWrapper compositeServiceWrapper, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception;
+
+	Double obtainTrustIndex(DirectedAcyclicGraph<Vertex, Edge> g, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception;
 	
 }

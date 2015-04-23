@@ -1,10 +1,7 @@
 package com.inn.trusthings.service.mgrs.impl;
 
-import java.net.URI;
 import java.util.List;
-
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
-import org.jgrapht.graph.DefaultEdge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +26,6 @@ import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
 import com.inn.trusthings.service.interfaces.RankingCompositionsManager;
-import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
 import com.inn.util.tuple.ListTupleConvert;
 import com.inn.util.tuple.Tuple2;
@@ -115,14 +111,27 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	@Override
 	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception {
 		List<Tuple2<CompositionIdentifier, Double>> list = Lists.newArrayList();
-		for (CompositeServiceWrapper wrapper : compositeServiceList) {
-			DirectedAcyclicGraph<Vertex, Edge> g = graphUtility.createDAG(wrapper.getFlow());
-			Double score = rankingManager.computeScore(g, criteria);
-			Tuple2<CompositionIdentifier, Double> tuple = new Tuple2<CompositionIdentifier, Double>(wrapper.getCompositionIdentifier(),score);
+		for (CompositeServiceWrapper compositeServiceWrapper : compositeServiceList) {
+			DirectedAcyclicGraph<Vertex, Edge> g = graphUtility.createDAG(compositeServiceWrapper.getFlow());
+			Tuple2<CompositionIdentifier, Double> tuple = obtainTrustIndex(compositeServiceWrapper, criteria, level, strategy);
 			list.add(tuple);
 		}
 		return list;
 	}
+	
+	@Override
+	public Tuple2<CompositionIdentifier, Double> obtainTrustIndex(CompositeServiceWrapper compositeServiceWrapper, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception {
+			DirectedAcyclicGraph<Vertex, Edge> g = graphUtility.createDAG(compositeServiceWrapper.getFlow());
+			Double score = obtainTrustIndex(g, criteria, level, strategy);
+			Tuple2<CompositionIdentifier, Double> tuple = new Tuple2<CompositionIdentifier, Double>(compositeServiceWrapper.getCompositionIdentifier(),score);
+			return tuple;
+	}
+	
+	@Override
+	public Double obtainTrustIndex(DirectedAcyclicGraph<Vertex, Edge> g, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception {
+			return rankingManager.computeScore(g, criteria);
+	}
+		
 	
 	
 

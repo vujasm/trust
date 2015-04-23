@@ -20,7 +20,6 @@ package com.inn.trusthings.service.mgrs.impl;
  * #L%
  */
 
-
 import java.net.URI;
 import java.util.Iterator;
 import java.util.List;
@@ -43,12 +42,11 @@ import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.util.tuple.Tuple2;
 
-public class RankingCompositionsManagerImpl implements RankingCompositionsManager{
-	
+public class RankingCompositionsManagerImpl implements RankingCompositionsManager {
+
 	TrustSimpleManager trustSimpleManager;
 	RankingManager rankingManager;
 	private static final Logger log = LoggerFactory.getLogger(RankingCompositionsManagerImpl.class);
-	
 
 	@Inject
 	public RankingCompositionsManagerImpl(TrustSimpleManager trustSimpleManager, RankingManager rankingManager) {
@@ -58,48 +56,44 @@ public class RankingCompositionsManagerImpl implements RankingCompositionsManage
 
 	@Override
 	public Double computeScore(DirectedAcyclicGraph<Vertex, Edge> g, TrustCriteria criteria) {
-		List<URI> resources = Lists.newArrayList(); 
-		Iterator<Vertex> it =g.iterator(); 
+		List<URI> resources = Lists.newArrayList();
+		Iterator<Vertex> it = g.iterator();
 		while (it.hasNext()) {
-			Vertex v = (Vertex)it.next();
-			if (v.getComposeID()!=null){
+			Vertex v = (Vertex) it.next();
+			if (v.getComposeID() != null) {
 				resources.add(URI.create(v.getComposeID()));
-			}else{
+			} else {
 				v.setModel(null);
 			}
 		}
-		List<Tuple2<URI, Model>> models =  trustSimpleManager.obtainModelsListTuple(resources, false);
+		List<Tuple2<URI, Model>> models = trustSimpleManager.obtainModelsListTuple(resources, false);
 		for (Tuple2<URI, Model> t : models) {
-			it =g.iterator(); 
+			it = g.iterator();
 			while (it.hasNext()) {
 				Vertex v = (Vertex) it.next();
-				if (v.getComposeID()!=null && v.getComposeID().equalsIgnoreCase(t.getT1().toASCIIString())){
+				if (v.getComposeID() != null && v.getComposeID().equalsIgnoreCase(t.getT1().toASCIIString())) {
 					v.setModel(t.getT2());
-					log.info("loaded model for:"+v.getComposeID());
+					log.info("loaded model for:" + v.getComposeID());
 				}
 			}
 		}
-		
+
 		List<SingleElement> listCriteria = criteria.getListOperandByAnd();
 		List<Model> listModels = trustSimpleManager.castListModels(models);
-		List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetMain = rankingManager.prepareDataset(listModels,listCriteria, false, false);
-		
-		
-		compute(g, listCriteria, dataSetMain);
-		
-		
-		
-		Double score = 1D;
-		return score;
+		List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetMain = rankingManager.prepareDataset(listModels, listCriteria, false, false);
+		prepare(g, dataSetMain);
+		return compute(g, listCriteria);
+
 	}
 
-	private void compute(DirectedAcyclicGraph<Vertex, Edge> g, List<SingleElement> listCriteria, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetMain) {
-		Iterator<Vertex> it =g.iterator(); 
+	private void prepare(DirectedAcyclicGraph<Vertex, Edge> g, List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> dataSetMain) {
+		// set scores on vertices
+		Iterator<Vertex> it = g.iterator();
 		while (it.hasNext()) {
-			Vertex v = (Vertex)it.next();
-			if (v.getComposeID()!=null){
+			Vertex v = (Vertex) it.next();
+			if (v.getComposeID() != null) {
 				for (Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>> t : dataSetMain) {
-					if ((t.getT1().getInputUID()!=null && t.getT1().getInputUID().toString().equals(v.getComposeID()))){
+					if ((t.getT1().getInputUID() != null && t.getT1().getInputUID().toString().equals(v.getComposeID()))) {
 						for (Tuple2<TrustAttribute, Double> s : t.getT2()) {
 							v.addScore(s.getT1(), s.getT2());
 						}
@@ -107,5 +101,11 @@ public class RankingCompositionsManagerImpl implements RankingCompositionsManage
 				}
 			}
 		}
+
+	}
+	
+	private Double compute(DirectedAcyclicGraph<Vertex, Edge> g, List<SingleElement> listCriteria) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
