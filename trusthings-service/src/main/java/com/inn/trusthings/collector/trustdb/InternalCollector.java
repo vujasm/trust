@@ -48,7 +48,7 @@ public class InternalCollector extends AbstractCollector {
 		String databaseUrl = null;
 		try {
 			if (VCAPParser.parseVcap_Services()!=null){
-				System.out.println("trust service - vcap service env exists");
+				System.out.println(InternalCollector.class+": trust service - vcap service env exists");
 				 String username = VCAPParser.obtainDBServiceUsername(VCAPParser.parseVcap_Services());
 				 String password = VCAPParser.obtainDBServicePassword(VCAPParser.parseVcap_Services());
 				 databaseUrl = VCAPParser.obtainDBServiceJDBCURI(VCAPParser.parseVcap_Services())
@@ -57,7 +57,6 @@ public class InternalCollector extends AbstractCollector {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("trust service aims to connect to: "+databaseUrl);
 		b = new BridgeDB(databaseUrl);
 	}
 

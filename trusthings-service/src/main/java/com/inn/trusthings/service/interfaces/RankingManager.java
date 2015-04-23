@@ -26,6 +26,9 @@ import java.util.List;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
+import com.inn.trusthings.model.expression.SingleElement;
+import com.inn.trusthings.model.pojo.Agent;
+import com.inn.trusthings.model.pojo.TrustAttribute;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.TrustProfile;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
@@ -53,27 +56,16 @@ public interface RankingManager {
 	public List<Tuple2<URI, Double>> rankServiceModels(List<Model> models, TrustCriteria trustProfileRequired, EnumScoreStrategy strategy,
 			 boolean excludeIfAttributeMissing, boolean filterByCriteriaNotMet, OrderType order) throws Exception ;
 	
-//	/**
-//	 * how close a service matches given criteria
-//	 * @param service
-//	 * @param trustProfileRequired trust requirements    
-//	 * @param useCache if caching is enabled, should cached trust index be returned instead of computing the trust index
-//	 * @param updateCache should cached trust index be updated
-//	 * @return trust index value [0..1]
-//	 */
-//	public double computeTrustIndex(URI service, TrustProfile trustProfileRequired, boolean useCache, boolean updateCache);
-//	
-//	/**
-//	 * how close a service matches given criteria
-//	 * @param trustProfile a set of trust attributes that will be matched with trust criteria expressed as trustProfileRequired
-//	 * @param trustProfileRequired trust requirements    
-//	 * @param useCache if caching is enabled, should cached trust index be returned instead of computing the trust index
-//	 * @param updateCache should cached trust index be updated
-//	 * @return trust index value [0..1]
-//	 */
-//	public double computeTrustIndex(TrustProfile trustProfile, TrustProfile trustProfileRequired, boolean useCache, boolean updateCache);
-	
-	
+	/**
+	 * 	Prepares data set. It may exclude agents that have no requested attribute if filterByAttributeMissing true, \
+	 * or evaluate as zero if rigorous is true and attributed evaluated lower than expected 
+	 * @param models
+	 * @param trustProfileRequired
+	 * @param filterByAttributeMissing
+	 * @param rigorous
+	 * @return
+	 */
+	public List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, List<SingleElement> listCriteria, boolean filterByAttributeMissing, boolean rigorous) ;
 	
 }
 

@@ -1,0 +1,121 @@
+[
+	{
+		"id":"7a637002.859c9",
+		"type":"function",
+		"name":"",
+		"func":"if (msg !=undefined && msg.payload!=undefined) {\nvar visibility = msg.payload[0];\nvar snow_height = msg.payload[1];\nvar isAlert = msg.payload[2];\nvar time = new Date().toISOString().replace(/T/, ' ').replace(/\\..+/,'');\nvar payload = \"\";\nif (isAlert != \"alert\"){\n payload = \"Hi,  \\n Folgarida-Marilleva Snow Update ( \"+time+\" ) ! There is about \" + snow_height+\" cm of snow and the visibility is \" + visibility+\".\";\n}\nelse{\npayload = \"Hi, \\n Folgarida-Marilleva Snow Alert ( \"+time+\" ) ! There is about \" + snow_height+\" cm of snow and the visibility is \" + visibility+\".\";\n}\nmsg.payload = payload;\nreturn msg;\n}",
+		"outputs":1,
+		"valid":true,
+		"x":573,
+		"y":90,
+		"z":"e762ae8a.189d5",
+		"wires":[
+			[
+				"ee06ae33.11f95"
+			]
+		]
+	},
+	{
+		"id":"d46d6f69.2b929",
+		"type":"inject",
+		"name":"",
+		"topic":"Every 15 minutes",
+		"payload":"",
+		"payloadType":"string",
+		"repeat":"",
+		"crontab":"",
+		"once":false,
+		"x":208,
+		"y":61,
+		"z":"e762ae8a.189d5",
+		"wires":[
+			[
+				"32efd32c.cd102c"
+			]
+			
+		]
+		
+	},
+	{
+		"id":"32efd32c.cd102c",
+		"type":"http request",
+		"name":"Get Folgarida Weather Sensor Data",
+		"method":"GET",
+		"url":"http://api.servioticy.com:80/private/1399561531076b2c16753d0dc44eda3e612abda82b9e5/streams/snowdata/lastUpdate",
+		"compose_type":"service_object",
+		"compose_id":"http://iserve.kmi.open.ac.uk/iserve/doc/services/98613387-81cd-41d6-864d-1ab2010d7d07/1399561531076b2c16753d0dc44eda3e612abda82b9e5",
+		"x":357,
+		"y":155,
+		"z":"e762ae8a.189d5",
+		"wires":[
+			[
+				"77239be4.88dc64"
+			]
+			
+		]
+		
+	},
+	{
+		"id":"77239be4.88dc64",
+		"type":"jsonpath",
+		"expression":"$[channels.[visibility,snow_height].current-value]",
+		"split":false,
+		"name":"Take out visibility and snow level",
+		"x":457,
+		"y":237,
+		"z":"e762ae8a.189d5",
+		"wires":[["d10da7a3.2ef258","7a637002.859c9"]]
+		
+	},
+	{
+		"id":"d10da7a3.2ef258",
+		"type":"function",
+		"name":"Prepare Snow Update Message",
+		"func":"if (msg !=undefined && msg.payload!=undefined) {\nvar visibility = msg.payload[0];\nvar snow_height = msg.payload[1];\nvar isAlert = msg.payload[2];\nvar time = new Date().toISOString().replace(/T/, ' ').replace(/\\..+/,'');\nvar payload = \"\";\nif (isAlert != \"alert\"){\n payload = \"Hi,  \\n Folgarida-Marilleva Snow Update ( \"+time+\" ) ! There is about \" + snow_height+\" cm of snow and the visibility is \" + visibility+\".\";\n}\nelse{\npayload = \"Hi, \\n Folgarida-Marilleva Snow Alert ( \"+time+\" ) ! There is about \" + snow_height+\" cm of snow and the visibility is \" + visibility+\".\";\n}\nmsg.payload = payload;\nreturn msg;\n}",
+		"outputs":1,
+		"valid":true,
+		"x":570,
+		"y":360,
+		"z":"e762ae8a.189d5",
+		"wires":[
+			[
+				"825cc9cb.7da338",
+				"ee06ae33.11f95"
+			]
+			
+		]
+		
+	},
+	{
+		"id":"825cc9cb.7da338",
+		"type":"e-mail",
+		"compose_type":"service",
+		"compose_id":"http://iserve.kmi.open.ac.uk/iserve/id/services/13e4172e-00aa-4113-bfa2-74d59cc1b544/google-gmail-oauth",
+		"server":"smtp.gmail.com",
+		"port":"465",
+		"name":"marko.vujasinovic@gmail.com",
+		"dname":"SendMessage",
+		"x":796,
+		"y":415,
+		"z":"e762ae8a.189d5",
+		"wires":[
+			
+		]
+		
+	},
+	{
+		"id":"ee06ae33.11f95",
+		"type":"debug",
+		"name":"",
+		"active":true,
+		"console":"false",
+		"complete":"false",
+		"x":808,
+		"y":211,
+		"z":"e762ae8a.189d5",
+		"wires":[
+			
+		]
+		
+	}
+]

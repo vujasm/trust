@@ -3,6 +3,8 @@ package com.inn.trusthings.service.mgrs.impl;
 import java.net.URI;
 import java.util.List;
 
+import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
+import org.jgrapht.graph.DefaultEdge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,17 +13,23 @@ import uk.ac.open.kmi.iserve.commons.io.Syntax;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.inn.common.CompositeServiceWrapper;
 import com.inn.common.CompositionIdentifier;
 import com.inn.trusthings.json.TrustPOJOFactory;
 import com.inn.trusthings.kb.RDFModelsHandler;
+import com.inn.trusthings.model.graph.Edge;
+import com.inn.trusthings.model.graph.GraphUtility;
+import com.inn.trusthings.model.graph.Vertex;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.utils.TrustOntologyUtil;
 import com.inn.trusthings.model.vocabulary.ModelEnum;
 import com.inn.trusthings.op.enums.EnumLevel;
 import com.inn.trusthings.service.config.GlobalTrustCriteria;
+import com.inn.trusthings.service.interfaces.RankingCompositionsManager;
+import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
 import com.inn.util.tuple.ListTupleConvert;
 import com.inn.util.tuple.Tuple2;
@@ -52,13 +60,17 @@ import com.inn.util.tuple.Tuple2;
 public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	
 	private TrustCriteria globalTrustCriteria = GlobalTrustCriteria.instance();
+	private final RankingCompositionsManager rankingManager;
+	GraphUtility graphUtility = new GraphUtility();
 	
 	private static final Logger log = LoggerFactory.getLogger(TrustCompositionManagerImpl.class);
 	
-	public TrustCompositionManagerImpl() {
+	@Inject
+	public TrustCompositionManagerImpl(RankingCompositionsManager rankingCompositionsManager) {
 		OntModel model = RDFModelsHandler.getGlobalInstance().fetchOntologyFromLocalLocation(ModelEnum.Trust.getURI(), 
 				Syntax.TTL.getName(), OntModelSpec.OWL_MEM_TRANS_INF);
 		TrustOntologyUtil.init(model);
+		this.rankingManager = rankingCompositionsManager;
 	}
 
 	@Override
@@ -78,7 +90,7 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	}
 
 	@Override
-	public List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, EnumLevel level, String strategy, final Double thresholdValue) {
+	public List<CompositionIdentifier> filterTrustedByThreshold(List<CompositeServiceWrapper> compositeServiceList,TrustCriteria criteria, EnumLevel level, String strategy, final Double thresholdValue) throws Exception {
 		List<Tuple2<CompositionIdentifier, Double>> scored = obtainTrustIndexes(compositeServiceList, criteria, level, strategy);
 		Iterable<Tuple2<CompositionIdentifier, Double>> filtered = Iterables.filter(scored, new Predicate<Tuple2<CompositionIdentifier, Double>>() {
 			@Override
@@ -93,6 +105,7 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	
 	private void printList(List<Tuple2<CompositionIdentifier, Double>> set, String note) {
 		log.info("******** <" + note + "> ************");
+		
 		for (Tuple2<CompositionIdentifier, Double> t : set) {
 			log.info(t.getT1().getId() + " score " + t.getT2());
 		}
@@ -100,10 +113,12 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	}
 
 	@Override
-	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) {
+	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception {
 		List<Tuple2<CompositionIdentifier, Double>> list = Lists.newArrayList();
 		for (CompositeServiceWrapper wrapper : compositeServiceList) {
-			Tuple2<CompositionIdentifier, Double> tuple = new Tuple2<CompositionIdentifier, Double>(wrapper.getCompositionIdentifier(),0.4D);
+			DirectedAcyclicGraph<Vertex, Edge> g = graphUtility.createDAG(wrapper.getFlow());
+			Double score = rankingManager.computeScore(g, criteria);
+			Tuple2<CompositionIdentifier, Double> tuple = new Tuple2<CompositionIdentifier, Double>(wrapper.getCompositionIdentifier(),score);
 			list.add(tuple);
 		}
 		return list;

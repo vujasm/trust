@@ -88,7 +88,7 @@ public class ReputationCollector extends AbstractCollector{
 		String url = sourceUri+"/class_reputation/batch/";
 		Response response = client.target(url).request().accept(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(requestBody, MediaType.APPLICATION_JSON), Response.class);
-		System.out.println("end");
+		log.info("Responded");
 		if (response.getStatus() != 200) {
 			log.warn("Failed Reputation Collector: HTTP error code : " + response.getStatus() +" on "+url);
 //			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
@@ -131,7 +131,7 @@ public class ReputationCollector extends AbstractCollector{
 	private double obtainReputationIndex(URI uri) {
 		Client client =  new Client();
 		JsonNode node = client.getJsonAsJsonNode(getSourceUri()+"/srvcid"+uri.toASCIIString());
-		System.out.println(node);
+//		System.out.println(node);
 		return 0;
 	}
 

@@ -227,7 +227,7 @@ public class BasicRankingManager implements RankingManager {
 	 * @param rigorous
 	 * @return
 	 */
-	private List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, List<SingleElement> listCriteria, boolean filterByAttributeMissing, boolean rigorous) {
+	public List<Tuple2<Agent, List<Tuple2<TrustAttribute, Double>>>> prepareDataset(List<Model> models, List<SingleElement> listCriteria, boolean filterByAttributeMissing, boolean rigorous) {
 		
 		rigorousEval = rigorous;
 		
@@ -315,6 +315,7 @@ public class BasicRankingManager implements RankingManager {
 		ValuesHolder valuesHolder = new ValuesHolderLoader().loadValues(); 
 		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager, valuesHolder);
 		double result = operator.apply(requested, attributes);
+		log.info("match result: "+result);
 		return result;
 	}
 

@@ -41,6 +41,7 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
@@ -102,6 +103,11 @@ public class ToModelParser {
 			agent.setCompose_ID(URI.create(r1.getURI()));
 		}
 		Resource r2 = resource.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")));
+		
+		if (r2 == null){
+			r2 =  ResourceFactory.createResource(agent.getUri().toString());
+			resource.getModel().add(resource,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")),r2);
+		}
 		
 		if (r2!=null){
 			agent.setInputUID(URI.create(r2.getURI()));

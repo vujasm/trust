@@ -34,11 +34,13 @@ import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.kb.KnowledgeBaseManagerSparql;
 import com.inn.trusthings.kb.SparqlGraphStoreFactory;
 import com.inn.trusthings.kb.SparqlGraphStoreManager;
+import com.inn.trusthings.service.interfaces.RankingCompositionsManager;
 import com.inn.trusthings.service.interfaces.RankingManager;
 import com.inn.trusthings.service.interfaces.TrustCompositionManager;
 import com.inn.trusthings.service.interfaces.TrustSimpleManager;
 import com.inn.trusthings.service.mgrs.impl.BasicRankingManager;
 import com.inn.trusthings.service.mgrs.impl.BasicTrustManager;
+import com.inn.trusthings.service.mgrs.impl.RankingCompositionsManagerImpl;
 import com.inn.trusthings.service.mgrs.impl.TrustCompositionManagerImpl;
 
 
@@ -53,6 +55,7 @@ public class TrustModule extends AbstractModule {
         bind(TrustSimpleManager.class).to(BasicTrustManager.class);
         bind(TrustCompositionManager.class).to(TrustCompositionManagerImpl.class);
         bind(RankingManager.class).to(BasicRankingManager.class);
+        bind(RankingCompositionsManager.class).to(RankingCompositionsManagerImpl.class);
         install(new FactoryModuleBuilder()
                 .implement(SparqlGraphStoreManager.class, ConcurrentSparqlGraphStoreManager.class)
                 .build(SparqlGraphStoreFactory.class));

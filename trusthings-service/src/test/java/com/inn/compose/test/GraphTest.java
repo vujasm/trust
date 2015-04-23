@@ -29,6 +29,7 @@ import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 import org.jgrapht.graph.DefaultEdge;
 
 import com.google.common.io.CharStreams;
+import com.inn.trusthings.model.graph.Edge;
 import com.inn.trusthings.model.graph.GraphUtility;
 import com.inn.trusthings.model.graph.Vertex;
 import com.inn.util.tuple.Tuple2;
@@ -41,7 +42,7 @@ public class GraphTest {
 		try {
 			noderredFlow = CharStreams.toString(new InputStreamReader(is));
 			GraphUtility gu = new GraphUtility();
-			DirectedAcyclicGraph<Vertex, DefaultEdge> g = gu.createDAG(noderredFlow);
+			DirectedAcyclicGraph<Vertex, Edge> g = gu.createDAG(noderredFlow);
 			Set<Tuple2<Vertex, Vertex>> parallels = gu.detectParallelStructure(g);
 			System.out.println(parallels.size());
 			

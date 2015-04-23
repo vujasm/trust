@@ -27,6 +27,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Set;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.common.OrderType;
 import com.inn.trusthings.kb.KnowledgeBaseManager;
 import com.inn.trusthings.model.pojo.TrustCriteria;
@@ -216,7 +217,11 @@ public interface TrustSimpleManager extends TrustManager {
 	void addResourceDescription(URI resourceURI, File file);
 	
 	
-
+	public List<Model> obtainModels(List<URI> resources, boolean logRequest) ;
+	
+	public List<Tuple2<URI, Model>> obtainModelsListTuple(List<URI> resources, boolean logRequest);
+	
+	public List<Model> castListModels(List<Tuple2<URI, Model>> list) ;
 	
 
 }

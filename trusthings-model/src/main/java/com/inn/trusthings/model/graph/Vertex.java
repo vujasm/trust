@@ -21,10 +21,14 @@ package com.inn.trusthings.model.graph;
  */
 
 
-import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.inn.trusthings.model.pojo.TrustAttribute;
+
 import jersey.repackaged.com.google.common.collect.Lists;
+import jersey.repackaged.com.google.common.collect.Maps;
 
 public class Vertex {
 	
@@ -33,6 +37,10 @@ public class Vertex {
 	private String composeType;
 	
 	private String composeID;
+	
+	private Model model;
+	
+	private HashMap<TrustAttribute, Double> scores = Maps.newHashMap();
 	
 	private List<String> merged=Lists.newArrayList();
 	
@@ -71,6 +79,22 @@ public class Vertex {
 
 	public void setComposeID(String composeID) {
 		this.composeID = composeID;
+	}
+	
+	public HashMap<TrustAttribute, Double> getScores() {
+		return scores;
+	}
+	
+	public void addScore(TrustAttribute attr, Double value){
+		this.getScores().put(attr, value);
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
 	}
 	
 	

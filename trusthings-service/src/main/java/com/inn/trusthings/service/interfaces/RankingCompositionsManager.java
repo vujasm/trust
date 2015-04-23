@@ -1,8 +1,8 @@
-package restserver;
+package com.inn.trusthings.service.interfaces;
 
 /*
  * #%L
- * trusthings-webservice
+ * trusthings-service
  * %%
  * Copyright (C) 2015 COMPOSE project
  * %%
@@ -21,26 +21,14 @@ package restserver;
  */
 
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 
-import com.google.common.io.CharStreams;
-import com.inn.trusthings.rest.util.RequestJSONUtil;
+import com.inn.trusthings.model.graph.Edge;
+import com.inn.trusthings.model.graph.Vertex;
+import com.inn.trusthings.model.pojo.TrustCriteria;
 
-public class RequestJSONUtilTest {
-	
-	public static void main(String[] args) {
-		
-		String request = "";
-		InputStream is = RequestJSONUtilTest.class.getResourceAsStream("/requestComposite.json");
-		try {
-			request = CharStreams.toString(new InputStreamReader(is));
-			is.close();
-			System.out.println(RequestJSONUtil.getCompositeServiceWrapperList(request));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+public interface RankingCompositionsManager {
+
+	Double computeScore(DirectedAcyclicGraph<Vertex, Edge> g, TrustCriteria criteria);
 
 }

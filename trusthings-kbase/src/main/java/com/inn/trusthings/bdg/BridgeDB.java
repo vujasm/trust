@@ -98,9 +98,8 @@ public class BridgeDB extends ABridge{
 	
 	
 	public BridgeDB(String pjdbc){
-		if (pjdbc !=null)
-			jdbc_url = pjdbc;
-		log.info("trust jdbc url "+jdbc_url);
+		if (pjdbc !=null) jdbc_url = pjdbc;
+		log.info("trust service will connect to jdbc url "+jdbc_url);
 	}
 
 	
@@ -216,7 +215,7 @@ public class BridgeDB extends ABridge{
 		model.add(agent, RDF.type, Trust.Agent);
 		model.add(agent, Trust.hasName, agentName);
 		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")), ResourceFactory.createResource(agentComposeUID.toString()));
-		System.out.println(inputServiceID);
+		log.info(inputServiceID);
 		model.add(agent,(ModelFactory.createDefaultModel().createProperty(Trust.NS+"inputUID")), ResourceFactory.createResource(inputServiceID));
 		model.add(agent, Trust.hasProfile, profile);
 		model.add(profile, RDF.type, Trust.TrustProfile);

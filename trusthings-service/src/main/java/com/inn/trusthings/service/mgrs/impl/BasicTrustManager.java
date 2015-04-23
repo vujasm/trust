@@ -61,6 +61,7 @@ import com.inn.trusthings.kb.config.IgnoredModels;
 import com.inn.trusthings.kb.config.LocationMapping;
 import com.inn.trusthings.model.pojo.TrustCriteria;
 import com.inn.trusthings.model.pojo.Value;
+import com.inn.trusthings.model.vocabulary.Trust;
 import com.inn.trusthings.op.enums.EnumScoreStrategy;
 import com.inn.trusthings.service.command.CreateUpdateTrustProfile;
 import com.inn.trusthings.service.command.FillTaxonomy;
@@ -274,16 +275,9 @@ public class BasicTrustManager implements TrustSimpleManager {
 			saveIntoTripleStore(t.getT1(), t.getT2());
 		}
 	}
-
-	/**
-	 * 
-	 * @param resources
-	 * @return
-	 */
-	private List<Tuple2<URI, Model>> obtainModels(List<URI> resources) {
-		
+	
+	public List<Tuple2<URI, Model>> obtainModelsListTuple(List<URI> resources, boolean logRequest) {
 		List<Tuple2<URI, Model>> listModels = Lists.newArrayList();
-			
 		Map<URI, Model> map = Maps.newHashMap();
 		for (URI uri : resources) {
 			boolean fetchFromExternalRegistries = false;
@@ -298,6 +292,8 @@ public class BasicTrustManager implements TrustSimpleManager {
 			collector.collectInformation(resources, map);	 
 		}
 		
+		//TODO not all models have Trust.NS+"inputUID"
+		
 //		for (URI uri : resources) {
 //			fillTrustProfilForResource(model, uri, (List<Model>) list.get(uri));
 //			listModels.add(new Tuple2<URI, Model>(uri, model));
@@ -306,7 +302,42 @@ public class BasicTrustManager implements TrustSimpleManager {
 		
 		//FIXME  - is this the best place for shuting down
 //		CollectorEnum.InternalCollector.getCollector().shutDown();
+		if (logRequest) {
+			storeModelsIntoStore(listModels);
+		}
+				
 		return listModels;
+	}
+
+	/**
+	 * 
+	 * @param resources
+	 * @param logRequest 
+	 * @return
+	 */
+	public List<Model> obtainModels(List<URI> resources, boolean logRequest) {
+		Stopwatch timer = new Stopwatch().start();
+		List<Tuple2<URI, Model>> listModels = obtainModelsListTuple(resources, logRequest);
+		List<Model> models = castListModels(listModels);
+		timer.stop();
+		log.info("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+		return models;
+	}
+	
+	/**
+	 * 
+	 * @param resources
+	 * @param logRequest 
+	 * @return
+	 */
+	public List<Model> castListModels(List<Tuple2<URI, Model>> list) {
+		List<Model> models = ListTuple.toList(list, new TFunctor<Model>() {
+			@Override
+			public Model apply(Tuple2<?, ?> t) {
+				return (Model) t.getT2();
+			}
+		});
+		return models;
 	}
 
 	/**
@@ -320,21 +351,8 @@ public class BasicTrustManager implements TrustSimpleManager {
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order,
-			boolean logRequest) throws Exception {
-		Stopwatch timer = new Stopwatch().start();
-		final List<Tuple2<URI, Model>> tupleModels = obtainModels(resources);
-		if (logRequest) {
-			storeModelsIntoStore(tupleModels);
-		}
-		List<Model> models = ListTuple.toList(tupleModels, new TFunctor<Model>() {
-			@Override
-			public Model apply(Tuple2<?, ?> t) {
-				return (Model) t.getT2();
-			}
-		});
-		timer.stop();
-		log.info("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+	private List<Tuple2<URI, Double>> processCall(List<URI> resources, TrustCriteria criteria, EnumScoreStrategy scoreStrategy, boolean filterByAttributeMissing, boolean filterByCriteriaNotMet, OrderType order,boolean logRequest) throws Exception {
+		List<Model> models =  obtainModels(resources, logRequest);
 		return rankingManager.rankServiceModels(models, criteria, scoreStrategy, filterByAttributeMissing, filterByCriteriaNotMet, order);
 	}
 
