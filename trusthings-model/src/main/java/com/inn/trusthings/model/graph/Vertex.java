@@ -23,6 +23,7 @@ package com.inn.trusthings.model.graph;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.inn.trusthings.model.pojo.TrustAttribute;
@@ -34,21 +35,23 @@ public class Vertex {
 	
 	private String id ;
 	
+	private String name;
+	
 	private String composeType;
 	
 	private String composeID;
 	
 	private Model model;
 	
-	private HashMap<TrustAttribute, Double> scores = Maps.newHashMap();
+	private Map<TrustAttribute, Double> scores = Maps.newHashMap();
 	
-	private List<String> merged=Lists.newArrayList();
+	private List<Vertex> merged=Lists.newArrayList();
 	
 	public Vertex(String id) {
 		this.setID(id);
 	}
 	
-	public List<String> getMerged() {
+	public List<Vertex> getMerged() {
 		return merged;
 	}
 
@@ -81,12 +84,16 @@ public class Vertex {
 		this.composeID = composeID;
 	}
 	
-	public HashMap<TrustAttribute, Double> getScores() {
+	public Map<TrustAttribute, Double> getScores() {
 		return scores;
 	}
 	
 	public void addScore(TrustAttribute attr, Double value){
 		this.getScores().put(attr, value);
+	}
+	
+	public void setScores(Map<TrustAttribute, Double> scores) {
+		this.scores = scores;
 	}
 
 	public Model getModel() {
@@ -95,6 +102,19 @@ public class Vertex {
 
 	public void setModel(Model model) {
 		this.model = model;
+	}
+	
+	@Override
+	public String toString() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

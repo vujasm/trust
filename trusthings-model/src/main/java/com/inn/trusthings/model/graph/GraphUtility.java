@@ -20,7 +20,6 @@ package com.inn.trusthings.model.graph;
  * #L%
  */
 
-import java.net.URI;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +28,6 @@ import jersey.repackaged.com.google.common.collect.Lists;
 import jersey.repackaged.com.google.common.collect.Sets;
 
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
-import org.jgrapht.graph.DefaultEdge;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,10 +36,11 @@ import com.inn.util.tuple.Tuple2;
 
 public class GraphUtility {
 
-	List<Vertex> vertices = Lists.newArrayList();
+	
 
-	public DirectedAcyclicGraph<Vertex, Edge> createDAG(String noderredFlow) throws Exception {
+	public static DirectedAcyclicGraph<Vertex, Edge> createDAG(String noderredFlow) throws Exception {
 		DirectedAcyclicGraph<Vertex, Edge> g = createDAG();
+		List<Vertex> vertices = Lists.newArrayList();
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode nodes = mapper.readTree(noderredFlow);
 		for (JsonNode node : nodes) {
@@ -50,9 +49,11 @@ public class GraphUtility {
 				JsonNode id = node.get("id");
 				JsonNode composeId = node.get("compose_id");
 				JsonNode composeType = node.get("compose_type");
-				Vertex vStart = getOrCreateVertex(id.textValue());
+				JsonNode name = node.get("name");
+				Vertex vStart = getOrCreateVertex(id.textValue(),vertices);
 				vStart.setComposeID((composeId != null ? composeId.textValue() : null));
 				vStart.setComposeType((composeType != null ? composeType.textValue() : null));
+				vStart.setName(name.textValue());
 				if (g.containsVertex(vStart) == false)
 					g.addVertex(vStart);
 				JsonNode wires = node.get("wires");
@@ -61,7 +62,7 @@ public class GraphUtility {
 				for (JsonNode wire : wires) {
 					ArrayNode wireArray = (ArrayNode) wire;
 					for (JsonNode w : wireArray) {
-						Vertex vTarget = getOrCreateVertex(w.textValue());
+						Vertex vTarget = getOrCreateVertex(w.textValue(),vertices);
 						if (g.containsVertex(vTarget) == false)
 							g.addVertex(vTarget);
 						if (g.containsEdge(vStart, vTarget) == false)
@@ -81,7 +82,7 @@ public class GraphUtility {
 		return g;
 	}
 
-	private Vertex getOrCreateVertex(String id) {
+	private static Vertex getOrCreateVertex(String id, List<Vertex> vertices) {
 		for (Vertex v : vertices) {
 			if (v.getID().equalsIgnoreCase(id))
 				return v;
@@ -91,11 +92,11 @@ public class GraphUtility {
 		return v;
 	}
 
-	public DirectedAcyclicGraph<Vertex, Edge> createDAG() {
+	public static DirectedAcyclicGraph<Vertex, Edge> createDAG() {
 		return new DirectedAcyclicGraph<Vertex, Edge>(Edge.class);
 	}
 
-	public Set<Tuple2<Vertex, Vertex>> detectParallelStructure(DirectedAcyclicGraph<Vertex, Edge> g) {
+	public static Set<Tuple2<Vertex, Vertex>> detectParallelStructure(DirectedAcyclicGraph<Vertex, Edge> g) {
 		Set<Tuple2<Vertex, Vertex>> paralles = Sets.newHashSet();
 		Iterator<Vertex> it = g.iterator();
 		while (it.hasNext()) {
@@ -124,7 +125,7 @@ public class GraphUtility {
 		return paralles;
 	}
 
-	private Edge sameTarget(Set<Edge> set1, Set<Edge> set2, DirectedAcyclicGraph<Vertex, Edge> g) {
+	private static Edge sameTarget(Set<Edge> set1, Set<Edge> set2, DirectedAcyclicGraph<Vertex, Edge> g) {
 		for (Edge m1 : set1) {
 			for (Edge m2 : set2) {
 				if (g.getEdgeTarget(m1).equals(g.getEdgeTarget(m2))) {
@@ -135,7 +136,7 @@ public class GraphUtility {
 		return null;
 	}
 
-	private Edge sameSource(Set<Edge> set1, Set<Edge> set2, DirectedAcyclicGraph<Vertex, Edge> g) {
+	private static Edge sameSource(Set<Edge> set1, Set<Edge> set2, DirectedAcyclicGraph<Vertex, Edge> g) {
 		for (Edge m1 : set1) {
 			for (Edge m2 : set2) {
 				if (g.getEdgeSource(m1).equals(g.getEdgeSource(m2))) {

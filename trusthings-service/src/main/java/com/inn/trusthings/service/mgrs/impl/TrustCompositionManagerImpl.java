@@ -57,7 +57,6 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	
 	private TrustCriteria globalTrustCriteria = GlobalTrustCriteria.instance();
 	private final RankingCompositionsManager rankingManager;
-	GraphUtility graphUtility = new GraphUtility();
 	
 	private static final Logger log = LoggerFactory.getLogger(TrustCompositionManagerImpl.class);
 	
@@ -112,7 +111,7 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	public List<Tuple2<CompositionIdentifier, Double>> obtainTrustIndexes(List<CompositeServiceWrapper> compositeServiceList, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception {
 		List<Tuple2<CompositionIdentifier, Double>> list = Lists.newArrayList();
 		for (CompositeServiceWrapper compositeServiceWrapper : compositeServiceList) {
-			DirectedAcyclicGraph<Vertex, Edge> g = graphUtility.createDAG(compositeServiceWrapper.getFlow());
+			DirectedAcyclicGraph<Vertex, Edge> g = GraphUtility.createDAG(compositeServiceWrapper.getFlow());
 			Tuple2<CompositionIdentifier, Double> tuple = obtainTrustIndex(compositeServiceWrapper, criteria, level, strategy);
 			list.add(tuple);
 		}
@@ -121,7 +120,7 @@ public class TrustCompositionManagerImpl implements TrustCompositionManager{
 	
 	@Override
 	public Tuple2<CompositionIdentifier, Double> obtainTrustIndex(CompositeServiceWrapper compositeServiceWrapper, TrustCriteria criteria, EnumLevel level, String strategy) throws Exception {
-			DirectedAcyclicGraph<Vertex, Edge> g = graphUtility.createDAG(compositeServiceWrapper.getFlow());
+			DirectedAcyclicGraph<Vertex, Edge> g = GraphUtility.createDAG(compositeServiceWrapper.getFlow());
 			Double score = obtainTrustIndex(g, criteria, level, strategy);
 			Tuple2<CompositionIdentifier, Double> tuple = new Tuple2<CompositionIdentifier, Double>(compositeServiceWrapper.getCompositionIdentifier(),score);
 			return tuple;
